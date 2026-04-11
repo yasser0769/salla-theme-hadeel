@@ -74,8 +74,18 @@
 
     &-content-title{
       word-break: break-word;
-      @apply text-center;
+      @apply text-center w-full;
     }
+}
+
+// Force center alignment for vertical cards title (latest/products lists)
+.s-product-card-vertical {
+  .s-product-card-content-main,
+  .s-product-card-content-title,
+  .s-product-card-content-title a {
+    width: 100%;
+    text-align: center !important;
+  }
 }
 
 .pie-wrapper {
