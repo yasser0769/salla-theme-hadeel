@@ -1,4 +1,23 @@
 
+/* Announcement Bar */
+.announcement-bar {
+  background: linear-gradient(90deg, #e11d48 0%, #f97316 48%, #7c3aed 100%);
+  color: #ffffff;
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.22);
+
+  &__inner {
+    @apply min-h-[52px] flex items-center justify-center gap-3 text-center px-4;
+  }
+
+  i {
+    @apply inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/20 text-2xl;
+  }
+
+  span {
+    @apply text-base sm:text-lg font-extrabold;
+  }
+}
+
 /* Top Nav */
 .top-navbar {
   @apply flex py-2 min-h-[48px];

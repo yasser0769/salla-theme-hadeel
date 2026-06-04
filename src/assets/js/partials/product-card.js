@@ -273,14 +273,13 @@ class ProductCard extends HTMLElement {
 
           ${!this.hideAddBtn ?
             `<div class="s-product-card-content-footer gap-2">
-              <salla-add-product-button fill="outline" width="wide"
+              <salla-add-product-button fill="outline" shape="icon" loader-position="center"
+                class="s-product-card-add-btn-icon-only"
+                aria-label="${this.getAddButtonLabel()}"
                 product-id="${this.product.id}"
                 product-status="${this.product.status}"
                 product-type="${this.product.type}">
-                ${this.product.status == 'sale' ? 
-                    `<i class="text-base sicon-${ this.product.type == 'booking' ? 'calendar-time' : 'shopping-bag'}"></i>` : ``
-                  }
-                <span>${this.product.add_to_cart_label ? this.product.add_to_cart_label : this.getAddButtonLabel() }</span>
+                <i class="sicon-shopping-bag" aria-hidden="true"></i>
               </salla-add-product-button>
 
               ${this.horizontal || this.fullImage ?

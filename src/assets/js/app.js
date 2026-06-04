@@ -18,6 +18,7 @@ class App extends AppHelpers {
       this.initiateStickyMenu();
     }
     this.initAddToCart();
+    this.initIconOnlyCartButtons();
     this.initiateDropdowns();
     this.initiateModals();
     this.initiateCollapse();
@@ -281,6 +282,54 @@ isElementLoaded(selector){
     salla.cart.event.onItemAdded((response, prodId) => {
       app.element('salla-cart-summary').animateToCart(app.element(`#product-${prodId} img`));
     });
+  }
+
+  initIconOnlyCartButtons() {
+    const selector = '.s-product-card-content-footer salla-add-product-button';
+
+    const getAddToCartLabel = () => {
+      try {
+        return salla.lang.getWithDefault('pages.cart.add_to_cart', 'Add to cart');
+      } catch {
+        return 'Add to cart';
+      }
+    };
+
+    const applyToButton = (button) => {
+      if (!(button instanceof HTMLElement) || button.dataset.iconOnlyCartApplied === 'true') {
+        return;
+      }
+
+      button.dataset.iconOnlyCartApplied = 'true';
+      button.classList.add('s-product-card-add-btn-icon-only');
+      button.setAttribute('shape', 'icon');
+      button.setAttribute('width', 'normal');
+      button.setAttribute('loader-position', 'center');
+      button.setAttribute('aria-label', getAddToCartLabel());
+      button.innerHTML = '<i class="sicon-shopping-bag" aria-hidden="true"></i>';
+    };
+
+    const applyToRoot = (root) => {
+      if (!root || !(root instanceof Element || root instanceof Document)) return;
+      if (root instanceof Element && root.matches(selector)) {
+        applyToButton(root);
+      }
+      root.querySelectorAll?.(selector).forEach(applyToButton);
+    };
+
+    applyToRoot(document);
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType === 1) {
+            applyToRoot(node);
+          }
+        });
+      });
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
   }
 }
 

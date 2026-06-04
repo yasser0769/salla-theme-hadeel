@@ -1,6 +1,7 @@
 
 .store-footer {
   @apply relative bg-darker text-white mt-8 sm:mt-16;
+  border-top: 4px solid var(--color-primary);
 
   a{
     @apply transition-opacity hover:opacity-75;

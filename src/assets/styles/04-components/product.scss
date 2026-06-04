@@ -64,13 +64,20 @@
 }
 
 .s-product-card{
+    @apply transition-all duration-300 ease-out rounded-xl;
+
+    &:hover {
+      transform: translateY(-8px) scale(1.015);
+      box-shadow: 0 22px 48px rgba(17, 24, 39, 0.18);
+    }
+
     &-content-sub{
       @apply justify-start gap-3;
     }
 
     &-starting-price{
       @apply w-auto;
-    } 
+    }
 
     &-content-title{
       word-break: break-word;
@@ -86,6 +93,30 @@
     width: 100%;
     text-align: center !important;
   }
+
+  .s-product-card-content-footer {
+    @apply justify-center;
+  }
+}
+
+.s-product-card-add-btn-icon-only {
+  @apply mx-auto;
+  width: 2.75rem;
+}
+
+.s-product-card-add-btn-icon-only > *,
+.s-product-card-add-btn-icon-only .s-add-product-button-main {
+  width: auto !important;
+}
+
+.s-product-card-add-btn-icon-only salla-button .s-button-btn {
+  @apply w-12 h-12 p-0 rounded-full bg-primary text-primary-reverse shadow-default;
+  min-width: 2.75rem;
+  flex: none;
+}
+
+.s-product-card-add-btn-icon-only salla-button .s-button-text {
+  @apply flex items-center justify-center;
 }
 
 .pie-wrapper {

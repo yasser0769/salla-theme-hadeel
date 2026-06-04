@@ -7,6 +7,14 @@
 #}
 {% set important_links = theme.settings.get('important_links') %}
 <header class="store-header">
+  {# Announcement Bar #}
+  <div class="announcement-bar">
+    <div class="container announcement-bar__inner">
+      <i class="sicon-shipping-fast {{ theme.is_rtl ? 'flip-x':'' }}" aria-hidden="true"></i>
+      <span>عرض تجريبي واضح - شحن مجاني اليوم فقط</span>
+    </div>
+  </div>
+
   {# Top Nav #}
   <div class="top-navbar">
     <div class="container flex justify-between">
