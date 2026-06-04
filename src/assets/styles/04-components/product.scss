@@ -87,11 +87,35 @@
 
 // Force center alignment for vertical cards title (latest/products lists)
 .s-product-card-vertical {
+  .s-product-card-image {
+    width: min(82%, 360px);
+    aspect-ratio: 1 / 1;
+    height: auto;
+    flex: none;
+    margin: 1.25rem auto 0;
+    border-radius: 9999px;
+
+    img {
+      @apply object-cover;
+    }
+  }
+
+  .s-product-card-content {
+    @apply items-center text-center;
+  }
+
   .s-product-card-content-main,
   .s-product-card-content-title,
   .s-product-card-content-title a {
     width: 100%;
     text-align: center !important;
+  }
+
+  .s-product-card-content-sub,
+  .s-product-card-sale-price,
+  .s-product-card-starting-price,
+  .s-product-card-price {
+    @apply justify-center text-center;
   }
 
   .s-product-card-content-footer {
