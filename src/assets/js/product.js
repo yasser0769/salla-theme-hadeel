@@ -70,16 +70,21 @@ class Product extends BasePage {
         app.element('.price-wrapper').classList.remove('hidden')
 
         let data = res.data,
-            is_on_sale = data.has_sale_price && data.regular_price > data.price;
+            is_on_sale = data.has_sale_price && data.regular_price > data.price,
+            saving_amount = is_on_sale ? data.regular_price - data.price : 0;
 
         app.startingPriceTitle?.classList.add('hidden');
 
         app.productWeight.forEach((el) => {el.innerHTML = data.weight || ''});
         app.totalPrice.forEach((el) => {el.innerHTML = salla.money(data.price)});
         app.beforePrice.forEach((el) => {el.innerHTML = salla.money(data.regular_price)});
+        document.querySelectorAll('[data-saving-value]').forEach((el) => {
+          el.innerHTML = salla.money(saving_amount);
+        });
 
         app.toggleClassIf('.price_is_on_sale','showed','hidden', ()=> is_on_sale)
         app.toggleClassIf('.starting-or-normal-price','hidden','showed', ()=> is_on_sale)
+        app.toggleClassIf('.kalles-product-saving','showed','hidden', ()=> saving_amount > 0)
 
         document.querySelectorAll('.total-price, .product-weight').forEach(el => {
           el.classList.remove('scale-pulse');
@@ -88,10 +93,6 @@ class Product extends BasePage {
         });
       });
 
-      app.onClick('#btn-show-more', e => app.all('#more-content', div => {
-        e.target.classList.add('is-expanded');
-        div.style = `max-height:${div.scrollHeight}px`;
-      }) || e.target.remove());
     }
 }
 
