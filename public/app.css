@@ -26304,6 +26304,10 @@ body.product-single-page .main-menu > li > a {
   flex: 0 0 auto;
   order: 3;
 }
+.kalles-product-purchase-tools > a[href*="wa.me"],
+.kalles-product-purchase-tools > a[href*="api.whatsapp.com"] {
+  display: none !important;
+}
 .kalles-product-purchase-tools salla-button,
 .kalles-product-purchase-tools salla-social-share {
   width: 52px;

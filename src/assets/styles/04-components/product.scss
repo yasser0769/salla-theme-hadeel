@@ -724,6 +724,14 @@ body.product-single-page {
   flex: 0 0 auto;
   order: 3;
 
+  // Some storefront apps inject their own WhatsApp CTA into the purchase row.
+  // Keep the dedicated "ask about the product" action below instead of
+  // allowing the injected button to crowd the native purchase controls.
+  > a[href*='wa.me'],
+  > a[href*='api.whatsapp.com'] {
+    display: none !important;
+  }
+
   salla-button,
   salla-social-share {
     width: 52px;
