@@ -360,49 +360,6 @@
 }
 
 /* Kalles-inspired single product page, implemented with native Twilight components. */
-body.product-single-page {
-  --font-main: "Thmanyah Sans", sans-serif;
-  font-family: var(--font-main);
-  color: #222;
-  background: #fff;
-
-  .announcement-bar {
-    background: #e95345;
-    box-shadow: none;
-
-    &__inner {
-      min-height: 44px;
-      font-size: 13px;
-      font-weight: 500;
-    }
-
-    i {
-      width: 28px;
-      height: 28px;
-      font-size: 18px;
-    }
-  }
-
-  .top-navbar {
-    display: none;
-  }
-
-  .main-nav-container {
-    min-height: 92px;
-    border-bottom: 1px solid #f0f0f0;
-    box-shadow: none;
-  }
-
-  .navbar-brand img {
-    max-height: 52px;
-    max-width: 150px;
-  }
-
-  .main-menu > li > a {
-    font-weight: 500;
-  }
-}
-
 .kalles-product-page,
 .kalles-product-comments,
 .kalles-related-products {

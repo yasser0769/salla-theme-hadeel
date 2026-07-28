@@ -20,10 +20,16 @@
             {% for slide in component.slides %}
                 <div class="swiper-slide w-full min-h-[300px] lg:min-h-[528px] bg-dark relative">
 					<div style="background-image: url({{ slide.image }});" class="{{ slide.without_overlay ? '' : 'overlay-bg' }} bg-cover bg-center absolute inset-0"></div>
-                    <div class="flex-center container pb-16 sm:pb-0 home-slider__content relative h-full">
-                        <div class=" w-4/6 text-center md:w-7/12 lg:w-5/12 text-white">
-                            <h2 data-swiper-parallax="-500" class="lg:text-title-size font-bold leading-tight mb-4">{{ slide.title }}</h2>
-                            <p data-swiper-parallax="-300" class="line-clamp-2 description">{{ slide.description }}</p>
+                    <div class="container home-slider__content relative h-full">
+                        <div class="home-slider__copy">
+                            {% if slide.description %}
+                              <p data-swiper-parallax="-300" class="home-slider__eyebrow">{{ slide.description }}</p>
+                            {% endif %}
+                            <h2 data-swiper-parallax="-500">{{ slide.title }}</h2>
+                            <a class="home-slider__cta" href="{{ slide.url ?: link('products') }}">
+                              <span>{{ slide.button_text ?: trans('blocks.home.display_all') }}</span>
+                              <i class="sicon-arrow-left" aria-hidden="true"></i>
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -325,6 +325,27 @@
                             "maxLength": 255
                         },
                         {
+                            "type": "string",
+                            "icon": "sicon-link",
+                            "label": "رابط زر الشريحة",
+                            "id": "slides.url",
+                            "value": null,
+                            "format": "url",
+                            "required": false,
+                            "placeholder": "https://"
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text",
+                            "label": "نص زر الشريحة",
+                            "multilanguage": true,
+                            "id": "slides.button_text",
+                            "value": "تسوّق الآن",
+                            "format": "text",
+                            "required": false,
+                            "maxLength": 30
+                        },
+                        {
                             "type": "boolean",
                             "icon": "sicon-toggle-off",
                             "label": "إزالة طبقة التعتم",
