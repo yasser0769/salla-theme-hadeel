@@ -108,7 +108,7 @@
   .s-product-card-content-title,
   .s-product-card-content-title a {
     width: 100%;
-    text-align: center !important;
+    text-align: center;
   }
 
   .s-product-card-content-sub,
@@ -130,7 +130,7 @@
 
 .s-product-card-add-btn-icon-only > *,
 .s-product-card-add-btn-icon-only .s-add-product-button-main {
-  width: auto !important;
+  width: auto;
 }
 
 .s-product-card-add-btn-icon-only salla-button .s-button-btn {
@@ -175,7 +175,7 @@
       font-size: var(--font-xsm);
 
       b {
-          font-size: var(--font-md) !important;
+          font-size: var(--font-md);
           margin-bottom: 3px;
           color: var(--color-primary);
       }
@@ -233,12 +233,12 @@
 
 // Tabs fix
 .s-tabs-header * {
-  pointer-events: auto !important;
+  pointer-events: auto;
 }
 .product__description {
   ul,
   li{
-    list-style: inherit !important;
+    list-style: inherit;
   }
 
   ul,
@@ -247,7 +247,7 @@
   }
 
   ol{
-    list-style: auto !important;
+    list-style: auto;
   }
 
   a{
@@ -292,10 +292,10 @@
   .s-file-upload-wrapper{
     min-height: 120px;
     .filepond--list-scroller{
-      overflow-y: inherit !important;
+      overflow-y: inherit;
     }
     .filepond--drop-label {
-      min-height: 120px !important;
+      min-height: 120px;
       @apply bg-white cursor-pointer border-dashed rounded-md border border-gray-200;
     }
     .product-option-uploader-placholder{
@@ -315,7 +315,7 @@
 // centered offer modal width fix
 @media (max-width: 640px) {
   .s-offer-modal-slider-centered .s-offer-modal-slider-item {
-    max-width: 46% !important;
+    max-width: 46%;
   }
 }
 
@@ -382,16 +382,9 @@
   }
 }
 
-.kalles-product-overview {
-  padding-top: 34px;
-  padding-bottom: 76px;
-  gap: clamp(32px, 5vw, 76px);
-  border-bottom: 1px solid var(--hadeel-line);
-}
-
 .kalles-product-gallery {
-  width: min(58%, 760px) !important;
-  margin-inline: 0 !important;
+  width: min(58%, 760px);
+  margin-inline: 0;
 
   salla-slider.details-slider {
     border-radius: 0;
@@ -439,8 +432,8 @@
     }
 
     .s-slider-thumbs-container .swiper-slide {
-      width: 82px !important;
-      height: 82px !important;
+      width: 82px;
+      height: 82px;
       border: 1px solid transparent;
       cursor: pointer;
       opacity: 0.65;
@@ -463,8 +456,8 @@
     top: 12px;
     inset-inline-start: 12px;
     inset-inline-end: auto;
-    padding: 8px 12px !important;
-    border-radius: 0 !important;
+    padding: 8px 12px;
+    border-radius: 0;
     background: #ef633e;
     font-weight: 700;
   }
@@ -472,13 +465,6 @@
   salla-button.btn--wishlist {
     display: none;
   }
-}
-
-.kalles-product-summary {
-  width: min(42%, 560px) !important;
-  padding-top: 8px;
-  position: static !important;
-  overflow: visible !important;
 }
 
 .kalles-product-brand {
@@ -568,39 +554,10 @@
   }
 }
 
-.kalles-product-stock {
-  margin-bottom: 18px;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 14px;
-  font-weight: 600;
-
-  &.is-available {
-    color: #31784a;
-  }
-
-  &.is-unavailable {
-    color: #bd3131;
-  }
-}
-
-.kalles-product-tags {
-  margin-bottom: 12px;
-}
-
 .kalles-product-demand {
   margin-bottom: 16px;
   padding: 0;
   border: 1px solid var(--hadeel-line);
-  border-radius: 0;
-}
-
-.kalles-product-sku {
-  margin-bottom: 16px;
-  padding: 11px 0;
-  border-top: 1px solid var(--hadeel-line);
-  border-bottom: 1px solid var(--hadeel-line);
   border-radius: 0;
 }
 
@@ -816,20 +773,12 @@
 }
 
 @media (max-width: 1024px) {
-  .kalles-product-overview {
-    gap: 28px;
-  }
-
   .kalles-product-gallery {
-    width: 50% !important;
+    width: 50%;
 
     salla-slider.details-slider .homeslider__slide {
       min-height: 420px;
     }
-  }
-
-  .kalles-product-summary {
-    width: 50% !important;
   }
 
   .kalles-product-title {
@@ -863,16 +812,9 @@
     }
   }
 
-  .kalles-product-overview {
-    width: 100%;
-    padding: 22px 0 44px;
-    gap: 24px;
-    border-bottom: 0;
-  }
-
   .kalles-product-gallery,
   .kalles-product-summary {
-    width: 100% !important;
+    width: 100%;
   }
 
   .kalles-product-gallery {
@@ -916,8 +858,8 @@
       }
 
       .s-slider-thumbs-container .swiper-slide {
-        width: calc((100vw - 40px) / 3) !important;
-        height: auto !important;
+        width: calc((100vw - 40px) / 3);
+        height: auto;
         aspect-ratio: 1 / 1;
       }
 
@@ -1052,21 +994,22 @@
   background: var(--hadeel-surface);
 
   > .container {
-    width: calc(100% - 48px) !important;
-    max-width: 1320px !important;
+    width: calc(100% - 48px);
+    max-width: 1320px;
   }
 }
 
 .kalles-product-overview {
   padding: 30px 0 68px;
-  display: grid !important;
+  display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: start;
   gap: clamp(30px, 3.2vw, 48px);
+  border-bottom: 1px solid var(--hadeel-line);
 }
 
 .kalles-product-gallery {
-  width: 100% !important;
+  width: 100%;
   padding-bottom: 0;
 
   salla-slider.details-slider {
@@ -1170,30 +1113,30 @@
   }
 
   .promotion-title {
-    padding: 8px 12px !important;
-    border-radius: 999px !important;
+    padding: 8px 12px;
+    border-radius: 999px;
     background: #ff4f00;
   }
 }
 
 .kalles-product-overview > .kalles-product-gallery,
 .kalles-product-overview > .kalles-product-summary {
-  width: 100% !important;
-  margin: 0 !important;
+  width: 100%;
+  margin: 0;
 }
 
 .kalles-product-summary {
-  width: 100% !important;
+  width: 100%;
   padding-top: 2px;
   align-self: start;
-  position: static !important;
+  position: static;
   top: auto;
-  overflow: visible !important;
+  overflow: visible;
 }
 
 .kalles-product-title {
   margin-bottom: 10px;
-  font-size: clamp(23px, 1.7vw, 27px) !important;
+  font-size: clamp(23px, 1.7vw, 27px);
   line-height: 1.25;
   font-weight: 800;
 }
@@ -1213,7 +1156,7 @@
   }
 
   .kalles-product-normal-price .total-price {
-    color: #222 !important;
+    color: #222;
   }
 
   .before-price {
@@ -1238,7 +1181,7 @@
 }
 
 .kalles-product-stock {
-  display: none !important;
+  display: none;
 }
 
 .kalles-product-form {
@@ -1306,10 +1249,10 @@
 }
 
 .kalles-product-purchase {
-  padding: 0 !important;
+  padding: 0;
   align-items: center;
   gap: 10px;
-  background: transparent !important;
+  background: transparent;
 
   .sticky-product-bar__quantity {
     width: 136px;
@@ -1319,41 +1262,41 @@
   }
 
   salla-quantity-input {
-    display: block !important;
-    height: 52px !important;
+    display: block;
+    height: 52px;
     min-height: 52px;
     line-height: normal;
     border-color: var(--hadeel-ink);
   }
 
   salla-quantity-input .s-quantity-input-container {
-    height: 52px !important;
-    min-height: 52px !important;
+    height: 52px;
+    min-height: 52px;
   }
 
   > salla-add-product-button {
     min-width: 190px;
-    height: 52px !important;
-    min-height: 52px !important;
+    height: 52px;
+    min-height: 52px;
     order: 2;
   }
 
   > salla-add-product-button .s-add-product-button-main,
   > salla-add-product-button salla-button,
   > salla-add-product-button .s-button-wrap {
-    width: 100% !important;
-    height: 52px !important;
-    min-height: 52px !important;
-    display: block !important;
+    width: 100%;
+    height: 52px;
+    min-height: 52px;
+    display: block;
   }
 
   > salla-add-product-button .s-button-btn,
   > salla-add-product-button .s-button-element {
-    width: 100% !important;
-    height: 52px !important;
+    width: 100%;
+    height: 52px;
     min-height: 52px;
-    margin: 0 !important;
-    color: #fff !important;
+    margin: 0;
+    color: #fff;
     font-weight: 800;
   }
 
@@ -1661,8 +1604,10 @@
 
   .kalles-product-overview {
     padding: 16px 0 44px;
-    display: flex !important;
+    display: flex;
     flex-direction: column;
+    gap: 24px;
+    border-bottom: 0;
   }
 
   .kalles-product-gallery salla-slider.details-slider {
@@ -1702,7 +1647,7 @@
   }
 
   .kalles-product-summary {
-    position: static !important;
+    position: static;
   }
 
   .kalles-product-title {
@@ -1812,7 +1757,7 @@
 
 .s-product-card-sale-price {
   h4{
-    @apply text-red-800 #{!important};
+    @apply text-red-800;
   }
 
   span{
@@ -1825,7 +1770,7 @@
   salla-filters{
     &,
     > *{
-      @apply px-5 #{!important};
+      @apply px-5;
     }
   }
 }
@@ -1842,7 +1787,7 @@
     @apply mb-0 pt-0;
   
     .s-product-options-option:not(div.s-product-options-option-booking) {
-      @apply block #{!important};
+      @apply block;
     }
       &-label {
         @apply mb-3;
@@ -1857,7 +1802,7 @@
       }
 
       .s-product-options-multiple-options-wrapper {
-        @apply block #{!important};
+        @apply block;
       
     }
   }

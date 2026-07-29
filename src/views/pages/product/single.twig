@@ -94,8 +94,8 @@
         </div>
 
         <div class="container">
-        <div class="kalles-product-overview flex flex-col items-start md:flex-row" id="product-{{ product.id }}">
-            <div class="sidebar kalles-product-gallery md:sticky top-24 w-full md:!w-2/4 rtl:ml-8 ltr:mr-8 pb-8 md:pb-16 overflow-hidden shrink-0">
+        <div class="kalles-product-overview" id="product-{{ product.id }}">
+            <div class="sidebar kalles-product-gallery">
                 {% set has_many_images = product.images|length > 1 %}
                 <salla-slider
                         id="details-slider-{{ product.id }}"
@@ -190,7 +190,7 @@
                 </salla-slider>
             </div>
 
-            <div class="main-content kalles-product-summary md:sticky md:overflow-hidden top-24 w-full md:w-2/4 md:pb-16">
+            <div class="main-content kalles-product-summary">
 
                 {% hook 'product:single.description.start' %}
 

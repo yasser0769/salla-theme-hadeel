@@ -23,7 +23,7 @@ html {
   background: var(--hadeel-surface);
 }
 
-body.theme-raed {
+body {
   min-width: 320px;
   color: var(--hadeel-ink);
   background: var(--hadeel-surface);
@@ -34,52 +34,52 @@ body.theme-raed {
   text-rendering: optimizeLegibility;
 }
 
-body.theme-raed.use-theme-font {
+body.use-theme-font {
   font-family: "Thmanyah Sans", var(--font-main), sans-serif;
 }
 
-body.theme-raed .container {
+body .container {
   width: min(calc(100% - (var(--hadeel-page-gutter) * 2)), var(--hadeel-container));
   max-width: none;
   padding-inline: 0;
 }
 
-body.theme-raed main {
+body main {
   min-width: 0;
 }
 
-body.theme-raed a,
-body.theme-raed button,
-body.theme-raed input,
-body.theme-raed select,
-body.theme-raed textarea {
+body a,
+body button,
+body input,
+body select,
+body textarea {
   -webkit-tap-highlight-color: transparent;
 }
 
-body.theme-raed :focus-visible {
+body :focus-visible {
   outline: 2px solid var(--hadeel-accent);
   outline-offset: 3px;
 }
 
-body.theme-raed .breadcrumbs {
+body .breadcrumbs {
   color: var(--hadeel-muted);
   font-size: 12px;
 }
 
-body.theme-raed .breadcrumbs a {
+body .breadcrumbs a {
   color: var(--hadeel-ink);
 }
 
-body.theme-raed .form-input,
-body.theme-raed .s-form-control {
+body .form-input,
+body .s-form-control {
   min-height: 46px;
   border: 1px solid var(--hadeel-line);
   border-radius: 0;
   background: var(--hadeel-surface);
 }
 
-body.theme-raed .btn,
-body.theme-raed .s-button-btn {
+body .btn,
+body .s-button-btn {
   min-height: 46px;
   border-radius: var(--hadeel-radius-pill);
   font-weight: 600;
@@ -1456,7 +1456,7 @@ custom-salla-product-card,
 }
 
 @media (max-width: 1023px) {
-  body.theme-raed {
+  body {
     padding-bottom: 55px;
   }
 
@@ -1661,11 +1661,11 @@ custom-salla-product-card,
     --hadeel-page-gutter: 15px;
   }
 
-  body.theme-raed {
+  body {
     font-size: 14px;
   }
 
-  body.theme-raed.product-single-page {
+  body.product-single-page {
     /* 71px purchase bar + 55px Kalles toolbar + breathing room. */
     padding-bottom: 134px;
   }
