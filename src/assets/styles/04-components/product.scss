@@ -366,6 +366,10 @@
   font-family: inherit;
 }
 
+.kalles-related-products[hidden] {
+  display: none;
+}
+
 .kalles-product-breadcrumb {
   min-height: 54px;
   background: var(--hadeel-soft);

@@ -72,10 +72,16 @@ class Product extends BasePage {
     }
 
     initRelatedProducts() {
-      const section = document.querySelector('[data-related-products]');
-      const slider = section?.querySelector('salla-products-slider');
+      const section = document.querySelector(
+        '[data-related-products], .kalles-related-products'
+      );
+      const slider = section?.querySelector(
+        'salla-products-slider[source="related"]'
+      );
 
       if (!section || !slider) return;
+
+      section.hidden = true;
 
       customElements.whenDefined('salla-products-slider').then(() => {
         const root = slider.shadowRoot || slider;
