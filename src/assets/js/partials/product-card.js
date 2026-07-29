@@ -219,7 +219,9 @@ class ProductCard extends HTMLElement {
     this.addEventListener('mouseenter', () => this.loadSecondaryImage());
     this.addEventListener('focusin', () => this.loadSecondaryImage());
     this.addEventListener('click', (event) => {
-      const quickViewButton = event.target.closest('.kalles-card-quick-view');
+      const quickViewButton = event.target.closest(
+        '.kalles-card-quick-view, .kalles-card-expand'
+      );
       if (!quickViewButton) return;
 
       event.preventDefault();
@@ -402,9 +404,13 @@ class ProductCard extends HTMLElement {
             </salla-button>` : ``
           }
           ${usesKallesActions ? `
-            <a class="kalles-card-expand" href="${this.product?.url}" aria-label="${this.detailsLabel}">
+            <button
+              class="kalles-card-expand"
+              type="button"
+              aria-label="${this.quickViewLabel}"
+              aria-haspopup="dialog">
               <i class="sicon-arrow-up-left" aria-hidden="true"></i>
-            </a>
+            </button>
             <div class="kalles-card-actions">
               <button class="kalles-card-quick-view" type="button" aria-label="${this.quickViewLabel}">
                 <i class="sicon-search" aria-hidden="true"></i>
