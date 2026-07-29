@@ -191,7 +191,10 @@ class NavigationMenu extends HTMLElement {
 
         // Calculate available width
         const containerWidth = container.offsetWidth;
-        const otherElements = container.querySelector('.flex').children;
+        const headerLayout = container.querySelector('.main-nav-shell') || container.querySelector('.flex');
+        if (!headerLayout) return;
+
+        const otherElements = headerLayout.children;
         let usedWidth = 0;
 
         // Calculate width used by logo and other elements

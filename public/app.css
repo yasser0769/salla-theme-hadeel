@@ -26390,11 +26390,11 @@ input[type=radio].sr-only:checked ~ div.model-viewer__poster {
     padding-bottom: 134px;
   }
   body.product-single-page .announcement-bar__inner {
-    min-height: 42px;
-    font-size: 12px;
+    min-height: 38px;
+    font-size: 11px;
   }
   body.product-single-page .main-nav-container {
-    min-height: 78px;
+    min-height: 68px;
   }
   .kalles-product-breadcrumb {
     min-height: 52px;
@@ -26498,11 +26498,19 @@ input[type=radio].sr-only:checked ~ div.model-viewer__poster {
   }
   .kalles-product-purchase .sticky-product-bar__quantity {
     width: 104px;
+    height: 50px;
     flex: 0 0 104px;
+    display: flex;
+    align-items: center;
     transform: none;
     opacity: 1;
   }
   .kalles-product-purchase salla-quantity-input {
+    height: 50px;
+    min-height: 50px;
+  }
+  .kalles-product-purchase salla-quantity-input .s-quantity-input-container {
+    height: 50px;
     min-height: 50px;
   }
   .kalles-product-purchase > salla-add-product-button {
@@ -26513,7 +26521,9 @@ input[type=radio].sr-only:checked ~ div.model-viewer__poster {
     transform: none;
     opacity: 1;
   }
-  .kalles-product-purchase > salla-add-product-button .s-button-btn {
+  .kalles-product-purchase > salla-add-product-button .s-button-btn,
+  .kalles-product-purchase > salla-add-product-button .s-button-element {
+    height: 50px;
     min-height: 50px;
   }
   .kalles-product-purchase-tools {
@@ -28726,12 +28736,16 @@ custom-salla-product-card,
   margin: 0;
 }
 .s-product-card-add-btn-icon-only salla-button .s-button-btn,
+.s-product-card-add-btn-icon-only salla-button .s-button-element,
 .s-product-card-add-btn-icon-only .s-button-btn,
+.s-product-card-add-btn-icon-only .s-button-element,
 .s-product-card-add-btn-icon-only .s-add-product-button-main {
   width: 40px !important;
 }
 .s-product-card-add-btn-icon-only salla-button .s-button-btn,
+.s-product-card-add-btn-icon-only salla-button .s-button-element,
 .s-product-card-add-btn-icon-only .s-button-btn,
+.s-product-card-add-btn-icon-only .s-button-element,
 .s-product-card-add-btn-icon-only .s-add-product-button-main {
   min-width: 40px;
   height: 40px;
@@ -28744,7 +28758,23 @@ custom-salla-product-card,
   background: var(--hadeel-ink);
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
 }
+.s-product-card-add-btn-icon-only,
+.s-product-card-add-btn-icon-only > div,
+.s-product-card-add-btn-icon-only salla-button {
+  width: 40px !important;
+}
+.s-product-card-add-btn-icon-only,
+.s-product-card-add-btn-icon-only > div,
+.s-product-card-add-btn-icon-only salla-button {
+  height: 40px;
+  min-height: 40px;
+}
+.s-product-card-add-btn-icon-only {
+  display: block;
+  line-height: 0;
+}
 .s-product-card-add-btn-icon-only .s-button-btn:hover,
+.s-product-card-add-btn-icon-only .s-button-element:hover,
 .s-product-card-add-btn-icon-only .s-add-product-button-main:hover {
   background: #414042;
   background: var(--hadeel-accent);
@@ -28994,6 +29024,9 @@ custom-salla-product-card,
   .main-nav-shell__menu {
     grid-column: 1;
   }
+  .main-nav-shell__menu custom-main-menu {
+    display: none;
+  }
   .mobile-menu-trigger {
     width: 40px;
     height: 44px;
@@ -29165,6 +29198,10 @@ custom-salla-product-card,
   body.theme-raed {
     font-size: 14px;
   }
+  body.theme-raed.product-single-page {
+    /* 71px purchase bar + 55px Kalles toolbar + breathing room. */
+    padding-bottom: 134px;
+  }
   .announcement-bar i {
     display: none;
   }
@@ -29305,14 +29342,22 @@ custom-salla-product-card,
     right: 7px;
   }
   .s-product-card-add-btn-icon-only,
+  .s-product-card-add-btn-icon-only > div,
+  .s-product-card-add-btn-icon-only salla-button,
   .s-product-card-add-btn-icon-only salla-button .s-button-btn,
+  .s-product-card-add-btn-icon-only salla-button .s-button-element,
   .s-product-card-add-btn-icon-only .s-button-btn,
+  .s-product-card-add-btn-icon-only .s-button-element,
   .s-product-card-add-btn-icon-only .s-add-product-button-main {
     width: 36px !important;
   }
   .s-product-card-add-btn-icon-only,
+  .s-product-card-add-btn-icon-only > div,
+  .s-product-card-add-btn-icon-only salla-button,
   .s-product-card-add-btn-icon-only salla-button .s-button-btn,
+  .s-product-card-add-btn-icon-only salla-button .s-button-element,
   .s-product-card-add-btn-icon-only .s-button-btn,
+  .s-product-card-add-btn-icon-only .s-button-element,
   .s-product-card-add-btn-icon-only .s-add-product-button-main {
     min-width: 36px;
     height: 36px;

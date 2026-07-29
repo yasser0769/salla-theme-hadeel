@@ -857,12 +857,12 @@
     padding-bottom: 134px;
 
     .announcement-bar__inner {
-      min-height: 42px;
-      font-size: 12px;
+      min-height: 38px;
+      font-size: 11px;
     }
 
     .main-nav-container {
-      min-height: 78px;
+      min-height: 68px;
     }
   }
 
@@ -985,12 +985,21 @@
 
     .sticky-product-bar__quantity {
       width: 104px;
+      height: 50px;
       flex: 0 0 104px;
+      display: flex;
+      align-items: center;
       transform: none;
       opacity: 1;
     }
 
     salla-quantity-input {
+      height: 50px;
+      min-height: 50px;
+    }
+
+    salla-quantity-input .s-quantity-input-container {
+      height: 50px;
       min-height: 50px;
     }
 
@@ -1003,7 +1012,9 @@
       opacity: 1;
     }
 
-    > salla-add-product-button .s-button-btn {
+    > salla-add-product-button .s-button-btn,
+    > salla-add-product-button .s-button-element {
+      height: 50px;
       min-height: 50px;
     }
   }

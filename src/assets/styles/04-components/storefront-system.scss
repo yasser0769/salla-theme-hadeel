@@ -775,7 +775,9 @@ custom-salla-product-card,
 }
 
 .s-product-card-add-btn-icon-only salla-button .s-button-btn,
+.s-product-card-add-btn-icon-only salla-button .s-button-element,
 .s-product-card-add-btn-icon-only .s-button-btn,
+.s-product-card-add-btn-icon-only .s-button-element,
 .s-product-card-add-btn-icon-only .s-add-product-button-main {
   width: 40px !important;
   min-width: 40px;
@@ -789,7 +791,21 @@ custom-salla-product-card,
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
 }
 
+.s-product-card-add-btn-icon-only,
+.s-product-card-add-btn-icon-only > div,
+.s-product-card-add-btn-icon-only salla-button {
+  width: 40px !important;
+  height: 40px;
+  min-height: 40px;
+}
+
+.s-product-card-add-btn-icon-only {
+  display: block;
+  line-height: 0;
+}
+
 .s-product-card-add-btn-icon-only .s-button-btn:hover,
+.s-product-card-add-btn-icon-only .s-button-element:hover,
 .s-product-card-add-btn-icon-only .s-add-product-button-main:hover {
   background: var(--hadeel-accent);
 }
@@ -1061,6 +1077,10 @@ custom-salla-product-card,
     grid-column: 1;
   }
 
+  .main-nav-shell__menu custom-main-menu {
+    display: none;
+  }
+
   .mobile-menu-trigger {
     width: 40px;
     height: 44px;
@@ -1245,6 +1265,11 @@ custom-salla-product-card,
     font-size: 14px;
   }
 
+  body.theme-raed.product-single-page {
+    /* 71px purchase bar + 55px Kalles toolbar + breathing room. */
+    padding-bottom: 134px;
+  }
+
   .announcement-bar i {
     display: none;
   }
@@ -1416,8 +1441,12 @@ custom-salla-product-card,
   }
 
   .s-product-card-add-btn-icon-only,
+  .s-product-card-add-btn-icon-only > div,
+  .s-product-card-add-btn-icon-only salla-button,
   .s-product-card-add-btn-icon-only salla-button .s-button-btn,
+  .s-product-card-add-btn-icon-only salla-button .s-button-element,
   .s-product-card-add-btn-icon-only .s-button-btn,
+  .s-product-card-add-btn-icon-only .s-button-element,
   .s-product-card-add-btn-icon-only .s-add-product-button-main {
     width: 36px !important;
     min-width: 36px;
