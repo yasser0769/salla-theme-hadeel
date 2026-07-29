@@ -19,9 +19,6 @@ class ProductCard extends HTMLElement {
       this.fitImageHeight = salla.config.get('store.settings.product.fit_type');
       this.placeholder = salla.url.asset(salla.config.get('theme.settings.placeholder'));
       this.getProps()
-      this.quickViewLabel = document.documentElement.dir === 'rtl' ? 'عرض سريع' : 'Quick view';
-      this.quickAddLabel = document.documentElement.dir === 'rtl' ? 'إضافة سريعة' : 'Quick add';
-      this.detailsLabel = document.documentElement.dir === 'rtl' ? 'عرض التفاصيل' : 'View details';
       this.bindKallesCardInteractions();
 
 	  this.source = salla.config.get("page.slug");
@@ -38,13 +35,17 @@ class ProductCard extends HTMLElement {
         this.startingPrice = salla.lang.get('pages.products.starting_price');
         this.addToCart = salla.lang.get('pages.cart.add_to_cart');
         this.outOfStock = salla.lang.get('pages.products.out_of_stock');
-        this.quickViewLabel = salla.lang.getWithDefault?.('pages.products.quick_view', this.quickViewLabel) || this.quickViewLabel;
+        this.quickViewLabel = salla.lang.get('pages.products.kalles.quick_view');
+        this.quickAddLabel = salla.lang.get('pages.products.kalles.quick_add');
+        this.detailsLabel = salla.lang.get('pages.products.kalles.view_details');
+        this.newBadgeKeywords = salla.lang
+          .get('pages.products.kalles.new_badge_keywords')
+          .split('|')
+          .map((keyword) => keyword.trim().toLocaleLowerCase())
+          .filter(Boolean);
 
-        // re-render to update translations
         this.render();
       })
-      
-      this.render()
   }
 
   initCircleBar() {
@@ -82,7 +83,12 @@ class ProductCard extends HTMLElement {
   }
 
   isNewBadge(label = '') {
-    return /(^|\s)(new|جديد|جديدة)(\s|$)/i.test(String(label).trim());
+    const words = String(label)
+      .trim()
+      .toLocaleLowerCase()
+      .split(/\s+/);
+
+    return (this.newBadgeKeywords || []).some((keyword) => words.includes(keyword));
   }
 
   getPriceFormat(price) {

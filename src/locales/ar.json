@@ -1,7 +1,23 @@
 {
   "blocks": {
     "header": {
-      "cart": "السلة"
+      "cart": "السلة",
+      "login": "تسجيل الدخول",
+      "open_menu": "فتح القائمة",
+      "search": "البحث",
+      "wishlist": "المفضلة"
+    },
+    "footer": {
+      "account": "حسابي",
+      "cart": "السلة",
+      "contact": "تواصل معنا",
+      "landmark": "تذييل المتجر",
+      "login": "تسجيل الدخول",
+      "quick_navigation": "التنقل السريع",
+      "search": "البحث",
+      "store": "المتجر",
+      "trust": "تسوّق بثقة",
+      "wishlist": "المفضلة"
     },
     "appBanner": {
       "download_now": "حمله الان"
@@ -9,19 +25,33 @@
   },
   "pages": {
     "cart": {
-      "cart_options": "خيارات السلة"
+      "added_to_cart": "تمت الإضافة إلى سلة التسوق",
+      "cart_options": "خيارات السلة",
+      "view_cart": "عرض السلة"
     },
     "products": {
       "kalles": {
+        "add_to_wishlist": "إضافة إلى المفضلة",
         "ask_question": "اسأل عن المنتج",
         "availability": "التوفر",
         "category": "التصنيف",
+        "close_filters": "إغلاق التصفية",
         "delivery_returns": "التوصيل والاسترجاع",
         "discount": "نسبة الخصم",
+        "email_inquiry": "استفسار عن المنتج:",
         "in_stock": "متوفر",
+        "new_badge_keywords": "جديد|جديدة",
+        "open_filters": "فتح التصفية",
+        "product_details": "تفاصيل المنتج",
+        "product_tools": "أدوات المنتج",
+        "quick_add": "إضافة سريعة",
+        "quick_view": "عرض سريع",
+        "save": "وفر",
         "share": "مشاركة المنتج",
         "sticky_purchase": "شريط شراء المنتج",
-        "tags": "الوسوم"
+        "tags": "الوسوم",
+        "view_details": "عرض التفاصيل",
+        "whatsapp_inquiry": "مرحبًا، لدي استفسار عن المنتج:"
       }
     },
     "order": {

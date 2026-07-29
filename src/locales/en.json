@@ -1,7 +1,23 @@
 {
   "blocks": {
     "header": {
-      "cart": "Cart"
+      "cart": "Cart",
+      "login": "Log in",
+      "open_menu": "Open menu",
+      "search": "Search",
+      "wishlist": "Wishlist"
+    },
+    "footer": {
+      "account": "My account",
+      "cart": "Cart",
+      "contact": "Contact us",
+      "landmark": "Store footer",
+      "login": "Log in",
+      "quick_navigation": "Quick navigation",
+      "search": "Search",
+      "store": "Store",
+      "trust": "Shop with confidence",
+      "wishlist": "Wishlist"
     },
     "appBanner": {
       "download_now": "download now"
@@ -9,19 +25,33 @@
   },
   "pages": {
     "cart": {
-      "cart_options": "Cart Options"
+      "added_to_cart": "Added to cart",
+      "cart_options": "Cart Options",
+      "view_cart": "View cart"
     },
     "products": {
       "kalles": {
+        "add_to_wishlist": "Add to wishlist",
         "ask_question": "Ask a Question",
         "availability": "Availability",
         "category": "Category",
+        "close_filters": "Close filters",
         "delivery_returns": "Delivery & Return",
         "discount": "Discount percentage",
+        "email_inquiry": "Product inquiry:",
         "in_stock": "In stock",
+        "new_badge_keywords": "new",
+        "open_filters": "Open filters",
+        "product_details": "Product details",
+        "product_tools": "Product tools",
+        "quick_add": "Quick add",
+        "quick_view": "Quick view",
+        "save": "Save",
         "share": "Share product",
         "sticky_purchase": "Product purchase bar",
-        "tags": "Tags"
+        "tags": "Tags",
+        "view_details": "View details",
+        "whatsapp_inquiry": "Hello, I have a question about this product:"
       }
     },
     "order": {

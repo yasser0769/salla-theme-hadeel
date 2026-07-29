@@ -28,6 +28,30 @@
         {
             "type": "boolean",
             "icon": "sicon-toggle-off",
+            "label": "عرض شريط الإعلان",
+            "description": "لن يظهر الشريط إذا كان نص الإعلان فارغًا",
+            "id": "announcement_enabled",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "string",
+            "icon": "sicon-format-text-alt",
+            "label": "نص شريط الإعلان",
+            "description": "اكتب عرضك أو رسالتك بدون نص أو سعر افتراضي من الثيم",
+            "id": "announcement_text",
+            "format": "text",
+            "multilanguage": true,
+            "required": false,
+            "value": "",
+            "placeholder": "",
+            "maxLength": 160
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
             "label": "استخدام خط ثيم هديل",
             "description": "عند تعطيله يستخدم المتجر الخط المختار من لوحة سلة",
             "id": "use_theme_font",

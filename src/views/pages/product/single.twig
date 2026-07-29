@@ -230,7 +230,7 @@
                         <p class="total-price">{{ product.sale_price|money }}</p>
                         <span class="before-price">{{ product.regular_price|money }}</span>
                         <span class="kalles-product-saving {{ savings_amount > 0 ? '' : 'hidden' }}">
-                            وفر <span data-saving-value>{{ savings_amount|money }}</span>
+                            {{ trans('pages.products.kalles.save') }} <span data-saving-value>{{ savings_amount|money }}</span>
                         </span>
                     </div>
                     <div class="kalles-product-normal-price starting-or-normal-price {{ product.is_on_sale ? 'hidden' : 'flex' }}">
@@ -318,7 +318,7 @@
                             </div>
                         {% endif %}
 
-                        <div class="kalles-product-purchase-tools" aria-label="أدوات المنتج">
+                        <div class="kalles-product-purchase-tools" aria-label="{{ trans('pages.products.kalles.product_tools') }}">
                             <salla-button
                                     class="kalles-wishlist-action btn--wishlist animated"
                                     data-id="{{ product.id }}"
@@ -327,10 +327,10 @@
                                     shape="icon"
                                     fill="outline"
                                     color="light"
-                                    aria-label="إضافة إلى المفضلة">
+                                    aria-label="{{ trans('pages.products.kalles.add_to_wishlist') }}">
                                 <i class="sicon-heart" aria-hidden="true"></i>
                             </salla-button>
-                            <salla-social-share class="kalles-share-action" aria-label="مشاركة المنتج"></salla-social-share>
+                            <salla-social-share class="kalles-share-action" aria-label="{{ trans('pages.products.kalles.share') }}"></salla-social-share>
                         </div>
                     </section>
                     {% if product.is_giftable %}
@@ -366,7 +366,7 @@
 
                     {% if store.contacts.whatsapp %}
                         {% set whatsapp_number = store.contacts.whatsapp|replace({' ': '', '+': '', '-': ''}) %}
-                        {% set whatsapp_message = ('مرحبًا، لدي استفسار عن المنتج: ' ~ product.name ~ ' - ' ~ product.url)|url_encode %}
+                        {% set whatsapp_message = (trans('pages.products.kalles.whatsapp_inquiry') ~ ' ' ~ product.name ~ ' - ' ~ product.url)|url_encode %}
                         <a class="kalles-ask-product"
                            href="https://wa.me/{{ whatsapp_number }}?text={{ whatsapp_message }}"
                            target="_blank"
@@ -375,7 +375,7 @@
                             <span>{{ trans('pages.products.kalles.ask_question') }}</span>
                         </a>
                     {% elseif store.contacts.email %}
-                        {% set email_subject = ('استفسار عن المنتج: ' ~ product.name)|url_encode %}
+                        {% set email_subject = (trans('pages.products.kalles.email_inquiry') ~ ' ' ~ product.name)|url_encode %}
                         <a class="kalles-ask-product"
                            href="mailto:{{ store.contacts.email }}?subject={{ email_subject }}">
                             <i class="sicon-mail" aria-hidden="true"></i>
@@ -412,7 +412,7 @@
                             <dt>{{ trans('pages.products.kalles.tags') }}:</dt>
                             <dd>
                                 {% for tag in product.tags %}
-                                    <a href="{{ tag.url }}">{{ tag.name }}</a>{% if not loop.last %}، {% endif %}
+                                    <a href="{{ tag.url }}">{{ tag.name }}</a>{% if not loop.last %}, {% endif %}
                                 {% endfor %}
                             </dd>
                         </div>
@@ -483,7 +483,7 @@
 
         {% if product.description %}
             <section id="product-details" class="kalles-product-details">
-                <h2>تفاصيل المنتج</h2>
+                <h2>{{ trans('pages.products.kalles.product_details') }}</h2>
                 <article class="article article--main">
                     {{ product_desc|raw }}
                 </article>

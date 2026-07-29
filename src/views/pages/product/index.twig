@@ -24,7 +24,7 @@
         </nav>
         <div class="products-index-page__layout flex items-start flex-col md:flex-row">
             {% if filters %}
-                <button class="btn--close-sm close-filters sicon-cancel hidden" aria-label="إغلاق التصفية"></button>
+                <button class="btn--close-sm close-filters sicon-cancel hidden" aria-label="{{ trans('pages.products.kalles.close_filters') }}"></button>
                 <salla-filters class="md:w-72 lg:sticky lg:top-20 flex-none" id="filters-menu"></salla-filters>
             {% endif %}
 
@@ -35,7 +35,7 @@
                         {% if filters %}
                             <a href="#filters-menu"
                                class="filters-trigger lg:hidden"
-                               aria-label="فتح التصفية">
+                               aria-label="{{ trans('pages.products.kalles.open_filters') }}">
                                 <i class="sicon-filter" aria-hidden="true"></i>
                             </a>
                         {% endif %}

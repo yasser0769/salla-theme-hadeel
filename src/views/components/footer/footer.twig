@@ -1,5 +1,5 @@
 <footer class="store-footer">
-  <div aria-label="تذييل المتجر" class="store-footer__inner">
+  <div aria-label="{{ trans('blocks.footer.landmark') }}" class="store-footer__inner">
     <div class="container store-footer__grid">
       <section class="store-footer__about">
         <a href="{{ link('/') }}" class="store-footer__brand">{{ store.name }}</a>
@@ -15,12 +15,12 @@
       </section>
 
       <section class="store-footer__contact">
-        <h3>تواصل معنا</h3>
+        <h3>{{ trans('blocks.footer.contact') }}</h3>
         <salla-contacts></salla-contacts>
       </section>
 
       <section class="store-footer__trust">
-        <h3>تسوّق بثقة</h3>
+        <h3>{{ trans('blocks.footer.trust') }}</h3>
         <salla-trust-badges {% if theme.settings.get('footer_is_dark') %} dark {% endif %}></salla-trust-badges>
 
         {% if store.settings.tax.number %}
@@ -61,34 +61,34 @@
   Kept inside the registered footer component so Twilight does not need to resolve
   an extra structural component at runtime.
 #}
-<nav class="mobile-toolbar" aria-label="التنقل السريع">
+<nav class="mobile-toolbar" aria-label="{{ trans('blocks.footer.quick_navigation') }}">
   <a
     class="mobile-toolbar__item {{ is_page('index') ? 'is-active' : '' }}"
     href="{{ link('/') }}"
-    aria-label="المتجر">
+    aria-label="{{ trans('blocks.footer.store') }}">
     <svg aria-hidden="true" viewBox="0 0 24 24">
       <rect x="3" y="3" width="7" height="7"></rect>
       <rect x="14" y="3" width="7" height="7"></rect>
       <rect x="14" y="14" width="7" height="7"></rect>
       <rect x="3" y="14" width="7" height="7"></rect>
     </svg>
-    <span>المتجر</span>
+    <span>{{ trans('blocks.footer.store') }}</span>
   </a>
 
   <a
     class="mobile-toolbar__item {{ page.slug == 'wishlist' or page.slug == 'customer.wishlist' ? 'is-active' : '' }}"
     href="{{ link('wishlist') }}"
-    aria-label="المفضلة">
+    aria-label="{{ trans('blocks.footer.wishlist') }}">
     <svg aria-hidden="true" viewBox="0 0 24 24">
       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
     </svg>
-    <span>المفضلة</span>
+    <span>{{ trans('blocks.footer.wishlist') }}</span>
   </a>
 
   <a
     class="mobile-toolbar__item mobile-toolbar__cart {{ page.slug == 'cart' ? 'is-active' : '' }}"
     href="{{ link('cart') }}"
-    aria-label="السلة">
+    aria-label="{{ trans('blocks.footer.cart') }}">
     <span class="mobile-toolbar__icon">
       <svg aria-hidden="true" viewBox="0 0 24 24">
         <circle cx="9" cy="21" r="1"></circle>
@@ -97,43 +97,43 @@
       </svg>
       <b class="mobile-toolbar__count" data-cart-count>{{ cart.items_count }}</b>
     </span>
-    <span>السلة</span>
+    <span>{{ trans('blocks.footer.cart') }}</span>
   </a>
 
   {% if user.type == 'user' %}
     <a
       class="mobile-toolbar__item {{ page.slug == 'customer.profile' or page.slug == 'profile' or page.slug == 'customer.orders' ? 'is-active' : '' }}"
       href="{{ link('profile') }}"
-      aria-label="حسابي">
+      aria-label="{{ trans('blocks.footer.account') }}">
       <svg aria-hidden="true" viewBox="0 0 24 24">
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
         <circle cx="12" cy="7" r="4"></circle>
       </svg>
-      <span>حسابي</span>
+      <span>{{ trans('blocks.footer.account') }}</span>
     </a>
   {% else %}
     <button
       class="mobile-toolbar__item"
       type="button"
-      aria-label="تسجيل الدخول"
+      aria-label="{{ trans('blocks.footer.login') }}"
       onclick="salla.event.dispatch('login::open')">
       <svg aria-hidden="true" viewBox="0 0 24 24">
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
         <circle cx="12" cy="7" r="4"></circle>
       </svg>
-      <span>حسابي</span>
+      <span>{{ trans('blocks.footer.account') }}</span>
     </button>
   {% endif %}
 
   <button
     class="mobile-toolbar__item"
     type="button"
-    aria-label="البحث"
+    aria-label="{{ trans('blocks.footer.search') }}"
     onclick="salla.event.dispatch('search::open')">
     <svg aria-hidden="true" viewBox="0 0 24 24">
       <circle cx="11" cy="11" r="8"></circle>
       <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
     </svg>
-    <span>البحث</span>
+    <span>{{ trans('blocks.footer.search') }}</span>
   </button>
 </nav>

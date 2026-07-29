@@ -6,19 +6,22 @@
 | cart.total       | string  | Formatted total ex: "١٠٠ ر.س"   |
 #}
 <header class="store-header">
+  {% set announcement_text = theme.settings.get('announcement_text', '')|trim %}
+  {% if theme.settings.get('announcement_enabled', true) and announcement_text %}
   <div class="announcement-bar">
     <div class="container announcement-bar__inner">
       <i class="sicon-shipping-fast {{ theme.is_rtl ? 'flip-x':'' }}" aria-hidden="true"></i>
-      <span>شحن مجاني للطلبات فوق ٤٥٠ ر.س</span>
+      <span>{{ announcement_text }}</span>
     </div>
   </div>
+  {% endif %}
 
   <div id="mainnav" class="main-nav-container">
     <div class="inner">
       <div class="container">
         <div class="main-nav-shell">
           <div class="main-nav-shell__menu">
-            <a class="mobile-menu-trigger" href="#mobile-menu" aria-label="فتح القائمة">
+            <a class="mobile-menu-trigger" href="#mobile-menu" aria-label="{{ trans('blocks.header.open_menu') }}">
               <i class="sicon-menu" aria-hidden="true"></i>
             </a>
             <custom-main-menu></custom-main-menu>
@@ -34,16 +37,16 @@
           </a>
 
           <div class="header-actions">
-            <button class="header-action header-action--search" type="button" aria-label="البحث" onclick="salla.event.dispatch('search::open')">
+            <button class="header-action header-action--search" type="button" aria-label="{{ trans('blocks.header.search') }}" onclick="salla.event.dispatch('search::open')">
               <i class="sicon-search" aria-hidden="true"></i>
             </button>
-            <a class="header-action header-action--wishlist" href="{{ link('wishlist') }}" aria-label="المفضلة">
+            <a class="header-action header-action--wishlist" href="{{ link('wishlist') }}" aria-label="{{ trans('blocks.header.wishlist') }}">
               <i class="sicon-heart" aria-hidden="true"></i>
             </a>
             {% if user.type == 'user' %}
               <salla-user-menu avatar-only show-header></salla-user-menu>
             {% else %}
-              <button class="header-action header-action--account" type="button" aria-label="تسجيل الدخول" onclick="salla.event.dispatch('login::open')">
+              <button class="header-action header-action--account" type="button" aria-label="{{ trans('blocks.header.login') }}" onclick="salla.event.dispatch('login::open')">
                 <i class="sicon-user-circle" aria-hidden="true"></i>
               </button>
             {% endif %}
