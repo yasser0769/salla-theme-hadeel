@@ -206,7 +206,6 @@ class ProductCard extends HTMLElement {
     const primaryUrl = this.getImageUrl(this.product?.image) || this.product?.thumbnail || '';
     const primaryIdentity = this.getImageIdentity(primaryUrl);
     const candidates = [
-      this.discoveredSecondaryImageUrl,
       ...(Array.isArray(this.product?.images) ? this.product.images : []),
       ...(Array.isArray(this.product?.media) ? this.product.media : []),
       this.product?.secondary_image,
@@ -236,49 +235,20 @@ class ProductCard extends HTMLElement {
     });
   }
 
-  async loadSecondaryImage() {
+  loadSecondaryImage() {
     const secondaryImage = this.querySelector('.kalles-card-secondary-image');
-    if (!secondaryImage || this.secondaryImageLoaded || this.secondaryImageLoading) return;
+    if (!secondaryImage || this.secondaryImageLoaded) return;
     if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
     const directUrl = this.getSecondaryImageUrl();
     if (directUrl) {
       this.applySecondaryImage(directUrl);
-      return;
-    }
-
-    if (!this.product?.url) return;
-    this.secondaryImageLoading = true;
-
-    try {
-      const response = await fetch(this.product.url, { credentials: 'same-origin' });
-      if (!response.ok) return;
-
-      const html = await response.text();
-      const productPage = new DOMParser().parseFromString(html, 'text/html');
-      const primaryUrl = this.getImageUrl(this.product?.image) || this.product?.thumbnail || '';
-      const primaryIdentity = this.getImageIdentity(primaryUrl);
-      const productImages = [
-        ...productPage.querySelectorAll('.kalles-product-gallery [slot="items"] img'),
-      ];
-      const secondaryUrl = productImages
-        .map((image) => image.getAttribute('src') || image.getAttribute('data-src') || '')
-        .find((url) => url && url !== primaryUrl && this.getImageIdentity(url) !== primaryIdentity);
-
-      if (secondaryUrl) {
-        this.applySecondaryImage(secondaryUrl);
-      }
-    } catch (error) {
-      // A missing hover image should never block the product card itself.
-    } finally {
-      this.secondaryImageLoading = false;
     }
   }
 
   applySecondaryImage(url) {
     const secondaryImage = this.querySelector('.kalles-card-secondary-image');
     if (!secondaryImage || !url) return;
-    this.discoveredSecondaryImageUrl = url;
 
     const revealImage = () => {
       if (!secondaryImage.naturalWidth) return;
