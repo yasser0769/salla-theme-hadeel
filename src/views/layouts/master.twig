@@ -95,6 +95,7 @@
     {% hook 'head:end' %}
 </head>
 <body id="app" class="theme-raed overflow-x-hidden {% hook 'body:classes' %}
+  {{ theme.settings.get('use_theme_font', false) ? ' use-theme-font' : '' }}
   {{ theme.settings.get('footer_is_dark') ? ' footer-is-dark' : ' footer-is-light' }}
   {{ theme.settings.get('topnav_is_dark') ? ' topnav-is-dark' : '' }}
   {{ theme.settings.get('sticky_add_to_cart') ? ' is-sticky-product-bar' : '' }}

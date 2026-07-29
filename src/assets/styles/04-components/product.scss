@@ -363,7 +363,7 @@
 .kalles-product-page,
 .kalles-product-comments,
 .kalles-related-products {
-  font-family: "Thmanyah Sans", var(--font-main), sans-serif;
+  font-family: inherit;
 }
 
 .kalles-product-breadcrumb {
@@ -1051,7 +1051,7 @@
 .kalles-product-comments,
 .kalles-related-products,
 .kalles-product-dock {
-  font-family: "Thmanyah Sans", var(--font-main), sans-serif;
+  font-family: inherit;
 }
 
 .kalles-product-page {

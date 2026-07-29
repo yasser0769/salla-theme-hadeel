@@ -26,6 +26,17 @@
     ],
     "settings": [
         {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "استخدام خط ثيم هديل",
+            "description": "عند تعطيله يستخدم المتجر الخط المختار من لوحة سلة",
+            "id": "use_theme_font",
+            "format": "switch",
+            "required": false,
+            "value": false,
+            "selected": false
+        },
+        {
             "id": "squar_photo_bg_image_size",
             "type": "items",
             "format": "dropdown-list",
