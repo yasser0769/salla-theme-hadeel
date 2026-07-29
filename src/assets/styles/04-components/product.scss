@@ -1059,7 +1059,7 @@
 .kalles-product-comments,
 .kalles-related-products,
 .kalles-product-dock {
-  --kalles-accent: var(--color-primary, #56cfe1);
+  --kalles-accent: var(--color-primary);
   --kalles-ink: var(--color-text, #222);
   --kalles-muted: var(--color-text-muted, #878787);
   --kalles-line: var(--color-grey, #e8e8e8);
@@ -1354,8 +1354,6 @@
   }
 
   > salla-add-product-button {
-    --color-primary: #56cfe1;
-    --color-primary-dark: #45bfd2;
     min-width: 190px;
     height: 52px !important;
     min-height: 52px !important;
@@ -1602,8 +1600,6 @@
     }
 
     salla-button {
-      --color-primary: #56cfe1;
-      --color-primary-dark: #45bfd2;
       direction: rtl;
     }
 
