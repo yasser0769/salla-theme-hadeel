@@ -1,59 +1,77 @@
-# Product page design QA
-
-## Scope
-
-Implementation of the selected Kalles product-page patterns in the Salla product template:
-
-- Old price and saved amount
-- Quantity and purchase actions above the fold
-- Share and wishlist actions beside purchase
-- Size guide
-- Ask about the product
+# Design QA — Kalles-style product card preview
 
 ## Evidence
 
-- Reference: `/var/folders/9p/zx47l4xx1bxcvb6dy6xnnc_40000gn/T/codex-clipboard-476d9ea1-ec12-4ed9-ae78-79032cda75ff.png`
-- Live Salla screenshot: `/tmp/salla-product-final-desktop-149.png`
-- Side-by-side comparison: `/tmp/salla-product-design-qa-comparison-149.png`
-- Verified viewport: 1680 × 770 at device pixel ratio 2
-- Direction and typeface: RTL with `"Thmanyah Sans", sans-serif`
+- Source visual truth: `/var/folders/9p/zx47l4xx1bxcvb6dy6xnnc_40000gn/T/codex-clipboard-484fd480-fd25-4709-b043-f60bd25aa7f3.png`
+- Local implementation: `http://127.0.0.1:4173/kalles-card-preview.html`
+- Desktop implementation screenshot: `/Users/yasseralshihri/Desktop/Projects/salla-theme-hadeel/kalles-preview-hover.png`
+- Mobile implementation screenshot: `/Users/yasseralshihri/Desktop/Projects/salla-theme-hadeel/kalles-preview-mobile.png`
+- Quick-view screenshot: `/Users/yasseralshihri/Desktop/Projects/salla-theme-hadeel/kalles-preview-modal.png`
+- Full-view comparison: `/Users/yasseralshihri/Desktop/Projects/salla-theme-hadeel/kalles-preview-comparison.png`
+- Focused card comparison: `/Users/yasseralshihri/Desktop/Projects/salla-theme-hadeel/kalles-preview-card-comparison.png`
 
-## Comparison
+## Capture normalization
 
-### Full view
+- Source pixels: `554 × 838`; supplied screenshot with unknown device density.
+- Desktop CSS viewport and screenshot: `1440 × 1000`, device pixel ratio `1`.
+- Mobile CSS viewport and screenshot: `390 × 844`, device pixel ratio `1`.
+- Focused comparison: source media crop `525 × 670`; implementation media crop `307 × 428`, normalized to `481 × 670` before side-by-side comparison.
+- Full-view comparison: source and desktop implementation were both normalized to `1000px` height.
+- Desktop state: the first product uses `:focus-within`, which deliberately renders the same secondary-image and action-group state as mouse hover while preserving a visible keyboard focus ring.
+- Mobile state: default touch layout with a two-column `175px` grid, persistent wishlist/add controls, and fixed five-item bottom navigation.
 
-- The live Salla page preserves its real header, breadcrumb, product content, images, and native storefront behavior.
-- The product media and information remain in the same two-column relationship as the reference.
-- Product title, price, compact description, stock state, and the purchase panel fit in the initial viewport.
+## Required fidelity surfaces
 
-### Purchase region
+- Fonts and typography: `Tajawal` provides the Arabic adaptation of Kalles' clean sans-serif hierarchy. Product titles, prices, microcopy, pills, and header labels remain legible at both tested breakpoints.
+- Spacing and layout rhythm: the portrait media ratio, 52% action-pill width, vertical action stack, side controls, badge placement, four-column desktop grid, and two-column mobile grid match the source's proportions without horizontal overflow.
+- Colors and tokens: black/white/green surfaces follow the reference. Cyan quick-add was intentionally mapped to Hadeel's red brand accent so the preview reflects the existing theme token.
+- Image quality and asset fidelity: the primary target product uses the real Kalles image pair, including the secondary hover image. Other grid products use real photographic assets; no placeholder or CSS-drawn product art is present.
+- Copy and content: the English reference labels were localized to concise Arabic storefront copy. Product names, prices, categories, size labels, and storefront notice are coherent in RTL.
+- Icons: Bootstrap Icons supplies a consistent real icon set for wishlist, expand, quick view, add, header actions, and the mobile bar.
+- Accessibility and behavior: controls are semantic buttons with labels, focus treatment is visible, reduced motion is supported, dialog closes by its close control, backdrop click, or Escape, and there is no mobile horizontal overflow.
 
-- Purchase actions are above the fold.
-- The native Add Product component remains responsible for Add to Cart and Quick Buy.
-- Share and wishlist use Salla native web components and sit beside the purchase actions.
-- A third-party WhatsApp button injected into the purchase row is hidden there to prevent crowding; the dedicated Ask about the product action remains below the row.
-- The tested product has merchant-hidden quantity, so the quantity control correctly remains conditional. Eligible non-booking products render the native `salla-quantity-input`.
+## Comparison history
 
-### Conditional product data
+### Pass 1
 
-- Old price and saved amount render only when `product.is_on_sale` is true.
-- The saved amount is recalculated after product-option price changes.
-- Size guide renders only when `product.has_size_guide` is true and opens through Salla's size-guide event and component.
-- Ask about the product uses store WhatsApp when configured and falls back to store email.
+- [P2] Desktop action pills were too narrow relative to the media area.
+  - Fix: increased the action group from `136px` to `160px` and raised the pill height to `46px`.
+- [P2] Desktop wishlist and expand controls used white circular surfaces instead of the source's floating white line icons.
+  - Fix: removed the desktop circles, applied white icons with a subtle drop shadow, and retained circular controls only for the touch layout.
+- [P2] The desktop new badge was undersized.
+  - Fix: increased it from `58px` to `70px`, retaining the smaller mobile override.
 
-## Visual quality checks
+### Pass 2
 
-- No horizontal overflow was found at the verified live desktop viewport.
-- Purchase controls have consistent pill geometry, alignment, and spacing.
-- The accent red, muted text, borders, stock green, and saving green follow the reference hierarchy while remaining compatible with the store palette.
-- Product media uses the merchant's real images without placeholder or generated assets.
-- Long product copy is shortened above the fold and linked to the full details section.
+- Post-fix focused comparison confirms matching portrait crop, 52% pill width, action-stack proportions, floating line icons, green circular badge, and bottom size row.
+- The remaining differences are intentional locale/brand adaptations: Arabic RTL copy and Hadeel red instead of Kalles cyan.
+- No actionable P0, P1, or P2 findings remain.
 
-## Findings resolved
+## Primary interactions tested
 
-1. Purchase controls originally appeared too low because product metadata preceded the form. The form was moved above secondary metadata.
-2. Share and wishlist originally appeared in a separate row. They were integrated with the purchase controls.
-3. Full product description pushed conversion actions below the fold. A compact summary now appears above the fold.
-4. A storefront app injected an extra WhatsApp CTA into the purchase tools and crowded the native buttons. The duplicate injected action is now suppressed in that row.
+- Desktop secondary-image swap and action-group reveal.
+- Quick-view dialog open with the correct product name, price, and image.
+- Size selection inside quick view.
+- Add-to-cart from quick view: dialog closes, cart count increments, and success toast appears.
+- Mobile quick-add: cart count increments and success toast appears.
+- Mobile two-column grid and fixed bottom bar.
+- Browser console checked after desktop and mobile interaction tests: no warnings or errors.
+
+## Follow-up polish
+
+- [P3] The QA screenshot includes the keyboard focus ring around the wishlist icon because focus was used to capture the hover-equivalent state. Ordinary mouse hover does not show that ring.
+
+## Live Salla verification
+
+- Draft storefront tested: `dev-zaboon` through Salla's authenticated theme preview.
+- Desktop hover screenshot: `/Users/yasseralshihri/Desktop/Projects/salla-theme-hadeel/salla-live-card-hover.png`
+- Native quick-view screenshot: `/Users/yasseralshihri/Desktop/Projects/salla-theme-hadeel/salla-live-quick-view.png`
+- Mobile screenshot at `390 × 844`: `/Users/yasseralshihri/Desktop/Projects/salla-theme-hadeel/salla-live-mobile.png`
+- Desktop card media measured `333 × 465px`; action pills measured `173 × 46px`.
+- Mobile card measured `175px` wide with a `42 × 42px` native add control and a fixed `390 × 55px` bottom toolbar.
+- No horizontal overflow was present on mobile.
+- The card and quick-view add actions both used Salla's native `salla-add-product-button` and incremented the real preview cart. The cart was restored to its original quantity after testing.
+- The demo product has one gallery image, so the live card correctly keeps its primary image instead of fabricating a hover swap. Products with a distinct second gallery image receive the swap automatically.
+- Console output contained only Salla preview/Twilight tracking `405` responses and platform schema/offers notices; no error originated from the theme's product-card script or stylesheet.
 
 final result: passed

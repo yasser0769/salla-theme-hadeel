@@ -19,6 +19,10 @@ class ProductCard extends HTMLElement {
       this.fitImageHeight = salla.config.get('store.settings.product.fit_type');
       this.placeholder = salla.url.asset(salla.config.get('theme.settings.placeholder'));
       this.getProps()
+      this.quickViewLabel = document.documentElement.dir === 'rtl' ? 'عرض سريع' : 'Quick view';
+      this.quickAddLabel = document.documentElement.dir === 'rtl' ? 'إضافة سريعة' : 'Quick add';
+      this.detailsLabel = document.documentElement.dir === 'rtl' ? 'عرض التفاصيل' : 'View details';
+      this.bindKallesCardInteractions();
 
 	  this.source = salla.config.get("page.slug");
       // If the card is in the landing page, hide the add button and show the quantity
@@ -34,6 +38,7 @@ class ProductCard extends HTMLElement {
         this.startingPrice = salla.lang.get('pages.products.starting_price');
         this.addToCart = salla.lang.get('pages.cart.add_to_cart');
         this.outOfStock = salla.lang.get('pages.products.out_of_stock');
+        this.quickViewLabel = salla.lang.getWithDefault?.('pages.products.quick_view', this.quickViewLabel) || this.quickViewLabel;
 
         // re-render to update translations
         this.render();
@@ -58,11 +63,13 @@ class ProductCard extends HTMLElement {
 
   getProductBadge() {
     if (this.product?.preorder?.label) {
-      return `<div class="s-product-card-promotion-title">${this.product.preorder.label}</div>`
+      const label = this.product.preorder.label;
+      return `<div class="s-product-card-promotion-title${this.isNewBadge(label) ? ' is-new' : ''}">${this.escapeHTML(label)}</div>`
     }
 
     if (this.product.promotion_title) {
-      return `<div class="s-product-card-promotion-title">${this.product.promotion_title}</div>`
+      const label = this.product.promotion_title;
+      return `<div class="s-product-card-promotion-title${this.isNewBadge(label) ? ' is-new' : ''}">${this.escapeHTML(label)}</div>`
     }
     if (this.showQuantity && this.product?.quantity) {
       return `<div
@@ -72,6 +79,10 @@ class ProductCard extends HTMLElement {
       return `<div class="s-product-card-out-badge">${this.outOfStock}</div>`
     }
     return '';
+  }
+
+  isNewBadge(label = '') {
+    return /(^|\s)(new|جديد|جديدة)(\s|$)/i.test(String(label).trim());
   }
 
   getPriceFormat(price) {
@@ -171,6 +182,169 @@ class ProductCard extends HTMLElement {
     .replace(/>/g, "&gt;");
   }
 
+  getImageUrl(image) {
+    if (!image) return '';
+    if (typeof image === 'string') return image;
+    return image.url || image.src || image.original || image.image?.url || '';
+  }
+
+  getImageIdentity(url = '') {
+    const cleanUrl = String(url).split('?')[0];
+    const fileName = cleanUrl.split('/').pop() || cleanUrl;
+    const sallaAssetHash = fileName.match(/-([A-Za-z0-9_]{20,})\.[a-z0-9]+$/i);
+
+    return sallaAssetHash?.[1] || cleanUrl;
+  }
+
+  getSecondaryImageUrl() {
+    const primaryUrl = this.getImageUrl(this.product?.image) || this.product?.thumbnail || '';
+    const primaryIdentity = this.getImageIdentity(primaryUrl);
+    const candidates = [
+      this.discoveredSecondaryImageUrl,
+      ...(Array.isArray(this.product?.images) ? this.product.images : []),
+      ...(Array.isArray(this.product?.media) ? this.product.media : []),
+      this.product?.secondary_image,
+      this.product?.hover_image,
+    ];
+
+    return candidates
+      .map((image) => this.getImageUrl(image))
+      .find((url) => url && url !== primaryUrl && this.getImageIdentity(url) !== primaryIdentity) || '';
+  }
+
+  bindKallesCardInteractions() {
+    if (this.kallesInteractionsBound) return;
+    this.kallesInteractionsBound = true;
+
+    this.addEventListener('mouseenter', () => this.loadSecondaryImage());
+    this.addEventListener('focusin', () => this.loadSecondaryImage());
+    this.addEventListener('click', (event) => {
+      const quickViewButton = event.target.closest('.kalles-card-quick-view');
+      if (!quickViewButton) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      this.openQuickView();
+    });
+  }
+
+  async loadSecondaryImage() {
+    const secondaryImage = this.querySelector('.kalles-card-secondary-image');
+    if (!secondaryImage || this.secondaryImageLoaded || this.secondaryImageLoading) return;
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+    const directUrl = this.getSecondaryImageUrl();
+    if (directUrl) {
+      this.applySecondaryImage(directUrl);
+      return;
+    }
+
+    if (!this.product?.url) return;
+    this.secondaryImageLoading = true;
+
+    try {
+      const response = await fetch(this.product.url, { credentials: 'same-origin' });
+      if (!response.ok) return;
+
+      const html = await response.text();
+      const productPage = new DOMParser().parseFromString(html, 'text/html');
+      const primaryUrl = this.getImageUrl(this.product?.image) || this.product?.thumbnail || '';
+      const primaryIdentity = this.getImageIdentity(primaryUrl);
+      const productImages = [
+        ...productPage.querySelectorAll('.kalles-product-gallery [slot="items"] img'),
+      ];
+      const secondaryUrl = productImages
+        .map((image) => image.getAttribute('src') || image.getAttribute('data-src') || '')
+        .find((url) => url && url !== primaryUrl && this.getImageIdentity(url) !== primaryIdentity);
+
+      if (secondaryUrl) {
+        this.applySecondaryImage(secondaryUrl);
+      }
+    } catch (error) {
+      // A missing hover image should never block the product card itself.
+    } finally {
+      this.secondaryImageLoading = false;
+    }
+  }
+
+  applySecondaryImage(url) {
+    const secondaryImage = this.querySelector('.kalles-card-secondary-image');
+    if (!secondaryImage || !url) return;
+    this.discoveredSecondaryImageUrl = url;
+
+    const revealImage = () => {
+      if (!secondaryImage.naturalWidth) return;
+      this.secondaryImageLoaded = true;
+      this.classList.add('has-secondary-image');
+    };
+
+    if (secondaryImage.dataset.source === url) {
+      if (secondaryImage.complete) revealImage();
+      return;
+    }
+
+    secondaryImage.dataset.source = url;
+    secondaryImage.addEventListener('load', revealImage, { once: true });
+    secondaryImage.src = url;
+    if (secondaryImage.complete) revealImage();
+  }
+
+  async openQuickView() {
+    const modalId = 'hadeel-product-quick-view';
+    document.getElementById(modalId)?.remove();
+
+    const modal = document.createElement('salla-modal');
+    modal.id = modalId;
+    modal.setAttribute('width', 'lg');
+    modal.setAttribute('position', 'middle');
+    modal.setAttribute('is-closable', 'true');
+    modal.setAttribute('no-padding', 'true');
+
+    const imageUrl = this.getImageUrl(this.product?.image) || this.product?.thumbnail || this.placeholder || '';
+    const productName = this.escapeHTML(this.product?.name || '');
+    const productUrl = this.escapeHTML(this.product?.url || '#');
+    const productId = this.escapeHTML(this.product?.id || '');
+    const productStatus = this.escapeHTML(this.product?.status || 'sale');
+    const productType = this.escapeHTML(this.product?.type || 'product');
+    const subtitle = this.product?.subtitle
+      ? `<p class="kalles-quick-view__subtitle">${this.escapeHTML(this.product.subtitle)}</p>`
+      : '';
+
+    modal.innerHTML = `
+      <div class="kalles-quick-view" dir="${document.documentElement.dir || 'rtl'}">
+        <a class="kalles-quick-view__media" href="${productUrl}" aria-label="${productName}">
+          <img src="${this.escapeHTML(imageUrl)}" alt="${productName}" loading="eager">
+        </a>
+        <div class="kalles-quick-view__summary">
+          <p class="kalles-quick-view__eyebrow">${this.escapeHTML(this.quickViewLabel)}</p>
+          <h3>${productName}</h3>
+          ${subtitle}
+          <div class="kalles-quick-view__price">${this.getProductPrice()}</div>
+          <salla-add-product-button
+            class="kalles-quick-view__add"
+            product-id="${productId}"
+            product-status="${productStatus}"
+            product-type="${productType}"
+            fill="solid"
+            width="wide">
+            <i class="sicon-shopping-bag" aria-hidden="true"></i>
+            <span>${this.escapeHTML(this.quickAddLabel)}</span>
+          </salla-add-product-button>
+          <a class="kalles-quick-view__details" href="${productUrl}">
+            ${this.escapeHTML(this.detailsLabel)}
+            <i class="sicon-arrow-left" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    `;
+
+    modal.setAttribute('aria-label', productName);
+    document.body.appendChild(modal);
+    await customElements.whenDefined('salla-modal');
+    await new Promise((resolve) => requestAnimationFrame(resolve));
+    modal.open();
+  }
+
   render(){
     this.classList.add('s-product-card-entry'); 
     this.setAttribute('id', this.product.id);
@@ -184,19 +358,33 @@ class ProductCard extends HTMLElement {
     this.shadowOnHover?  this.classList.add('s-product-card-shadow') : '';
     this.product?.is_out_of_stock?  this.classList.add('s-product-card-out-of-stock') : '';
     this.isInWishlist = !salla.config.isGuest() && salla.storage.get('salla::wishlist', []).includes(Number(this.product.id));
+      const primaryImageUrl = this.product?.image?.url || this.product?.thumbnail || this.placeholder || '';
+      const secondaryImageUrl = this.getSecondaryImageUrl();
+      const usesKallesActions = !this.hideAddBtn && !this.horizontal && !this.fullImage && !this.minimal;
+      this.classList.remove('has-secondary-image');
+      this.secondaryImageLoaded = false;
+
       this.innerHTML = `
         <div class="${!this.fullImage ? 's-product-card-image' : 's-product-card-image-full'}">
           <a href="${this.product?.url}" aria-label="${this.escapeHTML(this.product?.image?.alt || this.product.name)}">
            <img 
-              class="s-product-card-image-${salla.url.is_placeholder(this.product?.image?.url)
+              class="s-product-card-image-${salla.url.is_placeholder(primaryImageUrl)
                 ? 'contain'
                 : this.fitImageHeight
                 ? this.fitImageHeight
                 : 'cover'}"
-              src="${this.product?.image?.url || this.product?.thumbnail || this.placeholder || ''}"
+              src="${primaryImageUrl}"
               alt="${this.escapeHTML(this.product?.image?.alt || this.product.name)}"
               loading="lazy"
             />
+            ${!this.fullImage && !this.minimal ? `
+              <img
+                class="kalles-card-secondary-image"
+                src="${secondaryImageUrl || primaryImageUrl}"
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+              />` : ''}
             ${!this.fullImage && !this.minimal ? this.getProductBadge() : ''}
           </a>
           ${this.fullImage ? `<a href="${this.product?.url}" aria-label=${this.product.name} class="s-product-card-overlay"></a>`:''}
@@ -213,6 +401,27 @@ class ProductCard extends HTMLElement {
               <i class="sicon-heart"></i>
             </salla-button>` : ``
           }
+          ${usesKallesActions ? `
+            <a class="kalles-card-expand" href="${this.product?.url}" aria-label="${this.detailsLabel}">
+              <i class="sicon-arrow-up-left" aria-hidden="true"></i>
+            </a>
+            <div class="kalles-card-actions">
+              <button class="kalles-card-quick-view" type="button" aria-label="${this.quickViewLabel}">
+                <i class="sicon-search" aria-hidden="true"></i>
+                <span>${this.quickViewLabel}</span>
+              </button>
+              <salla-add-product-button
+                fill="solid"
+                loader-position="center"
+                class="kalles-card-quick-add"
+                aria-label="${this.getAddButtonLabel()}"
+                product-id="${this.product.id}"
+                product-status="${this.product.status}"
+                product-type="${this.product.type}">
+                <i class="sicon-shopping-bag" aria-hidden="true"></i>
+                <span>${this.quickAddLabel}</span>
+              </salla-add-product-button>
+            </div>` : ''}
         </div>
         <div class="s-product-card-content">
           ${this.isSpecial && this.product?.quantity ?
@@ -271,7 +480,7 @@ class ProductCard extends HTMLElement {
             : ``}
 
 
-          ${!this.hideAddBtn ?
+          ${!this.hideAddBtn && !usesKallesActions ?
             `<div class="s-product-card-content-footer gap-2">
               <salla-add-product-button fill="outline" shape="icon" loader-position="center"
                 class="s-product-card-add-btn-icon-only"
@@ -299,6 +508,10 @@ class ProductCard extends HTMLElement {
             : ``}
         </div>
       `
+
+      if (secondaryImageUrl) {
+        this.applySecondaryImage(secondaryImageUrl);
+      }
 
       this.querySelectorAll('[name="donating_amount"]').forEach((element)=>{
         element.addEventListener('input', (e) => {
