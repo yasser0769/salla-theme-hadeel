@@ -14,6 +14,7 @@ class Product extends BasePage {
         });
 
         this.initProductOptionValidations();
+        this.initProductDock();
 
         if(imageZoom){
             // call the function when the page is ready
@@ -27,6 +28,46 @@ class Product extends BasePage {
       document.querySelector('.product-form')?.addEventListener('change', function(){
         this.reportValidity() && salla.product.getPrice(new FormData(this));
       });
+    }
+
+    initProductDock() {
+      const dock = document.querySelector('[data-product-dock]');
+      const form = document.querySelector('.product-form');
+      const submit = dock?.querySelector('[data-product-dock-submit]');
+      const dockQuantity = dock?.querySelector('[data-product-dock-quantity]');
+      const mainQuantity = form?.querySelector('salla-quantity-input[name="quantity"]');
+      const desktop = window.matchMedia('(min-width: 768px)');
+
+      if (!dock || !form || !submit) return;
+
+      const updateDockVisibility = () => {
+        const visible = desktop.matches && window.scrollY > 180;
+        dock.classList.toggle('is-visible', visible);
+        dock.setAttribute('aria-hidden', visible ? 'false' : 'true');
+      };
+
+      submit.addEventListener('click', () => {
+        if (typeof form.requestSubmit === 'function') {
+          form.requestSubmit();
+          return;
+        }
+
+        form.dispatchEvent(new Event('submit', {bubbles: true, cancelable: true}));
+      });
+
+      dockQuantity?.addEventListener('change', async () => {
+        if (!mainQuantity?.setValue) return;
+        await mainQuantity.setValue(dockQuantity.quantity || 1, true);
+      });
+
+      mainQuantity?.addEventListener('change', async () => {
+        if (!dockQuantity?.setValue) return;
+        await dockQuantity.setValue(mainQuantity.quantity || 1, false);
+      });
+
+      window.addEventListener('scroll', updateDockVisibility, {passive: true});
+      desktop.addEventListener?.('change', updateDockVisibility);
+      updateDockVisibility();
     }
 
     initImagesZooming() {

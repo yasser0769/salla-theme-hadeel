@@ -11,6 +11,19 @@
     "cart": {
       "cart_options": "خيارات السلة"
     },
+    "products": {
+      "kalles": {
+        "ask_question": "اسأل عن المنتج",
+        "availability": "التوفر",
+        "category": "التصنيف",
+        "delivery_returns": "التوصيل والاسترجاع",
+        "discount": "نسبة الخصم",
+        "in_stock": "متوفر",
+        "share": "مشاركة المنتج",
+        "sticky_purchase": "شريط شراء المنتج",
+        "tags": "الوسوم"
+      }
+    },
     "order": {
       "can_edit_or_delete_your_review_within": "يمكنك تعديل أو حذف تقييمك خلال",
       "edit_period_ended": "تم انتهاء المدة المحددة لتعديل التقييم",

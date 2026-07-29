@@ -11,6 +11,19 @@
     "cart": {
       "cart_options": "Cart Options"
     },
+    "products": {
+      "kalles": {
+        "ask_question": "Ask a Question",
+        "availability": "Availability",
+        "category": "Category",
+        "delivery_returns": "Delivery & Return",
+        "discount": "Discount percentage",
+        "in_stock": "In stock",
+        "share": "Share product",
+        "sticky_purchase": "Product purchase bar",
+        "tags": "Tags"
+      }
+    },
     "order": {
       "can_edit_or_delete_your_review_within": "You can edit or delete your review within",
       "edit_period_ended": "The period to edit the review has ended",
