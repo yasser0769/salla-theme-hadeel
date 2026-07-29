@@ -15,6 +15,7 @@ class Product extends BasePage {
 
         this.initProductOptionValidations();
         this.initProductDock();
+        this.initRelatedProducts();
 
         if(imageZoom){
             // call the function when the page is ready
@@ -68,6 +69,30 @@ class Product extends BasePage {
       window.addEventListener('scroll', updateDockVisibility, {passive: true});
       desktop.addEventListener?.('change', updateDockVisibility);
       updateDockVisibility();
+    }
+
+    initRelatedProducts() {
+      const section = document.querySelector('[data-related-products]');
+      const slider = section?.querySelector('salla-products-slider');
+
+      if (!section || !slider) return;
+
+      customElements.whenDefined('salla-products-slider').then(() => {
+        const root = slider.shadowRoot || slider;
+        const productSelector =
+          'custom-salla-product-card, salla-product-card, .s-product-card-entry';
+        const revealIfPopulated = () => {
+          if (!root.querySelector(productSelector)) return false;
+          section.hidden = false;
+          observer.disconnect();
+          return true;
+        };
+        const observer = new MutationObserver(revealIfPopulated);
+
+        if (!revealIfPopulated()) {
+          observer.observe(root, {childList: true, subtree: true});
+        }
+      });
     }
 
     initImagesZooming() {
