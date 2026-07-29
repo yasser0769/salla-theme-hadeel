@@ -363,17 +363,13 @@
 .kalles-product-page,
 .kalles-product-comments,
 .kalles-related-products {
-  --kalles-accent: var(--color-primary, #e95345);
-  --kalles-line: #ececec;
-  --kalles-muted: #777;
-  --kalles-soft: #f5f5f6;
   font-family: "Thmanyah Sans", var(--font-main), sans-serif;
 }
 
 .kalles-product-breadcrumb {
   min-height: 54px;
-  background: var(--kalles-soft);
-  color: var(--kalles-muted);
+  background: var(--hadeel-soft);
+  color: var(--hadeel-muted);
   border-bottom: 1px solid #f0f0f0;
 
   .breadcrumbs {
@@ -391,7 +387,7 @@
   padding-bottom: 76px;
   gap: clamp(32px, 5vw, 76px);
   direction: ltr;
-  border-bottom: 1px solid var(--kalles-line);
+  border-bottom: 1px solid var(--hadeel-line);
 
   > * {
     direction: rtl;
@@ -515,11 +511,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: var(--kalles-muted);
-}
-
-.kalles-product-rating salla-rating-stars {
-  --color-primary: #e6a638;
+  color: var(--hadeel-muted);
 }
 
 .kalles-product-price {
@@ -537,7 +529,7 @@
 
   .total-price {
     margin: 0;
-    color: var(--kalles-accent);
+    color: var(--hadeel-accent);
     font-size: 28px;
     font-weight: 900;
   }
@@ -562,7 +554,7 @@
 .kalles-product-description {
   margin: 0 0 16px;
   padding: 0;
-  color: var(--kalles-muted);
+  color: var(--hadeel-muted);
   font-size: 16px;
   line-height: 1.9;
 
@@ -575,7 +567,7 @@
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    color: var(--kalles-accent);
+    color: var(--hadeel-accent);
     font-size: 13px;
     font-weight: 700;
   }
@@ -605,15 +597,15 @@
 .kalles-product-demand {
   margin-bottom: 16px;
   padding: 0;
-  border: 1px solid var(--kalles-line);
+  border: 1px solid var(--hadeel-line);
   border-radius: 0;
 }
 
 .kalles-product-sku {
   margin-bottom: 16px;
   padding: 11px 0;
-  border-top: 1px solid var(--kalles-line);
-  border-bottom: 1px solid var(--kalles-line);
+  border-top: 1px solid var(--hadeel-line);
+  border-bottom: 1px solid var(--hadeel-line);
   border-radius: 0;
 }
 
@@ -712,15 +704,15 @@
 
   salla-button .s-button-btn:hover,
   salla-social-share button:hover {
-    color: var(--kalles-accent);
-    border-color: var(--kalles-accent);
+    color: var(--hadeel-accent);
+    border-color: var(--hadeel-accent);
   }
 }
 
 .kalles-product-trust {
   margin-top: 24px;
   padding-top: 20px;
-  border-top: 1px solid var(--kalles-line);
+  border-top: 1px solid var(--hadeel-line);
   display: block;
 }
 
@@ -730,7 +722,7 @@
   display: flex;
   align-items: center;
   gap: 24px;
-  border-top: 1px solid var(--kalles-line);
+  border-top: 1px solid var(--hadeel-line);
 }
 
 .kalles-product-support-item,
@@ -753,13 +745,13 @@
 
 .kalles-size-guide-action .s-button-btn:hover,
 .kalles-ask-product:hover {
-  color: var(--kalles-accent);
+  color: var(--hadeel-accent);
 }
 
 .kalles-product-details {
   margin-top: 0;
   padding: 56px clamp(20px, 4vw, 56px);
-  border-top: 1px solid var(--kalles-line);
+  border-top: 1px solid var(--hadeel-line);
   background: #fff;
 
   h2 {
@@ -771,7 +763,7 @@
 
   .article {
     max-width: 900px;
-    color: var(--kalles-muted);
+    color: var(--hadeel-muted);
     font-size: 16px;
     line-height: 2;
   }
@@ -980,7 +972,7 @@
     align-items: center;
     gap: 8px;
     background: rgba(255, 255, 255, 0.98);
-    border-top: 1px solid var(--kalles-line);
+    border-top: 1px solid var(--hadeel-line);
     box-shadow: 0 -10px 24px rgba(0, 0, 0, 0.08);
 
     .sticky-product-bar__quantity {
@@ -1059,18 +1051,12 @@
 .kalles-product-comments,
 .kalles-related-products,
 .kalles-product-dock {
-  --kalles-accent: var(--color-primary);
-  --kalles-ink: var(--color-text, #222);
-  --kalles-muted: var(--color-text-muted, #878787);
-  --kalles-line: var(--color-grey, #e8e8e8);
-  --kalles-surface: var(--color-background, #fff);
-  --kalles-soft: var(--color-grey-light, #f4f4f4);
   font-family: "Thmanyah Sans", var(--font-main), sans-serif;
 }
 
 .kalles-product-page {
-  color: var(--kalles-ink);
-  background: var(--kalles-surface);
+  color: var(--hadeel-ink);
+  background: var(--hadeel-surface);
 
   > .container {
     width: calc(100% - 48px) !important;
@@ -1104,7 +1090,7 @@
       height: clamp(520px, 48vw, 680px);
       max-height: 680px;
       aspect-ratio: auto;
-      background: var(--kalles-soft);
+      background: var(--hadeel-soft);
     }
 
     .s-slider-vertical .s-slider-container {
@@ -1116,7 +1102,7 @@
     .homeslider__slide img,
     .s-slider-thumbs-container img {
       border-radius: 0;
-      background: var(--kalles-soft);
+      background: var(--hadeel-soft);
     }
 
     .homeslider__slide img,
@@ -1128,9 +1114,9 @@
     .s-slider-next {
       width: 42px;
       height: 42px;
-      border: 1px solid var(--kalles-ink);
-      color: var(--kalles-ink);
-      background: color-mix(in srgb, var(--kalles-surface) 94%, transparent);
+      border: 1px solid var(--hadeel-ink);
+      color: var(--hadeel-ink);
+      background: color-mix(in srgb, var(--hadeel-surface) 94%, transparent);
       box-shadow: none;
     }
 
@@ -1164,7 +1150,7 @@
     }
 
     .s-slider-thumbs-container .swiper-slide-thumb-active {
-      border-color: var(--kalles-ink);
+      border-color: var(--hadeel-ink);
       opacity: 1;
     }
   }
@@ -1281,7 +1267,7 @@
 
   salla-product-options .s-product-options-option-label {
     margin: 0 0 11px;
-    color: var(--kalles-ink);
+    color: var(--hadeel-ink);
     font-size: 15px;
     font-weight: 800;
   }
@@ -1300,18 +1286,18 @@
     min-width: 62px;
     min-height: 50px;
     padding: 10px 18px;
-    border-color: var(--kalles-line);
+    border-color: var(--hadeel-line);
     border-radius: 4px;
-    color: var(--kalles-ink);
-    background: var(--kalles-surface);
+    color: var(--hadeel-ink);
+    background: var(--hadeel-surface);
     font-size: 14px;
     font-weight: 700;
   }
 
   salla-product-options .s-product-options-grid-mode input:checked + div {
-    border-color: var(--kalles-ink);
-    color: var(--kalles-surface);
-    background: var(--kalles-ink);
+    border-color: var(--hadeel-ink);
+    color: var(--hadeel-surface);
+    background: var(--hadeel-ink);
   }
 
   salla-product-options .s-product-options-colors-wrapper {
@@ -1345,7 +1331,7 @@
     height: 52px !important;
     min-height: 52px;
     line-height: normal;
-    border-color: var(--kalles-ink);
+    border-color: var(--hadeel-ink);
   }
 
   salla-quantity-input .s-quantity-input-container {
@@ -1397,9 +1383,9 @@
     height: 52px;
     min-height: 52px;
     flex-basis: 52px;
-    border-color: var(--kalles-ink);
-    color: var(--kalles-ink);
-    background: var(--kalles-surface);
+    border-color: var(--hadeel-ink);
+    color: var(--hadeel-ink);
+    background: var(--hadeel-surface);
   }
 }
 
@@ -1432,7 +1418,7 @@
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  color: var(--kalles-ink);
+  color: var(--hadeel-ink);
   font-size: 15px;
   font-weight: 700;
 }
@@ -1440,7 +1426,7 @@
 .kalles-size-guide-action .s-button-btn:hover,
 .kalles-product-delivery:hover,
 .kalles-ask-product:hover {
-  color: var(--kalles-accent);
+  color: var(--hadeel-accent);
 }
 
 .kalles-product-meta {
@@ -1448,8 +1434,8 @@
   padding-top: 20px;
   display: grid;
   gap: 9px;
-  border-top: 1px solid var(--kalles-line);
-  color: var(--kalles-muted);
+  border-top: 1px solid var(--hadeel-line);
+  color: var(--hadeel-muted);
   font-size: 14px;
 
   > div {
@@ -1460,12 +1446,12 @@
   }
 
   dt {
-    color: var(--kalles-muted);
+    color: var(--hadeel-muted);
   }
 
   dd {
     margin: 0;
-    color: var(--kalles-ink);
+    color: var(--hadeel-ink);
   }
 
   dd.is-available {
@@ -1477,7 +1463,7 @@
   }
 
   a:hover {
-    color: var(--kalles-accent);
+    color: var(--hadeel-accent);
   }
 }
 
@@ -1486,11 +1472,11 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: var(--kalles-muted);
+  color: var(--hadeel-muted);
   font-size: 14px;
 
   salla-social-share {
-    color: var(--kalles-ink);
+    color: var(--hadeel-ink);
   }
 }
 
@@ -1500,7 +1486,7 @@
 
 .kalles-product-native-meta {
   padding: 28px 0 42px;
-  border-top: 1px solid var(--kalles-line);
+  border-top: 1px solid var(--hadeel-line);
 
   salla-metadata {
     max-width: 920px;
@@ -1520,9 +1506,9 @@
   bottom: 0;
   left: 0;
   padding: 10px 0;
-  color: var(--kalles-ink);
-  background: color-mix(in srgb, var(--kalles-surface) 97%, transparent);
-  border-top: 1px solid var(--kalles-line);
+  color: var(--hadeel-ink);
+  background: color-mix(in srgb, var(--hadeel-surface) 97%, transparent);
+  border-top: 1px solid var(--hadeel-line);
   box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.08);
   transform: translateY(110%);
   opacity: 0;
@@ -1555,7 +1541,7 @@
       flex: 0 0 64px;
       border-radius: 50%;
       object-fit: contain;
-      background: var(--kalles-soft);
+      background: var(--hadeel-soft);
     }
 
     > div {
@@ -1568,7 +1554,7 @@
     strong {
       max-width: 360px;
       overflow: hidden;
-      color: var(--kalles-ink);
+      color: var(--hadeel-ink);
       font-size: 16px;
       font-weight: 800;
       text-overflow: ellipsis;
@@ -1579,8 +1565,8 @@
   &__price {
     padding: 9px 15px;
     border-radius: 999px;
-    color: var(--kalles-ink);
-    background: var(--kalles-soft);
+    color: var(--hadeel-ink);
+    background: var(--hadeel-soft);
     font-size: 15px;
     white-space: nowrap;
   }
@@ -1594,7 +1580,7 @@
     salla-quantity-input {
       width: 150px;
       min-height: 52px;
-      border: 1px solid var(--kalles-ink);
+      border: 1px solid var(--hadeel-ink);
       border-radius: 999px;
       overflow: hidden;
     }
@@ -1619,11 +1605,11 @@
   .kalles-product-comments,
   .kalles-related-products,
   .kalles-product-dock {
-    --kalles-ink: var(--color-text, #f5f5f5);
-    --kalles-muted: #b4b4b4;
-    --kalles-line: #333;
-    --kalles-surface: #171717;
-    --kalles-soft: #242424;
+    --hadeel-ink: #f5f5f5;
+    --hadeel-muted: #b4b4b4;
+    --hadeel-line: #333;
+    --hadeel-surface: #171717;
+    --hadeel-soft: #242424;
   }
 }
 
