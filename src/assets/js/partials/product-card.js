@@ -365,7 +365,7 @@ class ProductCard extends HTMLElement {
               />` : ''}
             ${!this.fullImage && !this.minimal ? this.getProductBadge() : ''}
           </a>
-          ${this.fullImage ? `<a href="${this.product?.url}" aria-label=${this.product.name} class="s-product-card-overlay"></a>`:''}
+          ${this.fullImage ? `<a href="${this.escapeHTML(this.product?.url || '#')}" aria-label="${this.escapeHTML(this.product?.name || '')}" class="s-product-card-overlay"></a>`:''}
           ${!this.horizontal && !this.fullImage ?
             `<salla-button
               shape="icon"
@@ -429,7 +429,7 @@ class ProductCard extends HTMLElement {
               : ``}
           </div>
           ${this.product?.donation && !this.minimal && !this.fullImage ?
-          `<salla-progress-bar donation=${JSON.stringify(this.product?.donation)}></salla-progress-bar>
+          `<salla-progress-bar donation="${this.escapeHTML(JSON.stringify(this.product?.donation))}"></salla-progress-bar>
           <div class="s-product-card-donation-input">
             ${this.product?.donation?.can_donate && this.product?.donation?.custom_amount_enabled  ?
               `<label for="donation-amount-${this.product.id}">${this.donationAmount} <span>*</span></label>
@@ -457,8 +457,8 @@ class ProductCard extends HTMLElement {
           </div>
 
           ${this.isSpecial && this.product.discount_ends
-            ? `<salla-count-down date="${this.formatDate(this.product.discount_ends)}" end-of-day=${true} boxed=${true}
-              labeled=${true} />`
+            ? `<salla-count-down date="${this.escapeHTML(this.formatDate(this.product.discount_ends))}" end-of-day="true" boxed="true"
+              labeled="true" />`
             : ``}
 
 

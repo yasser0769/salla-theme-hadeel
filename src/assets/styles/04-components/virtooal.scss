@@ -1,3 +1,6 @@
+@use '../01-settings/breakpoints' as *;
+@use '../02-generic/mixins' as *;
+
 .virtooal {
   margin: 15px 0;
   border-radius: 10px;

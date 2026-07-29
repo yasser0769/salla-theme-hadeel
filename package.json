@@ -1,11 +1,11 @@
 {
-  "name": "theme-raed",
+  "name": "salla-theme-hadeel",
   "version": "1.0.3",
-  "description": "Salla Theme",
+  "description": "Hadeel theme for Salla storefronts",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SallaApp/theme-raed.git"
+    "url": "git+https://github.com/yasser0769/salla-theme-hadeel.git"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -15,7 +15,7 @@
     "development": "webpack --mode development",
     "watch": "webpack --mode development --watch"
   },
-  "author": "Salla",
+  "author": "Yasser",
   "dependencies": {
     "@babel/runtime": "^7.28.6",
     "animejs": "^3.2.1",
