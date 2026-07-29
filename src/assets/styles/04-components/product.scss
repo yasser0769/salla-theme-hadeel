@@ -169,7 +169,7 @@
       text-align: center;
       position: absolute;
       top: 50%;
-      left: 50%;
+      inset-inline-start: 50%;
       transform: translate(-50%, -50%);
       line-height: 1;
       font-size: var(--font-xsm);
@@ -386,12 +386,7 @@
   padding-top: 34px;
   padding-bottom: 76px;
   gap: clamp(32px, 5vw, 76px);
-  direction: ltr;
   border-bottom: 1px solid var(--hadeel-line);
-
-  > * {
-    direction: rtl;
-  }
 }
 
 .kalles-product-gallery {
@@ -466,8 +461,8 @@
 
   .promotion-title {
     top: 12px;
-    right: auto;
-    left: 12px;
+    inset-inline-start: 12px;
+    inset-inline-end: auto;
     padding: 8px 12px !important;
     border-radius: 0 !important;
     background: #ef633e;
@@ -631,7 +626,6 @@
   padding: 0;
   display: flex;
   align-items: stretch;
-  direction: rtl;
   gap: 12px;
   background: transparent;
 
@@ -889,7 +883,7 @@
       width: 42px;
       height: 42px;
       top: 10px;
-      left: 10px;
+      inset-inline-start: 10px;
       display: block;
       z-index: 4;
 
@@ -964,9 +958,8 @@
     padding: 10px;
     position: fixed;
     z-index: 76;
-    right: 0;
+    inset-inline: 0;
     bottom: 55px;
-    left: 0;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
@@ -1075,7 +1068,6 @@
 .kalles-product-gallery {
   width: 100% !important;
   padding-bottom: 0;
-  direction: ltr !important;
 
   salla-slider.details-slider {
     .s-slider-vertical {
@@ -1124,13 +1116,13 @@
     .s-slider-vertical .s-slider-thumbs {
       width: 88px;
       height: auto;
-      margin: 0 0 0 15px;
+      margin: 0;
+      margin-inline-end: 15px;
       padding: 0;
     }
 
     .s-slider-vertical .s-slider-thumbs:where([dir="rtl"], [dir="rtl"] *) {
-      margin-right: 0;
-      margin-left: 15px;
+      margin-inline-end: 15px;
     }
 
     .s-slider-thumbs-container,
@@ -1161,8 +1153,8 @@
     position: absolute;
     z-index: 4;
     top: 18px;
-    right: 18px;
-    left: auto;
+    inset-inline-start: 18px;
+    inset-inline-end: auto;
   }
 
   .kalles-product-discount {
@@ -1315,7 +1307,6 @@
 
 .kalles-product-purchase {
   padding: 0 !important;
-  direction: ltr;
   align-items: center;
   gap: 10px;
   background: transparent !important;
@@ -1345,7 +1336,6 @@
     height: 52px !important;
     min-height: 52px !important;
     order: 2;
-    direction: rtl;
   }
 
   > salla-add-product-button .s-add-product-button-main,
@@ -1503,9 +1493,8 @@
 .kalles-product-dock {
   position: fixed;
   z-index: 74;
-  right: 0;
+  inset-inline: 0;
   bottom: 0;
-  left: 0;
   padding: 10px 0;
   color: var(--hadeel-ink);
   background: color-mix(in srgb, var(--hadeel-surface) 97%, transparent);
@@ -1575,7 +1564,6 @@
   &__actions {
     display: flex;
     align-items: center;
-    direction: ltr;
     gap: 14px;
 
     salla-quantity-input {
@@ -1584,10 +1572,6 @@
       border: 1px solid var(--hadeel-ink);
       border-radius: 999px;
       overflow: hidden;
-    }
-
-    salla-button {
-      direction: rtl;
     }
 
     salla-button .s-button-btn {
@@ -1712,7 +1696,7 @@
       width: 58px;
       height: 58px;
       top: 14px;
-      right: 14px;
+      inset-inline-start: 14px;
       font-size: 16px;
     }
   }
@@ -1743,8 +1727,6 @@
   }
 
   .kalles-product-purchase {
-    direction: ltr;
-
     .sticky-product-bar__quantity {
       order: 1;
     }
