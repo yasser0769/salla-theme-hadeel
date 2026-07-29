@@ -1,0 +1,33 @@
+/*
+ * Hadeel spacing, radius, and control tokens.
+ * Source: design-system/spec.html#s3
+ */
+
+:root {
+  /* 4px spacing scale */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+  --sp-9: 96px;
+  --sp-10: 128px;
+
+  --h-section: clamp(var(--sp-8), 7vw, var(--sp-10));
+  --h-gutter: clamp(var(--sp-4), 3vw, var(--sp-6));
+  --h-container: 1410px;
+
+  /* Cards, media, and fields stay square; controls and badges use pills. */
+  --r-0: 0;
+  --r-pill: 999px;
+
+  --h-control: 46px;
+  --h-control-lg: 52px;
+  --h-icon: 42px;
+  --h-toolbar: 55px;
+  --h-dock: 68px;
+  --h-safe: env(safe-area-inset-bottom, 0px);
+}

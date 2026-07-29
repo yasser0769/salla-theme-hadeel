@@ -29,7 +29,8 @@
             }
         }
         &:before {
-            border-radius: 0 0 50% 50%/ 0 0 100% 100%;
+            border-radius: var(--r-0);
+            clip-path: ellipse(75% 100% at 50% 0);
             @apply hidden sm:block content-[''] absolute inset-0 w-full h-full bg-[#F5F7F9] scale-x-150;
         }
     }

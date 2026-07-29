@@ -138,7 +138,7 @@ salla-slider.photos-slider {
 salla-slider{
   .swiper-pagination-bullet {
     width: 20px;
-    border-radius: 5px;
+    border-radius: var(--r-pill);
     background: #fff;
     opacity: 0.3;
 

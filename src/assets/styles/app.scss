@@ -51,6 +51,7 @@
 */
 
 @use './01-settings/tailwind' as *;
+@use './01-settings/tokens' as *;
 @use './01-settings/fonts' as *;
 @use './01-settings/global' as *;
 @use './01-settings/breakpoints' as *;

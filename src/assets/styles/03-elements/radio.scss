@@ -16,7 +16,7 @@
         // margin: -1px 4px 0 0;
         vertical-align: middle;
         cursor: pointer;
-        border-radius: 6px;
+        border-radius: var(--r-0);
         border: 2px solid #ffffff;
         background-repeat: no-repeat;
         background-position: center;
@@ -59,7 +59,7 @@
     input[type="radio"] {
       + label {
         span {
-          border-radius: 50%;
+          border-radius: var(--r-pill);
           width: 30px;
           height: 30px;
           display: inline-flex;
@@ -72,7 +72,7 @@
             width: 14px;
             height: 14px;
             background-color: #f1f1f1;
-            border-radius: 50%;
+            border-radius: var(--r-pill);
           }
         }
       }

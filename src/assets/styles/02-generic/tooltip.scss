@@ -19,7 +19,7 @@
       width: 20px;
       height: 20px;
       transform: rotate(45deg);
-      border-radius: 2px;
+      border-radius: var(--r-0);
       @apply shadow-md;
       left: 43%;
       bottom: -7px;
