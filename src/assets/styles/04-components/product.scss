@@ -1073,8 +1073,8 @@
   background: var(--kalles-surface);
 
   > .container {
-    width: calc(100% - 48px);
-    max-width: 1320px;
+    width: calc(100% - 48px) !important;
+    max-width: 1320px !important;
   }
 }
 
@@ -1197,6 +1197,12 @@
   }
 }
 
+.kalles-product-overview > .kalles-product-gallery,
+.kalles-product-overview > .kalles-product-summary {
+  width: 100% !important;
+  margin: 0 !important;
+}
+
 .kalles-product-summary {
   width: 100% !important;
   padding-top: 2px;
@@ -1208,7 +1214,7 @@
 
 .kalles-product-title {
   margin-bottom: 10px;
-  font-size: clamp(23px, 1.7vw, 27px);
+  font-size: clamp(23px, 1.7vw, 27px) !important;
   line-height: 1.25;
   font-weight: 800;
 }
@@ -1228,7 +1234,7 @@
   }
 
   .kalles-product-normal-price .total-price {
-    color: var(--kalles-ink);
+    color: #222 !important;
   }
 
   .before-price {
@@ -1250,6 +1256,10 @@
 
 .kalles-product-form {
   margin-top: 14px;
+}
+
+.kalles-product-stock {
+  display: none !important;
 }
 
 .kalles-product-form {
@@ -1317,32 +1327,63 @@
 }
 
 .kalles-product-purchase {
+  padding: 0 !important;
   direction: ltr;
+  align-items: center;
   gap: 10px;
+  background: transparent !important;
 
   .sticky-product-bar__quantity {
     width: 136px;
+    height: 52px;
     flex: 0 0 136px;
     order: 1;
   }
 
   salla-quantity-input {
+    display: block !important;
+    height: 52px !important;
     min-height: 52px;
+    line-height: normal;
     border-color: var(--kalles-ink);
+  }
+
+  salla-quantity-input .s-quantity-input-container {
+    height: 52px !important;
+    min-height: 52px !important;
   }
 
   > salla-add-product-button {
     --color-primary: #56cfe1;
     --color-primary-dark: #45bfd2;
     min-width: 190px;
+    height: 52px !important;
+    min-height: 52px !important;
     order: 2;
     direction: rtl;
   }
 
+  > salla-add-product-button .s-add-product-button-main,
+  > salla-add-product-button salla-button,
+  > salla-add-product-button .s-button-wrap {
+    width: 100% !important;
+    height: 52px !important;
+    min-height: 52px !important;
+    display: block !important;
+  }
+
   > salla-add-product-button .s-button-btn,
   > salla-add-product-button .s-button-element {
+    width: 100% !important;
+    height: 52px !important;
     min-height: 52px;
+    margin: 0 !important;
+    color: #fff !important;
     font-weight: 800;
+  }
+
+  salla-mini-checkout-widget {
+    display: none !important;
   }
 }
 
@@ -1468,6 +1509,10 @@
     margin: 0 auto;
     display: block;
   }
+}
+
+.kalles-product-summary > salla-metadata {
+  display: none !important;
 }
 
 .kalles-product-dock {

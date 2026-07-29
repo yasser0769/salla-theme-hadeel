@@ -26590,8 +26590,8 @@ input[type=radio].sr-only:checked ~ div.model-viewer__poster {
   background: var(--kalles-surface);
 }
 .kalles-product-page > .container {
-  width: calc(100% - 48px);
-  max-width: 1320px;
+  width: calc(100% - 48px) !important;
+  max-width: 1320px !important;
 }
 .kalles-product-overview {
   display: grid !important;
@@ -26706,6 +26706,11 @@ input[type=radio].sr-only:checked ~ div.model-viewer__poster {
 .kalles-product-gallery .promotion-title {
   background: #ff4f00;
 }
+.kalles-product-overview > .kalles-product-gallery,
+.kalles-product-overview > .kalles-product-summary {
+  width: 100% !important;
+  margin: 0 !important;
+}
 .kalles-product-summary {
   width: 100% !important;
   position: sticky !important;
@@ -26717,8 +26722,10 @@ input[type=radio].sr-only:checked ~ div.model-viewer__poster {
   top: 110px;
 }
 .kalles-product-title {
+  font-size: max(23px, min(1.7vw, 27px)) !important;
+}
+.kalles-product-title {
   margin-bottom: 10px;
-  font-size: max(23px, min(1.7vw, 27px));
   line-height: 1.25;
   font-weight: 800;
 }
@@ -26736,7 +26743,7 @@ input[type=radio].sr-only:checked ~ div.model-viewer__poster {
   color: var(--color-danger, #e00000);
 }
 .kalles-product-price .kalles-product-normal-price .total-price {
-  color: var(--kalles-ink);
+  color: #222 !important;
 }
 .kalles-product-price .before-price {
   color: #a7a7a7;
@@ -26753,6 +26760,9 @@ input[type=radio].sr-only:checked ~ div.model-viewer__poster {
 }
 .kalles-product-form {
   margin-top: 14px;
+}
+.kalles-product-stock {
+  display: none !important;
 }
 .kalles-product-form salla-product-options .s-product-options-wrapper {
   margin: 0 0 20px;
@@ -26807,17 +26817,36 @@ input[type=radio].sr-only:checked ~ div.model-viewer__poster {
   margin: 0;
 }
 .kalles-product-purchase {
+  padding: 0 !important;
+  background: transparent !important;
+}
+.kalles-product-purchase {
   direction: ltr;
+  align-items: center;
   gap: 10px;
 }
 .kalles-product-purchase .sticky-product-bar__quantity {
   width: 136px;
+  height: 52px;
   flex: 0 0 136px;
   order: 1;
 }
 .kalles-product-purchase salla-quantity-input {
+  display: block !important;
+  height: 52px !important;
+}
+.kalles-product-purchase salla-quantity-input {
   min-height: 52px;
+  line-height: normal;
   border-color: var(--kalles-ink);
+}
+.kalles-product-purchase salla-quantity-input .s-quantity-input-container {
+  height: 52px !important;
+  min-height: 52px !important;
+}
+.kalles-product-purchase > salla-add-product-button {
+  height: 52px !important;
+  min-height: 52px !important;
 }
 .kalles-product-purchase > salla-add-product-button {
   --color-primary: #56cfe1;
@@ -26826,10 +26855,28 @@ input[type=radio].sr-only:checked ~ div.model-viewer__poster {
   order: 2;
   direction: rtl;
 }
+.kalles-product-purchase > salla-add-product-button .s-add-product-button-main,
+.kalles-product-purchase > salla-add-product-button salla-button,
+.kalles-product-purchase > salla-add-product-button .s-button-wrap {
+  width: 100% !important;
+  height: 52px !important;
+  min-height: 52px !important;
+  display: block !important;
+}
+.kalles-product-purchase > salla-add-product-button .s-button-btn,
+.kalles-product-purchase > salla-add-product-button .s-button-element {
+  width: 100% !important;
+  height: 52px !important;
+  margin: 0 !important;
+  color: #fff !important;
+}
 .kalles-product-purchase > salla-add-product-button .s-button-btn,
 .kalles-product-purchase > salla-add-product-button .s-button-element {
   min-height: 52px;
   font-weight: 800;
+}
+.kalles-product-purchase salla-mini-checkout-widget {
+  display: none !important;
 }
 .kalles-product-purchase-tools {
   order: 3;
@@ -26937,6 +26984,9 @@ input[type=radio].sr-only:checked ~ div.model-viewer__poster {
   max-width: 920px;
   margin: 0 auto;
   display: block;
+}
+.kalles-product-summary > salla-metadata {
+  display: none !important;
 }
 .kalles-product-dock {
   position: fixed;
