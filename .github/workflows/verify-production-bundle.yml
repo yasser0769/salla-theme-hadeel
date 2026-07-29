@@ -1,0 +1,21 @@
+name: Verify production bundle
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  reject-development-bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Reject webpack eval devtool output
+        shell: bash
+        run: |
+          if grep -Fq 'webpackDevtoolFallbackModuleFactories' public/app.js \
+            || grep -Fq 'ATTENTION: The "eval" devtool has been used' public/app.js; then
+            echo 'public/app.js was built with a webpack development eval devtool.'
+            exit 1
+          fi
