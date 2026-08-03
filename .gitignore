@@ -27,10 +27,12 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 .DS_Store
 
-# Local theme audit and preview artifacts
+# Local audit, preview and design artifacts — none of these ship with the theme
 /output/
 /interface-prototype/
 /kalles-card-preview.html
+/design-reference/
+/design-system/
 /*.png
 
 # Production builds may emit third-party license extracts locally
