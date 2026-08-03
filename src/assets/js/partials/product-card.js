@@ -35,11 +35,10 @@ class ProductCard extends HTMLElement {
         this.startingPrice = salla.lang.get('pages.products.starting_price');
         this.addToCart = salla.lang.get('pages.cart.add_to_cart');
         this.outOfStock = salla.lang.get('pages.products.out_of_stock');
-        this.quickViewLabel = salla.lang.get('pages.products.kalles.quick_view');
-        this.quickAddLabel = salla.lang.get('pages.products.kalles.quick_add');
-        this.detailsLabel = salla.lang.get('pages.products.kalles.view_details');
-        this.newBadgeKeywords = salla.lang
-          .get('pages.products.kalles.new_badge_keywords')
+        this.quickViewLabel = this.getKallesTranslation('quick_view', 'عرض سريع', 'Quick view');
+        this.quickAddLabel = this.getKallesTranslation('quick_add', 'إضافة سريعة', 'Quick add');
+        this.detailsLabel = this.getKallesTranslation('view_details', 'عرض التفاصيل', 'View details');
+        this.newBadgeKeywords = this.getKallesTranslation('new_badge_keywords', 'جديد|جديدة', 'new')
           .split('|')
           .map((keyword) => keyword.trim().toLocaleLowerCase())
           .filter(Boolean);
@@ -177,6 +176,21 @@ class ProductCard extends HTMLElement {
      *  Show quantity.
      */
     this.showQuantity = this.hasAttribute('showQuantity');
+  }
+
+  getKallesTranslation(name, arabicFallback, englishFallback) {
+    const key = `pages.products.kalles.${name}`;
+    const translation = salla.lang.get(key);
+
+    if (translation && translation !== key) {
+      return translation;
+    }
+
+    const language = String(
+      salla.config.get('user.language_code') || document.documentElement.lang || 'ar'
+    ).toLocaleLowerCase();
+
+    return language.startsWith('ar') ? arabicFallback : englishFallback;
   }
 
   escapeHTML(str = '') {
