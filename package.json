@@ -9,6 +9,8 @@
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
+    "check": "node scripts/check-theme.mjs",
+    "check:full": "node scripts/check-theme.mjs --build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "production": "webpack --mode production",
     "prod": "webpack --mode production",

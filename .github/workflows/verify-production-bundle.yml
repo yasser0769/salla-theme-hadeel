@@ -1,4 +1,4 @@
-name: Verify production bundle
+name: Verify theme
 
 on:
   push:
@@ -19,3 +19,40 @@ jobs:
             echo 'public/app.js was built with a webpack development eval devtool.'
             exit 1
           fi
+
+  theme-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # The repo carries a known backlog of findings. --max-errors pins it so the
+      # count can only go down; lower the number whenever you clear some.
+      - name: Static checks
+        run: node scripts/check-theme.mjs --max-errors=31
+
+  build-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify public/ matches a fresh production build
+        run: node scripts/check-theme.mjs --build --max-errors=31

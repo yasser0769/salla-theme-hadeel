@@ -1,5 +1,134 @@
-# Workspace Instructions
+# Working agreement for coding agents
 
-- Before opening a Salla storefront preview, visiting a Salla theme draft, or running
-  `salla theme preview`, tell the user first and wait until they confirm that the
-  network has been changed and is ready.
+Hadeel is a **Salla Twilight storefront theme**, forked from `theme-raed` and restyled
+after the Kalles design. It is not a standalone web app: Salla's servers render the Twig
+templates, Salla's `salla-*` web components own most of the behavior, and this repo only
+supplies templates, styles, a few scripts, and merchant settings.
+
+Read `docs/salla-twilight-notes.md` before touching anything that talks to a `salla-*`
+component, `salla.lang`, or `theme.settings`. It records the real API surface, read out
+of `node_modules`, and the places where guessing has already cost us.
+
+---
+
+## Hard rules
+
+1. **Never open a live preview without asking.** Before `salla theme preview`, a draft
+   storefront, or any authenticated Salla URL, tell the user and wait for confirmation
+   that the network has been changed and is ready.
+2. **`public/` is build output.** Never hand-edit it. `webpack.config.js` sets
+   `output.clean: true`, so every build wipes the directory. Change `src/`, then build.
+3. **`public/` is committed and must stay in sync.** Any commit touching
+   `src/assets/**` must include the rebuilt bundles from
+   `npx webpack --mode production`. Development builds are rejected by CI.
+4. **Never add a layer that overrides an existing layer.** No `!important` to beat your
+   own rule, no stylesheet imported last to win on source order. If a rule is wrong,
+   delete the rule. The current `product.scss` / `storefront-system.scss` split is what
+   this rule exists to prevent — do not extend it.
+5. **No hardcoded user-facing strings in any language.** Translations live in
+   `src/locales/ar.json` and `src/locales/en.json`. Templates use `{{ trans('…') }}`;
+   JS uses `salla.lang.get()`. Never detect the language yourself.
+6. **Do not touch `package.json` or `pnpm-lock.yaml` in a fix.** Dependency changes are
+   their own commit with their own reason. pnpm only — `npm install` is blocked by a
+   `preinstall` guard.
+7. **Say when a description is wrong.** If the task you were handed contradicts what the
+   code actually does, stop and say so before changing anything. A task description is a
+   claim to verify, not an instruction to execute.
+
+---
+
+## Definition of done
+
+A change is not done when the code looks right. It is done when it is measured.
+
+- [ ] `npx webpack --mode production` succeeds
+- [ ] `node scripts/check-theme.mjs --build` reports no new errors
+- [ ] For any visual or behavioral change: a screenshot or a DOM measurement taken
+      **after** the change, with a timestamp later than the change
+- [ ] Every claim in the report is traceable to output you actually saw
+
+**Evidence rules.** Before citing a screenshot or a report, check its date against
+`git log` for the files it describes. Artifacts in `output/` predate most of the current
+code and are not valid evidence. A local mock-up is never evidence about the theme —
+only a rendered Salla storefront is.
+
+State "not verified" explicitly rather than implying verification you did not do.
+
+---
+
+## Layout
+
+```
+src/views/          Twig. layouts/master.twig sets <body> classes and CSS vars.
+src/assets/styles/  SCSS, ITCSS-ordered, entry point app.scss.
+src/assets/js/      Page scripts. partials/product-card.js defines <custom-salla-product-card>.
+src/locales/        ar.json / en.json — the only place user-facing copy belongs.
+twilight.json       Merchant settings + declared features. Settings ids must match
+                    every theme.settings.get() call in the templates.
+public/             Build output. Committed. Never edited by hand.
+scripts/            check-theme.mjs — the repo guard, see below.
+```
+
+`master.twig` injects `--color-primary`, `--color-primary-dark`, `--color-primary-light`,
+`--color-primary-reverse`, and `--font-main` from the merchant's Salla settings. Those
+are the only merchant-controlled tokens; everything else must be defined in
+`src/assets/styles/01-settings/`.
+
+Body classes drive merchant customization: `hadeel-layout-*`, `hadeel-spacing-*`,
+`hadeel-corners-*`, `hadeel-card-*`, `hadeel-header-*`. Each maps to a value declared in
+`twilight.json`. If you add an option value, add the matching class, and vice versa.
+
+---
+
+## Commands
+
+```bash
+npx webpack --mode production      # build (required before committing src/assets changes)
+npx webpack --mode development --watch
+node scripts/check-theme.mjs       # static guard
+node scripts/check-theme.mjs --build   # + verifies public/ matches src/
+```
+
+`scripts/check-theme.mjs` catches, in order: selectors declared in two component files,
+hardcoded Arabic outside `src/locales`, theme classes styled but never rendered,
+`var(--token)` with no definition, `theme.settings.get()` keys missing from
+`twilight.json`, and `public/` drift. It currently reports pre-existing errors — do not
+let that number grow.
+
+---
+
+## Regressions this repo has already shipped
+
+Named so they are recognizable, not repeated.
+
+**Parallel stylesheets.** `product.scss` and `storefront-system.scss` style 17 of the
+same top-level selectors, and `app.scss` imports the second last on purpose so it wins.
+Outcomes depend on source order and specificity accidents, so unrelated things break on
+every edit. Merge, do not stack.
+
+**Class drift.** `master.twig` renders `product-single-page`; `product.scss` and
+`chat-bots.scss` still target `product-single`. The CSS went dead silently. When you
+rename a class, grep the SCSS — and run the guard.
+
+**Reimplementing Twilight.** `getKallesTranslation()` in `product-card.js` hand-rolls
+what `salla.lang.getWithDefault()` already does, and reintroduced hardcoded Arabic while
+doing it. `product.js:initRelatedProducts` hand-rolls a `MutationObserver` for something
+`salla-products-slider::products.fetched` already announces. Check
+`docs/salla-twilight-notes.md` for an existing API before building one.
+
+**Acting on an unverified claim.** A review of this repo asserted that
+`.kalles-product-dock` and `support-sticky-bar` were two sticky bars fighting each
+other, and recommended deleting the dock. Reading the component showed they are
+complementary — the dock is `≥768px`, the component is `<768px`. Deleting it would have
+removed a working feature. Verify the claim before you execute it; that is rule 7.
+
+**Container fork.** `.kalles-product-page > .container` hardcodes `1320px` and outranks
+`body .container`, so the product page is misaligned with the header and footer and the
+merchant's `layout_width` setting silently does nothing there. One container rule.
+
+**Verification theater.** `design-qa.md` ends in `final result: passed` while every piece
+of evidence in it comes from `kalles-card-preview.html` — a standalone mock-up with
+different fonts and icons that shares no code with the theme. Test the thing you shipped.
+
+**Scope creep.** A commit titled "add merchant customization controls" also upgraded
+dependencies and rewrote 563 lines of `twilight.json`. One reason per commit.
