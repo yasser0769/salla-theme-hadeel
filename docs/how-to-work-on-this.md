@@ -181,6 +181,29 @@ Three things this round could not close, listed so they do not get quietly forgo
 
 ---
 
+## 9. The edit loop
+
+There is no local storefront — Twig renders on Salla's servers. But you do not need to
+push per edit either:
+
+```bash
+git push origin master                                    # keep master current
+salla theme preview --store Zaboon --without-editor       # watch + assets + hot reload
+```
+
+SCSS and JS reach the page through `localhost:8002`; `.twig` and `.json` are uploaded
+per file by the watcher. Proven by adding an attribute to `single.twig` and finding it
+in the previewed DOM with zero commits.
+
+**Before every commit, rebuild.** A preview session leaves `public/` as a development
+build — 352 KB instead of 128 KB, with the eval banner CI rejects:
+
+```bash
+npx webpack --mode production && node scripts/check-theme.mjs --build
+```
+
+---
+
 ## The loop, in one place
 
 1. State what you want changed.

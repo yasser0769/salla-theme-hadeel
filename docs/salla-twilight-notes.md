@@ -211,7 +211,48 @@ Contract to preserve:
 
 ---
 
-## 6. Build
+## 6. The local development loop
+
+There is **no local storefront.** Twig renders on Salla's servers against real store
+data, so a preview session and a network connection are always required.
+`salla theme dev` does not help — it is for React themes only.
+
+```bash
+salla theme preview --store <StoreName> --without-editor
+```
+
+That one command runs webpack in watch mode and starts two servers:
+
+- `http://localhost:8002` serves the built `public/` assets; the previewed page loads its
+  stylesheet and scripts straight from there.
+- `ws://localhost:8003` pushes hot reloads.
+
+`ThemeWatcher` (`node_modules/@salla.sa/twilight/watcher.js`, wired up in
+`webpack.config.js`) watches `src/views/**/*.twig` and `src/**/*.json` and runs
+`salla theme sync -f <file>` per changed file — a hidden CLI command that uploads that
+one file to the draft.
+
+**So no git push is needed per edit.** Verified empirically: a `data-hadeel-sync-probe`
+attribute added to `single.twig` appeared in the previewed page's DOM with `HEAD` still
+equal to `origin/master` and zero commits in between; reverting the file removed it
+again. SCSS and JS arrive through `localhost:8002`; Twig and JSON arrive through `sync`.
+
+Two things a preview session leaves behind:
+
+1. **`public/` becomes a development build.** Watch mode uses the eval devtool, so
+   `public/app.js` grows from ~128 KB to ~352 KB and carries the eval banner that CI
+   rejects. Always rerun `npx webpack --mode production` before committing.
+2. Ports 8002/8003 stay bound until the process is killed.
+
+Creating the draft appears to go through the linked GitHub repository — the CLI calls
+`/partners/v1/api/theme/repo?url=<owner>/<repo>`, and a preview that was failing with
+`Tag <version> already exists` started working after `master` was pushed. That ordering
+was observed, not isolated; keep `master` current before starting a session.
+
+Publishing is not a CLI operation. `salla theme` offers only `create`, `dev`, `doctor`,
+`preview` and `list`; going live is done from the Salla Partners dashboard.
+
+## 7. Build
 
 ```bash
 npx webpack --mode production
