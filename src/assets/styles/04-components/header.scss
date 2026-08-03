@@ -1,100 +1,29 @@
 
-/* Announcement Bar */
+/*
+ * Announcement Bar — layout only.
+ *
+ * Colour belongs to the .announcement-bar--{primary,dark,gradient} variants in
+ * storefront-system.scss, which is what the merchant's `announcement_style` setting
+ * selects and what header.twig always renders. This rule used to hardcode a rainbow
+ * gradient and a purple shadow that the variant then overrode, so it only ever
+ * contributed a shadow nobody chose.
+ */
 .announcement-bar {
-  background: linear-gradient(90deg, #e11d48 0%, #f97316 48%, #7c3aed 100%);
-  color: #ffffff;
-  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.22);
-
   &__inner {
-    @apply min-h-[52px] flex items-center justify-center gap-3 text-center px-4;
+    @apply flex items-center justify-center text-center;
   }
 
   i {
-    @apply inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/20 text-2xl;
-  }
-
-  span {
-    @apply text-base sm:text-lg font-extrabold;
+    @apply inline-flex items-center justify-center;
   }
 }
 
-/* Top Nav */
-.top-navbar {
-  @apply flex py-2 min-h-[48px];
-
-  @screen lg {
-    @apply py-1.5;
-  }
-
-  .topnav-has-bg & {
-    @apply bg-[color:var(--topnav-bg)];
-  }
-
-  .topnav-has-gradient & {
-    @apply bg-gradient-to-r from-[color:var(--topnav-gradient-from)] to-[color:var(--topnav-gradient-to)];
-  }
-
-  .topnav-has-text-color & {
-    @apply text-[color:var(--topnav-text-color)];
-  }
-
-  .s-search-input{
-    @apply bg-gray-200/50 hover:bg-gray-200/70 border-none;
-  }
-
-  @media (max-width: 640px) {
-    .s-search-results{
-      @apply w-screen max-w-[100vw] rtl:-left-2.5 ltr:-right-2.5; 
-    }
-  } 
-
-  .topnav-is-dark & {
-    @apply bg-dark text-gray-300;
-
-    .btn--circle-gray,
-    .btn--rounded-gray,
-    .s-search-input{
-      @apply bg-gray-100/10 hover:bg-gray-100/[0.15]
-    }
-
-    .topnav-link-item{
-      @apply border-gray-300/10;
-    }
-
-    .s-search-input{
-      @apply text-white;
-    }
-  }
-
-  .search-btn{
-    @apply grow sm:grow-0 justify-start md:justify-center;
-  }
-}
-
-// contacs menu items - pages menu items
-.topnav-link-item{
-  @apply inline-block transition duration-300 px-4 rtl:last:pl-0 ltr:last:pr-0 py-px text-sm leading-none ltr:border-r rtl:border-l border-gray-200 ltr:last:border-0 rtl:last:border-0 hover:opacity-80;
-
-  &.right-side{
-    @apply rtl:first:pr-0 ltr:first:pl-0
-  }
-}
-
-/* Main Nav */
-.main-nav-container {
-  @apply min-h-[68px] lg:min-h-[84px];
-  
-  // Custom background Color
-  .has-bg &,
-  .has-bg & .sub-menu{
-    @apply bg-[color:var(--mainnav-bg)];
-  }
-
-  // Custom text color
-  .has-text-color & {
-    @apply text-[color:var(--mainnav-text-color)];
-  }
-}
+/*
+ * The theme-raed top navbar was removed with the Kalles header rebuild. Its styles and
+ * the --topnav-* / --mainnav-* custom properties went with it: master.twig no longer
+ * renders .top-navbar, .topnav-link-item, .topnav-has-*, .has-bg or .has-text-color,
+ * and never defined those properties, so every rule that depended on them was inert.
+ */
 
 .menu-item {
   @apply flex items-center px-6 py-2.5 sm:text-sm text-gray-500 transition-colors duration-300 hover:bg-gray-200/30;
@@ -108,7 +37,8 @@
   }
 }
 
-/* Sticky Header */
+/* Main Nav + sticky behaviour.
+   Height and skin come from storefront-system.scss; this rule owns the pinning. */
 .main-nav-container {
   &.animated {
     .inner {
@@ -161,26 +91,6 @@
   }
 }
 
-.navbar-brand {
-  @apply items-center flex my-2 lg:my-0;
-
-  img {
-    @apply w-auto max-h-12 max-w-[100px] xs:max-w-[170px];
-  }
-}
-
-// Mainnav cart icon
-.header-btn{
-  @apply border-none outline-none transition-opacity hover:opacity-80;
-
-  &__icon{
-    @apply text-xl w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-700;
-    &.icon{
-      @apply mr-[9px] rtl:ml-[9px] rtl:mr-[unset];
-    }
-  }
-}
-
 .header-buttons .sicon-sar {
   width: 0.65rem;
   display: inline-block;
@@ -213,22 +123,3 @@ salla-user-menu{
   @apply -top-0.5 ltr:-left-1.5 rtl:-right-1.5 bg-red-800;
 }
 
-#nav-cart{
-  @apply flex items-center rtl:mr-4 ltr:ml-4 relative whitespace-nowrap;
-
-  .icon{
-    @apply rtl:ml-2 ltr:mr-2;
-  }
-
-  span{
-    @apply absolute top-1 rtl:-right-2 ltr:-left-2;
-  }
-}
-
-
-// Search
-.header-search{
-  .s-search-results{
-    @apply z-10;
-  }
-}

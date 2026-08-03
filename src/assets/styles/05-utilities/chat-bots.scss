@@ -81,8 +81,9 @@ iframe.tawk-widget {
 }
 
 
-.is-sticky-product-bar{ 
-  &.product-single{
+/* master.twig renders `product-single-page`; this rule targeted the theme-raed name. */
+.is-sticky-product-bar{
+  &.product-single-page{
     [id^="gb-widget"],
     iframe.tawk-widget,
     #fb-root .fb_dialog iframe[data-testid="bubble_iframe"],

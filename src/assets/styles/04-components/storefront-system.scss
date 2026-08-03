@@ -86,12 +86,6 @@ body .s-button-btn {
 }
 
 /* Header */
-.announcement-bar {
-  color: #fff;
-  background: var(--hadeel-danger);
-  box-shadow: none;
-}
-
 .announcement-bar__inner {
   min-height: 40px;
   padding: 6px var(--hadeel-page-gutter);
@@ -110,10 +104,6 @@ body .s-button-btn {
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.01em;
-}
-
-.top-navbar {
-  display: none;
 }
 
 .main-nav-container {
@@ -351,12 +341,32 @@ body .s-button-btn {
   display: none;
 }
 
-/* Footer */
+/*
+ * Footer.
+ *
+ * Skinned through local tokens so `footer_is_dark` actually flips it. Before this the
+ * background was hardcoded light here and dark in footer.scss, and whichever file was
+ * imported last decided — which meant the merchant setting did nothing.
+ */
 .store-footer {
+  --footer-surface: #f7f7f7;
+  --footer-ink: var(--hadeel-ink);
+  --footer-muted: var(--hadeel-muted);
+  --footer-line: var(--hadeel-line);
+  --footer-social-line: #d6d6d6;
+
   margin-top: var(--hadeel-section-space);
-  border-top: 1px solid var(--hadeel-line);
-  color: var(--hadeel-muted);
-  background: #f7f7f7;
+  border-top: 1px solid var(--footer-line);
+  color: var(--footer-muted);
+  background: var(--footer-surface);
+}
+
+.footer-is-dark .store-footer {
+  --footer-surface: #161616;
+  --footer-ink: #f5f5f5;
+  --footer-muted: #a8a8a8;
+  --footer-line: rgba(255, 255, 255, 0.12);
+  --footer-social-line: rgba(255, 255, 255, 0.28);
 }
 
 .store-footer__inner {
@@ -374,14 +384,14 @@ body .s-button-btn {
 
 .store-footer__grid h3 {
   margin: 0 0 20px;
-  color: var(--hadeel-ink);
+  color: var(--footer-ink);
   font-size: 15px;
   font-weight: 700;
 }
 
 .store-footer__brand {
   margin-bottom: 18px;
-  color: var(--hadeel-ink);
+  color: var(--footer-ink);
   display: inline-flex;
   font-size: clamp(24px, 2.1vw, 34px);
   font-weight: 800;
@@ -402,9 +412,9 @@ body .s-button-btn {
 .store-footer .social-link {
   width: 34px;
   height: 34px;
-  border: 1px solid #d6d6d6;
+  border: 1px solid var(--footer-social-line);
   border-radius: var(--r-pill);
-  color: var(--hadeel-ink);
+  color: var(--footer-ink);
 }
 
 .store-footer__links salla-menu,
@@ -430,7 +440,7 @@ body .s-button-btn {
 }
 
 .store-footer__tax b {
-  color: var(--hadeel-ink);
+  color: var(--footer-ink);
   font-size: 12px;
 }
 
@@ -441,7 +451,7 @@ body .s-button-btn {
 
 .store-footer__bottom {
   min-height: 86px;
-  border-top: 1px solid var(--hadeel-line);
+  border-top: 1px solid var(--footer-line);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -451,7 +461,7 @@ body .s-button-btn {
 .copyright-text,
 .copyright-text p {
   margin: 0;
-  color: var(--hadeel-muted);
+  color: var(--footer-muted);
   font-size: 12px;
 }
 
@@ -939,6 +949,8 @@ custom-salla-product-card,
   width: var(--h-icon);
   height: var(--h-icon);
   margin: 0;
+  display: block;
+  line-height: 0;
 }
 
 .s-product-card-add-btn-icon-only salla-button .s-button-btn,
@@ -964,11 +976,6 @@ custom-salla-product-card,
   width: var(--h-icon) !important;
   height: var(--h-icon);
   min-height: var(--h-icon);
-}
-
-.s-product-card-add-btn-icon-only {
-  display: block;
-  line-height: 0;
 }
 
 .s-product-card-add-btn-icon-only .s-button-btn:hover,
@@ -1538,14 +1545,10 @@ custom-salla-product-card,
   }
 }
 
-/* Banners and feature rows */
-.banner-entry,
+/* Banners and feature rows.
+   .banner-entry's own declarations live in home-blocks.scss so one file owns it. */
 .banner--fixed img {
   border-radius: var(--r-0);
-}
-
-.banner-entry {
-  min-height: 420px;
 }
 
 .banner-entry::after {
@@ -1977,10 +1980,8 @@ custom-salla-product-card,
     font-size: 14px;
   }
 
-  body.product-single-page {
-    /* 71px purchase bar + 55px Kalles toolbar + breathing room. */
-    padding-bottom: 134px;
-  }
+  /* body.product-single-page padding lives in product.scss — it was declared
+     identically in both files, which is how the two stylesheets drifted apart. */
 
   .announcement-bar i {
     display: none;

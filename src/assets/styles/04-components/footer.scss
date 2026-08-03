@@ -1,50 +1,25 @@
+/*
+ * Structure and interaction only.
+ *
+ * The footer's visual skin lives in storefront-system.scss with the rest of the Kalles
+ * design. This file used to carry theme-raed's dark skin as well, so both stylesheets
+ * declared background, colour, margin-top and border-top on `.store-footer` and the
+ * winner was decided by import order. One consequence: the merchant's `footer_is_dark`
+ * setting had no effect, because the later light background always won.
+ *
+ * Also removed: `.contact-social`, which no template renders, and the
+ * `.footer-is-light &` block, now handled by the token flip in storefront-system.scss.
+ */
 
 .store-footer {
-  @apply relative bg-darker text-white mt-8 sm:mt-16;
-  border-top: 4px solid var(--color-primary);
+  @apply relative;
 
-  a{
+  a {
     @apply transition-opacity hover:opacity-75;
   }
 
-  &__inner{
-    @apply bg-dark py-8 lg:py-16 border-b border-dashed border-b-white/10;
-  }  
-
-  h3{
-    @apply text-lg font-bold mb-3 lg:mb-5;
-  }
-
+  /* salla-social supplies .social-link; sizing and colour come from the skin. */
   .social-link {
-    @apply border rounded-full w-8 h-8 justify-center flex items-center hover:opacity-75 transition duration-300 text-sm
+    @apply flex items-center justify-center text-sm transition duration-300 hover:opacity-75;
   }
-
-  .contact-social{
-    @apply mt-5 pt-5 border-t border-white/10;
-
-    ul {
-      @apply mb-0;
-    }
-  }
-
-  .footer-is-light & {
-    @apply bg-gray-50 text-gray-700;
-
-    .store-footer__inner {
-      @apply bg-gray-100 border-b-gray-200;
-    }
-
-    .social-link {
-      @apply border-gray-300;
-    }
-
-    .contact-social{
-      @apply border-gray-100;
-    }
-  }
-}
-
-
-.copyright-text p{
-  @apply text-gray-700;
 }

@@ -35,10 +35,10 @@ class ProductCard extends HTMLElement {
         this.startingPrice = salla.lang.get('pages.products.starting_price');
         this.addToCart = salla.lang.get('pages.cart.add_to_cart');
         this.outOfStock = salla.lang.get('pages.products.out_of_stock');
-        this.quickViewLabel = this.getKallesTranslation('quick_view', 'عرض سريع', 'Quick view');
-        this.quickAddLabel = this.getKallesTranslation('quick_add', 'إضافة سريعة', 'Quick add');
-        this.detailsLabel = this.getKallesTranslation('view_details', 'عرض التفاصيل', 'View details');
-        this.newBadgeKeywords = this.getKallesTranslation('new_badge_keywords', 'جديد|جديدة', 'new')
+        this.quickViewLabel = this.kallesLang('quick_view', 'Quick view');
+        this.quickAddLabel = this.kallesLang('quick_add', 'Quick add');
+        this.detailsLabel = this.kallesLang('view_details', 'View details');
+        this.newBadgeKeywords = this.kallesLang('new_badge_keywords', 'new')
           .split('|')
           .map((keyword) => keyword.trim().toLocaleLowerCase())
           .filter(Boolean);
@@ -178,19 +178,17 @@ class ProductCard extends HTMLElement {
     this.showQuantity = this.hasAttribute('showQuantity');
   }
 
-  getKallesTranslation(name, arabicFallback, englishFallback) {
+  /**
+   * Theme copy lives in src/locales/*.json. The default is English only — the Arabic
+   * comes from ar.json, never from a literal here. Never branch on the document
+   * language: an RTL store is not necessarily an Arabic store.
+   */
+  kallesLang(name, fallback) {
     const key = `pages.products.kalles.${name}`;
-    const translation = salla.lang.get(key);
 
-    if (translation && translation !== key) {
-      return translation;
-    }
-
-    const language = String(
-      salla.config.get('user.language_code') || document.documentElement.lang || 'ar'
-    ).toLocaleLowerCase();
-
-    return language.startsWith('ar') ? arabicFallback : englishFallback;
+    return typeof salla.lang.getWithDefault === 'function'
+      ? salla.lang.getWithDefault(key, fallback)
+      : (salla.lang.has(key) ? salla.lang.get(key) : fallback);
   }
 
   escapeHTML(str = '') {

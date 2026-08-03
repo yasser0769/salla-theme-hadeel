@@ -5,7 +5,8 @@ input[type="radio"] {
     }
 
     &:checked~div.absolute {
-      border-color: var(--color-main);
+      /* was var(--color-main), which nothing defines — the rule never applied */
+      border-color: var(--color-primary);
     }
   }
 }
