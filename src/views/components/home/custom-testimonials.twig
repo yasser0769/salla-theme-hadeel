@@ -1,9 +1,9 @@
 <section class="s-block s-block--testimonials s-block--custom-testimonials container overflow-hidden">
 	<div class="s-reviews-container">
 		<div class="s-reviews-header-wrapper">
-			<h1 class="s-reviews-header">{{ trans('blocks.home.testimonials') }}</h1>
+			<h2 class="s-reviews-header">{{ component.title ?: trans('blocks.home.testimonials') }}</h2>
 		</div>
-		<salla-slider id="custom-testimonials-{{ position }}-slider" centered slides-per-view="1" type="testimonials" class="testimonials-slider s-slider-wrapper" centered controls-outer auto-play>
+		<salla-slider id="custom-testimonials-{{ position }}-slider" centered slides-per-view="1" type="testimonials" class="testimonials-slider s-slider-wrapper" centered controls-outer {% if component.auto_play is not same as(false) %}auto-play{% endif %}>
 			<div slot="items">
 				{% for index, item in component.items %}
 				<div class="s-reviews-swiper-slide swiper-slide" style="width: 830px;">

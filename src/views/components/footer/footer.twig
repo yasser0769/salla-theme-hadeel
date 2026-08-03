@@ -3,10 +3,12 @@
     <div class="container store-footer__grid">
       <section class="store-footer__about">
         <a href="{{ link('/') }}" class="store-footer__brand">{{ store.name }}</a>
-        {% if store.description %}
+        {% if theme.settings.get('footer_show_description', true) and store.description %}
           <div class="store-footer__description">{{ store.description|raw }}</div>
         {% endif %}
-        <salla-social class="store-footer__social"></salla-social>
+        {% if theme.settings.get('footer_show_social', true) %}
+          <salla-social class="store-footer__social"></salla-social>
+        {% endif %}
       </section>
 
       <section class="store-footer__links">
@@ -14,10 +16,12 @@
         <salla-menu source="footer"></salla-menu>
       </section>
 
-      <section class="store-footer__contact">
-        <h3>{{ trans('blocks.footer.contact') }}</h3>
-        <salla-contacts></salla-contacts>
-      </section>
+      {% if theme.settings.get('footer_show_contacts', true) %}
+        <section class="store-footer__contact">
+          <h3>{{ trans('blocks.footer.contact') }}</h3>
+          <salla-contacts></salla-contacts>
+        </section>
+      {% endif %}
 
       <section class="store-footer__trust">
         <h3>{{ trans('blocks.footer.trust') }}</h3>
@@ -52,7 +56,9 @@
 
   <div class="container store-footer__bottom">
     <span class="copyright-text">{% hook copyright %}</span>
-    <salla-payments></salla-payments>
+    {% if theme.settings.get('footer_show_payments', true) %}
+      <salla-payments></salla-payments>
+    {% endif %}
   </div>
 </footer>
 
@@ -61,6 +67,7 @@
   Kept inside the registered footer component so Twilight does not need to resolve
   an extra structural component at runtime.
 #}
+{% if theme.settings.get('show_mobile_toolbar', true) %}
 <nav class="mobile-toolbar" aria-label="{{ trans('blocks.footer.quick_navigation') }}">
   <a
     class="mobile-toolbar__item {{ is_page('index') ? 'is-active' : '' }}"
@@ -137,3 +144,4 @@
     <span>{{ trans('blocks.footer.search') }}</span>
   </button>
 </nav>
+{% endif %}

@@ -87,11 +87,13 @@
     {% set compact_desc = product.subtitle ? product.subtitle : product_desc|striptags|replace({"\n":" ", "\r":" "})|trim %}
     {% set savings_amount = product.is_on_sale ? product.regular_price - product.sale_price : 0 %}
     <div class="kalles-product-page">
-        <div class="kalles-product-breadcrumb">
-            <nav class="breadcrumbs container w-full">
-                <salla-breadcrumb></salla-breadcrumb>
-            </nav>
-        </div>
+        {% if theme.settings.get('product_show_breadcrumbs', true) %}
+            <div class="kalles-product-breadcrumb">
+                <nav class="breadcrumbs container w-full">
+                    <salla-breadcrumb></salla-breadcrumb>
+                </nav>
+            </div>
+        {% endif %}
 
         <div class="container">
         <div class="kalles-product-overview" id="product-{{ product.id }}">

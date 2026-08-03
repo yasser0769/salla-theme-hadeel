@@ -19,9 +19,11 @@
 {% extends "layouts.master" %}
 {% block content %}
     <div class="container products-index-page">
-        <nav class="breadcrumbs products-index-page__breadcrumb w-full">
-            <salla-breadcrumb></salla-breadcrumb>
-        </nav>
+        {% if theme.settings.get('product_index_show_breadcrumbs', true) %}
+            <nav class="breadcrumbs products-index-page__breadcrumb w-full">
+                <salla-breadcrumb></salla-breadcrumb>
+            </nav>
+        {% endif %}
         <div class="products-index-page__layout flex items-start flex-col md:flex-row">
             {% if filters %}
                 <button class="btn--close-sm close-filters sicon-cancel hidden" aria-label="{{ trans('pages.products.kalles.close_filters') }}"></button>

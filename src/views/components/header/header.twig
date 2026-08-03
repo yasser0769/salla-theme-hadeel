@@ -8,9 +8,11 @@
 <header class="store-header">
   {% set announcement_text = theme.settings.get('announcement_text', '')|trim %}
   {% if theme.settings.get('announcement_enabled', true) and announcement_text %}
-  <div class="announcement-bar">
+  <div class="announcement-bar announcement-bar--{{ theme.settings.get('announcement_style', 'primary') }}">
     <div class="container announcement-bar__inner">
-      <i class="sicon-shipping-fast {{ theme.is_rtl ? 'flip-x':'' }}" aria-hidden="true"></i>
+      {% if theme.settings.get('announcement_show_icon', true) %}
+        <i class="sicon-shipping-fast {{ theme.is_rtl ? 'flip-x':'' }}" aria-hidden="true"></i>
+      {% endif %}
       <span>{{ announcement_text }}</span>
     </div>
   </div>
@@ -40,9 +42,11 @@
             <button class="header-action header-action--search" type="button" aria-label="{{ trans('blocks.header.search') }}" onclick="salla.event.dispatch('search::open')">
               <i class="sicon-search" aria-hidden="true"></i>
             </button>
-            <a class="header-action header-action--wishlist" href="{{ link('wishlist') }}" aria-label="{{ trans('blocks.header.wishlist') }}">
-              <i class="sicon-heart" aria-hidden="true"></i>
-            </a>
+            {% if theme.settings.get('header_show_wishlist', true) %}
+              <a class="header-action header-action--wishlist" href="{{ link('wishlist') }}" aria-label="{{ trans('blocks.header.wishlist') }}">
+                <i class="sicon-heart" aria-hidden="true"></i>
+              </a>
+            {% endif %}
             {% if user.type == 'user' %}
               <salla-user-menu avatar-only show-header></salla-user-menu>
             {% else %}
