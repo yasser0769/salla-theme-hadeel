@@ -246,6 +246,37 @@ body .s-button-btn {
   place-items: center;
 }
 
+.header-account-control {
+  width: 40px;
+  height: 44px;
+  color: var(--hadeel-ink);
+  display: grid;
+  place-items: center;
+  position: relative;
+  transition: color 160ms ease, transform 160ms ease;
+}
+
+.header-account-control:hover {
+  color: var(--hadeel-accent);
+  transform: translateY(-1px);
+}
+
+.header-account-control .header-user-menu {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.header-account-control .s-user-menu-trigger {
+  opacity: 0;
+}
+
+.header-account-control > .header-icon {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
 .header-cart .s-cart-summary-total {
   display: none;
 }
