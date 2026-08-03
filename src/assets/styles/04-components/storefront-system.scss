@@ -170,12 +170,13 @@ body .s-button-btn {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: var(--sp-1);
+  gap: 0;
 }
 
 .header-action {
-  width: var(--h-icon);
-  height: var(--h-icon);
+  width: 40px;
+  height: 44px;
+  padding: 0;
   border: 0;
   color: var(--hadeel-ink);
   background: transparent;
@@ -189,23 +190,60 @@ body .s-button-btn {
   transform: translateY(-1px);
 }
 
-.header-action i,
-.header-cart > i,
-.header-cart [slot="icon"] {
-  font-size: 20px;
+.header-icon {
+  width: 24px;
+  height: 24px;
+  overflow: visible;
+  color: inherit;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  display: block;
+  flex: 0 0 auto;
+}
+
+.header-icon--search {
+  width: 22px;
+  height: 23px;
+  fill: currentColor;
+  stroke: none;
 }
 
 .header-cart {
-  min-width: var(--h-icon);
-  min-height: var(--h-icon);
+  width: 40px;
+  min-width: 40px;
+  min-height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .header-cart .s-cart-summary-wrapper {
-  min-width: var(--h-icon);
+  width: 40px;
+  min-width: 40px;
+  height: 44px;
   justify-content: center;
+}
+
+.header-cart #s-cart-icon {
+  display: grid;
+  place-items: center;
+}
+
+.header-user-menu,
+.header-user-menu .s-user-menu-wrapper,
+.header-user-menu .s-user-menu-trigger-slot,
+.header-user-menu .s-user-menu-trigger {
+  width: 40px;
+  height: 44px;
+}
+
+.header-user-menu .s-user-menu-trigger-slot,
+.header-user-menu .s-user-menu-trigger {
+  display: grid;
+  place-items: center;
 }
 
 .header-cart .s-cart-summary-total {
@@ -213,14 +251,19 @@ body .s-button-btn {
 }
 
 .header-cart .s-cart-summary-count {
-  width: 16px;
-  min-width: 16px;
-  height: 16px;
-  top: 0;
-  border: 2px solid #fff;
+  width: 15px;
+  min-width: 15px;
+  height: 15px;
+  top: 4px;
+  right: 0;
+  left: auto;
+  border: 0;
+  border-radius: 50%;
   color: #fff;
   background: var(--hadeel-ink);
-  font: 500 8px/12px Arial, sans-serif;
+  display: grid;
+  place-items: center;
+  font: 500 10px/15px Arial, sans-serif;
 }
 
 .main-nav-container.fixed-pinned .inner {
@@ -1738,7 +1781,8 @@ custom-salla-product-card,
   }
 
   .header-action {
-    width: 38px;
+    width: 40px;
+    height: 44px;
   }
 
   .header-action--wishlist,
@@ -1748,7 +1792,15 @@ custom-salla-product-card,
   }
 
   .header-cart {
+    width: 40px;
     min-width: 40px;
+    min-height: 44px;
+  }
+
+  .header-cart .s-cart-summary-wrapper {
+    width: 40px;
+    min-width: 40px;
+    height: 44px;
   }
 
   .mobile-toolbar {
