@@ -87,7 +87,12 @@ npx webpack --mode production      # build (required before committing src/asset
 npx webpack --mode development --watch
 node scripts/check-theme.mjs       # static guard
 node scripts/check-theme.mjs --build   # + verifies public/ matches src/
+node scripts/css-snapshot.mjs out.txt  # normalize built app.css for before/after diffing
 ```
+
+Before any non-trivial stylesheet change: snapshot, change, rebuild, snapshot, `diff`.
+An empty diff proves you changed nothing; a non-empty one is the list you must justify.
+`docs/how-to-work-on-this.md` explains the loop.
 
 `scripts/check-theme.mjs` catches, in order: selectors declared in two component files,
 hardcoded Arabic outside `src/locales`, theme classes styled but never rendered,

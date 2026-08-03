@@ -31,10 +31,10 @@ jobs:
         with:
           node-version: 20
 
-      # The repo carries a known backlog of findings. --max-errors pins it so the
-      # count can only go down; lower the number whenever you clear some.
+      # The backlog is cleared. --max-errors=0 is the default, spelled out so the
+      # ratchet is visible: raise it only with a written reason, never silently.
       - name: Static checks
-        run: node scripts/check-theme.mjs --max-errors=31
+        run: node scripts/check-theme.mjs --max-errors=0
 
   build-sync:
     runs-on: ubuntu-latest
@@ -55,4 +55,4 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Verify public/ matches a fresh production build
-        run: node scripts/check-theme.mjs --build --max-errors=31
+        run: node scripts/check-theme.mjs --build --max-errors=0
