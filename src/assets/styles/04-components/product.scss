@@ -851,7 +851,7 @@
       }
 
       .s-slider-thumbs-container .swiper-slide {
-        width: calc((100vw - 40px) / 3);
+        width: calc((100% - 30px) / 3);
         height: auto;
         aspect-ratio: 1 / 1;
       }
@@ -1072,6 +1072,8 @@
       padding: 0;
     }
 
+    /* Swiper sizes slides with inline styles; an author !important is the only
+       declaration that outranks one. Do not "clean these up". */
     .s-slider-vertical .s-slider-thumbs-container .swiper-slide {
       width: 100% !important;
       height: 106px !important;
@@ -1612,13 +1614,14 @@
 
     .s-slider-thumbs-container,
     .s-slider-vertical .s-slider-thumbs-container {
-      width: 100vw;
+      width: 100%;
       min-height: 0;
     }
 
     .s-slider-thumbs-container .swiper-slide,
     .s-slider-vertical .s-slider-thumbs-container .swiper-slide {
-      width: calc((100vw - 54px) / 3) !important;
+      /* Three across, minus the 5px margins either side of each. */
+      width: calc((100% - 30px) / 3) !important;
       height: auto !important;
       margin: 0 5px;
       aspect-ratio: 1 / 1;

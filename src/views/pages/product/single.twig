@@ -115,15 +115,7 @@
                         <div class="promotion-title">{{ product.promotion_title }}</div>
                     {% endif %}
 
-                    <salla-button
-                            class="btn--wishlist animated sws"
-                            data-id="{{ product.id }}"
-                            onclick="salla.wishlist.toggle('{{ product.id }}')"
-                            shape="icon"
-                            fill="outline"
-                            color="light">
-                        <i class="sicon-heart"></i>
-                    </salla-button>
+                    {# The wishlist control lives once, in the purchase tools below. #}
 
                     {# Calories Badge #}
                     {% if product.calories %}
@@ -332,7 +324,7 @@
                                     aria-label="{{ trans('pages.products.kalles.add_to_wishlist') }}">
                                 <i class="sicon-heart" aria-hidden="true"></i>
                             </salla-button>
-                            <salla-social-share class="kalles-share-action" aria-label="{{ trans('pages.products.kalles.share') }}"></salla-social-share>
+                            {# Sharing lives once, in the .kalles-product-share row below. #}
                         </div>
                     </section>
                     {% if product.is_giftable %}

@@ -71,33 +71,20 @@ class Product extends BasePage {
       updateDockVisibility();
     }
 
+    /**
+     * salla-products-slider still renders its block title and arrows when the fetch
+     * comes back with zero products, which left a titled empty gap on the page. It
+     * announces the result on `salla-products-slider::products.fetched`, so listen for
+     * that instead of watching the DOM for cards to appear.
+     */
     initRelatedProducts() {
-      const section = document.querySelector(
-        '[data-related-products], .kalles-related-products'
-      );
-      const slider = section?.querySelector(
-        'salla-products-slider[source="related"]'
-      );
-
-      if (!section || !slider) return;
+      const section = document.querySelector('[data-related-products]');
+      if (!section) return;
 
       section.hidden = true;
 
-      customElements.whenDefined('salla-products-slider').then(() => {
-        const root = slider.shadowRoot || slider;
-        const productSelector =
-          'custom-salla-product-card, salla-product-card, .s-product-card-entry';
-        const revealIfPopulated = () => {
-          if (!root.querySelector(productSelector)) return false;
-          section.hidden = false;
-          observer.disconnect();
-          return true;
-        };
-        const observer = new MutationObserver(revealIfPopulated);
-
-        if (!revealIfPopulated()) {
-          observer.observe(root, {childList: true, subtree: true});
-        }
+      salla.event.on('salla-products-slider::products.fetched', (products) => {
+        if (Array.isArray(products) && products.length) section.hidden = false;
       });
     }
 

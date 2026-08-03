@@ -300,6 +300,28 @@ class ProductCard extends HTMLElement {
       ? `<p class="kalles-quick-view__subtitle">${this.escapeHTML(this.product.subtitle)}</p>`
       : '';
 
+    /**
+     * salla-add-product-button needs a sibling salla-product-options to resolve a
+     * variant. Rendering it here without one makes add-to-cart fail on any product
+     * with a required option, so those go to the product page instead.
+     */
+    const needsOptions = !!this.product?.has_options;
+    const primaryAction = needsOptions
+      ? `<a class="kalles-quick-view__add kalles-quick-view__add--link" href="${productUrl}">
+            <i class="sicon-shopping-bag" aria-hidden="true"></i>
+            <span>${this.escapeHTML(this.detailsLabel)}</span>
+          </a>`
+      : `<salla-add-product-button
+            class="kalles-quick-view__add"
+            product-id="${productId}"
+            product-status="${productStatus}"
+            product-type="${productType}"
+            fill="solid"
+            width="wide">
+            <i class="sicon-shopping-bag" aria-hidden="true"></i>
+            <span>${this.escapeHTML(this.quickAddLabel)}</span>
+          </salla-add-product-button>`;
+
     modal.innerHTML = `
       <div class="kalles-quick-view" dir="${document.documentElement.dir || 'rtl'}">
         <a class="kalles-quick-view__media" href="${productUrl}" aria-label="${productName}">
@@ -310,20 +332,11 @@ class ProductCard extends HTMLElement {
           <h3>${productName}</h3>
           ${subtitle}
           <div class="kalles-quick-view__price">${this.getProductPrice()}</div>
-          <salla-add-product-button
-            class="kalles-quick-view__add"
-            product-id="${productId}"
-            product-status="${productStatus}"
-            product-type="${productType}"
-            fill="solid"
-            width="wide">
-            <i class="sicon-shopping-bag" aria-hidden="true"></i>
-            <span>${this.escapeHTML(this.quickAddLabel)}</span>
-          </salla-add-product-button>
-          <a class="kalles-quick-view__details" href="${productUrl}">
+          ${primaryAction}
+          ${needsOptions ? '' : `<a class="kalles-quick-view__details" href="${productUrl}">
             ${this.escapeHTML(this.detailsLabel)}
             <i class="sicon-arrow-left" aria-hidden="true"></i>
-          </a>
+          </a>`}
         </div>
       </div>
     `;

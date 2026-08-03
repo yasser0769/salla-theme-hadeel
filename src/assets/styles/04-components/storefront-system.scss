@@ -1237,6 +1237,21 @@ custom-salla-product-card,
   font-weight: 600;
 }
 
+/* Products with required options link to the product page instead of quick-adding,
+   because this modal renders no salla-product-options for the variant to come from. */
+.kalles-quick-view__add--link {
+  min-height: var(--h-control-lg);
+  border-radius: var(--r-pill);
+  color: var(--color-primary-reverse, #fff);
+  background: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  font-size: 14px;
+  font-weight: 600;
+}
+
 .kalles-quick-view__details {
   margin-top: 18px;
   padding-bottom: 4px;
