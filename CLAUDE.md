@@ -7,6 +7,9 @@ Technical reference for Salla / Twilight APIs: **[docs/salla-twilight-notes.md](
 
 How this repo is worked on, and why: **[docs/how-to-work-on-this.md](docs/how-to-work-on-this.md)**.
 
+Building a Salla theme from scratch, incl. publication requirements and where the
+bundle weight actually is: **[docs/building-a-salla-theme.md](docs/building-a-salla-theme.md)**.
+
 Repo guard, run it before reporting a change as done:
 
 ```bash

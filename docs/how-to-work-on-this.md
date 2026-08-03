@@ -164,7 +164,13 @@ starts ahead.
 
 ## 8. What is still open
 
-Three things this round could not close, listed so they do not get quietly forgotten:
+Four things, listed so they do not get quietly forgotten:
+
+0. **The theme is over the publication size limit.** Salla caps public themes at 1 MB;
+   `public/` is 1.5 MB. Two thirds of `app.css` is Salla's own component CSS, which the
+   theme is required to ship — see `docs/building-a-salla-theme.md`, Part 6, for the
+   measured breakdown and the ~160 KB that might be trimmable.
+
 
 1. **No live verification.** Every change here is verified statically — build, guard, CSS
    diff. Nothing has been rendered on a real Salla storefront since 2026-07-29. Before
