@@ -81,7 +81,9 @@ iframe.tawk-widget {
 }
 
 
-/* master.twig renders `product-single-page`; this rule targeted the theme-raed name. */
+/* Was `.product-single`, which Salla injects through the body:classes hook — verified
+   live, it is present. `.product-single-page` is the theme's own class from
+   master.twig, so it does not depend on an undocumented platform injection. */
 .is-sticky-product-bar{
   &.product-single-page{
     [id^="gb-widget"],

@@ -111,9 +111,15 @@ same top-level selectors, and `app.scss` imports the second last on purpose so i
 Outcomes depend on source order and specificity accidents, so unrelated things break on
 every edit. Merge, do not stack.
 
-**Class drift.** `master.twig` renders `product-single-page`; `product.scss` and
-`chat-bots.scss` still target `product-single`. The CSS went dead silently. When you
-rename a class, grep the SCSS — and run the guard.
+**Assuming a class is dead because the templates do not render it.** `product.scss` and
+`chat-bots.scss` targeted `.product-single` while `master.twig` renders
+`product-single-page`, so a static read said the rules were dead. They were not: Salla
+injects `product-single` through the `body:classes` hook, and a live DOM read shows both
+classes. The rules now use the theme's own class, which does not depend on an
+undocumented platform injection — but the reasoning that got there was wrong until the
+storefront was actually loaded. **`src/` is not the whole document.** Salla contributes
+body classes, translations, and component markup at render time; confirm against a live
+DOM before calling anything dead.
 
 **Reimplementing Twilight.** `getKallesTranslation()` in `product-card.js` hand-rolls
 what `salla.lang.getWithDefault()` already does, and reintroduced hardcoded Arabic while

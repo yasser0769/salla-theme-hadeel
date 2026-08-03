@@ -63,8 +63,15 @@ Both were caught by reading the actual source instead of trusting the descriptio
 is now rule 7 in `AGENTS.md`: **say when a description is wrong, before changing
 anything.** When an agent pushes back on your brief, that is the rule working.
 
+The rule cuts both ways. A third claim — that `.product-single` was a dead class because
+no template rendered it — survived the source review and was only caught when the
+storefront finally loaded: Salla injects that class through its `body:classes` hook. The
+change built on it was harmless, the reasoning was not. **Reading `src/` tells you what
+the theme contributes, not what the page contains.**
+
 Practical habit: before accepting a screenshot or report as evidence, check its date
-against `git log` for the files it describes.
+against `git log` for the files it describes. And before calling anything dead, look at
+a rendered DOM.
 
 ---
 
@@ -112,8 +119,9 @@ nobody had reported:
   — so it never lined up with the header, and `layout_width` had no effect there.
 - A checked radio's border colour read `var(--color-main)`, which nothing defines, so the
   rule had never applied in the history of the theme.
-- `.is-sticky-product-bar.product-single` was targeting a class name the template stopped
-  rendering.
+- The sticky bar was positioned at 640px while the component switches itself at 767px and
+  the body already reserved space at 767px, so 641–767px got 134px of dead space under
+  the page.
 
 None of these were on any list. They fell out of putting each selector under one owner.
 That is the argument for fixing structure rather than patching symptoms: symptom patches
