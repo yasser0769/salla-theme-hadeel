@@ -27,7 +27,13 @@
     "cart": {
       "added_to_cart": "تمت الإضافة إلى سلة التسوق",
       "cart_options": "خيارات السلة",
-      "view_cart": "عرض السلة"
+      "view_cart": "عرض السلة",
+      "drawer_title": "سلة التسوق",
+      "close_drawer": "إغلاق سلة التسوق",
+      "remove_item": "إزالة",
+      "item_note": "ملاحظة الطلب",
+      "item_note_placeholder": "اكتب ملاحظتك هنا...",
+      "shipping_tax_notice": "يُحسب الشحن والضرائب عند إتمام الطلب"
     },
     "products": {
       "kalles": {

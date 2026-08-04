@@ -1,174 +1,283 @@
-.s-add-product-toast {
-  @apply fixed z-[9999] flex flex-col gap-4 bg-white shadow-default overflow-hidden w-screen p-5;
-  top: 0;
-  left: 0;
-  right: 0;
-  opacity: 0;
-  transform: translateY(-100%);
-  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+salla-hadeel-cart-drawer {
+  display: contents;
+}
 
-  &.s-add-product-toast--visible {
-    opacity: 1;
-    transform: translateY(0);
+.hadeel-cart-drawer {
+  --cart-drawer-width: min(440px, 100vw);
+}
+
+.hadeel-cart-drawer .s-drawer-wrapper-right {
+  width: var(--cart-drawer-width);
+  max-width: 100%;
+}
+
+.hadeel-cart-drawer .s-drawer-body {
+  display: flex;
+  width: var(--cart-drawer-width);
+  max-width: 100%;
+  flex-direction: column;
+  padding: 0;
+  color: var(--hadeel-ink);
+  background: var(--hadeel-surface);
+  box-shadow: var(--hadeel-shadow-drawer);
+}
+
+.hadeel-cart-drawer .s-drawer-header {
+  min-height: 62px;
+  padding: 0 var(--sp-4);
+  border-bottom: 1px solid var(--hadeel-line);
+}
+
+.hadeel-cart-drawer .s-drawer-title {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.hadeel-cart-drawer .s-drawer-close {
+  color: var(--hadeel-ink);
+}
+
+.hadeel-cart-drawer__content {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: var(--sp-4);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.hadeel-cart-drawer__loading {
+  display: grid;
+  gap: var(--sp-4);
+}
+
+.hadeel-cart-drawer__shipping {
+  margin-bottom: var(--sp-5);
+  padding: var(--sp-3);
+  background: var(--hadeel-soft);
+}
+
+.hadeel-cart-drawer__shipping p {
+  margin: 0 0 var(--sp-2);
+  color: var(--hadeel-ink);
+  font-size: 12px;
+  text-align: center;
+}
+
+.hadeel-cart-drawer__shipping-track {
+  height: 4px;
+  overflow: hidden;
+  background: var(--hadeel-line);
+}
+
+.hadeel-cart-drawer__shipping-track span {
+  display: block;
+  height: 100%;
+  background: var(--hadeel-accent);
+  transition: width 250ms ease;
+}
+
+.hadeel-cart-drawer__items {
+  display: grid;
+}
+
+.hadeel-cart-drawer__item {
+  padding: 0 0 var(--sp-5);
+  border-bottom: 1px solid var(--hadeel-line);
+  transition: opacity 150ms ease;
+}
+
+.hadeel-cart-drawer__item + .hadeel-cart-drawer__item {
+  padding-top: var(--sp-5);
+}
+
+.hadeel-cart-drawer__item.is-updating {
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+.hadeel-cart-drawer__product {
+  display: grid;
+  grid-template-columns: 74px minmax(0, 1fr);
+  gap: var(--sp-3);
+}
+
+.hadeel-cart-drawer__media {
+  min-width: 0;
+}
+
+.hadeel-cart-drawer__image {
+  display: block;
+  width: 74px;
+  height: 92px;
+  overflow: hidden;
+  border: 1px solid var(--hadeel-line);
+  background: var(--hadeel-soft);
+}
+
+.hadeel-cart-drawer__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hadeel-cart-drawer__remove {
+  display: block;
+  min-height: 24px;
+  margin-top: var(--sp-1);
+  padding: 0;
+  border: 0;
+  color: var(--hadeel-muted);
+  background: transparent;
+  font-size: 11px;
+  font-weight: 400;
+  text-align: center;
+  cursor: pointer;
+}
+
+.hadeel-cart-drawer__details {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hadeel-cart-drawer__name {
+  max-width: 100%;
+  overflow: hidden;
+  color: var(--hadeel-ink);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.45;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hadeel-cart-drawer__options {
+  display: flex;
+  margin-top: var(--sp-1);
+  flex-wrap: wrap;
+  gap: 0 var(--sp-2);
+  color: var(--hadeel-muted);
+  font-size: 11px;
+}
+
+.hadeel-cart-drawer__price {
+  margin-top: var(--sp-1);
+  color: var(--hadeel-ink);
+  font-size: 13px;
+}
+
+.hadeel-cart-drawer__details salla-quantity-input {
+  width: 110px;
+  margin-top: auto;
+  padding-top: var(--sp-2);
+}
+
+/* Twilight exposes no styling slot for the quantity control internals.
+ * If these scoped class names change upstream, only the compact presentation
+ * falls back; delete these rules rather than adding a second override layer. */
+.hadeel-cart-drawer__details .s-quantity-input-container {
+  height: 34px;
+  border: 1px solid var(--hadeel-line);
+  border-radius: var(--r-pill);
+}
+
+.hadeel-cart-drawer__details .s-quantity-input-button,
+.hadeel-cart-drawer__details .s-quantity-input-input {
+  width: 34px;
+  height: 32px;
+}
+
+.hadeel-cart-drawer__quantity-static {
+  margin-top: auto;
+  color: var(--hadeel-muted);
+  font-size: 12px;
+}
+
+.hadeel-cart-drawer__note {
+  display: block;
+  margin-top: var(--sp-4);
+  color: var(--hadeel-ink);
+  font-size: 12px;
+}
+
+.hadeel-cart-drawer__note span {
+  display: block;
+  margin-bottom: var(--sp-2);
+}
+
+.hadeel-cart-drawer__note textarea {
+  display: block;
+  width: 100%;
+  min-height: 58px;
+  padding: var(--sp-2) var(--sp-3);
+  resize: vertical;
+  border: 1px solid var(--hadeel-line);
+  border-radius: var(--r-0);
+  color: var(--hadeel-ink);
+  background: var(--hadeel-surface);
+  font-size: 12px;
+}
+
+.hadeel-cart-drawer__empty {
+  display: grid;
+  min-height: 280px;
+  place-content: center;
+  gap: var(--sp-3);
+  color: var(--hadeel-muted);
+  text-align: center;
+}
+
+.hadeel-cart-drawer__empty i {
+  font-size: 44px;
+}
+
+.hadeel-cart-drawer__footer {
+  display: block;
+  padding: var(--sp-4);
+  border-top: 1px solid var(--hadeel-line);
+  background: var(--hadeel-surface);
+}
+
+.hadeel-cart-drawer__total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  font-size: 14px;
+}
+
+.hadeel-cart-drawer__tax-notice {
+  margin: var(--sp-2) 0 var(--sp-3);
+  color: var(--hadeel-muted);
+  font-size: 11px;
+}
+
+.hadeel-cart-drawer__footer > salla-button {
+  display: block;
+}
+
+.hadeel-cart-drawer__footer > salla-button .s-button-btn {
+  min-height: 44px;
+}
+
+.hadeel-cart-drawer__view-cart {
+  display: block;
+  margin-top: var(--sp-2);
+  color: var(--hadeel-ink);
+  font-size: 12px;
+  text-align: center;
+}
+
+@media (max-width: 479px) {
+  .hadeel-cart-drawer {
+    --cart-drawer-width: calc(100vw - 24px);
   }
+}
 
-  @media (min-width: 768px) {
-    @apply w-[400px] rounded-lg;
-    top: 1rem;
-    left: auto;
-    right: auto;
-
-    [dir="rtl"] & {
-      left: 1rem;
-      transform: translateX(-100%);
-
-      &.s-add-product-toast--visible {
-        transform: translateX(0);
-      }
-    }
-
-    [dir="ltr"] & {
-      right: 1rem;
-      transform: translateX(100%);
-
-      &.s-add-product-toast--visible {
-        transform: translateX(0);
-      }
-    }
-  }
-
-  &__progress {
-    @apply h-2 w-full bg-gray-100;
-  }
-
-  &__progress-bar {
-    @apply h-full bg-green-500;
-    transition: width 50ms linear;
-  }
-
-  &__header {
-    @apply flex items-center justify-between gap-2;
-  }
-
-  &__header-content {
-    @apply flex items-center gap-2.5;
-  }
-
-  &__icon {
-    @apply flex-shrink-0;
-  }
-
-  &__title {
-    @apply text-sm font-bold text-gray-800;
-  }
-
-  &__close {
-    @apply flex-shrink-0 w-6 h-6 flex items-center justify-center cursor-pointer border-0 bg-transparent p-0;
-
-    i {
-      @apply text-lg text-gray-400 transition-colors;
-    }
-
-    &:hover i {
-      @apply text-gray-600;
-    }
-  }
-
-  &__divider {
-    @apply h-px bg-gray-200;
-  }
-
-  &__body {
-    @apply flex gap-3 items-start;
-  }
-
-  &__image {
-    @apply flex-shrink-0 w-20 h-20 rounded-lg object-contain overflow-hidden bg-gray-50 border border-gray-100;
-
-    img {
-      @apply w-full h-full object-contain;
-    }
-
-    @media (min-width: 768px) {
-      @apply w-[88px] h-[88px];
-    }
-  }
-
-  &__details {
-    @apply flex-1 min-w-0 flex flex-col gap-1;
-  }
-
-  &__name {
-    @apply text-sm font-semibold text-gray-800 leading-snug no-underline block transition-colors;
-
-    &:hover {
-      @apply text-primary;
-    }
-  }
-
-  &__options {
-    @apply flex flex-col gap-0.5 mt-1;
-
-    span {
-      @apply text-xs text-gray-500 leading-relaxed;
-
-      @media (min-width: 768px) {
-        @apply text-sm;
-      }
-    }
-  }
-
-  &__show-more {
-    @apply text-xs text-primary font-medium underline mt-0.5;
-
-    &:hover {
-      @apply no-underline;
-    }
-
-    @media (min-width: 768px) {
-      @apply text-sm;
-    }
-  }
-
-  &__price {
-    @apply flex-shrink-0 flex flex-col items-end gap-1 text-sm font-bold text-gray-800;
-
-    @media (min-width: 768px) {
-      @apply text-base;
-    }
-  }
-
-  &__price-sale {
-    @apply text-red-800;
-  }
-
-  &__price-original {
-    @apply text-xs text-gray-500 line-through font-normal;
-
-    @media (min-width: 768px) {
-      @apply text-sm;
-    }
-  }
-
-  &__actions {
-    @apply flex gap-3;
-
-    salla-button {
-      @apply flex-1;
-
-      svg {
-        @apply inline-flex flex-shrink-0;
-
-        path {
-          fill: none;
-        }
-      }
-      .s-button-btn {
-        @apply rounded-none;
-        &.s-button-gray-outline {
-          @apply border-gray-200 text-gray-800;
-        }
-      }
-    }
+@media (prefers-reduced-motion: reduce) {
+  .hadeel-cart-drawer__item,
+  .hadeel-cart-drawer__shipping-track span {
+    transition: none;
   }
 }

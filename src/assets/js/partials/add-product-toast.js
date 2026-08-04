@@ -1,231 +1,391 @@
-class AddToCartToast extends HTMLElement {
+class HadeelCartDrawer extends HTMLElement {
   constructor() {
     super();
-    this.classList.add("s-add-product-toast");
-    this.isVisible = false;
-    this.progressInterval = null;
-    this.remainingTime = 0;
-    this.isPaused = false;
-    this.duration = 5000;
+    this.drawer = null;
+    this.cart = null;
+    this.refreshSequence = 0;
+    this.isInitialized = false;
+
+    this.handleItemAdded = response => this.refreshCart({
+      open: true,
+      fallbackCart: this.extractCart(response)
+    });
+    this.handleCartChanged = response => this.refreshCart({
+      fallbackCart: this.extractCart(response)
+    });
+    this.handleClick = event => this.onDrawerClick(event);
+    this.handleChange = event => this.onDrawerChange(event);
   }
 
   connectedCallback() {
     if (window.app?.status === "ready") {
       this.init();
-    } else {
-      document.addEventListener("theme::ready", () => this.init());
+      return;
     }
+
+    document.addEventListener("theme::ready", () => this.init(), { once: true });
   }
 
   disconnectedCallback() {
-    this.clearTimers();
+    if (!this.isInitialized) return;
+
+    salla.event.off("cart::item.added", this.handleItemAdded);
+    salla.event.off("cart::item.updated", this.handleCartChanged);
+    salla.event.off("cart::item.deleted", this.handleCartChanged);
+    this.drawer?.removeEventListener("click", this.handleClick);
+    this.drawer?.removeEventListener("change", this.handleChange);
+    this.drawer?.remove();
   }
 
   init() {
-    salla.lang.onLoaded(() => {
-      this.successMessage = salla.lang.get("pages.cart.added_to_cart");
-      this.viewCartText = salla.lang.get("pages.cart.view_cart");
-      this.checkoutText = salla.lang.get("pages.cart.complete_order");
-      this.showMoreText = salla.lang.get("pages.checkout.show_more");
+    if (this.isInitialized) return;
+    this.isInitialized = true;
+
+    salla.lang.onLoaded(async () => {
+      this.loadTranslations();
+      this.renderShell();
+
+      await customElements.whenDefined("salla-drawer");
+
+      this.drawer = document.getElementById("hadeel-cart-drawer");
+      await this.drawer?.componentOnReady?.();
+      this.drawer?.querySelector(".s-drawer-close")?.setAttribute("aria-label", this.text.close);
+      this.drawer?.addEventListener("click", this.handleClick);
+      this.drawer?.addEventListener("change", this.handleChange);
+
+      salla.event.on("cart::item.added", this.handleItemAdded);
+      salla.event.on("cart::item.updated", this.handleCartChanged);
+      salla.event.on("cart::item.deleted", this.handleCartChanged);
     });
-
-    this.cartUrl = salla.url.get("cart");
-    this.checkIconUrl = salla.url.asset("images/check.svg");
-
-    salla.event.on("Product Added", (data) => this.handleProductAdded(data));
-    this.render();
   }
 
-  async handleProductAdded(analyticsData) {
+  loadTranslations() {
+    this.text = {
+      title: salla.lang.get("pages.cart.drawer_title"),
+      close: salla.lang.get("pages.cart.close_drawer"),
+      remove: salla.lang.get("pages.cart.remove_item"),
+      note: salla.lang.get("pages.cart.item_note"),
+      notePlaceholder: salla.lang.get("pages.cart.item_note_placeholder"),
+      shippingTaxNotice: salla.lang.get("pages.cart.shipping_tax_notice"),
+      viewCart: salla.lang.get("pages.cart.view_cart"),
+      completeOrder: salla.lang.get("pages.cart.complete_order"),
+      emptyCart: salla.lang.get("pages.cart.empty_cart"),
+      freeShipping: salla.lang.get("pages.cart.has_free_shipping"),
+      total: salla.lang.get("pages.cart.total")
+    };
+  }
+
+  renderShell() {
+    this.innerHTML = `
+      <salla-drawer
+        id="hadeel-cart-drawer"
+        class="hadeel-cart-drawer"
+        drawer-title="${this.escapeHTML(this.text.title)}"
+        position="right"
+        width="sm"
+        no-padding>
+        <div class="hadeel-cart-drawer__content" data-cart-drawer-content></div>
+        <div class="hadeel-cart-drawer__footer" data-cart-drawer-footer slot="footer"></div>
+      </salla-drawer>
+    `;
+  }
+
+  async refreshCart({ open = false, fallbackCart = null } = {}) {
+    if (!this.drawer) return;
+
+    const requestSequence = ++this.refreshSequence;
+
+    if (open) {
+      this.renderLoading();
+      await this.drawer.open();
+    }
+
     try {
-      const items = analyticsData || [];
-      if (!items.length) return;
-
-      const cartItemId = items[0].cart_item_id;
-      if (!cartItemId) return;
-
-      const cartResponse = await salla.cart.api.details(null, ["options"]);
-      if (!cartResponse?.data?.cart?.items) return;
-
-      const cartItem = cartResponse.data.cart.items.find(item => item.id === cartItemId);
-      if (!cartItem) return;
-
-      this.open({
-        id: cartItem.product_id,
-        name: cartItem.product_name,
-        image: cartItem.product_image,
-        price: cartItem.total,
-        originalPrice: cartItem.original_price * cartItem.quantity,
-        hasDiscount: cartItem.has_discount,
-        isOnSale: cartItem.is_on_sale,
-        quantity: cartItem.quantity,
-        url: cartItem.url,
-        options: this.extractOptions(cartItem.options)
-      });
+      const response = await salla.cart.api.details(null, ["options"]);
+      if (requestSequence !== this.refreshSequence) return;
+      this.renderCart(this.extractCart(response) || fallbackCart);
     } catch (error) {
-      salla.log("Error processing product added event:", error);
+      if (requestSequence !== this.refreshSequence) return;
+
+      if (fallbackCart) {
+        this.renderCart(fallbackCart);
+      } else {
+        salla.log("HadeelCartDrawer: failed to fetch cart details", error);
+      }
     }
   }
 
+  extractCart(response) {
+    return response?.data?.cart || response?.cart || null;
+  }
+
+  renderLoading() {
+    const content = this.drawer?.querySelector("[data-cart-drawer-content]");
+    const footer = this.drawer?.querySelector("[data-cart-drawer-footer]");
+    if (!content || !footer) return;
+
+    content.setAttribute("aria-busy", "true");
+    content.innerHTML = `
+      <div class="hadeel-cart-drawer__loading">
+        <salla-skeleton width="100%" height="52px"></salla-skeleton>
+        <salla-skeleton width="100%" height="120px"></salla-skeleton>
+      </div>
+    `;
+    footer.innerHTML = `<salla-skeleton width="100%" height="104px"></salla-skeleton>`;
+  }
+
+  renderCart(cart) {
+    if (!cart) return;
+
+    this.cart = cart;
+    const content = this.drawer?.querySelector("[data-cart-drawer-content]");
+    const footer = this.drawer?.querySelector("[data-cart-drawer-footer]");
+    if (!content || !footer) return;
+
+    const items = Array.isArray(cart.items) ? cart.items : [];
+    content.removeAttribute("aria-busy");
+
+    content.innerHTML = items.length
+      ? `${this.renderFreeShipping(cart.free_shipping_bar)}
+         <div class="hadeel-cart-drawer__items">${items.map(item => this.renderItem(item)).join("")}</div>`
+      : `<div class="hadeel-cart-drawer__empty">
+           <i class="sicon-shopping-bag" aria-hidden="true"></i>
+           <p>${this.escapeHTML(this.text.emptyCart)}</p>
+         </div>`;
+
+    footer.innerHTML = items.length ? this.renderFooter(cart) : "";
+  }
+
+  renderFreeShipping(freeShippingBar) {
+    if (!freeShippingBar) return "";
+
+    const percent = Math.min(100, Math.max(0, Number(freeShippingBar.percent) || 0));
+    const message = freeShippingBar.has_free_shipping
+      ? this.text.freeShipping
+      : salla.lang.get("pages.cart.free_shipping_alert", {
+          amount: salla.money(freeShippingBar.remaining)
+        });
+
+    return `
+      <section class="hadeel-cart-drawer__shipping" aria-label="${this.escapeHTML(message)}">
+        <p>${message}</p>
+        <div class="hadeel-cart-drawer__shipping-track" aria-hidden="true">
+          <span style="width:${percent}%"></span>
+        </div>
+      </section>
+    `;
+  }
+
+  renderItem(item) {
+    // Cart item ids can exceed Number.MAX_SAFE_INTEGER; keep the API value lossless.
+    const id = this.escapeHTML(String(item.id));
+    const quantity = Number(item.quantity) || 1;
+    const maxQuantity = Number(item.max_quantity);
+    const productName = this.escapeHTML(item.product_name || item.name || "");
+    const productUrl = this.escapeHTML(item.url || "#");
+    const productImage = this.escapeHTML(this.getProductImage(item));
+    const options = this.extractOptions(item.options);
+    const total = item.detailed_offers?.length ? item.total_special_price : item.total;
+    const note = this.escapeHTML(item.notes || "");
+    const maxAttribute = Number.isFinite(maxQuantity) && maxQuantity > 0
+      ? ` max="${maxQuantity}"`
+      : "";
+
+    return `
+      <article class="hadeel-cart-drawer__item" data-cart-drawer-item="${id}">
+        <div class="hadeel-cart-drawer__product">
+          <div class="hadeel-cart-drawer__media">
+            <a class="hadeel-cart-drawer__image" href="${productUrl}">
+              <img src="${productImage}" alt="${productName}" loading="lazy">
+            </a>
+            <button
+              type="button"
+              class="hadeel-cart-drawer__remove"
+              data-cart-drawer-remove="${id}"
+              aria-label="${this.escapeHTML(this.text.remove)}">
+              ${this.escapeHTML(this.text.remove)}
+            </button>
+          </div>
+
+          <div class="hadeel-cart-drawer__details">
+            <a class="hadeel-cart-drawer__name" href="${productUrl}">${productName}</a>
+            ${options.length ? `<div class="hadeel-cart-drawer__options">${options.map(option => `
+              <span>${this.escapeHTML(option.name)}${option.hideValue ? "" : `: ${this.escapeHTML(option.value)}`}</span>
+            `).join("")}</div>` : ""}
+            <strong class="hadeel-cart-drawer__price">${salla.money(total)}</strong>
+            ${item.is_hidden_quantity || item.type === "donating"
+              ? `<span class="hadeel-cart-drawer__quantity-static">${salla.helpers.number(quantity)}</span>`
+              : `<salla-quantity-input
+                   cart-item-id="${id}"
+                   name="quantity"
+                   value="${quantity}"${maxAttribute}>
+                 </salla-quantity-input>`}
+          </div>
+        </div>
+
+        ${item.can_add_note ? `
+          <label class="hadeel-cart-drawer__note">
+            <span>${this.escapeHTML(this.text.note)}</span>
+            <textarea
+              rows="2"
+              data-cart-drawer-note="${id}"
+              placeholder="${this.escapeHTML(this.text.notePlaceholder)}">${note}</textarea>
+          </label>
+        ` : ""}
+      </article>
+    `;
+  }
+
+  renderFooter(cart) {
+    return `
+      <div class="hadeel-cart-drawer__total">
+        <strong>${this.escapeHTML(this.text.total)}</strong>
+        <strong>${salla.money(cart.total)}</strong>
+      </div>
+      <p class="hadeel-cart-drawer__tax-notice">${this.escapeHTML(this.text.shippingTaxNotice)}</p>
+      <salla-button
+        type="button"
+        width="wide"
+        loader-position="center"
+        data-cart-drawer-submit>
+        ${this.escapeHTML(this.text.completeOrder)}
+      </salla-button>
+      <a class="hadeel-cart-drawer__view-cart" href="${this.escapeHTML(salla.url.get("cart"))}">
+        ${this.escapeHTML(this.text.viewCart)}
+      </a>
+    `;
+  }
+
+  getProductImage(item) {
+    const image = item.product_image || item.image;
+    if (typeof image === "string") return image;
+    return image?.url || salla.url.asset("images/placeholder.png");
+  }
+
   extractOptions(options) {
-    if (!options?.length) return [];
+    if (!Array.isArray(options)) return [];
 
     return options.reduce((result, option) => {
       if (option.type === "splitter") return result;
 
-      if (option.details?.length) {
+      if (Array.isArray(option.details) && option.details.length) {
         const selected = option.type === "multiple-options"
-          ? option.details.filter(d => d.is_selected)
-          : [option.details.find(d => d.is_selected)];
+          ? option.details.filter(detail => detail.is_selected)
+          : [option.details.find(detail => detail.is_selected)].filter(Boolean);
 
-        if (selected[0]) {
+        if (selected.length) {
           result.push({
-            name: option.name,
-            value: selected.map(d => d.name).join(", ")
+            name: option.name || "",
+            value: selected.map(detail => detail.name).join(", ")
           });
         }
       } else if (option.value) {
-        const hideValue = ["image", "file", "map"].includes(option.type);
-        result.push({ name: option.name, value: option.value, hideValue });
+        result.push({
+          name: option.name || "",
+          value: option.value,
+          hideValue: ["image", "file", "map"].includes(option.type)
+        });
       }
 
       return result;
     }, []);
   }
 
-  open(productData) {
-    this.product = productData;
-    this.progressPercent = 100;
-    this.isVisible = true;
+  extractSelectedOptions(options) {
+    if (!Array.isArray(options)) return {};
 
-    this.updateDOM();
+    return options.reduce((selectedOptions, option) => {
+      if (!option?.id || option.type === "splitter") return selectedOptions;
 
-    requestAnimationFrame(() => {
-      this.classList.add("s-add-product-toast--visible");
-    });
+      if (Array.isArray(option.details) && option.details.length) {
+        const selectedDetails = option.details.filter(detail => detail.is_selected);
+        if (!selectedDetails.length) return selectedOptions;
 
-    this.startAutoHideTimer();
+        selectedOptions[option.id] = option.type === "multiple-options"
+          ? selectedDetails.map(detail => detail.id)
+          : selectedDetails[0].id;
+      } else if (option.value !== undefined && option.value !== null && option.value !== "") {
+        selectedOptions[option.id] = option.value;
+      }
+
+      return selectedOptions;
+    }, {});
   }
 
-  close() {
-    this.clearTimers();
-    this.classList.remove("s-add-product-toast--visible");
+  async onDrawerClick(event) {
+    const removeButton = event.target.closest?.("[data-cart-drawer-remove]");
+    if (removeButton) {
+      const itemId = removeButton.dataset.cartDrawerRemove;
+      const cartItem = removeButton.closest("[data-cart-drawer-item]");
+      removeButton.load?.();
+      cartItem?.classList.add("is-updating");
 
-    setTimeout(() => {
-      this.isVisible = false;
-      this.product = null;
-      this.updateDOM();
-    }, 300);
-  }
+      try {
+        await salla.cart.deleteItem(itemId);
+      } catch (error) {
+        cartItem?.classList.remove("is-updating");
+        removeButton.stop?.();
+      }
+      return;
+    }
 
-  startAutoHideTimer() {
-    this.clearTimers();
-    this.isPaused = false;
-    this.remainingTime = this.duration;
-    this.progressPercent = 100;
-
-    const updateInterval = 50;
-    this.progressInterval = setInterval(() => {
-      if (this.isPaused) return;
-
-      this.remainingTime = Math.max(0, this.remainingTime - updateInterval);
-      this.progressPercent = (this.remainingTime / this.duration) * 100;
-
-      const progressBar = this.querySelector(".s-add-product-toast__progress-bar");
-      if (progressBar) progressBar.style.width = `${this.progressPercent}%`;
-
-      if (this.remainingTime <= 0) this.close();
-    }, updateInterval);
-  }
-
-  clearTimers() {
-    if (this.progressInterval) {
-      clearInterval(this.progressInterval);
-      this.progressInterval = null;
+    const submitButton = event.target.closest?.("[data-cart-drawer-submit]");
+    if (submitButton) {
+      submitButton.load?.();
+      salla.cart.submit();
     }
   }
 
+  async onDrawerChange(event) {
+    const quantityInput = event.target.closest?.("salla-quantity-input");
+    if (quantityInput) {
+      const itemId = String(event.detail?.productId || quantityInput.getAttribute("cart-item-id") || "");
+      const quantity = Number(event.detail?.quantity || event.target.value);
+      if (!itemId || !quantity) return;
 
-  escapeHTML(str = "") {
-    return String(str)
+      await this.updateItem(itemId, { quantity });
+      return;
+    }
+
+    const noteInput = event.target.closest?.("[data-cart-drawer-note]");
+    if (noteInput) {
+      const itemId = noteInput.dataset.cartDrawerNote;
+      const item = this.cart?.items?.find(cartItem => String(cartItem.id) === itemId);
+      if (!item) return;
+
+      await this.updateItem(itemId, {
+        quantity: Number(item.quantity) || 1,
+        notes: noteInput.value
+      });
+    }
+  }
+
+  async updateItem(itemId, payload) {
+    const cartItem = this.drawer?.querySelector(`[data-cart-drawer-item="${itemId}"]`);
+    const item = this.cart?.items?.find(currentItem => String(currentItem.id) === String(itemId));
+    const options = this.extractSelectedOptions(item?.options);
+    cartItem?.classList.add("is-updating");
+
+    try {
+      await salla.cart.updateItem({
+        id: itemId,
+        ...payload,
+        ...(Object.keys(options).length ? { options } : {})
+      });
+    } catch (error) {
+      cartItem?.classList.remove("is-updating");
+      salla.log("HadeelCartDrawer: failed to update cart item", error);
+    }
+  }
+
+  escapeHTML(value = "") {
+    return String(value)
       .replace(/&/g, "&amp;")
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#39;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;");
   }
-
-  updateDOM() {
-    if (!this.isVisible || !this.product) {
-      this.innerHTML = "";
-      return;
-    }
-
-    const options = this.product.options || [];
-    const visibleOptions = options.slice(0, 3);
-    const showMoreButton = options.length > 3;
-    const price = salla.money(this.product.price);
-    const originalPrice = salla.money(this.product.originalPrice);
-
-    this.setAttribute("onmouseenter", "this.isPaused=true");
-    this.setAttribute("onmouseleave", "this.isPaused=false");
-
-    this.innerHTML = `
-      <div class="s-add-product-toast__progress">
-        <div class="s-add-product-toast__progress-bar" style="width:${this.progressPercent}%"></div>
-      </div>
-      <div class="s-add-product-toast__header">
-        <div class="s-add-product-toast__header-content">
-          <img src="${this.checkIconUrl}" alt="Success" width="16" height="16" class="s-add-product-toast__icon" />
-          <span class="s-add-product-toast__title">${this.successMessage}</span>
-        </div>
-        <button type="button" class="s-add-product-toast__close" aria-label="Close"><i class="sicon-cancel"></i></button>
-      </div>
-      <div class="s-add-product-toast__divider"></div>
-      <div class="s-add-product-toast__body">
-        <a href="${this.product.url}" class="s-add-product-toast__image">
-          <img src="${this.product.image}" alt="${this.escapeHTML(this.product.name)}" loading="lazy" />
-        </a>
-        <div class="s-add-product-toast__details">
-          <a href="${this.product.url}" class="s-add-product-toast__name">${this.escapeHTML(this.product.name)}</a>
-          ${visibleOptions.length ? `
-            <div class="s-add-product-toast__options">
-              ${visibleOptions.map(opt => 
-                opt.hideValue ? `<span>${opt.name}</span>` : `<span>${opt.name}: ${opt.value}</span>`
-              ).join("")}
-              ${showMoreButton ? `<a href="${this.cartUrl}" class="s-add-product-toast__show-more">${this.showMoreText}</a>` : ""}
-            </div>
-          ` : ""}
-        </div>
-        <div class="s-add-product-toast__price">
-          ${this.product.hasDiscount || this.product.isOnSale
-            ? `<div class="s-add-product-toast__price-sale">${price}</div><div class="s-add-product-toast__price-original">${originalPrice}</div>`
-            : `<div>${price}</div>`
-          }
-        </div>
-      </div>
-      <div class="s-add-product-toast__actions">
-        <salla-button id="toast-submit" loader-position="center" width="wide" color="primary" fill="solid">
-          <span>${this.checkoutText}</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M2 12C2 8.46252 2 6.69377 3.0528 5.5129C3.22119 5.32403 3.40678 5.14935 3.60746 4.99087C4.86213 4 6.74142 4 10.5 4H13.5C17.2586 4 19.1379 4 20.3925 4.99087C20.5932 5.14935 20.7788 5.32403 20.9472 5.5129C22 6.69377 22 8.46252 22 12C22 15.5375 22 17.3062 20.9472 18.4871C20.7788 18.676 20.5932 18.8506 20.3925 19.0091C19.1379 20 17.2586 20 13.5 20H10.5C6.74142 20 4.86213 20 3.60746 19.0091C3.40678 18.8506 3.22119 18.676 3.0528 18.4871C2 17.3062 2 15.5375 2 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 16H11.5" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.5 16L18 16" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 9H22" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-        </salla-button>
-        <salla-button href="${this.cartUrl}" fill="outline" width="wide" color="gray">
-          <span>${this.viewCartText}</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3.06164 14.4413L3.42688 12.2985C3.85856 9.76583 4.0744 8.49951 4.92914 7.74975C5.78389 7 7.01171 7 9.46734 7H14.5327C16.9883 7 18.2161 7 19.0709 7.74975C19.9256 8.49951 20.1414 9.76583 20.5731 12.2985L20.9384 14.4413C21.5357 17.946 21.8344 19.6983 20.9147 20.8491C19.995 22 18.2959 22 14.8979 22H9.1021C5.70406 22 4.00504 22 3.08533 20.8491C2.16562 19.6983 2.4643 17.946 3.06164 14.4413Z" stroke="currentColor" stroke-width="1.5"/><path d="M7.5 9L7.71501 5.98983C7.87559 3.74176 9.7462 2 12 2C14.2538 2 16.1244 3.74176 16.285 5.98983L16.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </salla-button>
-      </div>
-    `;
-
-    this.querySelector(".s-add-product-toast__close").addEventListener("click", () => this.close());
-    this.querySelector("#toast-submit").addEventListener("click", () => {
-      salla.cart.submit();
-      this.close();
-    });
-  }
-
-  render() {
-    this.innerHTML = "";
-  }
 }
 
-customElements.define("salla-add-product-toast", AddToCartToast);
+customElements.define("salla-hadeel-cart-drawer", HadeelCartDrawer);

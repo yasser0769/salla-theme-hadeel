@@ -27,7 +27,13 @@
     "cart": {
       "added_to_cart": "Added to cart",
       "cart_options": "Cart Options",
-      "view_cart": "View cart"
+      "view_cart": "View cart",
+      "drawer_title": "Shopping cart",
+      "close_drawer": "Close shopping cart",
+      "remove_item": "Remove",
+      "item_note": "Order note",
+      "item_note_placeholder": "Write your note here...",
+      "shipping_tax_notice": "Shipping and taxes are calculated at checkout"
     },
     "products": {
       "kalles": {

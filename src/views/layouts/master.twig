@@ -72,7 +72,7 @@
         window.imageZoom = "{{theme.settings.get('imageZoom')}}"
         window.can_access_wallet = {{ user.can_access_wallet | json_encode }}
         window.enable_more_menu = "{{ theme.settings.get('enable_more_menu', true) }}"
-        window.enable_add_product_toast = "{{ theme.settings.get('enable_add_product_toast', true) }}"
+        window.enable_add_product_toast = {{ theme.settings.get('enable_add_product_toast', true) | json_encode }}
     </script>
     
     {% hook 'head:start' %}
@@ -121,7 +121,8 @@
 </div>
 {% hook 'body:end' %}
 {% if theme.settings.get('enable_add_product_toast', true) %}
-    <salla-add-product-toast></salla-add-product-toast>
+    {# The setting id is retained for backwards compatibility with saved merchant choices. #}
+    <salla-hadeel-cart-drawer></salla-hadeel-cart-drawer>
 {% endif %}
 <script defer crossorigin="anonymous" src="{{ 'app.js' | asset }}"></script>
 
