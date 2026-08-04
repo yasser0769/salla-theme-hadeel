@@ -247,6 +247,25 @@ stuck number and tag that instead. **Do not delete a tag Salla already recorded.
 (diff the built CSS before and after a refactor) — would have saved weeks had they
 existed at the start. `docs/how-to-work-on-this.md` explains the loop.
 
+**26b. Watch a new check fail on purpose, then pass. [measured]**
+A guard you have never seen run is not a guard. This repo's CI declared three jobs;
+one of them — the only one that verifies `public/` matches a production build — died
+at its setup step on **every push and every tag for two days** with
+`Error: No pnpm version is specified`. `pnpm/action-setup` takes its version from
+`packageManager` in `package.json` or `version:` in the workflow, and neither existed.
+
+The other two jobs passed, so the run looked like an ordinary red X rather than a
+disabled guard. Meanwhile `AGENTS.md` rule 2 stated "Development builds are rejected
+by CI" — untrue the whole time, and believed by every agent that read it.
+
+Two habits close this:
+
+- After adding a check, **break the thing it guards and confirm it goes red**, then
+  fix it and confirm it goes green. A check that has only ever been green may simply
+  never have executed.
+- Read the job list, not the overall status: `gh run view <id>` shows which jobs ran.
+  A job that fails in under 20 seconds usually failed at setup and tested nothing.
+
 **27. Use an error budget that only goes down.** `--max-errors=N` in CI. This repo went
 31 → 0; the flag stays spelled out so raising it is a visible decision.
 

@@ -46,6 +46,9 @@ A change is not done when the code looks right. It is done when it is measured.
 - [ ] For any visual or behavioral change: a screenshot or a DOM measurement taken
       **after** the change, with a timestamp later than the change
 - [ ] Every claim in the report is traceable to output you actually saw
+- [ ] If you pushed: CI is green on that commit — `gh run view $(gh run list --limit 1
+      --json databaseId -q '.[0].databaseId')`. Read the **job list**, not the overall
+      status. A job that fails in under 20 seconds failed at setup and verified nothing.
 
 **Evidence rules.** Before citing a screenshot or a report, check its date against
 `git log` for the files it describes. Artifacts in `output/` predate most of the current
