@@ -193,6 +193,22 @@ versions `1.0.x`). References to `localhost:8002` in that page: zero.
 **Use the `Preview URL:` line the CLI prints.** `--without-editor` opens it for you;
 `--only-link` prints it without opening. Nothing else renders the draft.
 
+**Why nothing else can.** The API returns a draft and a signed link, and the CLI then
+appends the local endpoints to it:
+
+```
+…/api/theme/{theme_id}/preview/{store_id}?commit={sha}
+  → { draft_id: 701801489, preview_url: "https://s.salla.sa/auth/auto?…&url=…/design/draft-701801489" }
+
+CLI appends:  &assets_url=http://localhost:8002  &ws_port=8003  &with_editor=false
+```
+
+`assets_url` is the whole mechanism: it is what tells Salla to load this theme's CSS and
+JS from your machine instead of the published CDN bundle. A URL without it — the demo
+store's own address included — has no way to know your machine exists, so Salla serves
+the installed theme. The destination is `s.salla.sa/design/draft-<id>`, inside the Salla
+dashboard, not `demostore.salla.sa`.
+
 This one is expensive because it mimics a broken theme perfectly: the build is fine,
 the guard is green, the assets are being served, and the page still looks like Raed.
 "The demo stores show the old Raed theme" was reported here as a symptom of failure for
