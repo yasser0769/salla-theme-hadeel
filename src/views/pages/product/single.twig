@@ -2,9 +2,10 @@
 
 {% block content %}
     {% set product_desc = product.description|replace({"&nbsp;":" "}) %}
+    {% set compact_desc = product.subtitle ? product.subtitle : product_desc|striptags|replace({"\n":" ", "\r":" "})|trim %}
     <main data-hadeel-product-render-probe>
         <h1>{{ product.name }}</h1>
-        <p>{{ product_desc|raw }}</p>
+        <p>{{ compact_desc|slice(0, 230) }}</p>
     </main>
 {% endblock %}
 
