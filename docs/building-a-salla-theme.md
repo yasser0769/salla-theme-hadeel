@@ -206,6 +206,29 @@ title does. Pick a configured store, or the product pages render empty.
 **24. A preview session leaves `public/` as a development build** — `app.js` goes from
 128 KB to 352 KB with the eval devtool banner. Rebuild before committing, every time.
 
+**24b. Salla writes to your repository. You are not the only author. [measured]**
+Salla's GitHub App (`TwilightCI`, by `SallaApp`, installed with write access to code)
+pushes to `master` on its own. On 2026-08-04 it pushed `8e56f2d "Update theme
+configuration"` — authored under the account owner's name and email, so it reads like
+your own commit in `git log` — which rewrote `twilight.json`:
+
+```diff
+- "author_email": "yasser0769@gmail.com",
++ "author_email": "support@salla.sa",
+```
+
+**The Partners record is authoritative for `twilight.json`'s identity fields, not the
+repo.** That value came from theme record `224400990`, which still carries Theme Raed's
+inherited metadata. Editing those fields in the repo alone is futile — the next sync
+reverts them. Fix the Partners record first; the repo follows.
+
+Two consequences for the day-to-day loop:
+
+- `master` diverges without you touching it, so a push fails with `fetch first`.
+  Rebase onto `origin/master` before pushing. `scripts/preview.sh` does this.
+- A commit you do not recognise is not necessarily someone else's mistake. Check
+  the diff before assuming — the author line will say it was you.
+
 **25. Draft creation goes through a git tag on the linked GitHub repo. [measured]**
 The CLI calls `/partners/v1/api/theme/repo?url=<owner>/<repo>`, and Salla builds the
 draft from a git tag it creates on that repo. `twilight.json` has **no `version` field**

@@ -60,6 +60,18 @@ fi
 
 echo ""
 echo "→ Salla asked for tag $TAG; the repo does not have it. Closing the gap."
+# Salla pushes to this repo too. TwilightCI creates the version tags and commits
+# `Update theme configuration`, rewriting twilight.json from the Partners record.
+# So master diverges without you touching it, and a plain push is rejected with
+# "fetch first". Rebase onto it rather than dying.
+git fetch origin master --quiet || { echo "✗ could not fetch origin" >&2; exit 1; }
+if [ -n "$(git log --oneline HEAD..origin/master 2>/dev/null)" ]; then
+  echo "→ origin/master moved on its own — Salla pushes here too. Rebasing onto it."
+  git -c rebase.autoStash=true rebase origin/master || {
+    echo "✗ Rebase onto origin/master failed. Resolve it by hand, then re-run." >&2
+    exit 1
+  }
+fi
 git push origin master   || { echo "✗ could not push master" >&2; exit 1; }
 git tag "$TAG"           || { echo "✗ could not create tag $TAG" >&2; exit 1; }
 git push origin "$TAG"   || { echo "✗ could not push tag $TAG" >&2; exit 1; }
