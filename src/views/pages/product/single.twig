@@ -1,8 +1,13 @@
 {% extends "layouts.master" %}
 
 {% block content %}
+    {% set product_desc = product.description|replace({"&nbsp;":" "}) %}
+    {% set compact_desc = product.subtitle ? product.subtitle : product_desc|striptags|replace({"\n":" ", "\r":" "})|trim %}
+    {% set savings_amount = product.is_on_sale ? product.regular_price - product.sale_price : 0 %}
     <main data-hadeel-product-render-probe>
         <h1>{{ product.name }}</h1>
+        <p>{{ compact_desc|slice(0, 230) }}</p>
+        <data value="{{ savings_amount }}">{{ savings_amount|money }}</data>
     </main>
 {% endblock %}
 
