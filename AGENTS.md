@@ -13,27 +13,27 @@ of `node_modules`, and the places where guessing has already cost us.
 
 ## Hard rules
 
-1. **Never open a live preview without asking.** Before `salla theme preview`, a draft
-   storefront, or any authenticated Salla URL, tell the user and wait for confirmation
-   that the network has been changed and is ready.
-2. **`public/` is build output.** Never hand-edit it. `webpack.config.js` sets
+1. **`public/` is build output.** Never hand-edit it. `webpack.config.js` sets
    `output.clean: true`, so every build wipes the directory. Change `src/`, then build.
-3. **`public/` is committed and must stay in sync.** Any commit touching
+2. **`public/` is committed and must stay in sync.** Any commit touching
    `src/assets/**` must include the rebuilt bundles from
    `npx webpack --mode production`. Development builds are rejected by CI.
-4. **Never add a layer that overrides an existing layer.** No `!important` to beat your
+3. **Never add a layer that overrides an existing layer.** No `!important` to beat your
    own rule, no stylesheet imported last to win on source order. If a rule is wrong,
    delete the rule. The current `product.scss` / `storefront-system.scss` split is what
    this rule exists to prevent — do not extend it.
-5. **No hardcoded user-facing strings in any language.** Translations live in
+4. **No hardcoded user-facing strings in any language.** Translations live in
    `src/locales/ar.json` and `src/locales/en.json`. Templates use `{{ trans('…') }}`;
    JS uses `salla.lang.get()`. Never detect the language yourself.
-6. **Do not touch `package.json` or `pnpm-lock.yaml` in a fix.** Dependency changes are
+5. **Do not touch `package.json` or `pnpm-lock.yaml` in a fix.** Dependency changes are
    their own commit with their own reason. pnpm only — `npm install` is blocked by a
    `preinstall` guard.
-7. **Say when a description is wrong.** If the task you were handed contradicts what the
+6. **Say when a description is wrong.** If the task you were handed contradicts what the
    code actually does, stop and say so before changing anything. A task description is a
    claim to verify, not an instruction to execute.
+7. **`salla theme preview` may be run without asking.** It is the normal development
+   loop, not a privileged action. It leaves `public/` as a development build, so
+   rebuild before committing — see rule 2.
 
 ---
 
