@@ -169,57 +169,6 @@
 
 }
 
-/*
- * Add to cart sticky bar.
- *
- * 767px, not 640px: salla-add-product-button switches itself into sticky mode when
- * matchMedia('(min-width: 768px)') stops matching. Positioning the wrapper at 640px
- * left the 641–767px band with a sticky button the theme never positioned, while
- * body.product-single-page was already reserving space for it.
- */
-@media (max-width: 767px) {
-  .is-sticky-product-bar{
-    .sticky-product-bar{
-      @apply flex flex-wrap flex-col gap-2.5 sm:gap-4 fixed z-[2] bottom-0 left-0 p-3 w-full justify-between items-center shadow-[-1px_-2px_9px_0_rgba(0,0,0,0.05)] transition duration-700 delay-500 translate-y-100 opacity-0 ease-elastic;
-
-      &__quantity,
-      salla-add-product-button{
-        @apply translate-y-5 opacity-0 transition duration-700 ease-elastic w-full;
-      }
-
-      &__price,
-      .form-label{
-        @apply hidden;
-      }
-
-      &__quantity{
-        salla-quantity-input{
-          @apply w-full;
-          .s-quantity-input-container{
-            @apply w-full;
-          }
-          .s-quantity-input-input{
-            @apply w-[80%]
-          }
-        }
-        @apply m-0 delay-[900ms];
-      }
-
-      salla-add-product-button{
-        @apply w-auto m-0 flex-1 delay-1000;
-      }
-
-      .hydrated &{
-        &,
-        &__quantity,
-        salla-add-product-button{
-          @apply translate-y-0 opacity-100;
-        }
-      }
-    }
-  }
-}
-
 // Tabs fix
 .s-tabs-header * {
   pointer-events: auto;
@@ -348,638 +297,16 @@
   @apply rtl:left-2.5 ltr:right-2.5 top-2.5;
 }
 
-/* Kalles-inspired single product page, implemented with native Twilight components. */
-.kalles-product-page,
-.kalles-product-comments,
-.kalles-related-products {
-  font-family: inherit;
-}
-
-.kalles-related-products[hidden] {
-  display: none;
-}
-
-.kalles-product-breadcrumb {
-  min-height: 54px;
-  background: var(--hadeel-soft);
-  color: var(--hadeel-muted);
-  border-bottom: 1px solid #f0f0f0;
-
-  .breadcrumbs {
-    min-height: 54px;
-    padding-top: 0;
-    padding-bottom: 0;
-    display: flex;
-    align-items: center;
-    font-size: 13px;
-  }
-}
-
-.kalles-product-gallery {
-  width: min(58%, 760px);
-  margin-inline: 0;
-
-  salla-slider.details-slider {
-    border-radius: var(--r-0);
-
-    .s-slider-container {
-      aspect-ratio: 1 / 1;
-      border: 0;
-      border-radius: var(--r-0);
-      background: #f2f2f2;
-    }
-
-    .swiper-slide {
-      border-radius: var(--r-0);
-      background: #f2f2f2;
-      box-shadow: none;
-      --tw-ring-color: transparent;
-    }
-
-    .homeslider__slide {
-      min-height: 520px;
-    }
-
-    .homeslider__slide img {
-      object-fit: contain;
-      background: #f2f2f2;
-    }
-
-    .s-slider-prev,
-    .s-slider-next {
-      width: var(--h-icon);
-      height: var(--h-icon);
-      border: 0;
-      border-radius: var(--r-pill);
-      color: #222;
-      background: rgba(255, 255, 255, 0.96);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    }
-
-    .s-slider-thumbs {
-      margin-top: 10px;
-    }
-
-    .s-slider-thumbs-container {
-      padding: 0;
-    }
-
-    .s-slider-thumbs-container .swiper-slide {
-      width: 82px;
-      height: 82px;
-      border: 1px solid transparent;
-      cursor: pointer;
-      opacity: 0.65;
-      transition: opacity 160ms ease, border-color 160ms ease;
-    }
-
-    .s-slider-thumbs-container .swiper-slide-thumb-active {
-      border-color: #222;
-      opacity: 1;
-    }
-
-    .s-slider-thumbs-container img {
-      border-radius: var(--r-0);
-      object-fit: contain;
-      background: #f2f2f2;
-    }
-  }
-
-  .promotion-title {
-    top: 12px;
-    inset-inline-start: 12px;
-    inset-inline-end: auto;
-    padding: 8px 12px;
-    border-radius: var(--r-pill);
-    background: #ef633e;
-    font-weight: 700;
-  }
-
-  salla-button.btn--wishlist {
-    display: none;
-  }
-}
-
-.kalles-product-brand {
-  margin-bottom: 12px;
-}
-
-.kalles-product-kicker {
-  margin-bottom: 6px;
-  color: #df5549;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.kalles-product-title {
-  margin-bottom: 8px;
-  color: #171717;
-  font-size: clamp(32px, 3vw, 48px);
-  line-height: 1.12;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-}
-
-.kalles-product-rating {
-  min-height: 28px;
-  display: flex;
-  align-items: center;
-  gap: var(--sp-3);
-  color: var(--hadeel-muted);
-}
-
-.kalles-product-price {
-  margin-top: 12px;
-  margin-bottom: 18px;
-  min-height: 42px;
-  align-items: center;
-
-  .kalles-product-sale-price,
-  .kalles-product-normal-price {
-    align-items: center;
-    flex-wrap: wrap;
-    gap: var(--sp-3);
-  }
-
-  .total-price {
-    margin: 0;
-    color: var(--hadeel-accent);
-    font-size: 28px;
-    font-weight: 900;
-  }
-
-  .before-price {
-    color: #999;
-    font-size: 16px;
-    text-decoration: line-through;
-  }
-
-  .kalles-product-saving {
-    padding: var(--sp-1) var(--sp-3);
-    border-radius: var(--r-pill);
-    color: #277749;
-    background: #eaf7ef;
-    font-size: 13px;
-    font-weight: 700;
-    text-decoration: none;
-  }
-}
-
-.kalles-product-description {
-  margin: 0 0 16px;
-  padding: 0;
-  color: var(--hadeel-muted);
-  font-size: 16px;
-  line-height: 1.9;
-
-  p {
-    margin: 0;
-  }
-
-  .kalles-product-details-link {
-    margin-top: 6px;
-    display: inline-flex;
-    align-items: center;
-    gap: var(--sp-1);
-    color: var(--hadeel-accent);
-    font-size: 13px;
-    font-weight: 700;
-  }
-}
-
-.kalles-product-demand {
-  margin-bottom: var(--sp-4);
-  padding: 0;
-  border: 1px solid var(--hadeel-line);
-  border-radius: var(--r-0);
-}
-
-.kalles-product-summary {
-  salla-installment,
-  salla-metadata,
-  salla-quick-order {
-    display: block;
-    margin-top: 16px;
-  }
-}
-
-.kalles-product-form {
-  margin-top: var(--sp-5);
-
-  > section,
-  .product-option-uploader .filepond--drop-label {
-    border-radius: var(--r-0);
-  }
-}
-
-.kalles-product-purchase {
-  padding: 0;
-  display: flex;
-  align-items: stretch;
-  gap: var(--sp-3);
-  background: transparent;
-
-  .sticky-product-bar__quantity {
-    width: 132px;
-    margin: 0;
-    flex: 0 0 132px;
-    order: 2;
-  }
-
-  salla-quantity-input {
-    width: 100%;
-    min-height: var(--h-control-lg);
-    border: 1px solid #d8d8d8;
-    border-radius: var(--r-pill);
-    overflow: hidden;
-  }
-
-  > salla-add-product-button {
-    margin: 0;
-    flex: 1;
-    min-width: 210px;
-    order: 1;
-  }
-
-  > salla-add-product-button .s-button-btn {
-    min-height: var(--h-control-lg);
-    border-radius: var(--r-pill);
-    font-size: 16px;
-    font-weight: 700;
-    box-shadow: none;
-  }
-}
-
-.kalles-product-purchase-tools {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2);
-  flex: 0 0 auto;
-  order: 3;
-
-  // Some storefront apps inject their own WhatsApp CTA into the purchase row.
-  // Keep the dedicated "ask about the product" action below instead of
-  // allowing the injected button to crowd the native purchase controls.
-  > a[href*='wa.me'],
-  > a[href*='api.whatsapp.com'] {
-    display: none !important;
-  }
-
-  salla-button,
-  salla-social-share {
-    width: var(--h-control-lg);
-    height: var(--h-control-lg);
-    flex: 0 0 var(--h-control-lg);
-  }
-
-  salla-button .s-button-btn,
-  salla-social-share button {
-    width: var(--h-control-lg);
-    min-width: var(--h-control-lg);
-    height: var(--h-control-lg);
-    min-height: var(--h-control-lg);
-    padding: 0;
-    border: 1px solid #d8d8d8;
-    border-radius: var(--r-pill);
-    color: #222;
-    background: #fff;
-    box-shadow: none;
-  }
-
-  salla-button .s-button-btn:hover,
-  salla-social-share button:hover {
-    color: var(--hadeel-accent);
-    border-color: var(--hadeel-accent);
-  }
-}
-
-.kalles-product-trust {
-  margin-top: var(--sp-5);
-  padding-top: var(--sp-5);
-  border-top: 1px solid var(--hadeel-line);
-  display: block;
-}
-
-.kalles-product-support-links {
-  margin-top: var(--sp-5);
-  padding-top: var(--sp-5);
-  display: flex;
-  align-items: center;
-  gap: var(--sp-5);
-  border-top: 1px solid var(--hadeel-line);
-}
-
-.kalles-product-support-item,
-.kalles-ask-product {
-  min-height: 36px;
-  display: inline-flex;
-  align-items: center;
-}
-
-.kalles-size-guide-action .s-button-btn,
-.kalles-ask-product {
-  padding: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-2);
-  color: #222;
-  font-size: 15px;
-  font-weight: 700;
-}
-
-.kalles-size-guide-action .s-button-btn:hover,
-.kalles-ask-product:hover {
-  color: var(--hadeel-accent);
-}
-
-.kalles-product-details {
-  margin-top: 0;
-  padding: 56px clamp(20px, 4vw, 56px);
-  border-top: 1px solid var(--hadeel-line);
-  background: #fff;
-
-  h2 {
-    margin-bottom: 24px;
-    color: #171717;
-    font-size: clamp(28px, 3vw, 40px);
-    font-weight: 900;
-  }
-
-  .article {
-    max-width: 900px;
-    color: var(--hadeel-muted);
-    font-size: 16px;
-    line-height: 2;
-  }
-}
-
-.kalles-product-offers {
-  padding: 48px 0 58px;
-
-  salla-offer {
-    display: block;
-  }
-}
-
-.kalles-product-comments {
-  margin-top: 0;
-  padding: 52px 0;
-  background: #f7f7f7;
-
-  .s-comments-product {
-    margin-bottom: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    background: transparent;
-  }
-}
-
-.kalles-related-products {
-  padding-top: 64px;
-  padding-bottom: 82px;
-
-  .s-slider-block__title {
-    margin-bottom: 28px;
-  }
-
-  .s-slider-block__title h2 {
-    font-size: clamp(28px, 3vw, 42px);
-    font-weight: 900;
-  }
-
-  .s-product-card {
-    border-radius: var(--r-0);
-    box-shadow: none;
-  }
-
-  .s-product-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.08);
-  }
-
-  .s-product-card-vertical .s-product-card-image {
-    width: 100%;
-    margin: 0;
-    border-radius: var(--r-0);
-    background: #f2f2f2;
-  }
-}
-
-@media (max-width: 1024px) {
-  .kalles-product-gallery {
-    width: 50%;
-
-    salla-slider.details-slider .homeslider__slide {
-      min-height: 420px;
-    }
-  }
-
-  .kalles-product-title {
-    font-size: 34px;
-  }
-}
-
-@media (max-width: 767px) {
-  body.product-single-page {
-    /* 55px Kalles toolbar + the purchase bar above it. */
-    padding-bottom: 134px;
-
-    .announcement-bar__inner {
-      min-height: 38px;
-      font-size: 11px;
-    }
-
-    .main-nav-container {
-      min-height: 68px;
-    }
-  }
-
-  .kalles-product-breadcrumb {
-    min-height: 52px;
-
-    .breadcrumbs {
-      min-height: 52px;
-      overflow: hidden;
-      white-space: nowrap;
-      font-size: 11px;
-    }
-  }
-
-  .kalles-product-gallery,
-  .kalles-product-summary {
-    width: 100%;
-  }
-
-  .kalles-product-gallery {
-    padding-bottom: 0;
-    position: static;
-
-    salla-button.btn--wishlist {
-      width: var(--h-icon);
-      height: var(--h-icon);
-      top: 10px;
-      inset-inline-start: 10px;
-      display: block;
-      z-index: 4;
-
-      .s-button-btn {
-        width: var(--h-icon);
-        min-width: var(--h-icon);
-        height: var(--h-icon);
-        min-height: var(--h-icon);
-        padding: 0;
-        border: 0;
-        border-radius: var(--r-pill);
-        color: #171717;
-        background: rgba(255, 255, 255, 0.95);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-      }
-    }
-
-    salla-slider.details-slider {
-      .s-slider-container {
-        aspect-ratio: 1 / 1;
-      }
-
-      .homeslider__slide {
-        min-height: 0;
-        aspect-ratio: 1 / 1;
-      }
-
-      .s-slider-thumbs {
-        margin-top: 6px;
-      }
-
-      .s-slider-thumbs-container .swiper-slide {
-        width: calc((100% - 30px) / 3);
-        height: auto;
-        aspect-ratio: 1 / 1;
-      }
-
-      .s-slider-prev,
-      .s-slider-next {
-        display: none;
-      }
-    }
-  }
-
-  .kalles-product-summary {
-    padding-top: 0;
-    position: static;
-    overflow: visible;
-  }
-
-  .kalles-product-title {
-    margin-bottom: 6px;
-    font-size: 28px;
-    line-height: 1.15;
-  }
-
-  .kalles-product-price {
-    margin-top: 8px;
-    margin-bottom: 12px;
-
-    p {
-      font-size: 25px;
-    }
-  }
-
-  .kalles-product-description {
-    font-size: 15px;
-    line-height: 1.8;
-  }
-
-  .kalles-product-purchase {
-    padding: 10px;
-    position: fixed;
-    z-index: 76;
-    inset-inline: 0;
-    bottom: 55px;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    gap: var(--sp-2);
-    background: rgba(255, 255, 255, 0.98);
-    border-top: 1px solid var(--hadeel-line);
-    box-shadow: 0 -10px 24px rgba(0, 0, 0, 0.08);
-
-    .sticky-product-bar__quantity {
-      width: 104px;
-      height: var(--h-control-lg);
-      flex: 0 0 104px;
-      display: flex;
-      align-items: center;
-      transform: none;
-      opacity: 1;
-    }
-
-    salla-quantity-input {
-      height: var(--h-control-lg);
-      min-height: var(--h-control-lg);
-    }
-
-    salla-quantity-input .s-quantity-input-container {
-      height: var(--h-control-lg);
-      min-height: var(--h-control-lg);
-    }
-
-    > salla-add-product-button {
-      width: auto;
-      margin: 0;
-      flex: 1;
-      min-width: 0;
-      transform: none;
-      opacity: 1;
-    }
-
-    > salla-add-product-button .s-button-btn,
-    > salla-add-product-button .s-button-element {
-      height: var(--h-control-lg);
-      min-height: var(--h-control-lg);
-    }
-  }
-
-  .kalles-product-purchase-tools {
-    display: none;
-  }
-
-  .kalles-product-support-links {
-    gap: var(--sp-4);
-    flex-wrap: wrap;
-  }
-
-  .kalles-product-details {
-    padding: 38px 20px;
-  }
-
-  .kalles-product-trust {
-    margin-top: 22px;
-  }
-
-  .kalles-product-offers {
-    padding: 34px 0 42px;
-  }
-
-  .kalles-product-comments {
-    padding: 34px 0;
-  }
-
-  .kalles-related-products {
-    padding-top: 44px;
-    padding-bottom: 64px;
-
-    .s-slider-block__title h2 {
-      font-size: 30px;
-    }
-  }
-}
-
 /* Kalles product page — reference-accurate layout overrides. */
 .kalles-product-page,
 .kalles-product-comments,
 .kalles-related-products,
 .kalles-product-dock {
   font-family: inherit;
+}
+
+.kalles-related-products[hidden] {
+  display: none;
 }
 
 /*
@@ -994,13 +321,38 @@
   background: var(--hadeel-surface);
 }
 
+.kalles-product-breadcrumb {
+  min-height: 44px;
+  color: var(--hadeel-muted);
+  background: var(--hadeel-soft);
+
+  .breadcrumbs {
+    min-height: 44px;
+    padding-block: 0;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+}
+
 .kalles-product-overview {
-  padding: 30px 0 68px;
+  padding: 28px 0 40px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 500px) minmax(360px, 450px);
   align-items: start;
-  gap: clamp(var(--sp-6), 3.2vw, var(--sp-7));
-  border-bottom: 1px solid var(--hadeel-line);
+  justify-content: space-between;
+  gap: clamp(var(--sp-6), 7vw, var(--sp-9));
+  direction: ltr;
+
+  > * {
+    direction: rtl;
+  }
+}
+
+[dir='ltr'] .kalles-product-overview > * {
+  direction: ltr;
 }
 
 .kalles-product-gallery {
@@ -1008,25 +360,14 @@
   padding-bottom: 0;
 
   salla-slider.details-slider {
-    .s-slider-vertical {
-      min-height: 0;
-      align-items: stretch;
-    }
-
     .s-slider-container,
     .homeslider__slide {
       min-width: 0;
       min-height: 0;
       height: auto;
       max-height: none;
-      aspect-ratio: 4 / 5;
-      background: transparent;
-    }
-
-    .s-slider-vertical .s-slider-container {
-      height: auto;
-      max-height: none;
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 1 / 1;
+      background: var(--hadeel-soft);
     }
 
     .swiper-slide,
@@ -1041,45 +382,40 @@
       object-fit: contain;
     }
 
+    .swiper-pagination {
+      display: none;
+    }
+
     .s-slider-prev,
     .s-slider-next {
-      width: var(--h-icon);
-      height: var(--h-icon);
-      border: 1px solid var(--hadeel-ink);
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--hadeel-line);
+      border-radius: var(--r-pill);
       color: var(--hadeel-ink);
-      background: color-mix(in srgb, var(--hadeel-surface) 94%, transparent);
+      background: color-mix(in srgb, var(--hadeel-surface) 96%, transparent);
       box-shadow: none;
     }
 
-    .s-slider-vertical .s-slider-thumbs {
-      width: 88px;
-      height: auto;
-      margin: 0;
-      margin-inline-end: 15px;
-      padding: 0;
+    .s-slider-thumbs {
+      display: none;
+      margin-top: 10px;
     }
 
-    .s-slider-vertical .s-slider-thumbs:where([dir="rtl"], [dir="rtl"] *) {
-      margin-inline-end: 15px;
-    }
-
-    .s-slider-thumbs-container,
-    .s-slider-vertical .s-slider-thumbs-container {
-      width: 88px;
-      min-height: 100%;
-      max-height: none;
+    .s-slider-thumbs-container {
+      width: 100%;
+      min-height: 84px;
       margin: 0;
       padding: 0;
     }
 
-    /* Swiper sizes slides with inline styles; an author !important is the only
-       declaration that outranks one. Do not "clean these up". */
-    .s-slider-vertical .s-slider-thumbs-container .swiper-slide {
-      width: 100% !important;
-      height: 106px !important;
-      margin: 0 0 12px;
+    .s-slider-thumbs-container .swiper-slide {
+      width: 68px;
+      height: 84px;
+      margin-inline-end: 10px;
       border: 1px solid transparent;
       opacity: 0.62;
+      transition: border-color 160ms ease, opacity 160ms ease;
     }
 
     .s-slider-thumbs-container .swiper-slide-thumb-active {
@@ -1098,21 +434,22 @@
   }
 
   .kalles-product-discount {
-    width: 68px;
-    height: 68px;
+    width: 54px;
+    height: 28px;
     display: grid;
     place-items: center;
     border-radius: var(--r-pill);
-    color: #fff;
-    background: #ff4f00;
-    font-size: 18px;
+    color: var(--color-primary-reverse);
+    background: var(--hadeel-accent);
+    font-size: 12px;
     font-weight: 800;
   }
 
   .promotion-title {
     padding: var(--sp-2) var(--sp-3);
     border-radius: var(--r-pill);
-    background: #ff4f00;
+    color: var(--color-primary-reverse);
+    background: var(--hadeel-accent);
   }
 }
 
@@ -1124,63 +461,125 @@
 
 .kalles-product-summary {
   width: 100%;
-  padding-top: 2px;
+  padding-top: 14px;
   align-self: start;
   position: static;
   top: auto;
   overflow: visible;
 }
 
+.kalles-product-brand {
+  width: auto;
+  margin-bottom: 8px;
+
+  .brand-logo {
+    max-width: 88px;
+    max-height: 28px;
+    display: block;
+  }
+}
+
+.kalles-product-kicker {
+  margin-bottom: 8px;
+  color: var(--hadeel-accent);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
 .kalles-product-title {
-  margin-bottom: 10px;
-  font-size: clamp(23px, 1.7vw, 27px);
-  line-height: 1.25;
+  margin-bottom: 0;
+  color: var(--hadeel-ink);
+  font-size: 30px;
+  line-height: 1.3;
   font-weight: 800;
 }
 
 .kalles-product-price {
-  margin-top: 8px;
-  margin-bottom: 16px;
-  min-height: 38px;
+  margin-top: 2px;
+  margin-bottom: 14px;
+  min-height: 42px;
+
+  .kalles-product-sale-price,
+  .kalles-product-normal-price {
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+  }
 
   .total-price {
-    font-size: 26px;
+    color: var(--hadeel-accent);
+    font-size: 28px;
     font-weight: 800;
   }
 
   .kalles-product-sale-price .total-price {
-    color: var(--hadeel-danger);
+    color: var(--hadeel-accent);
   }
 
   .kalles-product-normal-price .total-price {
-    color: #222;
+    color: var(--hadeel-accent);
   }
 
   .before-price {
-    color: #a7a7a7;
-    font-size: 19px;
+    color: var(--hadeel-muted);
+    font-size: 13px;
+    text-decoration: line-through;
+  }
+
+  .kalles-product-saving {
+    color: var(--hadeel-success);
+    font-size: 12px;
   }
 }
 
-.kalles-product-rating:empty {
-  min-height: 0;
-  display: none;
+.kalles-product-rating {
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  color: var(--hadeel-muted);
+
+  &:empty {
+    min-height: 0;
+    display: none;
+  }
 }
 
 .kalles-product-description {
-  margin-bottom: 20px;
+  margin-bottom: 22px;
+  color: var(--hadeel-muted);
   font-size: 15px;
-  line-height: 1.8;
+  line-height: 1.5;
+
+  p {
+    margin: 0;
+  }
+
+  .kalles-product-details-link {
+    margin-top: var(--sp-1);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-1);
+    color: var(--hadeel-accent);
+    font-size: 12px;
+    font-weight: 700;
+  }
 }
 
 .kalles-product-form {
-  margin-top: 14px;
+  margin-top: 0;
+
+  > section,
+  .product-option-uploader .filepond--drop-label {
+    border-radius: var(--r-0);
+  }
 }
 
 
 .kalles-product-form {
   salla-product-options .s-product-options-wrapper {
-    margin: 0 0 20px;
+    margin: 0 0 18px;
     padding: 0;
     border: 0;
     border-radius: var(--r-0);
@@ -1188,7 +587,7 @@
   }
 
   salla-product-options .s-product-options-option-container {
-    margin-bottom: 22px;
+    margin-bottom: 18px;
   }
 
   salla-product-options .s-product-options-option {
@@ -1196,7 +595,7 @@
   }
 
   salla-product-options .s-product-options-option-label {
-    margin: 0 0 11px;
+    margin: 0 0 10px;
     color: var(--hadeel-ink);
     font-size: 15px;
     font-weight: 800;
@@ -1209,19 +608,19 @@
 
   salla-product-options .s-product-options-grid-mode {
     margin-bottom: 0;
-    gap: var(--sp-3);
+    gap: 8px;
   }
 
   salla-product-options .s-product-options-grid-mode-span {
-    min-width: 62px;
-    min-height: var(--h-control);
-    padding: var(--sp-2) var(--sp-5);
+    min-width: 40px;
+    min-height: 40px;
+    padding: 8px 12px;
     border-color: var(--hadeel-line);
-    border-radius: var(--r-0);
+    border-radius: var(--r-pill);
     color: var(--hadeel-ink);
     background: var(--hadeel-surface);
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 13px;
+    font-weight: 500;
   }
 
   salla-product-options .s-product-options-grid-mode input:checked + div {
@@ -1244,34 +643,43 @@
 
 .kalles-product-purchase {
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: var(--sp-3);
+  gap: 16px 20px;
+  direction: ltr;
   background: transparent;
 
   .sticky-product-bar__quantity {
-    width: 136px;
-    height: var(--h-control-lg);
-    flex: 0 0 136px;
+    width: 120px;
+    height: 40px;
+    flex: 0 0 120px;
     order: 1;
   }
 
   salla-quantity-input {
     display: block;
-    height: var(--h-control-lg);
-    min-height: var(--h-control-lg);
+    width: 100%;
+    height: 40px;
+    min-height: 40px;
     line-height: normal;
-    border-color: var(--hadeel-ink);
+    border: 1px solid var(--hadeel-line);
+    border-radius: var(--r-pill);
+    overflow: hidden;
   }
 
   salla-quantity-input .s-quantity-input-container {
-    height: var(--h-control-lg);
-    min-height: var(--h-control-lg);
+    width: 100%;
+    height: 40px;
+    min-height: 40px;
   }
 
   > salla-add-product-button {
-    min-width: 190px;
-    height: var(--h-control-lg);
-    min-height: var(--h-control-lg);
+    width: 160px;
+    min-width: 160px;
+    height: 40px;
+    min-height: 40px;
+    margin: 0;
     order: 2;
   }
 
@@ -1279,46 +687,62 @@
   > salla-add-product-button salla-button,
   > salla-add-product-button .s-button-wrap {
     width: 100%;
-    height: var(--h-control-lg);
-    min-height: var(--h-control-lg);
+    height: 40px;
+    min-height: 40px;
     display: block;
   }
 
   > salla-add-product-button .s-button-btn,
   > salla-add-product-button .s-button-element {
     width: 100%;
-    height: var(--h-control-lg);
-    min-height: var(--h-control-lg);
+    height: 40px;
+    min-height: 40px;
     margin: 0;
-    color: #fff;
+    border-radius: var(--r-pill);
+    color: var(--color-primary-reverse);
+    background: var(--hadeel-accent);
     font-weight: 800;
   }
 
   salla-mini-checkout-widget {
-    display: none !important;
+    display: none;
   }
 }
 
 .kalles-product-purchase-tools {
+  width: 100%;
+  display: flex;
+  align-items: center;
   order: 3;
 
-  salla-button,
-  salla-social-share,
-  salla-button .s-button-btn,
-  salla-social-share button {
-    width: var(--h-control-lg);
-    min-width: var(--h-control-lg);
-    height: var(--h-control-lg);
-    min-height: var(--h-control-lg);
-    flex-basis: var(--h-control-lg);
-    border-color: var(--hadeel-ink);
-    color: var(--hadeel-ink);
-    background: var(--hadeel-surface);
+  salla-button {
+    width: auto;
+    height: 24px;
+  }
+
+  salla-button .s-button-btn {
+    width: auto;
+    min-width: 0;
+    height: 24px;
+    min-height: 24px;
+    padding: 0;
+    border: 0;
+    color: var(--hadeel-muted);
+    background: transparent;
+    font-size: 13px;
+  }
+
+  > a[href*='wa.me'],
+  > a[href*='api.whatsapp.com'] {
+    display: none;
   }
 }
 
 .kalles-product-trust {
-  padding-top: 18px;
+  margin-top: 18px;
+  padding-top: 14px;
+  display: block;
+  border-top: 1px solid var(--hadeel-line);
 
   img {
     max-height: 38px;
@@ -1327,8 +751,10 @@
 }
 
 .kalles-product-support-links {
+  margin-top: 14px;
+  display: flex;
   flex-wrap: wrap;
-  gap: var(--sp-4) var(--sp-6);
+  gap: var(--sp-3) var(--sp-5);
 }
 
 .kalles-product-support-item,
@@ -1347,8 +773,8 @@
   align-items: center;
   gap: var(--sp-2);
   color: var(--hadeel-ink);
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 500;
 }
 
 .kalles-size-guide-action .s-button-btn:hover,
@@ -1358,13 +784,14 @@
 }
 
 .kalles-product-meta {
-  margin: 28px 0 0;
-  padding-top: 20px;
-  display: grid;
-  gap: var(--sp-2);
+  margin: 20px 0 0;
+  padding-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-5);
   border-top: 1px solid var(--hadeel-line);
   color: var(--hadeel-muted);
-  font-size: 14px;
+  font-size: 12px;
 
   > div {
     display: flex;
@@ -1396,12 +823,12 @@
 }
 
 .kalles-product-share {
-  margin-top: 20px;
+  margin-top: 14px;
   display: flex;
   align-items: center;
   gap: var(--sp-3);
   color: var(--hadeel-muted);
-  font-size: 14px;
+  font-size: 12px;
 
   salla-social-share {
     color: var(--hadeel-ink);
@@ -1410,10 +837,22 @@
 
 .kalles-product-demand {
   margin: 20px 0 0;
+  padding: 0;
+  border: 1px solid var(--hadeel-line);
+  border-radius: var(--r-0);
+}
+
+.kalles-product-summary {
+  salla-installment,
+  salla-metadata,
+  salla-quick-order {
+    margin-top: 16px;
+    display: block;
+  }
 }
 
 .kalles-product-native-meta {
-  padding: 28px 0 42px;
+  padding: 24px 0 32px;
   border-top: 1px solid var(--hadeel-line);
 
   salla-metadata {
@@ -1424,7 +863,74 @@
 }
 
 .kalles-product-summary > salla-metadata {
-  display: none !important;
+  display: none;
+}
+
+.kalles-product-details {
+  margin-top: 0;
+  padding: 28px 0 34px;
+  border-top: 1px solid var(--hadeel-line);
+
+  h2 {
+    margin-bottom: 16px;
+    color: var(--hadeel-ink);
+    font-size: 20px;
+    font-weight: 800;
+  }
+
+  .article {
+    max-width: 920px;
+    color: var(--hadeel-muted);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+}
+
+.kalles-product-offers {
+  padding: 0 0 32px;
+
+  salla-offer {
+    display: block;
+  }
+}
+
+.kalles-product-comments {
+  margin-top: 0;
+  padding: 32px 0;
+  background: var(--hadeel-soft);
+
+  .s-comments-product {
+    margin-bottom: 0;
+    padding-block: 0;
+    background: transparent;
+  }
+}
+
+.kalles-related-products {
+  padding-top: 38px;
+  padding-bottom: 56px;
+
+  .s-slider-block__title {
+    margin-bottom: 18px;
+  }
+
+  .s-slider-block__title h2 {
+    color: var(--hadeel-ink);
+    font-size: 24px;
+    font-weight: 800;
+  }
+
+  .s-product-card {
+    border-radius: var(--r-0);
+    box-shadow: none;
+  }
+
+  .s-product-card-vertical .s-product-card-image {
+    width: 100%;
+    margin: 0;
+    border-radius: var(--r-0);
+    background: var(--hadeel-soft);
+  }
 }
 
 .kalles-product-dock {
@@ -1537,28 +1043,39 @@
 
 @media (max-width: 1100px) and (min-width: 768px) {
   .kalles-product-overview {
-    grid-template-columns: minmax(0, 1fr) minmax(360px, 1fr);
-    gap: var(--sp-6);
+    padding: 28px 0 24px;
+    grid-template-columns: minmax(0, 1fr) 364px;
+    gap: var(--sp-5);
   }
 
   .kalles-product-gallery salla-slider.details-slider {
     .s-slider-container,
-    .homeslider__slide,
-    .s-slider-vertical .s-slider-container {
+    .homeslider__slide {
       height: auto;
       max-height: none;
       aspect-ratio: 4 / 5;
     }
 
-    .s-slider-vertical .s-slider-thumbs,
-    .s-slider-thumbs-container,
-    .s-slider-vertical .s-slider-thumbs-container {
-      width: 82px;
+    .s-slider-thumbs {
+      display: block;
     }
 
-    .s-slider-vertical .s-slider-thumbs-container .swiper-slide {
-      height: 98px !important;
+    .s-slider-thumbs-container {
+      width: min(302px, 100%);
+      min-height: 84px;
     }
+  }
+
+  .kalles-product-summary {
+    padding-top: 0;
+  }
+
+  .kalles-product-title {
+    font-size: 30px;
+  }
+
+  .kalles-product-description {
+    font-size: 15px;
   }
 
   .kalles-product-purchase {
@@ -1566,37 +1083,60 @@
 
     .sticky-product-bar__quantity {
       width: 118px;
+      height: 48px;
       flex-basis: 118px;
     }
 
+    salla-quantity-input,
+    salla-quantity-input .s-quantity-input-container {
+      height: 48px;
+      min-height: 48px;
+    }
+
     > salla-add-product-button {
-      min-width: 160px;
+      width: auto;
+      min-width: 0;
+      height: 48px;
+      min-height: 48px;
+      flex: 1;
+    }
+
+    > salla-add-product-button .s-add-product-button-main,
+    > salla-add-product-button salla-button,
+    > salla-add-product-button .s-button-wrap,
+    > salla-add-product-button .s-button-btn,
+    > salla-add-product-button .s-button-element {
+      height: 48px;
+      min-height: 48px;
     }
   }
 
   .kalles-product-purchase-tools {
-    gap: var(--sp-2);
-
-    salla-button,
-    salla-social-share,
-    salla-button .s-button-btn,
-    salla-social-share button {
-      width: var(--h-control-lg);
-      min-width: var(--h-control-lg);
-      height: var(--h-control-lg);
-      min-height: var(--h-control-lg);
-      flex-basis: var(--h-control-lg);
-    }
+    display: none;
   }
 }
 
 @media (max-width: 767px) {
+  body.product-single-page {
+    padding-bottom: calc(131px + var(--h-safe));
+  }
+
+  .kalles-product-breadcrumb,
+  .kalles-product-breadcrumb .breadcrumbs {
+    min-height: 40px;
+  }
+
   .kalles-product-overview {
-    padding: 16px 0 44px;
+    padding: 0 0 36px;
     display: flex;
     flex-direction: column;
-    gap: var(--sp-5);
+    gap: 16px;
     border-bottom: 0;
+  }
+
+  .kalles-product-overview > .kalles-product-gallery {
+    width: calc(100% + (var(--hadeel-page-gutter) * 2));
+    margin-inline: calc(var(--hadeel-page-gutter) * -1);
   }
 
   .kalles-product-gallery salla-slider.details-slider {
@@ -1607,68 +1147,144 @@
       aspect-ratio: 1 / 1;
     }
 
-    .s-slider-vertical .s-slider-container {
-      height: auto;
-      max-height: none;
+    .s-slider-prev,
+    .s-slider-next,
+    .s-slider-thumbs {
+      display: none;
     }
 
-    .s-slider-thumbs-container,
-    .s-slider-vertical .s-slider-thumbs-container {
-      width: 100%;
-      min-height: 0;
+    .swiper-pagination {
+      min-height: 18px;
+      bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
 
-    .s-slider-thumbs-container .swiper-slide,
-    .s-slider-vertical .s-slider-thumbs-container .swiper-slide {
-      /* Three across, minus the 5px margins either side of each. */
-      width: calc((100% - 30px) / 3) !important;
-      height: auto !important;
-      margin: 0 5px;
-      aspect-ratio: 1 / 1;
+    .swiper-pagination-bullet {
+      width: 6px;
+      height: 6px;
+      margin: 0;
+      border-radius: var(--r-pill);
+      background: var(--hadeel-ink);
+      opacity: 0.85;
+      transition: width 160ms ease, background 160ms ease;
+    }
+
+    .swiper-pagination-bullet-active {
+      width: 18px;
+      background: var(--hadeel-accent);
     }
 
     .kalles-product-discount {
-      width: 58px;
-      height: 58px;
-      top: 14px;
-      inset-inline-start: 14px;
-      font-size: 16px;
+      width: 48px;
+      height: 24px;
+      top: 16px;
+      inset-inline-start: 16px;
+      font-size: 11px;
     }
   }
 
   .kalles-product-summary {
+    padding-top: 0;
     position: static;
   }
 
+  .kalles-product-brand,
+  .kalles-product-kicker {
+    display: none;
+  }
+
   .kalles-product-title {
+    margin-bottom: 0;
     font-size: 24px;
-    line-height: 1.25;
+    line-height: 1.5;
   }
 
   .kalles-product-price {
+    margin-top: 0;
+    margin-bottom: 4px;
+
     .total-price {
-      font-size: 25px;
+      font-size: 24px;
     }
 
     .before-price {
-      font-size: 18px;
+      font-size: 13px;
+    }
+  }
+
+  .kalles-product-description {
+    margin-bottom: 14px;
+    font-size: 14px;
+    line-height: 1.5;
+
+    p {
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+    }
+
+    .kalles-product-details-link {
+      display: none;
     }
   }
 
   .kalles-product-form salla-product-options .s-product-options-grid-mode-span {
-    min-width: 54px;
-    min-height: var(--h-control);
-    padding: var(--sp-2) var(--sp-4);
+    min-width: 46px;
+    min-height: 40px;
+    padding: 8px 12px;
   }
 
   .kalles-product-purchase {
+    height: 76px;
+    padding: 14px 12px;
+    position: fixed;
+    z-index: 76;
+    inset-inline: 0;
+    bottom: calc(55px + var(--h-safe));
+    flex-wrap: nowrap;
+    gap: 8px;
+    background: color-mix(in srgb, var(--hadeel-surface) 98%, transparent);
+    border-top: 1px solid var(--hadeel-line);
+    box-shadow: 0 -10px 24px rgba(0, 0, 0, 0.08);
+
     .sticky-product-bar__quantity {
+      width: 104px;
+      height: 48px;
+      flex: 0 0 104px;
       order: 1;
     }
 
+    salla-quantity-input,
+    salla-quantity-input .s-quantity-input-container {
+      height: 48px;
+      min-height: 48px;
+    }
+
     > salla-add-product-button {
+      width: auto;
+      min-width: 0;
+      height: 48px;
+      min-height: 48px;
+      flex: 1;
       order: 2;
     }
+
+    > salla-add-product-button .s-add-product-button-main,
+    > salla-add-product-button salla-button,
+    > salla-add-product-button .s-button-wrap,
+    > salla-add-product-button .s-button-btn,
+    > salla-add-product-button .s-button-element {
+      height: 48px;
+      min-height: 48px;
+    }
+  }
+
+  .kalles-product-purchase-tools {
+    display: none;
   }
 
   .kalles-product-support-links {
@@ -1685,6 +1301,19 @@
 
   .kalles-product-native-meta {
     padding: 22px 0 32px;
+  }
+
+  .kalles-product-details {
+    padding: 24px 0 30px;
+  }
+
+  .kalles-related-products {
+    padding-top: 32px;
+    padding-bottom: 48px;
+
+    .s-slider-block__title h2 {
+      font-size: 22px;
+    }
   }
 }
 
