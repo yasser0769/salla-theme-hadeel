@@ -1669,9 +1669,9 @@
             ]
         }
     ],
-    "support_url": "https://salla.com/",
+    "support_url": "https://github.com/yasser0769/salla-theme-hadeel/issues",
     "description": {
-        "ar": "مجموعة كبيرة من المزايا لدعم تجارتك وتقديم تجربة تسوق مثيرة لعملائك",
-        "en": "A wide range of features to support your business and provide an exciting shopping experience for your customers"
+        "ar": "ثيم أزياء عربي أولاً، بواجهة هادئة تُبقي المنتج في المقدمة. تخطيط مرن يتحكم فيه التاجر — عرض الصفحة، كثافة الرأس، شكل بطاقة المنتج، والزوايا — مع صفحة منتج مبنية للجوال قبل الحاسب.",
+        "en": "An Arabic-first fashion theme with a quiet interface that keeps the product in front. The merchant controls the layout — page width, header density, product card style and corner treatment — on a product page built for mobile before desktop."
     }
 }
