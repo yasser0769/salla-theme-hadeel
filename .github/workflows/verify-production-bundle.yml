@@ -42,8 +42,14 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      # pnpm/action-setup needs a version from somewhere. package.json has no
+      # `packageManager` key, and AGENTS.md rule 5 keeps package.json out of
+      # unrelated fixes, so it is pinned here. Keep it in step with local pnpm —
+      # `--frozen-lockfile` below is only meaningful if the two agree.
       - name: Set up pnpm
         uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
 
       - name: Set up Node
         uses: actions/setup-node@v4
