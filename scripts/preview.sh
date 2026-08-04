@@ -16,6 +16,21 @@ STORE="${1:-SamarStore}"
 LOG="$(mktemp -t salla-preview)"
 trap 'rm -f "$LOG"' EXIT
 
+# A preview left running from an earlier session competes for the asset server on
+# :8002. When it wins, the storefront loads no theme CSS at all and the page renders
+# bare — which reads as a broken theme, not a stale process. One was found still
+# alive 13 hours later, pointed at a store that no longer existed.
+EXISTING="$(pgrep -f 'salla theme preview' 2>/dev/null)"
+if [ -n "$EXISTING" ]; then
+  echo "✗ A preview is already running:" >&2
+  # shellcheck disable=SC2086
+  ps -o pid,lstart,command -p $EXISTING 2>/dev/null | sed 1d | cut -c1-110 >&2
+  echo "" >&2
+  echo "  Stop it first, then run this again:" >&2
+  echo "    kill $(echo "$EXISTING" | tr '\n' ' ')" >&2
+  exit 1
+fi
+
 run_preview() {
   salla theme preview --store "$STORE" --without-editor 2>&1 | tee "$LOG"
   return "${PIPESTATUS[0]}"
