@@ -177,6 +177,27 @@ salla theme preview --store <StoreName> --without-editor
 It starts webpack in watch mode, serves built assets on `http://localhost:8002`, and
 pushes hot reloads over `ws://localhost:8003`.
 
+**21b. The demo store's own URL never shows your theme. [measured]**
+A preview is a signed session, not an installation. `demostore.salla.sa/dev-<slug>`
+always serves whatever theme is *installed* on that store — for a fresh demo store that
+is Salla's official Theme Raed. Measured on 2026-08-04, with a preview running and
+`localhost:8002` serving assets correctly, the store page loaded:
+
+```
+https://cdn.assets.salla.network/themes/1247874246/1.367.0/app.css
+```
+
+Theme `1247874246` at version `1.367.0` — Salla's Raed, not this theme (`224400990`,
+versions `1.0.x`). References to `localhost:8002` in that page: zero.
+
+**Use the `Preview URL:` line the CLI prints.** `--without-editor` opens it for you;
+`--only-link` prints it without opening. Nothing else renders the draft.
+
+This one is expensive because it mimics a broken theme perfectly: the build is fine,
+the guard is green, the assets are being served, and the page still looks like Raed.
+"The demo stores show the old Raed theme" was reported here as a symptom of failure for
+two days. It was never a symptom of anything.
+
 **22. No git push per edit.** `ThemeWatcher` uploads changed `.twig` and `.json` files
 one at a time via the hidden `salla theme sync` command. Proven by writing a unique
 attribute into `single.twig` and finding it in the previewed DOM with `HEAD` still equal
