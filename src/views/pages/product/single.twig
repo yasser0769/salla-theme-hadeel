@@ -2,7 +2,6 @@
 {% block content %}
 {% set product_desc = product.description|replace({"&nbsp;":" "}) %}
 {% set compact_desc = product.subtitle ? product.subtitle : product_desc|striptags|replace({"\n":" ", "\r":" "})|trim %}
-{% set savings_amount = product.is_on_sale ? product.regular_price - product.sale_price : 0 %}
 <div class="kalles-product-page">
     {% if theme.settings.get('product_show_breadcrumbs', true) %}
         <div class="kalles-product-breadcrumb">
@@ -124,8 +123,8 @@
                 <div class="kalles-product-sale-price price_is_on_sale {{ product.is_on_sale ? 'flex' : 'hidden' }}">
                     <p class="total-price">{{ product.sale_price|money }}</p>
                     <span class="before-price">{{ product.regular_price|money }}</span>
-                    <span class="kalles-product-saving {{ savings_amount > 0 ? '' : 'hidden' }}">
-                        {{ trans('pages.products.kalles.save') }} <span data-saving-value>{{ savings_amount|money }}</span>
+                        <span class="kalles-product-saving {{ product.discount_percentage ? '' : 'hidden' }}">
+                            {{ trans('pages.products.kalles.save') }} <span data-saving-value>{{ product.discount_percentage }}</span>
                     </span>
                 </div>
                 <div class="kalles-product-normal-price starting-or-normal-price {{ product.is_on_sale ? 'hidden' : 'flex' }}">
