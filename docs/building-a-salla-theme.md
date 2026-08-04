@@ -189,11 +189,37 @@ it is for React themes.
 **24. A preview session leaves `public/` as a development build** — `app.js` goes from
 128 KB to 352 KB with the eval devtool banner. Rebuild before committing, every time.
 
-**25. Draft creation appears to go through the linked GitHub repo. [unverified]**
-The CLI calls `/partners/v1/api/theme/repo?url=<owner>/<repo>`, and a preview that kept
-failing with `Tag <version> already exists` started working after `master` was pushed.
-That ordering was observed, not isolated. Keep `master` current before starting a
-session.
+**25. Draft creation goes through a git tag on the linked GitHub repo. [measured]**
+The CLI calls `/partners/v1/api/theme/repo?url=<owner>/<repo>`, and Salla builds the
+draft from a git tag it creates on that repo. `twilight.json` has **no `version` field**
+and `package.json`'s version is unrelated — **Salla holds the version counter
+server-side**, and the CLI only reports what Salla decided.
+
+**`Tag <version> already exists` means Salla's counter has run ahead of the repo.**
+Every preview attempt increments Salla's version. If an attempt dies after Salla
+records the version but before the tag reaches GitHub — a dropped connection is enough
+— the two drift apart permanently, and every later attempt fails on the same number.
+
+Measured on 2026-08-04: GitHub's highest tag was `1.0.43`, Salla was asking for
+`1.0.47`. A gap of exactly four, matching four attempts made during a network outage.
+
+**Diagnose from the remote, never from local tags.** Local tags go stale silently — the
+same day, `git tag` showed a maximum of `1.0.38` while the remote had `1.0.43`:
+
+```bash
+git ls-remote --tags origin | sort -t/ -k3 -V | tail -5
+```
+
+**Recovery:** push the exact tag Salla is asking for, at the commit you want the draft
+built from. That makes the two agree and the next preview succeeds.
+
+```bash
+git push origin master          # the draft is built from this commit
+git tag 1.0.47 && git push origin 1.0.47
+```
+
+If it still refuses, raise the theme version in the Salla Partners portal past the
+stuck number and tag that instead. **Do not delete a tag Salla already recorded.**
 
 ---
 
