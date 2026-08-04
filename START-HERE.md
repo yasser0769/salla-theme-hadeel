@@ -24,7 +24,7 @@
 **١. شغّل المتجر وشوف تعديلاتك مباشرة:**
 
 ```bash
-salla theme preview --store Zaboon --without-editor
+salla theme preview --store SamarStore --without-editor
 ```
 
 عدّل أي ملف واحفظ — يظهر خلال ثوانٍ. لا تحتاج ترفع شيئاً.

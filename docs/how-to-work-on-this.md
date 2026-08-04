@@ -194,7 +194,7 @@ push per edit either:
 
 ```bash
 git push origin master                                    # keep master current
-salla theme preview --store Zaboon --without-editor       # watch + assets + hot reload
+salla theme preview --store SamarStore --without-editor   # watch + assets + hot reload
 ```
 
 SCSS and JS reach the page through `localhost:8002`; `.twig` and `.json` are uploaded
