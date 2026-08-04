@@ -186,6 +186,23 @@ to `origin/master` and zero commits in between.
 data. You need a connection and a demo store, always. `salla theme dev` does not help —
 it is for React themes.
 
+**23b. A dead demo store still appears in `salla store list`. [measured]**
+On 2026-08-04 a preview reached the point of creating draft `764214058`, then every
+request to the store returned `HTTP 410 نطاق المتجر غير موجود` — including Salla's own
+signed URL. The store (`Zaboon`) was still listed by the CLI; only its storefront domain
+was gone. Nine other stores on the same account answered `200`.
+
+The listed URL is truncated in the table, but it is `demostore.salla.sa/dev-<email
+prefix>`, and the email column is shown in full. Check before blaming the theme:
+
+```bash
+COLUMNS=400 salla store list
+curl -s -o /dev/null -w '%{http_code}\n' -L https://demostore.salla.sa/dev-<prefix>
+```
+
+A store whose `<title>` is its own dev slug has no content configured; one with a real
+title does. Pick a configured store, or the product pages render empty.
+
 **24. A preview session leaves `public/` as a development build** — `app.js` goes from
 128 KB to 352 KB with the eval devtool banner. Rebuild before committing, every time.
 
