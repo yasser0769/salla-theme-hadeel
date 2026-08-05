@@ -79,7 +79,7 @@ custom-salla-product-card,
   justify-content: center;
   border-radius: var(--r-pill);
   color: #fff;
-  background: var(--hadeel-danger);
+  background: var(--hadeel-promo);
   font-size: 10px;
   font-weight: 700;
   line-height: 1;
@@ -399,11 +399,14 @@ custom-salla-product-card,
 
 @media (max-width: 767px) {
   .s-product-card-content {
-    padding-top: 10px;
+    padding-top: 9px;
   }
 
   .s-product-card-content-title {
-    font-size: 12px;
+    min-height: 14px;
+    font-size: 10px;
+    line-height: 1.4;
+    -webkit-line-clamp: 1;
   }
 
   .s-product-card-content-subtitle {
@@ -413,11 +416,18 @@ custom-salla-product-card,
   .s-product-card-price,
   .s-product-card-sale-price h4,
   .s-product-card-starting-price h4 {
-    font-size: 12px;
+    font-size: 9.5px;
+    line-height: 1.2;
   }
 
   .s-product-card-sale-price span {
-    font-size: 10px;
+    font-size: 8.5px;
+    line-height: 1.2;
+  }
+
+  .s-product-card-content-sub {
+    margin-top: 4px;
+    gap: 5px;
   }
 
   .s-product-card-promotion-title,
@@ -425,28 +435,75 @@ custom-salla-product-card,
   .s-product-card-out-badge {
     top: 8px;
     inset-inline-start: 8px;
-    min-width: 42px;
-    min-height: 22px;
-    padding: 3px 7px;
-    font-size: 9px;
+    max-width: calc(100% - 16px);
+    min-width: 0;
+    min-height: 15px;
+    padding: 3px 6px;
+    overflow: hidden;
+    font-size: 7.5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .kalles-card-actions .s-product-card-wishlist-btn,
   .kalles-card-quick-view,
   .kalles-card-quick-add {
-    inset-inline-end: 8px;
+    width: 24px;
+    min-width: 24px;
+    height: 24px;
+    min-height: 24px;
+    inset-inline-end: auto;
+    right: auto;
+    left: 7px;
+    border-color: rgba(255, 255, 255, 0.88);
+    color: var(--hadeel-ink);
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: none;
   }
 
   .kalles-card-actions .s-product-card-wishlist-btn {
-    top: 8px;
+    top: auto;
+    bottom: 64px;
   }
 
   .kalles-card-quick-view {
-    top: 48px;
+    top: auto;
+    bottom: 36px;
   }
 
   .kalles-card-quick-add {
-    top: 88px;
+    top: auto;
+    bottom: 8px;
+  }
+
+  .kalles-card-actions .s-product-card-wishlist-btn .s-button-btn,
+  .kalles-card-actions .s-product-card-wishlist-btn .s-button-element,
+  .kalles-card-quick-add > div,
+  .kalles-card-quick-add salla-button,
+  .kalles-card-quick-add .s-button-wrap,
+  .kalles-card-quick-add .s-button-btn,
+  .kalles-card-quick-add .s-button-element,
+  .kalles-card-quick-add .s-add-product-button-main {
+    width: 24px;
+    min-width: 24px;
+    height: 24px;
+    min-height: 24px;
+  }
+
+  .kalles-card-actions i {
+    font-size: 12px;
+  }
+
+  .kalles-card-actions .s-product-card-wishlist-added .s-button-btn,
+  .kalles-card-actions .s-product-card-wishlist-added .s-button-element,
+  .kalles-card-quick-view:active,
+  .kalles-card-quick-add:active {
+    color: var(--color-primary-reverse);
+    background: var(--color-primary);
+  }
+
+  .kalles-card-actions .s-product-card-wishlist-added i {
+    color: currentColor;
   }
 }
 

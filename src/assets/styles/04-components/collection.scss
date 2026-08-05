@@ -457,7 +457,7 @@
   .collection-products .s-products-list-wrapper,
   .collection-products[data-grid-density='2'] .s-products-list-wrapper {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 28px 12px;
+    gap: 24px 12px;
   }
 
   .collection-products[data-grid-density='list'] .s-products-list-wrapper {
