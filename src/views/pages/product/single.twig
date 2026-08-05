@@ -98,10 +98,6 @@
         <div class="kalles-product-overview" id="product-{{ product.id }}">
             <div class="sidebar kalles-product-gallery">
                 {% set has_many_images = product.images|length > 1 %}
-                {% set discount_percent = null %}
-                {% if product.is_on_sale and product.regular_price > 0 %}
-                    {% set discount_percent = (((product.regular_price - product.sale_price) / product.regular_price) * 100)|round %}
-                {% endif %}
                 <salla-slider
                         id="details-slider-{{ product.id }}"
                         class="details-slider rounded-md image-slider {{ has_many_images ? 'has-multiple-images' : 'has-single-image' }}"
@@ -111,12 +107,12 @@
                         loop="false"
                         listen-to-thumbnails-option
                         show-thumbs-controls="false">
-                    {% if discount_percent %}
-                        <div class="kalles-product-discount"
+                    {% if product.is_on_sale and product.discount_percentage %}
+                        <div class="kalles-product-discount hidden"
                              data-discount-percent
                              dir="ltr"
                              aria-label="{{ trans('pages.products.kalles.discount') }}">
-                            -{{ discount_percent }}%
+                            {{ product.discount_percentage }}
                         </div>
                     {% elseif product.promotion_title %}
                         <div class="promotion-title">{{ product.promotion_title }}</div>
@@ -226,13 +222,16 @@
                 {% endif %}
 
                 {# Price #}
-                <div class="kalles-product-price price-wrapper">
+                <div class="kalles-product-price price-wrapper"
+                     data-product-pricing
+                     data-regular-price="{{ product.regular_price }}"
+                     data-sale-price="{{ product.sale_price }}">
                     <div class="kalles-product-sale-price price_is_on_sale {{ product.is_on_sale ? 'flex' : 'hidden' }}">
                         <p class="total-price">{{ product.sale_price|money }}</p>
                         <span class="before-price">{{ product.regular_price|money }}</span>
-                        <span class="kalles-product-saving {{ product.is_on_sale ? '' : 'hidden' }}">
+                        <span class="kalles-product-saving hidden">
                             {{ trans('pages.products.kalles.save') }}
-                            <span data-saving-value>{{ (product.regular_price - product.sale_price)|money }}</span>
+                            <span data-saving-value></span>
                         </span>
                     </div>
                     <div class="kalles-product-normal-price starting-or-normal-price {{ product.is_on_sale ? 'hidden' : 'flex' }}">

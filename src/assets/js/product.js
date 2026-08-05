@@ -15,6 +15,7 @@ class Product extends BasePage {
 
         this.initProductOptionValidations();
         this.initRelatedProducts();
+        this.updateSalePricing();
 
         if(imageZoom){
             // call the function when the page is ready
@@ -28,6 +29,28 @@ class Product extends BasePage {
       document.querySelector('.product-form')?.addEventListener('change', function(){
         this.reportValidity() && salla.product.getPrice(new FormData(this));
       });
+    }
+
+    updateSalePricing(regularPrice, salePrice) {
+      const priceWrapper = document.querySelector('[data-product-pricing]');
+      const regular = Number(regularPrice ?? priceWrapper?.dataset.regularPrice);
+      const sale = Number(salePrice ?? priceWrapper?.dataset.salePrice);
+      const isOnSale = Number.isFinite(regular) && Number.isFinite(sale) && regular > sale;
+      const savingAmount = isOnSale ? Number((regular - sale).toFixed(2)) : 0;
+      const discountPercent = isOnSale && regular > 0
+        ? Math.round((savingAmount / regular) * 100)
+        : 0;
+
+      document.querySelectorAll('[data-saving-value]').forEach((element) => {
+        element.innerHTML = salla.money(savingAmount);
+      });
+      document.querySelectorAll('[data-discount-percent]').forEach((element) => {
+        element.textContent = `-${discountPercent}%`;
+        element.classList.toggle('hidden', !discountPercent);
+      });
+      app.toggleClassIf('.kalles-product-saving', 'showed', 'hidden', () => savingAmount > 0);
+
+      return { isOnSale, savingAmount };
     }
 
     /**
@@ -88,30 +111,15 @@ class Product extends BasePage {
         app.element('.price-wrapper').classList.remove('hidden')
 
         let data = res.data,
-            is_on_sale = data.has_sale_price && data.regular_price > data.price,
-            saving_amount = is_on_sale
-              ? Number((data.regular_price - data.price).toFixed(2))
-              : 0,
-            discount_percent = is_on_sale && data.regular_price > 0
-              ? Math.round((saving_amount / data.regular_price) * 100)
-              : 0;
+            { isOnSale: is_on_sale } = this.updateSalePricing(data.regular_price, data.price);
 
         app.startingPriceTitle?.classList.add('hidden');
 
         app.productWeight.forEach((el) => {el.innerHTML = data.weight || ''});
         app.totalPrice.forEach((el) => {el.innerHTML = salla.money(data.price)});
         app.beforePrice.forEach((el) => {el.innerHTML = salla.money(data.regular_price)});
-        document.querySelectorAll('[data-saving-value]').forEach((el) => {
-          el.innerHTML = salla.money(saving_amount);
-        });
-        document.querySelectorAll('[data-discount-percent]').forEach((el) => {
-          el.textContent = `-${discount_percent}%`;
-          el.classList.toggle('hidden', !discount_percent);
-        });
-
         app.toggleClassIf('.price_is_on_sale','showed','hidden', ()=> is_on_sale)
         app.toggleClassIf('.starting-or-normal-price','hidden','showed', ()=> is_on_sale)
-        app.toggleClassIf('.kalles-product-saving','showed','hidden', ()=> saving_amount > 0)
 
         document.querySelectorAll('.total-price, .product-weight').forEach(el => {
           el.classList.remove('scale-pulse');
