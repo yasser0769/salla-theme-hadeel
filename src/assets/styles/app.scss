@@ -86,6 +86,9 @@
 @use './04-components/landing-page' as *;
 @use './04-components/filters' as *;
 @use './04-components/add-product-toast' as *;
+@use './04-components/storefront-system' as *;
+@use './04-components/product-card' as *;
+@use './04-components/collection' as *;
 
 @use './05-utilities/chat-bots' as *;
 @use './05-utilities/swal' as *;
@@ -94,6 +97,3 @@
 
 @use 'lite-youtube-embed/src/lite-yt-embed.css' as *;
 @use 'mmenu-light/dist/mmenu-light.css' as *;
-
-// Hadeel design system overrides are intentionally last.
-@use './04-components/storefront-system' as *;

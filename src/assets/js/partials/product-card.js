@@ -35,10 +35,11 @@ class ProductCard extends HTMLElement {
         this.startingPrice = salla.lang.get('pages.products.starting_price');
         this.addToCart = salla.lang.get('pages.cart.add_to_cart');
         this.outOfStock = salla.lang.get('pages.products.out_of_stock');
-        this.quickViewLabel = this.kallesLang('quick_view', 'Quick view');
-        this.quickAddLabel = this.kallesLang('quick_add', 'Quick add');
-        this.detailsLabel = this.kallesLang('view_details', 'View details');
-        this.newBadgeKeywords = this.kallesLang('new_badge_keywords', 'new')
+        this.quickViewLabel = this.kallesLang('quick_view');
+        this.quickAddLabel = this.kallesLang('quick_add');
+        this.detailsLabel = this.kallesLang('view_details');
+        this.wishlistLabel = this.kallesLang('add_to_wishlist');
+        this.newBadgeKeywords = this.kallesLang('new_badge_keywords')
           .split('|')
           .map((keyword) => keyword.trim().toLocaleLowerCase())
           .filter(Boolean);
@@ -183,12 +184,9 @@ class ProductCard extends HTMLElement {
    * comes from ar.json, never from a literal here. Never branch on the document
    * language: an RTL store is not necessarily an Arabic store.
    */
-  kallesLang(name, fallback) {
+  kallesLang(name) {
     const key = `pages.products.kalles.${name}`;
-
-    return typeof salla.lang.getWithDefault === 'function'
-      ? salla.lang.getWithDefault(key, fallback)
-      : (salla.lang.has(key) ? salla.lang.get(key) : fallback);
+    return salla.lang.get(key);
   }
 
   escapeHTML(str = '') {
@@ -236,9 +234,7 @@ class ProductCard extends HTMLElement {
     this.addEventListener('mouseenter', () => this.loadSecondaryImage());
     this.addEventListener('focusin', () => this.loadSecondaryImage());
     this.addEventListener('click', (event) => {
-      const quickViewButton = event.target.closest(
-        '.kalles-card-quick-view, .kalles-card-expand'
-      );
+      const quickViewButton = event.target.closest('.kalles-card-quick-view');
       if (!quickViewButton) return;
 
       event.preventDefault();
@@ -364,6 +360,25 @@ class ProductCard extends HTMLElement {
       const primaryImageUrl = this.product?.image?.url || this.product?.thumbnail || this.placeholder || '';
       const secondaryImageUrl = this.getSecondaryImageUrl();
       const usesKallesActions = !this.hideAddBtn && !this.horizontal && !this.fullImage && !this.minimal;
+      const needsOptions = !!this.product?.has_options;
+      const cardAddAction = needsOptions
+        ? `<a class="kalles-card-quick-add kalles-card-quick-add--link"
+              href="${this.escapeHTML(this.product?.url || '#')}"
+              aria-label="${this.escapeHTML(this.detailsLabel)}">
+              <i class="sicon-shopping-bag" aria-hidden="true"></i>
+              <span>${this.escapeHTML(this.detailsLabel)}</span>
+           </a>`
+        : `<salla-add-product-button
+              fill="solid"
+              loader-position="center"
+              class="kalles-card-quick-add"
+              aria-label="${this.escapeHTML(this.getAddButtonLabel())}"
+              product-id="${this.product.id}"
+              product-status="${this.product.status}"
+              product-type="${this.product.type}">
+              <i class="sicon-shopping-bag" aria-hidden="true"></i>
+              <span>${this.escapeHTML(this.quickAddLabel)}</span>
+           </salla-add-product-button>`;
       this.classList.remove('has-secondary-image');
       this.secondaryImageLoaded = false;
 
@@ -391,43 +406,24 @@ class ProductCard extends HTMLElement {
             ${!this.fullImage && !this.minimal ? this.getProductBadge() : ''}
           </a>
           ${this.fullImage ? `<a href="${this.escapeHTML(this.product?.url || '#')}" aria-label="${this.escapeHTML(this.product?.name || '')}" class="s-product-card-overlay"></a>`:''}
-          ${!this.horizontal && !this.fullImage ?
-            `<salla-button
-              shape="icon"
-              fill="outline"
-              color="light"
-              name="product-name-${this.product.id}"
-              aria-label="Add or remove to wishlist"
-              class="s-product-card-wishlist-btn animated ${this.isInWishlist ? 's-product-card-wishlist-added pulse-anime' : 'not-added un-favorited'}"
-              onclick="salla.wishlist.toggle(${this.product.id})"
-              data-id="${this.product.id}">
-              <i class="sicon-heart"></i>
-            </salla-button>` : ``
-          }
           ${usesKallesActions ? `
-            <button
-              class="kalles-card-expand"
-              type="button"
-              aria-label="${this.quickViewLabel}"
-              aria-haspopup="dialog">
-              <i class="sicon-arrow-up-left" aria-hidden="true"></i>
-            </button>
             <div class="kalles-card-actions">
-              <button class="kalles-card-quick-view" type="button" aria-label="${this.quickViewLabel}">
+              <salla-button
+                shape="icon"
+                fill="outline"
+                color="light"
+                name="product-name-${this.product.id}"
+                aria-label="${this.escapeHTML(this.wishlistLabel)}"
+                class="s-product-card-wishlist-btn animated ${this.isInWishlist ? 's-product-card-wishlist-added pulse-anime' : 'not-added un-favorited'}"
+                onclick="salla.wishlist.toggle(${this.product.id})"
+                data-id="${this.product.id}">
+                <i class="sicon-heart" aria-hidden="true"></i>
+              </salla-button>
+              <button class="kalles-card-quick-view" type="button" aria-label="${this.escapeHTML(this.quickViewLabel)}" aria-haspopup="dialog">
                 <i class="sicon-search" aria-hidden="true"></i>
-                <span>${this.quickViewLabel}</span>
+                <span>${this.escapeHTML(this.quickViewLabel)}</span>
               </button>
-              <salla-add-product-button
-                fill="solid"
-                loader-position="center"
-                class="kalles-card-quick-add"
-                aria-label="${this.getAddButtonLabel()}"
-                product-id="${this.product.id}"
-                product-status="${this.product.status}"
-                product-type="${this.product.type}">
-                <i class="sicon-shopping-bag" aria-hidden="true"></i>
-                <span>${this.quickAddLabel}</span>
-              </salla-add-product-button>
+              ${cardAddAction}
             </div>` : ''}
         </div>
         <div class="s-product-card-content">
@@ -504,7 +500,7 @@ class ProductCard extends HTMLElement {
                   fill="outline" 
                   color="light" 
                   id="card-wishlist-btn-${this.product.id}-horizontal"
-                  aria-label="Add or remove to wishlist"
+                  aria-label="${this.escapeHTML(this.wishlistLabel)}"
                   class="s-product-card-wishlist-btn animated ${this.isInWishlist ? 's-product-card-wishlist-added pulse-anime' : 'not-added un-favorited'}"
                   onclick="salla.wishlist.toggle(${this.product.id})"
                   data-id="${this.product.id}">

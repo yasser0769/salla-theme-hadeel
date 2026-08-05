@@ -81,6 +81,12 @@
     </div>
   </div>
 
+  {% if page.slug == 'product.index' %}
+    <nav class="collection-category-strip" aria-label="{{ trans('pages.products.kalles.collection_categories') }}">
+      <div class="collection-category-strip__track" data-collection-category-strip></div>
+    </nav>
+  {% endif %}
+
   {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
     <salla-localization-modal></salla-localization-modal>
   {% endif %}

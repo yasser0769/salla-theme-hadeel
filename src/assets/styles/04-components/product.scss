@@ -47,88 +47,6 @@
   }
 }
 
-// Digital Rating(SVG)---------------------------
-.s-product-card-content-pie-svg-base{ 
-  transition: stroke-dashoffset 1s linear;
-  stroke: #E8EDF2;
-  stroke-width: 2px;
-  stroke-linecap: round;
-  fill: none;
-}
-
-.s-product-card-content-pie-svg-bar{
-  fill: none;
-  stroke: var(--color-primary);
-  stroke-dasharray: 100 100;
-  stroke-dashoffset: 100;
-}
-
-.s-product-card{
-    @apply transition-all duration-300 ease-out rounded-xl;
-
-    &:hover {
-      transform: translateY(-8px) scale(1.015);
-      box-shadow: 0 22px 48px rgba(17, 24, 39, 0.18);
-    }
-
-    &-content-sub{
-      @apply justify-start gap-3;
-    }
-
-    &-starting-price{
-      @apply w-auto;
-    }
-
-    &-content-title{
-      word-break: break-word;
-      @apply text-center w-full;
-    }
-}
-
-// Force center alignment for vertical cards title (latest/products lists)
-.s-product-card-vertical {
-  .s-product-card-image {
-    width: min(82%, 360px);
-    aspect-ratio: 1 / 1;
-    height: auto;
-    flex: none;
-    margin: 1.25rem auto 0;
-    border-radius: var(--r-0);
-
-    img {
-      @apply object-cover;
-    }
-  }
-
-  .s-product-card-content {
-    @apply items-center text-center;
-  }
-
-  .s-product-card-content-main,
-  .s-product-card-content-title,
-  .s-product-card-content-title a {
-    width: 100%;
-    text-align: center;
-  }
-
-  .s-product-card-content-sub,
-  .s-product-card-sale-price,
-  .s-product-card-starting-price,
-  .s-product-card-price {
-    @apply justify-center text-center;
-  }
-
-  .s-product-card-content-footer {
-    @apply justify-center;
-  }
-}
-
-/* .s-product-card-add-btn-icon-only is owned by storefront-system.scss, which sizes it
-   from --h-icon. The 2.75rem/3rem rules that used to live here contradicted it. */
-.s-product-card-add-btn-icon-only salla-button .s-button-text {
-  @apply flex items-center justify-center;
-}
-
 .pie-wrapper {
   @apply w-[72px] h-[72px] absolute top-2.5 rtl:left-5 ltr:right-5 text-primary flex items-center justify-center;
 
@@ -257,51 +175,18 @@
   }
 }
 
-.s-product{
-    &-card{
-      &-full-image salla-add-product-button {
-        @apply bg-white rounded;
-      }
-    
-      &-wishlist-added i {
-        @apply text-red-500
-      }
-      &-fit-height.s-product-card-vertical .s-product-card-image {
-        @apply flex-none sm:flex-1;
-      }
-    }
-    
-    &-options-colors-wrapper{
-      @apply flex flex-wrap gap-4;
-      
-      .s-product-options-colors-item{
-        @apply m-0 rtl:m-0 ltr:m-0 w-auto;
-    }
+.s-product-options-colors-wrapper {
+  @apply flex flex-wrap gap-4;
+
+  .s-product-options-colors-item {
+    @apply m-0 rtl:m-0 ltr:m-0 w-auto;
   }
-}
-
-// Minimal card
-.s-product-card-minimal .s-product-card-image{
-  @apply rtl:rounded-r ltr:rounded-l;
-}
-
-.s-product-card-starting-price{
-  @apply justify-start gap-2.5;
-
-  h4{
-    @apply text-red-800;
-  }
-}
-
-.s-product-card-minimal salla-button.s-product-card-wishlist-btn{
-  @apply rtl:left-2.5 ltr:right-2.5 top-2.5;
 }
 
 /* Kalles product page — reference-accurate layout overrides. */
 .kalles-product-page,
 .kalles-product-comments,
-.kalles-related-products,
-.kalles-product-dock {
+.kalles-related-products {
   font-family: inherit;
 }
 
@@ -338,11 +223,15 @@
 }
 
 .kalles-product-overview {
+  width: 100%;
+  max-width: 1180px;
+  margin-inline: auto;
   padding: 32px 0 78px;
   display: grid;
-  grid-template-columns: minmax(0, 1.174fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 500px) minmax(0, 450px);
   align-items: start;
-  gap: clamp(var(--sp-7), 4vw, 67px);
+  justify-content: space-between;
+  gap: 40px;
   direction: ltr;
 
   > * {
@@ -365,6 +254,11 @@
     align-items: start;
     gap: var(--sp-3);
     direction: ltr;
+
+    &.has-single-image {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: 'media';
+    }
 
     .s-slider-block__title {
       display: none;
@@ -507,7 +401,7 @@
 .kalles-product-title {
   margin-bottom: 8px;
   color: var(--hadeel-ink);
-  font-size: clamp(36px, 3vw, 48px);
+  font-size: 26px;
   line-height: 1.16;
   font-weight: 900;
   letter-spacing: -0.02em;
@@ -669,17 +563,17 @@
   background: transparent;
 
   .sticky-product-bar__quantity {
-    width: 122px;
-    height: 52px;
-    flex: 0 0 122px;
+    width: 120px;
+    height: 40px;
+    flex: 0 0 120px;
     order: 2;
   }
 
   salla-quantity-input {
     display: block;
     width: 100%;
-    height: 52px;
-    min-height: 52px;
+    height: 40px;
+    min-height: 40px;
     line-height: normal;
     border: 1px solid var(--hadeel-line);
     border-radius: var(--r-pill);
@@ -688,15 +582,15 @@
 
   salla-quantity-input .s-quantity-input-container {
     width: 100%;
-    height: 52px;
-    min-height: 52px;
+    height: 40px;
+    min-height: 40px;
   }
 
   > salla-add-product-button {
-    width: 210px;
-    min-width: 210px;
-    height: 52px;
-    min-height: 52px;
+    width: 160px;
+    min-width: 160px;
+    height: 40px;
+    min-height: 40px;
     margin: 0;
     order: 1;
   }
@@ -705,16 +599,16 @@
   > salla-add-product-button salla-button,
   > salla-add-product-button .s-button-wrap {
     width: 100%;
-    height: 52px;
-    min-height: 52px;
+    height: 40px;
+    min-height: 40px;
     display: block;
   }
 
   > salla-add-product-button .s-button-btn,
   > salla-add-product-button .s-button-element {
     width: 100%;
-    height: 52px;
-    min-height: 52px;
+    height: 40px;
+    min-height: 40px;
     margin: 0;
     border-radius: var(--r-pill);
     color: var(--color-primary-reverse);
@@ -939,119 +833,12 @@
     font-weight: 800;
   }
 
-  .s-product-card {
-    border-radius: var(--r-0);
-    box-shadow: none;
-  }
-
-  .s-product-card-vertical .s-product-card-image {
-    width: 100%;
-    margin: 0;
-    border-radius: var(--r-0);
-    background: var(--hadeel-soft);
-  }
-}
-
-.kalles-product-dock {
-  position: fixed;
-  z-index: 74;
-  inset-inline: 0;
-  bottom: 0;
-  padding: 10px 0;
-  color: var(--hadeel-ink);
-  background: color-mix(in srgb, var(--hadeel-surface) 97%, transparent);
-  border-top: 1px solid var(--hadeel-line);
-  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.08);
-  transform: translateY(110%);
-  opacity: 0;
-  pointer-events: none;
-  transition: transform 260ms ease, opacity 200ms ease;
-
-  &.is-visible {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  &__inner {
-    min-height: 68px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--sp-5);
-  }
-
-  &__identity {
-    min-width: 0;
-    display: flex;
-    align-items: center;
-    gap: var(--sp-4);
-
-    img {
-      width: 64px;
-      height: 64px;
-      flex: 0 0 64px;
-      border-radius: var(--r-0);
-      object-fit: contain;
-      background: var(--hadeel-soft);
-    }
-
-    > div {
-      min-width: 0;
-      display: flex;
-      align-items: center;
-      gap: var(--sp-4);
-    }
-
-    strong {
-      max-width: 360px;
-      overflow: hidden;
-      color: var(--hadeel-ink);
-      font-size: 16px;
-      font-weight: 800;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-  }
-
-  &__price {
-    padding: var(--sp-2) var(--sp-4);
-    border-radius: var(--r-pill);
-    color: var(--hadeel-ink);
-    background: var(--hadeel-soft);
-    font-size: 15px;
-    white-space: nowrap;
-  }
-
-  &__actions {
-    display: flex;
-    align-items: center;
-    gap: var(--sp-4);
-
-    salla-quantity-input {
-      width: 150px;
-      min-height: var(--h-control-lg);
-      border: 1px solid var(--hadeel-ink);
-      border-radius: var(--r-pill);
-      overflow: hidden;
-    }
-
-    salla-button .s-button-btn {
-      min-width: 230px;
-      min-height: var(--h-control-lg);
-      padding-inline: var(--sp-6);
-      border-radius: var(--r-pill);
-      font-size: 16px;
-      font-weight: 800;
-    }
-  }
 }
 
 .dark {
   .kalles-product-page,
   .kalles-product-comments,
-  .kalles-related-products,
-  .kalles-product-dock {
+  .kalles-related-products {
     --hadeel-ink: #f5f5f5;
     --hadeel-muted: #b4b4b4;
     --hadeel-line: #333;
@@ -1062,38 +849,39 @@
 
 @media (max-width: 1100px) and (min-width: 768px) {
   .kalles-product-overview {
+    max-width: 770px;
     padding: 28px 0 24px;
     grid-template-columns: minmax(0, 1fr) 364px;
     gap: var(--sp-5);
   }
 
   .kalles-product-gallery salla-slider.details-slider {
-    grid-template-columns: 72px minmax(0, 1fr);
+    grid-template-columns: 68px minmax(0, 1fr);
     gap: 10px;
 
     .s-slider-container,
     .homeslider__slide {
-      height: auto;
+      height: 478px;
       max-height: none;
-      aspect-ratio: 4 / 5;
+      aspect-ratio: auto;
     }
 
     .s-slider-thumbs {
-      width: 72px;
+      width: 68px;
       height: 100%;
       margin: 0;
       display: block;
     }
 
     .s-slider-thumbs-container {
-      width: 72px;
+      width: 68px;
       height: 100%;
       min-height: 0;
     }
 
     .s-slider-thumbs-container .swiper-slide {
-      width: 72px;
-      height: 72px;
+      width: 68px;
+      height: 84px;
     }
   }
 
@@ -1125,11 +913,12 @@
     }
 
     > salla-add-product-button {
-      width: auto;
+      width: 230px;
       min-width: 0;
+      max-width: 230px;
       height: 48px;
       min-height: 48px;
-      flex: 1;
+      flex: 1 1 230px;
     }
 
     > salla-add-product-button .s-add-product-button-main,
@@ -1328,10 +1117,6 @@
     margin-top: 22px;
   }
 
-  .kalles-product-dock {
-    display: none;
-  }
-
   .kalles-product-native-meta {
     padding: 22px 0 32px;
   }
@@ -1377,54 +1162,8 @@
 	} 
 }
 
-.s-product-card-image img{
-  @apply opacity-100;
-}
-
-
-// Horizontal card
-.s-product-card-horizontal{
-  .s-product-card-content{
-    @apply mb-0;
-  }
-
-  @media(max-width: 480px){
-    salla-button.s-product-card-wishlist-btn{
-      @apply absolute bottom-2.5 rtl:-right-12 ltr:-left-12
-    }
-  }
-
-  salla-progress-bar{
-    @apply flex flex-col grow;
-  }
-}
-
 .s-rating-stars-reviews {
-	@apply text-gray-500
-}
-
-.s-product-card-promotion-title{
-  @apply bg-red-800 text-white;
-}
-
-.s-product-card-sale-price {
-  h4{
-    @apply text-red-800;
-  }
-
-  span{
-    @apply text-inherit;
-  }
-}
-
-// filters
-@media (max-width: 1024px){
-  salla-filters{
-    &,
-    > *{
-      @apply px-5;
-    }
-  }
+		@apply text-gray-500
 }
 
 // bank offer corner badge

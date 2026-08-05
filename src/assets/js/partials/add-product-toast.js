@@ -15,6 +15,10 @@ class HadeelCartDrawer extends HTMLElement {
     });
     this.handleClick = event => this.onDrawerClick(event);
     this.handleChange = event => this.onDrawerChange(event);
+    this.handleCartTrigger = event => {
+      event.preventDefault();
+      this.refreshCart({ open: true });
+    };
   }
 
   connectedCallback() {
@@ -34,6 +38,7 @@ class HadeelCartDrawer extends HTMLElement {
     salla.event.off("cart::item.deleted", this.handleCartChanged);
     this.drawer?.removeEventListener("click", this.handleClick);
     this.drawer?.removeEventListener("change", this.handleChange);
+    this.cartTriggers?.forEach(trigger => trigger.removeEventListener("click", this.handleCartTrigger));
     this.drawer?.remove();
   }
 
@@ -52,6 +57,8 @@ class HadeelCartDrawer extends HTMLElement {
       this.drawer?.querySelector(".s-drawer-close")?.setAttribute("aria-label", this.text.close);
       this.drawer?.addEventListener("click", this.handleClick);
       this.drawer?.addEventListener("change", this.handleChange);
+      this.cartTriggers = document.querySelectorAll(".header-cart, .mobile-toolbar__cart");
+      this.cartTriggers.forEach(trigger => trigger.addEventListener("click", this.handleCartTrigger));
 
       salla.event.on("cart::item.added", this.handleItemAdded);
       salla.event.on("cart::item.updated", this.handleCartChanged);
@@ -70,6 +77,8 @@ class HadeelCartDrawer extends HTMLElement {
       viewCart: salla.lang.get("pages.cart.view_cart"),
       completeOrder: salla.lang.get("pages.cart.complete_order"),
       emptyCart: salla.lang.get("pages.cart.empty_cart"),
+      loadError: salla.lang.get("pages.cart.drawer_load_error"),
+      retry: salla.lang.get("pages.cart.retry"),
       freeShipping: salla.lang.get("pages.cart.has_free_shipping"),
       total: salla.lang.get("pages.cart.total")
     };
@@ -111,6 +120,7 @@ class HadeelCartDrawer extends HTMLElement {
         this.renderCart(fallbackCart);
       } else {
         salla.log("HadeelCartDrawer: failed to fetch cart details", error);
+        this.renderError();
       }
     }
   }
@@ -132,6 +142,22 @@ class HadeelCartDrawer extends HTMLElement {
       </div>
     `;
     footer.innerHTML = `<salla-skeleton width="100%" height="104px"></salla-skeleton>`;
+  }
+
+  renderError() {
+    const content = this.drawer?.querySelector("[data-cart-drawer-content]");
+    const footer = this.drawer?.querySelector("[data-cart-drawer-footer]");
+    if (!content || !footer) return;
+
+    content.removeAttribute("aria-busy");
+    content.innerHTML = `
+      <div class="hadeel-cart-drawer__error" role="alert">
+        <i class="sicon-warning2" aria-hidden="true"></i>
+        <p>${this.escapeHTML(this.text.loadError)}</p>
+        <button type="button" data-cart-drawer-retry>${this.escapeHTML(this.text.retry)}</button>
+      </div>
+    `;
+    footer.innerHTML = "";
   }
 
   renderCart(cart) {
@@ -313,6 +339,13 @@ class HadeelCartDrawer extends HTMLElement {
   }
 
   async onDrawerClick(event) {
+    const retryButton = event.target.closest?.("[data-cart-drawer-retry]");
+    if (retryButton) {
+      this.renderLoading();
+      await this.refreshCart();
+      return;
+    }
+
     const removeButton = event.target.closest?.("[data-cart-drawer-remove]");
     if (removeButton) {
       const itemId = removeButton.dataset.cartDrawerRemove;

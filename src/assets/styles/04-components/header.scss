@@ -102,10 +102,6 @@ min-height: 1.4rem;
   display: inline-block
 }
 
-custom-main-menu {
-  min-height: 84px
-}
-
 salla-cart-summary {
   min-width: 73px;
   min-height: 40px
@@ -122,4 +118,3 @@ salla-user-menu{
 .s-cart-summary-count{
   @apply -top-0.5 ltr:-left-1.5 rtl:-right-1.5 bg-red-800;
 }
-

@@ -502,47 +502,6 @@
         <salla-products-slider source="related" source-value="{{product.id}}" block-title="{{trans('pages.products.similar_products')}}" display-all-url></salla-products-slider>
     </div>
 
-    <aside class="kalles-product-dock"
-           data-product-dock
-           aria-label="{{ trans('pages.products.kalles.sticky_purchase') }}"
-           aria-hidden="true">
-        <div class="container kalles-product-dock__inner">
-            <div class="kalles-product-dock__identity">
-                <img src="{{ product.image.url }}"
-                     alt="{{ product.image.alt|default(product.name) }}"
-                     width="64"
-                     height="64"
-                     loading="lazy">
-                <div>
-                    <strong>{{ product.name }}</strong>
-                    <span class="total-price kalles-product-dock__price">
-                        {{ product.starting_price ? product.starting_price|money : product.price|money }}
-                    </span>
-                </div>
-            </div>
-
-            <div class="kalles-product-dock__actions">
-                {% if not product.is_hidden_quantity and product.type != 'booking' %}
-                    <salla-quantity-input
-                            data-product-dock-quantity
-                            max="{{ product.max_quantity }}"
-                            value="1"
-                            aria-label="{{ trans('pages.products.quantity') }}">
-                    </salla-quantity-input>
-                {% endif %}
-
-                <salla-button
-                        data-product-dock-submit
-                        color="primary"
-                        shape="rounded"
-                        width="wide"
-                        type="button">
-                    <i class="sicon-shopping-bag" aria-hidden="true"></i>
-                    {{ product.add_to_cart_label }}
-                </salla-button>
-            </div>
-        </div>
-    </aside>
 {% endblock %}
 
 {% block scripts %}

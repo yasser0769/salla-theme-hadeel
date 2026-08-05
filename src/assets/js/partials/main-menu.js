@@ -12,11 +12,24 @@ class NavigationMenu extends HTMLElement {
                 return salla.api.component.getMenus()
                 .then(({ data }) => {
                     this.menus = data;
+                    this.renderCollectionCategoryStrip();
                     return this.render()
                 }).then(() => {
                     this.initializeResponsiveMenu();
                 }).catch((error) => salla.logger.error('salla-menu::Error fetching menus', error));
             });
+    }
+
+    renderCollectionCategoryStrip() {
+        const strip = document.querySelector('[data-collection-category-strip]');
+        if (!strip) return;
+
+        strip.replaceChildren(...this.menus.map((menu) => {
+            const link = document.createElement('a');
+            link.href = menu.url;
+            link.textContent = menu.title || '';
+            return link;
+        }));
     }
 
     /** 

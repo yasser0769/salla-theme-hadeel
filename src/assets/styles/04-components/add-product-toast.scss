@@ -3,12 +3,18 @@ salla-hadeel-cart-drawer {
 }
 
 .hadeel-cart-drawer {
-  --cart-drawer-width: min(440px, 100vw);
+  --cart-drawer-width: min(340px, 100vw);
 }
 
 .hadeel-cart-drawer .s-drawer-wrapper-right {
   width: var(--cart-drawer-width);
   max-width: 100%;
+}
+
+.hadeel-cart-drawer .s-drawer-wrapper-right,
+.hadeel-cart-drawer .s-drawer-wrapper-left,
+.hadeel-cart-drawer .s-drawer-overlay {
+  transition-duration: 450ms;
 }
 
 .hadeel-cart-drawer .s-drawer-body {
@@ -23,7 +29,7 @@ salla-hadeel-cart-drawer {
 }
 
 .hadeel-cart-drawer .s-drawer-header {
-  min-height: 62px;
+  min-height: 51px;
   padding: 0 var(--sp-4);
   border-bottom: 1px solid var(--hadeel-line);
 }
@@ -228,6 +234,31 @@ salla-hadeel-cart-drawer {
   text-align: center;
 }
 
+.hadeel-cart-drawer__error {
+  display: grid;
+  min-height: 280px;
+  padding: var(--sp-5);
+  place-content: center;
+  justify-items: center;
+  gap: var(--sp-3);
+  color: var(--hadeel-muted);
+  text-align: center;
+}
+
+.hadeel-cart-drawer__error i {
+  color: var(--hadeel-danger);
+  font-size: 36px;
+}
+
+.hadeel-cart-drawer__error button {
+  min-width: 120px;
+  min-height: 40px;
+  padding-inline: var(--sp-4);
+  border: 1px solid var(--hadeel-ink);
+  color: var(--hadeel-ink);
+  background: var(--hadeel-surface);
+}
+
 .hadeel-cart-drawer__empty i {
   font-size: 44px;
 }
@@ -271,7 +302,7 @@ salla-hadeel-cart-drawer {
 
 @media (max-width: 479px) {
   .hadeel-cart-drawer {
-    --cart-drawer-width: calc(100vw - 24px);
+    --cart-drawer-width: min(360px, 100vw);
   }
 }
 

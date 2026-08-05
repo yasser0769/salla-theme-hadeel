@@ -82,15 +82,17 @@
     <span>{{ trans('blocks.footer.store') }}</span>
   </a>
 
-  <a
-    class="mobile-toolbar__item {{ page.slug == 'wishlist' or page.slug == 'customer.wishlist' ? 'is-active' : '' }}"
-    href="{{ link('wishlist') }}"
-    aria-label="{{ trans('blocks.footer.wishlist') }}">
+  <button
+    class="mobile-toolbar__item"
+    type="button"
+    aria-label="{{ trans('blocks.footer.search') }}"
+    onclick="salla.event.dispatch('search::open')">
     <svg aria-hidden="true" viewBox="0 0 24 24">
-      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
     </svg>
-    <span>{{ trans('blocks.footer.wishlist') }}</span>
-  </a>
+    <span>{{ trans('blocks.footer.search') }}</span>
+  </button>
 
   <a
     class="mobile-toolbar__item mobile-toolbar__cart {{ page.slug == 'cart' ? 'is-active' : '' }}"
@@ -132,16 +134,5 @@
     </button>
   {% endif %}
 
-  <button
-    class="mobile-toolbar__item"
-    type="button"
-    aria-label="{{ trans('blocks.footer.search') }}"
-    onclick="salla.event.dispatch('search::open')">
-    <svg aria-hidden="true" viewBox="0 0 24 24">
-      <circle cx="11" cy="11" r="8"></circle>
-      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-    </svg>
-    <span>{{ trans('blocks.footer.search') }}</span>
-  </button>
 </nav>
 {% endif %}
