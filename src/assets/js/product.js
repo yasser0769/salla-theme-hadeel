@@ -89,7 +89,12 @@ class Product extends BasePage {
 
         let data = res.data,
             is_on_sale = data.has_sale_price && data.regular_price > data.price,
-            saving_amount = is_on_sale ? data.regular_price - data.price : 0;
+            saving_amount = is_on_sale
+              ? Number((data.regular_price - data.price).toFixed(2))
+              : 0,
+            discount_percent = is_on_sale && data.regular_price > 0
+              ? Math.round((saving_amount / data.regular_price) * 100)
+              : 0;
 
         app.startingPriceTitle?.classList.add('hidden');
 
@@ -98,6 +103,10 @@ class Product extends BasePage {
         app.beforePrice.forEach((el) => {el.innerHTML = salla.money(data.regular_price)});
         document.querySelectorAll('[data-saving-value]').forEach((el) => {
           el.innerHTML = salla.money(saving_amount);
+        });
+        document.querySelectorAll('[data-discount-percent]').forEach((el) => {
+          el.textContent = `-${discount_percent}%`;
+          el.classList.toggle('hidden', !discount_percent);
         });
 
         app.toggleClassIf('.price_is_on_sale','showed','hidden', ()=> is_on_sale)

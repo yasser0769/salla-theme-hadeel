@@ -68,20 +68,28 @@ class HadeelCartDrawer extends HTMLElement {
 
   loadTranslations() {
     this.text = {
-      title: salla.lang.get("pages.cart.drawer_title"),
-      close: salla.lang.get("pages.cart.close_drawer"),
-      remove: salla.lang.get("pages.cart.remove_item"),
-      note: salla.lang.get("pages.cart.item_note"),
-      notePlaceholder: salla.lang.get("pages.cart.item_note_placeholder"),
-      shippingTaxNotice: salla.lang.get("pages.cart.shipping_tax_notice"),
-      viewCart: salla.lang.get("pages.cart.view_cart"),
+      title: this.resolveTranslation("textTitle", "pages.cart.drawer_title"),
+      close: this.resolveTranslation("textClose", "pages.cart.close_drawer"),
+      remove: this.resolveTranslation("textRemove", "pages.cart.remove_item"),
+      note: this.resolveTranslation("textNote", "pages.cart.item_note"),
+      notePlaceholder: this.resolveTranslation("textNotePlaceholder", "pages.cart.item_note_placeholder"),
+      shippingTaxNotice: this.resolveTranslation("textShippingTaxNotice", "pages.cart.shipping_tax_notice"),
+      viewCart: this.resolveTranslation("textViewCart", "pages.cart.view_cart"),
       completeOrder: salla.lang.get("pages.cart.complete_order"),
       emptyCart: salla.lang.get("pages.cart.empty_cart"),
-      loadError: salla.lang.get("pages.cart.drawer_load_error"),
-      retry: salla.lang.get("pages.cart.retry"),
+      loadError: this.resolveTranslation("textLoadError", "pages.cart.drawer_load_error"),
+      retry: this.resolveTranslation("textRetry", "pages.cart.retry"),
       freeShipping: salla.lang.get("pages.cart.has_free_shipping"),
       total: salla.lang.get("pages.cart.total")
     };
+  }
+
+  resolveTranslation(datasetKey, translationKey) {
+    const serverTranslation = this.dataset[datasetKey];
+    if (serverTranslation && serverTranslation !== translationKey) return serverTranslation;
+
+    const clientTranslation = salla.lang.get(translationKey);
+    return clientTranslation !== translationKey ? clientTranslation : "";
   }
 
   renderShell() {
@@ -213,6 +221,8 @@ class HadeelCartDrawer extends HTMLElement {
     const options = this.extractOptions(item.options);
     const total = item.detailed_offers?.length ? item.total_special_price : item.total;
     const note = this.escapeHTML(item.notes || "");
+    const removeText = this.escapeHTML(this.text.remove);
+    const removeLabel = removeText || productName;
     const maxAttribute = Number.isFinite(maxQuantity) && maxQuantity > 0
       ? ` max="${maxQuantity}"`
       : "";
@@ -224,13 +234,6 @@ class HadeelCartDrawer extends HTMLElement {
             <a class="hadeel-cart-drawer__image" href="${productUrl}">
               <img src="${productImage}" alt="${productName}" loading="lazy">
             </a>
-            <button
-              type="button"
-              class="hadeel-cart-drawer__remove"
-              data-cart-drawer-remove="${id}"
-              aria-label="${this.escapeHTML(this.text.remove)}">
-              ${this.escapeHTML(this.text.remove)}
-            </button>
           </div>
 
           <div class="hadeel-cart-drawer__details">
@@ -239,13 +242,22 @@ class HadeelCartDrawer extends HTMLElement {
               <span>${this.escapeHTML(option.name)}${option.hideValue ? "" : `: ${this.escapeHTML(option.value)}`}</span>
             `).join("")}</div>` : ""}
             <strong class="hadeel-cart-drawer__price">${salla.money(total)}</strong>
-            ${item.is_hidden_quantity || item.type === "donating"
-              ? `<span class="hadeel-cart-drawer__quantity-static">${salla.helpers.number(quantity)}</span>`
-              : `<salla-quantity-input
-                   cart-item-id="${id}"
-                   name="quantity"
-                   value="${quantity}"${maxAttribute}>
-                 </salla-quantity-input>`}
+            <div class="hadeel-cart-drawer__actions">
+              ${item.is_hidden_quantity || item.type === "donating"
+                ? `<span class="hadeel-cart-drawer__quantity-static">${salla.helpers.number(quantity)}</span>`
+                : `<salla-quantity-input
+                     cart-item-id="${id}"
+                     name="quantity"
+                     value="${quantity}"${maxAttribute}>
+                   </salla-quantity-input>`}
+              <button
+                type="button"
+                class="hadeel-cart-drawer__remove"
+                data-cart-drawer-remove="${id}"
+                aria-label="${removeLabel}">
+                ${removeText || '<i class="sicon-trash" aria-hidden="true"></i>'}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -263,12 +275,21 @@ class HadeelCartDrawer extends HTMLElement {
   }
 
   renderFooter(cart) {
+    const taxNotice = this.text.shippingTaxNotice
+      ? `<p class="hadeel-cart-drawer__tax-notice">${this.escapeHTML(this.text.shippingTaxNotice)}</p>`
+      : "";
+    const viewCart = this.text.viewCart
+      ? `<a class="hadeel-cart-drawer__view-cart" href="${this.escapeHTML(salla.url.get("cart"))}">
+           ${this.escapeHTML(this.text.viewCart)}
+         </a>`
+      : "";
+
     return `
       <div class="hadeel-cart-drawer__total">
         <strong>${this.escapeHTML(this.text.total)}</strong>
         <strong>${salla.money(cart.total)}</strong>
       </div>
-      <p class="hadeel-cart-drawer__tax-notice">${this.escapeHTML(this.text.shippingTaxNotice)}</p>
+      ${taxNotice}
       <salla-button
         type="button"
         width="wide"
@@ -276,9 +297,7 @@ class HadeelCartDrawer extends HTMLElement {
         data-cart-drawer-submit>
         ${this.escapeHTML(this.text.completeOrder)}
       </salla-button>
-      <a class="hadeel-cart-drawer__view-cart" href="${this.escapeHTML(salla.url.get("cart"))}">
-        ${this.escapeHTML(this.text.viewCart)}
-      </a>
+      ${viewCart}
     `;
   }
 

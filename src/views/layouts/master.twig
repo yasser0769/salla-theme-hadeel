@@ -122,7 +122,17 @@
 {% hook 'body:end' %}
 {% if theme.settings.get('enable_add_product_toast', true) %}
     {# The setting id is retained for backwards compatibility with saved merchant choices. #}
-    <salla-hadeel-cart-drawer></salla-hadeel-cart-drawer>
+    <salla-hadeel-cart-drawer
+        data-text-title="{{ trans('pages.cart.drawer_title') }}"
+        data-text-close="{{ trans('pages.cart.close_drawer') }}"
+        data-text-remove="{{ trans('pages.cart.remove_item') }}"
+        data-text-note="{{ trans('pages.cart.item_note') }}"
+        data-text-note-placeholder="{{ trans('pages.cart.item_note_placeholder') }}"
+        data-text-shipping-tax-notice="{{ trans('pages.cart.shipping_tax_notice') }}"
+        data-text-view-cart="{{ trans('pages.cart.view_cart') }}"
+        data-text-load-error="{{ trans('pages.cart.drawer_load_error') }}"
+        data-text-retry="{{ trans('pages.cart.retry') }}">
+    </salla-hadeel-cart-drawer>
 {% endif %}
 <script defer crossorigin="anonymous" src="{{ 'app.js' | asset }}"></script>
 

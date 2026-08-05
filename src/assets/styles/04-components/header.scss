@@ -102,19 +102,6 @@ min-height: 1.4rem;
   display: inline-block
 }
 
-salla-cart-summary {
-  min-width: 73px;
-  min-height: 40px
-}
 salla-user-menu{
   @apply shrink-0;
-}
-
-// cart summary
-.s-cart-summary-total{
-  @apply text-black font-[600];
-}
-
-.s-cart-summary-count{
-  @apply -top-0.5 ltr:-left-1.5 rtl:-right-1.5 bg-red-800;
 }
