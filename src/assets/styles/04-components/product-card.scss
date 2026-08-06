@@ -100,7 +100,7 @@ custom-salla-product-card,
   pointer-events: auto;
 }
 
-.kalles-card-actions .s-product-card-wishlist-btn,
+.kalles-card-wishlist.s-product-card-wishlist-btn,
 .kalles-card-quick-view,
 .kalles-card-quick-add {
   position: absolute;
@@ -119,12 +119,12 @@ custom-salla-product-card,
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.07);
 }
 
-.kalles-card-actions .s-product-card-wishlist-btn {
+.kalles-card-wishlist.s-product-card-wishlist-btn {
   top: 12px;
 }
 
-.kalles-card-actions .s-product-card-wishlist-btn .s-button-btn,
-.kalles-card-actions .s-product-card-wishlist-btn .s-button-element {
+.kalles-card-wishlist .s-button-btn,
+.kalles-card-wishlist .s-button-element {
   width: 32px;
   min-width: 32px;
   height: 32px;
@@ -163,11 +163,13 @@ custom-salla-product-card,
   background: transparent;
 }
 
-.kalles-card-actions i {
+.kalles-card-wishlist i,
+.kalles-card-quick-view i,
+.kalles-card-quick-add i {
   font-size: 15px;
 }
 
-.kalles-card-actions .s-button-text span,
+.kalles-card-wishlist .s-button-text span,
 .kalles-card-quick-view span,
 .kalles-card-quick-add span {
   display: none;
@@ -308,7 +310,7 @@ custom-salla-product-card,
     transform: none;
   }
 
-  .kalles-card-actions .s-product-card-wishlist-btn {
+  .kalles-card-wishlist.s-product-card-wishlist-btn {
     top: 12px;
     opacity: 0;
     transform: translateY(-6px);
@@ -354,7 +356,7 @@ custom-salla-product-card,
     border-radius: var(--r-pill);
   }
 
-  .kalles-card-actions .s-button-text span,
+  .kalles-card-wishlist .s-button-text span,
   .kalles-card-quick-view span,
   .kalles-card-quick-add span {
     display: inline;
@@ -374,15 +376,15 @@ custom-salla-product-card,
 
   .s-product-card-entry:hover .kalles-card-quick-view,
   .s-product-card-entry:hover .kalles-card-quick-add,
-  .s-product-card-entry:hover .s-product-card-wishlist-btn,
+  .s-product-card-entry:hover .kalles-card-wishlist,
   .s-product-card-entry:focus-within .kalles-card-quick-view,
   .s-product-card-entry:focus-within .kalles-card-quick-add,
-  .s-product-card-entry:focus-within .s-product-card-wishlist-btn {
+  .s-product-card-entry:focus-within .kalles-card-wishlist {
     opacity: 1;
   }
 
-  .s-product-card-entry:hover .s-product-card-wishlist-btn,
-  .s-product-card-entry:focus-within .s-product-card-wishlist-btn {
+  .s-product-card-entry:hover .kalles-card-wishlist,
+  .s-product-card-entry:focus-within .kalles-card-wishlist {
     transform: none;
   }
 
@@ -408,7 +410,7 @@ custom-salla-product-card,
     white-space: nowrap;
   }
 
-  .kalles-card-actions .s-product-card-wishlist-btn,
+  .kalles-card-wishlist.s-product-card-wishlist-btn,
   .kalles-card-quick-view,
   .kalles-card-quick-add {
     width: 36px;
@@ -422,7 +424,7 @@ custom-salla-product-card,
     box-shadow: none;
   }
 
-  .kalles-card-actions .s-product-card-wishlist-btn {
+  .kalles-card-wishlist.s-product-card-wishlist-btn {
     top: auto;
     bottom: 96px;
   }
@@ -437,8 +439,8 @@ custom-salla-product-card,
     bottom: 12px;
   }
 
-  .kalles-card-actions .s-product-card-wishlist-btn .s-button-btn,
-  .kalles-card-actions .s-product-card-wishlist-btn .s-button-element,
+  .kalles-card-wishlist .s-button-btn,
+  .kalles-card-wishlist .s-button-element,
   .kalles-card-quick-add > div,
   .kalles-card-quick-add salla-button,
   .kalles-card-quick-add .s-button-wrap,
@@ -451,15 +453,15 @@ custom-salla-product-card,
     min-height: 36px;
   }
 
-  .kalles-card-actions .s-product-card-wishlist-added .s-button-btn,
-  .kalles-card-actions .s-product-card-wishlist-added .s-button-element,
+  .kalles-card-wishlist.s-product-card-wishlist-added .s-button-btn,
+  .kalles-card-wishlist.s-product-card-wishlist-added .s-button-element,
   .kalles-card-quick-view:active,
   .kalles-card-quick-add:active {
     color: var(--color-primary-reverse);
     background: var(--color-primary);
   }
 
-  .kalles-card-actions .s-product-card-wishlist-added i {
+  .kalles-card-wishlist.s-product-card-wishlist-added i {
     color: currentColor;
   }
 }
@@ -467,7 +469,9 @@ custom-salla-product-card,
 @media (prefers-reduced-motion: reduce) {
   .s-product-card-image img,
   .kalles-card-secondary-image,
-  .kalles-card-actions * {
+  .kalles-card-wishlist *,
+  .kalles-card-quick-view *,
+  .kalles-card-quick-add * {
     transition: none;
   }
 }

@@ -421,7 +421,7 @@ class ProductCard extends HTMLElement {
                 color="light"
                 name="product-name-${this.product.id}"
                 aria-label="${this.escapeHTML(this.wishlistLabel)}"
-                class="s-product-card-wishlist-btn animated ${this.isInWishlist ? 's-product-card-wishlist-added pulse-anime' : 'not-added un-favorited'}"
+                class="kalles-card-wishlist s-product-card-wishlist-btn animated ${this.isInWishlist ? 's-product-card-wishlist-added pulse-anime' : 'not-added un-favorited'}"
                 onclick="salla.wishlist.toggle(${this.product.id})"
                 data-id="${this.product.id}">
                 <i class="sicon-heart" aria-hidden="true"></i>
