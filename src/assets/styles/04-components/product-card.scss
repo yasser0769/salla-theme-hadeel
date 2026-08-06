@@ -393,49 +393,16 @@ custom-salla-product-card,
 }
 
 @media (max-width: 767px) {
-  .s-product-card-content {
-    padding-top: 9px;
-  }
-
-  .s-product-card-content-title {
-    min-height: 14px;
-    font-size: 10px;
-    line-height: 1.4;
-    -webkit-line-clamp: 1;
-  }
-
   .s-product-card-content-subtitle {
     display: none;
   }
 
-  .s-product-card-price,
-  .s-product-card-sale-price h4,
-  .s-product-card-starting-price h4 {
-    font-size: 9.5px;
-    line-height: 1.2;
-  }
-
-  .s-product-card-sale-price span {
-    font-size: 8.5px;
-    line-height: 1.2;
-  }
-
-  .s-product-card-content-sub {
-    margin-top: 4px;
-    gap: 5px;
-  }
-
+  /* A promotion title has to stay on one line inside a 174px card. */
   .s-product-card-promotion-title,
   .s-product-card-quantity,
   .s-product-card-out-badge {
-    top: 8px;
-    inset-inline-start: 8px;
-    max-width: calc(100% - 16px);
-    min-width: 0;
-    min-height: 15px;
-    padding: 3px 6px;
+    max-width: calc(100% - 24px);
     overflow: hidden;
-    font-size: 7.5px;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
@@ -443,13 +410,11 @@ custom-salla-product-card,
   .kalles-card-actions .s-product-card-wishlist-btn,
   .kalles-card-quick-view,
   .kalles-card-quick-add {
-    width: 24px;
-    min-width: 24px;
-    height: 24px;
-    min-height: 24px;
-    inset-inline-end: auto;
-    right: auto;
-    left: 7px;
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+    min-height: 36px;
+    inset-inline-start: 10px;
     border-color: rgba(255, 255, 255, 0.88);
     color: var(--hadeel-ink);
     background: rgba(255, 255, 255, 0.72);
@@ -458,17 +423,17 @@ custom-salla-product-card,
 
   .kalles-card-actions .s-product-card-wishlist-btn {
     top: auto;
-    bottom: 64px;
+    bottom: 96px;
   }
 
   .kalles-card-quick-view {
     top: auto;
-    bottom: 36px;
+    bottom: 54px;
   }
 
   .kalles-card-quick-add {
     top: auto;
-    bottom: 8px;
+    bottom: 12px;
   }
 
   .kalles-card-actions .s-product-card-wishlist-btn .s-button-btn,
@@ -479,14 +444,10 @@ custom-salla-product-card,
   .kalles-card-quick-add .s-button-btn,
   .kalles-card-quick-add .s-button-element,
   .kalles-card-quick-add .s-add-product-button-main {
-    width: 24px;
-    min-width: 24px;
-    height: 24px;
-    min-height: 24px;
-  }
-
-  .kalles-card-actions i {
-    font-size: 12px;
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+    min-height: 36px;
   }
 
   .kalles-card-actions .s-product-card-wishlist-added .s-button-btn,
