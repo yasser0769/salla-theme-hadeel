@@ -117,7 +117,12 @@ class Products extends BasePage {
         if (!this.summary) return;
 
         salla.event.on('salla-products-list::products.fetched', (response) => {
-            if (response?.title) this.summary.textContent = response.title;
+            /**
+             * Salla wraps the count in a <span> so it can be styled apart from the
+             * sentence around it, so this has to be parsed as markup. textContent
+             * printed the tags on the page.
+             */
+            if (response?.title) this.summary.innerHTML = response.title;
         });
     }
 }
