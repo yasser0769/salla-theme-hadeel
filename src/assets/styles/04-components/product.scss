@@ -298,8 +298,8 @@
 
     .s-slider-prev,
     .s-slider-next {
-      width: 40px;
-      height: 40px;
+      width: 34px;
+      height: 34px;
       border: 0;
       border-radius: var(--r-pill);
       color: var(--hadeel-ink);
@@ -347,15 +347,17 @@
   }
 
   .kalles-product-discount {
-    width: 50px;
-    height: 32px;
-    display: grid;
-    place-items: center;
-    border-radius: var(--r-0);
-    color: var(--color-primary-reverse);
-    background: var(--hadeel-accent);
-    font-size: 12px;
-    font-weight: 800;
+    min-width: 54px;
+    height: 26px;
+    padding: 0 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--r-pill);
+    color: #fff;
+    background: var(--hadeel-promo);
+    font-size: 11px;
+    font-weight: 700;
   }
 
   .promotion-title {
@@ -420,25 +422,19 @@
     gap: 6px 10px;
   }
 
+  /* Price/Current — the design system prices in ink, not in the merchant accent. */
   .total-price {
-    color: var(--hadeel-accent);
-    font-size: 24px;
-    line-height: 1.25;
-    font-weight: 800;
+    color: var(--hadeel-ink);
+    font-size: 26px;
+    line-height: 1.23;
+    font-weight: 900;
   }
 
-  .kalles-product-sale-price .total-price {
-    color: var(--hadeel-accent);
-  }
-
-  .kalles-product-normal-price .total-price {
-    color: var(--hadeel-accent);
-  }
-
+  /* Price/Previous */
   .before-price {
     color: var(--hadeel-muted);
-    font-size: 14px;
-    line-height: 1.25;
+    font-size: 19px;
+    line-height: 1.26;
     text-decoration: line-through;
   }
 
@@ -529,7 +525,7 @@
   }
 
   salla-product-options .s-product-options-grid-mode-span {
-    min-width: 40px;
+    min-width: 46px;
     min-height: 40px;
     padding: 8px 12px;
     border-color: var(--hadeel-line);
@@ -563,22 +559,22 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
   direction: ltr;
   background: transparent;
 
   .sticky-product-bar__quantity {
-    width: 120px;
-    height: 40px;
-    flex: 0 0 120px;
+    width: 118px;
+    height: 48px;
+    flex: 0 0 118px;
     order: 2;
   }
 
   salla-quantity-input {
     display: block;
     width: 100%;
-    height: 40px;
-    min-height: 40px;
+    height: 48px;
+    min-height: 48px;
     line-height: normal;
     border: 1px solid var(--hadeel-line);
     border-radius: var(--r-pill);
@@ -588,16 +584,17 @@
 
   salla-quantity-input .s-quantity-input-container {
     width: 100%;
-    height: 40px;
-    min-height: 40px;
+    height: 48px;
+    min-height: 48px;
   }
 
+  /* The design sizes the button off the row, not off a fixed width. */
   > salla-add-product-button {
-    width: 160px;
     min-width: 160px;
-    height: 40px;
-    min-height: 40px;
+    height: 48px;
+    min-height: 48px;
     margin: 0;
+    flex: 1 1 auto;
     order: 1;
   }
 
@@ -605,16 +602,16 @@
   > salla-add-product-button salla-button,
   > salla-add-product-button .s-button-wrap {
     width: 100%;
-    height: 40px;
-    min-height: 40px;
+    height: 48px;
+    min-height: 48px;
     display: block;
   }
 
   > salla-add-product-button .s-button-btn,
   > salla-add-product-button .s-button-element {
     width: 100%;
-    height: 40px;
-    min-height: 40px;
+    height: 48px;
+    min-height: 48px;
     margin: 0;
     border-radius: var(--r-pill);
     color: var(--color-primary-reverse);
@@ -634,15 +631,15 @@
   order: 3;
 
   salla-button {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
   }
 
   salla-button .s-button-btn {
-    width: 40px;
-    min-width: 40px;
-    height: 40px;
-    min-height: 40px;
+    width: 48px;
+    min-width: 48px;
+    height: 48px;
+    min-height: 48px;
     padding: 0;
     border: 1px solid var(--hadeel-line);
     border-radius: var(--r-pill);
@@ -1006,11 +1003,10 @@
     }
 
     .kalles-product-discount {
-      width: 48px;
+      min-width: 48px;
       height: 24px;
       top: 16px;
       inset-inline-start: 16px;
-      font-size: 11px;
     }
   }
 
