@@ -75,7 +75,8 @@
       text-align: center;
       position: absolute;
       top: 50%;
-      inset-inline-start: 50%;
+      /* Centering is direction-agnostic, so it stays physical in both directions. */
+      left: 50%;
       transform: translate(-50%, -50%);
       line-height: 1;
 

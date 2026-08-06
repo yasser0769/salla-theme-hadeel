@@ -104,7 +104,7 @@ custom-salla-product-card,
 .kalles-card-quick-view,
 .kalles-card-quick-add {
   position: absolute;
-  inset-inline-end: 12px;
+  inset-inline-start: 12px;
   width: 32px;
   min-width: 32px;
   height: 32px;
@@ -309,16 +309,16 @@ custom-salla-product-card,
 
   .kalles-card-actions .s-product-card-wishlist-btn {
     top: 12px;
-    inset-inline-end: 12px;
     opacity: 0;
     transform: translateY(-6px);
     transition: opacity 180ms ease, transform 180ms ease;
   }
 
+  /* Centering is direction-agnostic, so it stays physical in both directions. */
   .kalles-card-quick-view,
   .kalles-card-quick-add {
-    inset-inline-start: 50%;
-    inset-inline-end: auto;
+    left: 50%;
+    right: auto;
     width: 140px;
     min-width: 140px;
     height: 40px;
@@ -328,11 +328,6 @@ custom-salla-product-card,
     opacity: 0;
     transform: translate(-50%, -50%);
     transition: opacity 180ms ease, background-color 180ms ease;
-  }
-
-  [dir='rtl'] .kalles-card-quick-view,
-  [dir='rtl'] .kalles-card-quick-add {
-    transform: translate(50%, -50%);
   }
 
   .kalles-card-quick-view {

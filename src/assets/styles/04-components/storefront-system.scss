@@ -704,7 +704,7 @@ body .s-button-btn {
   width: var(--h-icon);
   height: var(--h-icon);
   top: var(--sp-4);
-  inset-inline-start: var(--sp-4);
+  inset-inline-end: var(--sp-4);
   border: 1px solid var(--hadeel-line);
   border-radius: var(--r-pill);
   color: var(--hadeel-ink);
@@ -1365,7 +1365,7 @@ body .s-button-btn {
     place-items: center;
     position: absolute;
     top: -5px;
-    inset-inline-end: -9px;
+    inset-inline-start: -9px;
     font: 500 8px/15px Arial, sans-serif;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
   }
