@@ -417,7 +417,13 @@ custom-salla-product-card,
     min-width: 36px;
     height: 36px;
     min-height: 36px;
-    inset-inline-start: 10px;
+    /*
+     * The stack sits opposite the badge so the two cannot collide. Figma puts
+     * both on the same edge (Mobile Actions 119:1036 at the inline-start), which
+     * only works there because the mock has no long promotion titles.
+     */
+    inset-inline-start: auto;
+    inset-inline-end: 10px;
     border-color: rgba(255, 255, 255, 0.88);
     color: var(--hadeel-ink);
     background: rgba(255, 255, 255, 0.72);
