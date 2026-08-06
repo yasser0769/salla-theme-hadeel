@@ -100,9 +100,14 @@ custom-salla-product-card,
   pointer-events: auto;
 }
 
-.kalles-card-wishlist.s-product-card-wishlist-btn,
-.kalles-card-quick-view,
-.kalles-card-quick-add {
+/*
+ * Scoped to direct children: salla-button copies the host's classes onto the
+ * <button> it renders inside, so a descendant selector positions that inner
+ * button too and it flies out of its own circle.
+ */
+.kalles-card-actions > .kalles-card-wishlist,
+.kalles-card-actions > .kalles-card-quick-view,
+.kalles-card-actions > .kalles-card-quick-add {
   position: absolute;
   inset-inline-start: 12px;
   width: 32px;
@@ -119,7 +124,7 @@ custom-salla-product-card,
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.07);
 }
 
-.kalles-card-wishlist.s-product-card-wishlist-btn {
+.kalles-card-actions > .kalles-card-wishlist {
   top: 12px;
 }
 
@@ -136,11 +141,11 @@ custom-salla-product-card,
   background: transparent;
 }
 
-.kalles-card-quick-view {
+.kalles-card-actions > .kalles-card-quick-view {
   top: 52px;
 }
 
-.kalles-card-quick-add {
+.kalles-card-actions > .kalles-card-quick-add {
   top: 92px;
   color: #fff;
   background: var(--hadeel-ink);
@@ -310,7 +315,7 @@ custom-salla-product-card,
     transform: none;
   }
 
-  .kalles-card-wishlist.s-product-card-wishlist-btn {
+  .kalles-card-actions > .kalles-card-wishlist {
     top: 12px;
     opacity: 0;
     transform: translateY(-6px);
@@ -318,8 +323,8 @@ custom-salla-product-card,
   }
 
   /* Centering is direction-agnostic, so it stays physical in both directions. */
-  .kalles-card-quick-view,
-  .kalles-card-quick-add {
+  .kalles-card-actions > .kalles-card-quick-view,
+  .kalles-card-actions > .kalles-card-quick-add {
     left: 50%;
     right: auto;
     width: 140px;
@@ -333,11 +338,11 @@ custom-salla-product-card,
     transition: opacity 180ms ease, background-color 180ms ease;
   }
 
-  .kalles-card-quick-view {
+  .kalles-card-actions > .kalles-card-quick-view {
     top: calc(50% - 24px);
   }
 
-  .kalles-card-quick-add {
+  .kalles-card-actions > .kalles-card-quick-add {
     top: calc(50% + 24px);
     color: var(--color-primary-reverse, #fff);
     background: var(--color-primary);
@@ -410,9 +415,9 @@ custom-salla-product-card,
     white-space: nowrap;
   }
 
-  .kalles-card-wishlist.s-product-card-wishlist-btn,
-  .kalles-card-quick-view,
-  .kalles-card-quick-add {
+  .kalles-card-actions > .kalles-card-wishlist,
+  .kalles-card-actions > .kalles-card-quick-view,
+  .kalles-card-actions > .kalles-card-quick-add {
     width: 36px;
     min-width: 36px;
     height: 36px;
@@ -430,17 +435,17 @@ custom-salla-product-card,
     box-shadow: none;
   }
 
-  .kalles-card-wishlist.s-product-card-wishlist-btn {
+  .kalles-card-actions > .kalles-card-wishlist {
     top: auto;
     bottom: 96px;
   }
 
-  .kalles-card-quick-view {
+  .kalles-card-actions > .kalles-card-quick-view {
     top: auto;
     bottom: 54px;
   }
 
-  .kalles-card-quick-add {
+  .kalles-card-actions > .kalles-card-quick-add {
     top: auto;
     bottom: 12px;
   }
