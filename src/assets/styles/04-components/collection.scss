@@ -22,8 +22,10 @@
   min-height: 48px;
   margin-inline: auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 32px;
+  justify-content: center;
+  /* `safe` keeps the first link reachable once the row overflows and scrolls. */
+  justify-content: safe center;
+  gap: 34px;
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -118,7 +120,7 @@
 }
 
 .collection-content {
-  padding-top: 32px;
+  padding-top: 48px;
 }
 
 .collection-toolbar {
@@ -184,29 +186,33 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 18px;
+  gap: 6px;
 }
 
 .collection-toolbar__density button,
 .collection-toolbar__filter {
   display: inline-flex;
-  height: 40px;
-  min-height: 40px;
   padding: 0;
   align-items: center;
   justify-content: center;
-  border: 0;
+  border: 1px solid transparent;
   color: var(--hadeel-muted);
   background: transparent;
 }
 
 .collection-toolbar__density button {
-  width: 24px;
+  width: 34px;
+  height: 34px;
+  min-height: 34px;
 }
 
 .collection-toolbar__density button.is-active,
 .collection-toolbar__filter:hover {
   color: var(--hadeel-ink);
+}
+
+.collection-toolbar__density button.is-active {
+  border-color: var(--hadeel-ink);
 }
 
 .density-icon {
@@ -245,15 +251,17 @@
 }
 
 .collection-toolbar__filter {
+  height: 40px;
+  min-height: 40px;
   justify-self: end;
   gap: 8px;
   font-size: 14px;
 }
 
 .collection-results-summary {
-  min-height: 58px;
+  min-height: 86px;
   margin: 0;
-  padding-top: 18px;
+  padding-block: 34px;
   color: var(--hadeel-muted);
   font-size: 13px;
   text-align: start;
@@ -268,7 +276,7 @@
   display: grid;
   margin: 0;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 34px 24px;
+  gap: 42px 34px;
 }
 
 .collection-products[data-grid-density='2'] .s-products-list-wrapper {
@@ -415,24 +423,12 @@
 
   .collection-toolbar {
     min-height: 56px;
-    grid-template-columns: minmax(0, 1fr) auto auto;
     gap: 14px;
   }
 
   .collection-toolbar__sort,
   .collection-toolbar__sort select {
-    width: 100%;
-  }
-
-  .collection-toolbar__sort select {
-    height: 36px;
-    min-height: 36px;
-    padding-inline: 12px 34px;
-    font-size: 11px;
-  }
-
-  .collection-toolbar__density {
-    gap: 12px;
+    width: 110px;
   }
 
   .collection-toolbar__density button[data-grid-density='3'],
@@ -440,18 +436,10 @@
     display: none;
   }
 
-  .collection-toolbar__filter {
-    width: 28px;
-  }
-
-  .collection-toolbar__filter span {
-    display: none;
-  }
-
   .collection-results-summary {
-    min-height: 50px;
-    padding-top: 14px;
-    font-size: 11px;
+    min-height: 62px;
+    padding-block: 22px;
+    font-size: 12px;
   }
 
   .collection-products .s-products-list-wrapper,
