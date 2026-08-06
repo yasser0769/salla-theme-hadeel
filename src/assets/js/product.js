@@ -31,11 +31,19 @@ class Product extends BasePage {
       });
     }
 
-    updateSalePricing(regularPrice, salePrice) {
-      const priceWrapper = document.querySelector('[data-product-pricing]');
-      const regular = Number(regularPrice ?? priceWrapper?.dataset.regularPrice);
-      const sale = Number(salePrice ?? priceWrapper?.dataset.salePrice);
-      const isOnSale = Number.isFinite(regular) && Number.isFinite(sale) && regular > sale;
+    /**
+     * Reads the rendered pricing block on first paint, or takes an explicit payload from
+     * `product::price.updated`. The two sources are never mixed: falling back to the
+     * wrapper for a field the API left out would measure the selected variant against the
+     * page's base price and invent a discount. `hasSalePrice` mirrors Salla's own flag,
+     * because a price lower than the regular price is not by itself a sale.
+     */
+    updateSalePricing(pricing) {
+      const {regular, sale, hasSalePrice} = pricing || this.readRenderedPricing();
+      const isOnSale = hasSalePrice
+        && Number.isFinite(regular)
+        && Number.isFinite(sale)
+        && regular > sale;
       const savingAmount = isOnSale ? Number((regular - sale).toFixed(2)) : 0;
       const discountPercent = isOnSale && regular > 0
         ? Math.round((savingAmount / regular) * 100)
@@ -51,6 +59,16 @@ class Product extends BasePage {
       app.toggleClassIf('.kalles-product-saving', 'showed', 'hidden', () => savingAmount > 0);
 
       return { isOnSale, savingAmount };
+    }
+
+    readRenderedPricing() {
+      const priceWrapper = document.querySelector('[data-product-pricing]');
+
+      return {
+        regular: Number(priceWrapper?.dataset.regularPrice),
+        sale: Number(priceWrapper?.dataset.salePrice),
+        hasSalePrice: priceWrapper?.dataset.isOnSale === 'true',
+      };
     }
 
     /**
@@ -111,7 +129,11 @@ class Product extends BasePage {
         app.element('.price-wrapper').classList.remove('hidden')
 
         let data = res.data,
-            { isOnSale: is_on_sale } = this.updateSalePricing(data.regular_price, data.price);
+            { isOnSale: is_on_sale } = this.updateSalePricing({
+              regular: Number(data.regular_price),
+              sale: Number(data.price),
+              hasSalePrice: !!data.has_sale_price,
+            });
 
         app.startingPriceTitle?.classList.add('hidden');
 

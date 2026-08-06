@@ -224,6 +224,7 @@
                 {# Price #}
                 <div class="kalles-product-price price-wrapper"
                      data-product-pricing
+                     data-is-on-sale="{{ product.is_on_sale ? 'true' : 'false' }}"
                      data-regular-price="{{ product.regular_price }}"
                      data-sale-price="{{ product.sale_price }}">
                     <div class="kalles-product-sale-price price_is_on_sale {{ product.is_on_sale ? 'flex' : 'hidden' }}">

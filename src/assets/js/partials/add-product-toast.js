@@ -16,6 +16,15 @@ class HadeelCartDrawer extends HTMLElement {
     this.handleClick = event => this.onDrawerClick(event);
     this.handleChange = event => this.onDrawerChange(event);
     this.handleCartTrigger = event => {
+      // No drawer to show: let the trigger navigate to the cart page instead of
+      // swallowing the click and leaving the icon inert.
+      if (!this.drawer) return;
+
+      // Inside the Salla app webview `salla-cart-summary` cancels its own anchor and hands
+      // the cart to the native shell. Its handler sits on the inner anchor, so it has
+      // already run by the time this one does — don't open a second surface on top of it.
+      if (event.defaultPrevented) return;
+
       event.preventDefault();
       this.refreshCart({ open: true });
     };
@@ -57,8 +66,10 @@ class HadeelCartDrawer extends HTMLElement {
       this.drawer?.querySelector(".s-drawer-close")?.setAttribute("aria-label", this.text.close);
       this.drawer?.addEventListener("click", this.handleClick);
       this.drawer?.addEventListener("change", this.handleChange);
-      this.cartTriggers = document.querySelectorAll(".header-cart, .mobile-toolbar__cart");
-      this.cartTriggers.forEach(trigger => trigger.addEventListener("click", this.handleCartTrigger));
+      if (this.drawer) {
+        this.cartTriggers = document.querySelectorAll(".header-cart, .mobile-toolbar__cart");
+        this.cartTriggers.forEach(trigger => trigger.addEventListener("click", this.handleCartTrigger));
+      }
 
       salla.event.on("cart::item.added", this.handleItemAdded);
       salla.event.on("cart::item.updated", this.handleCartChanged);

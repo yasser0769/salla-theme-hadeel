@@ -34,6 +34,14 @@ class Products extends BasePage {
         });
     }
 
+    /**
+     * The drawer deliberately stays open while filters are applied. `salla-filters` emits
+     * `salla-filters::changed` from every individual option toggle, every applied-chip
+     * removal and from reset — not once per "apply" — and this drawer replaced the desktop
+     * sidebar, so it is now the only filter UI at any width. Closing on that event let a
+     * shopper pick exactly one filter before having to reopen the panel. `salla-drawer`
+     * still closes on its own close button, on Escape and on the overlay.
+     */
     initFiltersDrawer() {
         const drawer = app.element('[data-collection-filters-drawer]');
         const trigger = app.element('[data-collection-filter-trigger]');
@@ -43,8 +51,6 @@ class Products extends BasePage {
             await customElements.whenDefined('salla-drawer');
             drawer.open();
         });
-
-        salla.event.on('salla-filters::changed', () => drawer.close());
     }
 
     initDensityControls() {
