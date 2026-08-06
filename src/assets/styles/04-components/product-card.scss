@@ -141,6 +141,15 @@ custom-salla-product-card,
   background: transparent;
 }
 
+/*
+ * The copied classes also match Salla's own
+ * `.s-product-card-vertical .s-product-card-wishlist-btn { top: .5rem }`, which
+ * offsets the inner button inside its own circle. It lays out in flow.
+ */
+.kalles-card-actions > .kalles-card-wishlist > button {
+  position: static;
+}
+
 .kalles-card-actions > .kalles-card-quick-view {
   top: 52px;
 }
@@ -174,9 +183,14 @@ custom-salla-product-card,
   font-size: 15px;
 }
 
-.kalles-card-wishlist .s-button-text span,
-.kalles-card-quick-view span,
-.kalles-card-quick-add span {
+/*
+ * Only the label hides. `.s-button-text` is salla-button's wrapper and holds the
+ * icon as well, so hiding it emptied the circle.
+ */
+.kalles-card-wishlist .s-button-text > span,
+.kalles-card-quick-view > span,
+.kalles-card-quick-add > span,
+.kalles-card-quick-add .s-button-text > span {
   display: none;
 }
 
@@ -361,9 +375,10 @@ custom-salla-product-card,
     border-radius: var(--r-pill);
   }
 
-  .kalles-card-wishlist .s-button-text span,
-  .kalles-card-quick-view span,
-  .kalles-card-quick-add span {
+  .kalles-card-wishlist .s-button-text > span,
+  .kalles-card-quick-view > span,
+  .kalles-card-quick-add > span,
+  .kalles-card-quick-add .s-button-text > span {
     display: inline;
   }
 
