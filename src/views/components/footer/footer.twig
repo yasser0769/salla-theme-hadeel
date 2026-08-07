@@ -107,7 +107,8 @@
         <circle cx="20" cy="21" r="1"></circle>
         <path d="M1 1h4l2.68 13.39A2 2 0 0 0 9.68 16h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
       </svg>
-      <b class="mobile-toolbar__count" data-cart-count>{{ cart.items_count }}</b>
+      {# `cart` is not in this component's scope, so the badge starts empty and app.js fills it from cart.summary.count #}
+      <b class="mobile-toolbar__count {{ cart.items_count ? '' : 'is-empty' }}" data-cart-count>{{ cart.items_count ?: '' }}</b>
     </span>
     <span>{{ trans('blocks.footer.cart') }}</span>
   </a>

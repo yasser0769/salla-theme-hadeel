@@ -1370,6 +1370,11 @@ body .s-button-btn {
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
   }
 
+  /* Two classes, so this settles on specificity rather than on source order. */
+  .mobile-toolbar__count.is-empty {
+    display: none;
+  }
+
   .store-footer {
     margin-bottom: 0;
   }

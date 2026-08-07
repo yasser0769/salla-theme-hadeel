@@ -274,13 +274,34 @@ isElementLoaded(selector){
    * they can be from any page, especially when mega-menu is enabled
    */
   initAddToCart() {
+    // The badge is the theme's own markup, so it has to read the count from the
+    // same place `salla-cart-summary` reads it at load; `onUpdated` alone only
+    // fires after a change, which left the badge blank on first paint.
+    this.updateCartCount(salla.storage.get('cart.summary.count'));
+
     salla.cart.event.onUpdated(summary => {
       document.querySelectorAll('[data-cart-total]').forEach(el => el.innerHTML = salla.money(summary.total));
-      document.querySelectorAll('[data-cart-count]').forEach(el => el.innerText = salla.helpers.number(summary.count));
+      this.updateCartCount(summary.count);
     });
 
     salla.cart.event.onItemAdded((response, prodId) => {
       app.element('salla-cart-summary').animateToCart(app.element(`#product-${prodId} img`));
+    });
+  }
+
+  /**
+   * Writes the cart count into every `[data-cart-count]` badge and hides the
+   * badge when the cart is empty — an empty pill with no digit is worse than
+   * no pill at all.
+   *
+   * @param {number|string|null} count
+   */
+  updateCartCount(count) {
+    const value = Number(count) || 0;
+
+    document.querySelectorAll('[data-cart-count]').forEach(el => {
+      el.innerText = value ? salla.helpers.number(value) : '';
+      el.classList.toggle('is-empty', !value);
     });
   }
 
