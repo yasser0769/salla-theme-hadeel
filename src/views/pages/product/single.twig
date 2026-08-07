@@ -283,6 +283,8 @@
                                 {{theme.settings.get('sticky_add_to_cart') ? ' support-sticky-bar' : ''}}
                                 {{product.is_require_shipping ? 'required-shipping' : ''}}
                                 {{product.has_preorder_campaign ? 'has-pre-order' : ''}}
+                                data-add-to-cart-animation="{{ theme.settings.get('product_add_to_cart_animation', 'tada') }}"
+                                data-add-to-cart-animation-interval="{{ theme.settings.get('product_add_to_cart_animation_interval', 6) }}"
                                 amount="{{ product.base_currency_price }}"
                                 class="mt-5 w-full sticky-product-bar__btn"
                                 product-status="{{ product.status }}"
@@ -320,20 +322,22 @@
                             </div>
                         {% endif %}
 
-                        <div class="kalles-product-purchase-tools" aria-label="{{ trans('pages.products.kalles.product_tools') }}">
-                            <salla-button
-                                    class="kalles-wishlist-action btn--wishlist animated"
-                                    data-id="{{ product.id }}"
-                                    onclick="salla.wishlist.toggle('{{ product.id }}')"
-                                    type="button"
-                                    shape="icon"
-                                    fill="outline"
-                                    color="light"
-                                    aria-label="{{ trans('pages.products.kalles.add_to_wishlist') }}">
-                                <i class="sicon-heart" aria-hidden="true"></i>
-                            </salla-button>
-                            {# Sharing lives once, in the .kalles-product-share row below. #}
-                        </div>
+                        {% if theme.settings.get('product_show_wishlist', true) %}
+                            <div class="kalles-product-purchase-tools" aria-label="{{ trans('pages.products.kalles.product_tools') }}">
+                                <salla-button
+                                        class="kalles-wishlist-action btn--wishlist animated"
+                                        data-id="{{ product.id }}"
+                                        onclick="salla.wishlist.toggle('{{ product.id }}')"
+                                        type="button"
+                                        shape="icon"
+                                        fill="outline"
+                                        color="light"
+                                        aria-label="{{ trans('pages.products.kalles.add_to_wishlist') }}">
+                                    <i class="sicon-heart" aria-hidden="true"></i>
+                                </salla-button>
+                                {# Sharing lives once, in the .kalles-product-share row below. #}
+                            </div>
+                        {% endif %}
                     </section>
                     {% if product.is_giftable %}
                         <salla-gifting class="mt-5" product-id="{{ product.id }}" {{ product.is_require_shipping ? 'physical-products' : ''  }}></salla-gifting>

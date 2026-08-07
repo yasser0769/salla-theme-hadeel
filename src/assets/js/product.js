@@ -15,6 +15,7 @@ class Product extends BasePage {
 
         this.initProductOptionValidations();
         this.initRelatedProducts();
+        this.initAddToCartAnimation();
         this.updateSalePricing();
 
         if(imageZoom){
@@ -85,6 +86,51 @@ class Product extends BasePage {
 
       salla.event.on('salla-products-slider::products.fetched', (products) => {
         if (Array.isArray(products) && products.length) section.hidden = false;
+      });
+    }
+
+    /**
+     * Mirrors Kalles' buy-button control: wait for the configured interval, apply the
+     * selected animation for one second, then remove it so the next loop can replay.
+     * The class is applied to Twilight's real button rather than the custom-element
+     * host. Reduced-motion users get no timer, and unavailable products are skipped.
+     */
+    initAddToCartAnimation() {
+      const component = document.querySelector('[data-add-to-cart-animation]');
+      const animation = component?.dataset.addToCartAnimation;
+      const allowedAnimations = new Set([
+        'bounce',
+        'tada',
+        'swing',
+        'flash',
+        'fade-in',
+        'heart-beat',
+        'shake',
+      ]);
+
+      if (!component || !allowedAnimations.has(animation)) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const configuredInterval = Number(component.dataset.addToCartAnimationInterval);
+      const intervalSeconds = Math.min(40, Math.max(2, configuredInterval || 6));
+      const animationClass = `hadeel-atc-animation--${animation}`;
+
+      customElements.whenDefined('salla-add-product-button').then(async () => {
+        if (typeof component.componentOnReady === 'function') {
+          await component.componentOnReady();
+        }
+
+        const play = () => {
+          const button = component.querySelector('.s-button-btn:not(:disabled), .s-button-element:not(:disabled)');
+          if (!button) return;
+
+          button.classList.remove(animationClass);
+          void button.offsetWidth;
+          button.classList.add(animationClass);
+          window.setTimeout(() => button.classList.remove(animationClass), 1000);
+        };
+
+        window.setInterval(play, intervalSeconds * 1000);
       });
     }
 

@@ -518,6 +518,86 @@
         },
         {
             "type": "boolean",
+            "icon": "sicon-heart",
+            "label": "إظهار أيقونة المفضلة في صفحة المنتج",
+            "id": "product_show_wishlist",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "id": "product_add_to_cart_animation",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "حركة زر الإضافة للسلة",
+            "icon": "sicon-magic",
+            "selected": [
+                {
+                    "label": "Tada",
+                    "value": "tada",
+                    "key": "34ccf892-3d6f-42c3-8e05-63b5aad7998d"
+                }
+            ],
+            "options": [
+                {
+                    "label": "بدون حركة",
+                    "value": "none",
+                    "key": "a6f831d1-d88a-4da7-89b5-b56c74d62052"
+                },
+                {
+                    "label": "Bounce",
+                    "value": "bounce",
+                    "key": "235daccf-09de-4f70-9791-11ef425093d4"
+                },
+                {
+                    "label": "Tada",
+                    "value": "tada",
+                    "key": "34ccf892-3d6f-42c3-8e05-63b5aad7998d"
+                },
+                {
+                    "label": "Swing",
+                    "value": "swing",
+                    "key": "38c7e27d-a76a-465c-a76f-6b69e533e5a7"
+                },
+                {
+                    "label": "Flash",
+                    "value": "flash",
+                    "key": "b93ab8d0-74dd-432b-a976-6ee9a0d1c4b6"
+                },
+                {
+                    "label": "FadeIn",
+                    "value": "fade-in",
+                    "key": "62c68bed-75bb-448d-94b2-09a468cac4d0"
+                },
+                {
+                    "label": "HeartBeat",
+                    "value": "heart-beat",
+                    "key": "8078f78d-6e55-4774-a09e-2197cfa39575"
+                },
+                {
+                    "label": "Shake",
+                    "value": "shake",
+                    "key": "9284eb17-6d2f-4b26-a261-4fb3785de227"
+                }
+            ],
+            "source": "Manual",
+            "required": true
+        },
+        {
+            "type": "number",
+            "icon": "sicon-clock",
+            "label": "مدة تكرار حركة زر الإضافة للسلة",
+            "description": "المدة بالثواني من 2 إلى 40 ثانية",
+            "id": "product_add_to_cart_animation_interval",
+            "format": "integer",
+            "required": true,
+            "value": 6,
+            "minimum": 2,
+            "maximum": 40
+        },
+        {
+            "type": "boolean",
             "icon": "sicon-toggle-off",
             "label": "اظهار الوسوم",
             "description": null,
