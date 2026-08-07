@@ -119,10 +119,9 @@
 }
 
 .category-cover__media,
-.category-cover__media img,
-.category-cover__overlay,
-.category-cover__content {
-  grid-area: 1 / 1;
+.category-cover__overlay {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
 }
@@ -142,8 +141,10 @@
 }
 
 .category-cover__content {
+  position: relative;
   z-index: 2;
   display: flex;
+  grid-area: 1 / 1;
   width: min(calc(100% - 30px), 1160px);
   height: auto;
   margin-inline: auto;
