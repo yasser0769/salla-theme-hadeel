@@ -109,7 +109,6 @@ custom-salla-product-card,
 .kalles-card-actions > .kalles-card-quick-view,
 .kalles-card-actions > .kalles-card-quick-add {
   position: absolute;
-  inset-inline-start: 12px;
   width: 32px;
   min-width: 32px;
   height: 32px;
@@ -124,8 +123,19 @@ custom-salla-product-card,
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.07);
 }
 
+/*
+ * The badge owns the inline-start corner, so the wishlist takes the opposite one.
+ * Both were at `inset-inline-start: 12px`, which put the circle on top of a
+ * promotion title at every width above 767px.
+ */
 .kalles-card-actions > .kalles-card-wishlist {
   top: 12px;
+  inset-inline-end: 12px;
+}
+
+.kalles-card-actions > .kalles-card-quick-view,
+.kalles-card-actions > .kalles-card-quick-add {
+  inset-inline-start: 12px;
 }
 
 .kalles-card-wishlist .s-button-btn,
