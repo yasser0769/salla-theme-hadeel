@@ -1,0 +1,49 @@
+{#
+| Variable                         | Type    | Description                                      |
+|----------------------------------|---------|--------------------------------------------------|
+| category                         | Category| Current category; provided by the category page  |
+| component.desktop_image          | string  | Desktop background image                         |
+| component.mobile_image           | ?string | Optional mobile background image                 |
+| component.overlay_color          | string  | Overlay color                                    |
+| component.overlay_opacity        | number  | Overlay opacity from 0 to 100                    |
+| component.cover_height           | number  | Cover height in pixels                           |
+| component.title_alignment        | string  | start, center, or end                            |
+| component.show_breadcrumb        | bool    | Show the category breadcrumb                     |
+| component.text_color             | string  | Title and breadcrumb color                       |
+#}
+{% if category %}
+    {% set desktop_image = component.desktop_image ?: (component.mobile_image ?: category.image) %}
+    {% set mobile_image = component.mobile_image ?: desktop_image %}
+    {% set overlay_color = component.overlay_color ?: '#000000' %}
+    {% set overlay_opacity = component.overlay_opacity is not null ? component.overlay_opacity : 35 %}
+    {% set cover_height = component.cover_height ?: 320 %}
+    {% set text_color = component.text_color ?: '#FFFFFF' %}
+    {% set title_alignment = component.title_alignment in ['start', 'center', 'end'] ? component.title_alignment : 'center' %}
+
+    {% if desktop_image %}
+        <section class="category-cover category-cover--align-{{ title_alignment }}"
+                 style="--category-cover-height: {{ cover_height|e('html_attr') }}px; --category-cover-overlay-color: {{ overlay_color|e('html_attr') }}; --category-cover-text-color: {{ text_color|e('html_attr') }};">
+            <picture class="category-cover__media" aria-hidden="true">
+                {% if component.mobile_image %}
+                    <source media="(max-width: 767px)" srcset="{{ mobile_image|e('html_attr') }}">
+                {% endif %}
+                <img src="{{ desktop_image|e('html_attr') }}"
+                     alt=""
+                     fetchpriority="high">
+            </picture>
+
+            <div class="category-cover__overlay"
+                 style="opacity: {{ (overlay_opacity / 100)|e('html_attr') }};"
+                 aria-hidden="true"></div>
+
+            <div class="category-cover__content">
+                <h1>{{ category.name }}</h1>
+                {% if component.show_breadcrumb is not same as(false) %}
+                    <nav class="category-cover__breadcrumb breadcrumbs">
+                        <salla-breadcrumb></salla-breadcrumb>
+                    </nav>
+                {% endif %}
+            </div>
+        </section>
+    {% endif %}
+{% endif %}

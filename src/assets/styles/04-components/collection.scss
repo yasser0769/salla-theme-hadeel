@@ -94,6 +94,110 @@
   place-items: center;
 }
 
+/*
+ * The category cover is a merchant-added page component. Keep the built-in hero as
+ * a fallback, then remove it only when Salla injects a configured cover instance.
+ */
+.collection-page:has(.category-cover) > .collection-hero {
+  display: none;
+}
+
+.collection-page > .s-before-products-list,
+.collection-page > .s-after-products-list {
+  margin-top: 0;
+}
+
+.category-cover {
+  display: grid;
+  width: 100%;
+  height: clamp(160px, var(--category-cover-height, 320px), 720px);
+  overflow: hidden;
+  color: var(--category-cover-text-color, #fff);
+  background: var(--hadeel-soft);
+  position: relative;
+  isolation: isolate;
+}
+
+.category-cover__media,
+.category-cover__media img,
+.category-cover__overlay,
+.category-cover__content {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+}
+
+.category-cover__media {
+  display: block;
+}
+
+.category-cover__media img {
+  display: block;
+  object-fit: cover;
+}
+
+.category-cover__overlay {
+  z-index: 1;
+  background: var(--category-cover-overlay-color, #000);
+}
+
+.category-cover__content {
+  z-index: 2;
+  display: flex;
+  width: min(calc(100% - 30px), 1160px);
+  height: auto;
+  margin-inline: auto;
+  padding-block: 24px;
+  flex-direction: column;
+  align-self: center;
+  justify-content: center;
+  color: inherit;
+}
+
+.category-cover--align-start .category-cover__content {
+  text-align: start;
+}
+
+.category-cover--align-center .category-cover__content {
+  text-align: center;
+}
+
+.category-cover--align-end .category-cover__content {
+  text-align: end;
+}
+
+.category-cover h1 {
+  margin: 0;
+  color: inherit;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.category-cover .category-cover__breadcrumb {
+  display: flex;
+  margin-top: 12px;
+  color: inherit;
+}
+
+.category-cover--align-start .category-cover__breadcrumb {
+  justify-content: start;
+}
+
+.category-cover--align-center .category-cover__breadcrumb {
+  justify-content: center;
+}
+
+.category-cover--align-end .category-cover__breadcrumb {
+  justify-content: end;
+}
+
+.category-cover .category-cover__breadcrumb .s-breadcrumb-item,
+.category-cover .category-cover__breadcrumb a,
+.category-cover .category-cover__breadcrumb i {
+  color: inherit;
+}
+
 .collection-hero__image,
 .collection-hero__overlay,
 .collection-hero__content {

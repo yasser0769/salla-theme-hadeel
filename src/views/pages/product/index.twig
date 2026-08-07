@@ -30,6 +30,7 @@
                     {% endif %}
                 </div>
             </header>
+
         {% else %}
             <header class="collection-heading collection-container">
                 {% if theme.settings.get('product_index_show_breadcrumbs', true) %}
@@ -40,6 +41,14 @@
                 <h1>{{ page.title|raw }}</h1>
             </header>
         {% endif %}
+
+        {#
+        Category page components selected by the merchant are injected here.
+        Salla persists each component instance for all categories or one selected category.
+        #}
+        <div class="s-blocks-wrapper s-before-products-list">
+            {% hook 'product.index.before_products_group_with_filter' %}
+        </div>
 
         <div class="collection-container collection-content">
             <div class="collection-toolbar" data-collection-toolbar>
@@ -95,6 +104,10 @@
             {% hook 'product:index.items.end' %}
         </div>
 
+        <div class="s-blocks-wrapper s-after-products-list">
+            {% hook 'product.index.after_products_group_with_filter' %}
+        </div>
+
         {% if filters %}
             <salla-drawer id="collection-filters-drawer"
                           class="collection-filters-drawer"
@@ -112,6 +125,10 @@
     {% if store.settings.category.testimonial_enabled %}
         {% component 'home.testimonials' %}
     {% endif %}
+
+    <div class="s-blocks-wrapper s-after-testimonials">
+        {% hook 'product.index.after_testimonials' %}
+    </div>
 {% endblock %}
 
 {% block scripts %}

@@ -1443,6 +1443,132 @@
             ]
         },
         {
+            "key": "12ce0e5d-6d6d-4c30-b720-328e7cbc7411",
+            "title": {
+                "en": "Category Cover",
+                "ar": "غلاف التصنيف"
+            },
+            "icon": "sicon-image",
+            "path": "category.cover",
+            "fields": [
+                {
+                    "id": "desktop_image",
+                    "key": "6cec78a3-92be-4805-8444-41b72b852dec",
+                    "type": "string",
+                    "format": "image",
+                    "label": "صورة سطح المكتب",
+                    "description": "المقاس المقترح 1920×640 بكسل",
+                    "icon": "sicon-image",
+                    "value": null,
+                    "required": true
+                },
+                {
+                    "id": "mobile_image",
+                    "key": "88c81220-927a-43c2-abc4-cd6c98a3dd7c",
+                    "type": "string",
+                    "format": "image",
+                    "label": "صورة الجوال",
+                    "description": "اختيارية؛ تُستخدم صورة سطح المكتب عند تركها فارغة",
+                    "icon": "sicon-iphone",
+                    "value": null,
+                    "required": false
+                },
+                {
+                    "id": "overlay_color",
+                    "key": "6ae09dbb-d8f3-411b-9292-a5a0754bbf68",
+                    "type": "string",
+                    "format": "color",
+                    "inputType": "color",
+                    "label": "لون طبقة التعتيم",
+                    "icon": "sicon-paint-bucket",
+                    "value": "#000000",
+                    "required": true
+                },
+                {
+                    "id": "overlay_opacity",
+                    "key": "02aae380-51da-45c2-812e-2386706970bb",
+                    "type": "number",
+                    "format": "integer",
+                    "label": "نسبة التعتيم",
+                    "description": "قيمة من 0 إلى 100٪",
+                    "icon": "sicon-adjust",
+                    "value": 35,
+                    "minimum": 0,
+                    "maximum": 100,
+                    "required": true
+                },
+                {
+                    "id": "cover_height",
+                    "key": "368529fe-a189-4fb1-a3ec-98d08789d54f",
+                    "type": "number",
+                    "format": "integer",
+                    "label": "ارتفاع الغلاف",
+                    "description": "الارتفاع بالبكسل من 160 إلى 720",
+                    "icon": "sicon-resize",
+                    "value": 320,
+                    "minimum": 160,
+                    "maximum": 720,
+                    "required": true
+                },
+                {
+                    "id": "title_alignment",
+                    "key": "9252df6c-0cd7-4d39-89e6-2adc51854c83",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "محاذاة اسم التصنيف",
+                    "icon": "sicon-align-center",
+                    "selected": [
+                        {
+                            "label": "وسط",
+                            "value": "center",
+                            "key": "dc212a5a-18b6-4350-a272-a71139dd75fc"
+                        }
+                    ],
+                    "options": [
+                        {
+                            "label": "بداية",
+                            "value": "start",
+                            "key": "4f99e058-9796-47f4-bdcc-436baadc7029"
+                        },
+                        {
+                            "label": "وسط",
+                            "value": "center",
+                            "key": "dc212a5a-18b6-4350-a272-a71139dd75fc"
+                        },
+                        {
+                            "label": "نهاية",
+                            "value": "end",
+                            "key": "f81d04e3-3656-4ee2-a76b-752f14d54cc5"
+                        }
+                    ],
+                    "source": "Manual",
+                    "required": true
+                },
+                {
+                    "id": "show_breadcrumb",
+                    "key": "4c41f17a-a8c6-4ca9-9ee2-ed676614f13a",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "إظهار مسار التنقل",
+                    "icon": "sicon-toggle-off",
+                    "value": true,
+                    "selected": true,
+                    "required": false
+                },
+                {
+                    "id": "text_color",
+                    "key": "3bd4dfbb-ff40-4e22-9c35-abe8e0dd1c57",
+                    "type": "string",
+                    "format": "color",
+                    "inputType": "color",
+                    "label": "لون النص",
+                    "icon": "sicon-format-text-color",
+                    "value": "#FFFFFF",
+                    "required": true
+                }
+            ]
+        },
+        {
             "key": "25f6cf26-a53f-4954-9b32-739b311b32c7",
             "title": {
                 "en": "Brands",
