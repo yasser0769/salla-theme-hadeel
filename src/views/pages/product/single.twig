@@ -278,23 +278,21 @@
                     {% endif %}
 
                     {% set installments_enabled = theme.settings.get('product_installment_enabled', true) %}
-                    {% set installment_providers = theme.settings.get(
-                        'product_installment_providers',
-                        ['tamara', 'tabby', 'mispay']
-                    ) %}
+                    {% set show_installment_tamara = theme.settings.get('product_installment_show_tamara', true) %}
+                    {% set show_installment_tabby = theme.settings.get('product_installment_show_tabby', true) %}
+                    {% set show_installment_mispay = theme.settings.get('product_installment_show_mispay', true) %}
                     {% set installment_price = product.is_on_sale
                         ? product.sale_price
                         : (product.starting_price ? product.starting_price : product.price) %}
-                    {% if installments_enabled and installment_providers|length %}
-                        <section class="hadeel-installments"
-                                 data-hadeel-installments
-                                 data-installment-providers="{{ installment_providers|json_encode|escape }}">
+                    {% if installments_enabled and (show_installment_tamara or show_installment_tabby or show_installment_mispay) %}
+                        <section class="hadeel-installments" data-hadeel-installments>
                             <div class="hadeel-installments__bar" data-installment-bar hidden>
                                 <span class="hadeel-installments__prompt">
                                     <i class="sicon-money-bag" aria-hidden="true"></i>
                                     {{ trans('pages.products.kalles.installment_prompt') }}
                                 </span>
                                 <div class="hadeel-installments__providers">
+                                    {% if show_installment_tamara %}
                                     <button class="hadeel-installments__provider"
                                             type="button"
                                             data-installment-provider="tamara"
@@ -306,6 +304,8 @@
                                              src="{{ 'images/payment_icons/tamara.svg'|asset }}"
                                              alt="{{ trans('pages.products.kalles.installment_tamara') }}">
                                     </button>
+                                    {% endif %}
+                                    {% if show_installment_tabby %}
                                     <button class="hadeel-installments__provider"
                                             type="button"
                                             data-installment-provider="tabby"
@@ -317,6 +317,8 @@
                                              src="{{ 'images/payment_icons/tabby.svg'|asset }}"
                                              alt="{{ trans('pages.products.kalles.installment_tabby') }}">
                                     </button>
+                                    {% endif %}
+                                    {% if show_installment_mispay %}
                                     <button class="hadeel-installments__provider"
                                             type="button"
                                             data-installment-provider="mispay"
@@ -328,6 +330,7 @@
                                              src="{{ 'images/payment_icons/mispay.svg'|asset }}"
                                              alt="{{ trans('pages.products.kalles.installment_mispay') }}">
                                     </button>
+                                    {% endif %}
                                 </div>
                             </div>
 

@@ -151,27 +151,13 @@ class Product extends BasePage {
 
       if (!container || !bar || !modal || !modalBrand || !buttons.length) return;
 
-      let configuredProviders = [];
-      try {
-        const parsedProviders = JSON.parse(container.dataset.installmentProviders || '[]');
-        configuredProviders = (Array.isArray(parsedProviders) ? parsedProviders : [parsedProviders])
-          .map((provider) => typeof provider === 'string' ? provider : provider?.value)
-          .filter(Boolean);
-      } catch {
-        configuredProviders = [];
-      }
-
-      const selectedProviders = new Set(configuredProviders);
-      const visibleButtons = buttons.filter((button) => {
-        const isSelected = selectedProviders.has(button.dataset.installmentProvider);
-        button.hidden = !isSelected;
-        button.disabled = !isSelected;
-        return isSelected;
+      buttons.forEach((button) => {
+        button.hidden = false;
+        button.disabled = false;
       });
+      bar.hidden = false;
 
-      bar.hidden = visibleButtons.length === 0;
-
-      visibleButtons.forEach((button) => {
+      buttons.forEach((button) => {
         button.addEventListener('click', async () => {
           const provider = button.dataset.installmentProvider;
           const nativeSource = this.getInstallmentProviderSource(installment, provider);
