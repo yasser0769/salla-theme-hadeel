@@ -37,7 +37,10 @@
       "item_note_placeholder": "اكتب ملاحظتك هنا...",
       "shipping_tax_notice": "يُحسب الشحن والضرائب عند إتمام الطلب",
       "page_title": "سلة المشتريات",
-      "delete_item": "حذف"
+      "delete_item": "حذف",
+      "product": "المنتج",
+      "price": "السعر",
+      "quantity": "الكمية"
     },
     "products": {
       "kalles": {
