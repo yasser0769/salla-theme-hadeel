@@ -55,7 +55,8 @@
             <nav class="breadcrumbs cart-page__breadcrumb">
                 <salla-breadcrumb></salla-breadcrumb>
             </nav>
-            <h1 class="cart-page__title">{{ trans('pages.cart.page_title') }}</h1>
+            {# Salla supplies the route's own title; the theme string is only a fallback. #}
+            <h1 class="cart-page__title">{{ page.title ?: trans('pages.cart.page_title') }}</h1>
 
             <salla-conditional-offer></salla-conditional-offer>
 
