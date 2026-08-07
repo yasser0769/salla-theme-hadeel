@@ -277,66 +277,76 @@
                         </section>
                     {% endif %}
 
-                    {% set show_installment_tamara = theme.settings.get('product_installment_show_tamara', true) %}
-                    {% set show_installment_tabby = theme.settings.get('product_installment_show_tabby', true) %}
-                    {% set show_installment_mispay = theme.settings.get('product_installment_show_mispay', true) %}
-                    {% set installment_price = product.is_on_sale
-                        ? product.sale_price
-                        : (product.starting_price ? product.starting_price : product.price) %}
-                    {% if show_installment_tamara or show_installment_tabby or show_installment_mispay %}
-                        <section class="hadeel-installments" data-hadeel-installments>
+                    {% set installments_enabled = theme.settings.get('product_installment_enabled', true) %}
+                    {% set installment_providers = theme.settings.get(
+                        'product_installment_providers',
+                        ['tamara', 'tabby', 'mispay']
+                    ) %}
+                    {% if installments_enabled and installment_providers|length %}
+                        <section class="hadeel-installments"
+                                 data-hadeel-installments
+                                 data-installment-providers="{{ installment_providers|json_encode|escape }}">
                             <div class="hadeel-installments__bar" data-installment-bar hidden>
                                 <span class="hadeel-installments__prompt">
+                                    <i class="sicon-money-bag" aria-hidden="true"></i>
                                     {{ trans('pages.products.kalles.installment_prompt') }}
                                 </span>
                                 <div class="hadeel-installments__providers">
-                                    {% if show_installment_tamara %}
-                                        <button class="hadeel-installments__provider"
-                                                type="button"
-                                                data-installment-provider="tamara"
-                                                aria-label="{{ trans('pages.products.kalles.installment_tamara_info') }}"
-                                                hidden disabled>
-                                            <i class="sicon-info" aria-hidden="true"></i>
-                                            <span class="hadeel-installments__brand">
-                                                {{ trans('pages.products.kalles.installment_tamara') }}
-                                            </span>
-                                        </button>
-                                    {% endif %}
-                                    {% if show_installment_tabby %}
-                                        <button class="hadeel-installments__provider"
-                                                type="button"
-                                                data-installment-provider="tabby"
-                                                aria-label="{{ trans('pages.products.kalles.installment_tabby_info') }}"
-                                                hidden disabled>
-                                            <i class="sicon-info" aria-hidden="true"></i>
-                                            <span class="hadeel-installments__brand">
-                                                {{ trans('pages.products.kalles.installment_tabby') }}
-                                            </span>
-                                        </button>
-                                    {% endif %}
-                                    {% if show_installment_mispay %}
-                                        <button class="hadeel-installments__provider"
-                                                type="button"
-                                                data-installment-provider="mispay"
-                                                aria-label="{{ trans('pages.products.kalles.installment_mispay_info') }}"
-                                                hidden disabled>
-                                            <i class="sicon-info" aria-hidden="true"></i>
-                                            <span class="hadeel-installments__brand">
-                                                {{ trans('pages.products.kalles.installment_mispay') }}
-                                            </span>
-                                        </button>
-                                    {% endif %}
+                                    <button class="hadeel-installments__provider"
+                                            type="button"
+                                            data-installment-provider="tamara"
+                                            data-installment-title="{{ trans('pages.products.kalles.installment_tamara_title') }}"
+                                            aria-label="{{ trans('pages.products.kalles.installment_tamara_info') }}"
+                                            hidden disabled>
+                                        <i class="sicon-info" aria-hidden="true"></i>
+                                        <span class="hadeel-installments__brand">
+                                            {{ trans('pages.products.kalles.installment_tamara') }}
+                                        </span>
+                                    </button>
+                                    <button class="hadeel-installments__provider"
+                                            type="button"
+                                            data-installment-provider="tabby"
+                                            data-installment-title="{{ trans('pages.products.kalles.installment_tabby_title') }}"
+                                            aria-label="{{ trans('pages.products.kalles.installment_tabby_info') }}"
+                                            hidden disabled>
+                                        <i class="sicon-info" aria-hidden="true"></i>
+                                        <span class="hadeel-installments__brand">
+                                            {{ trans('pages.products.kalles.installment_tabby') }}
+                                        </span>
+                                    </button>
+                                    <button class="hadeel-installments__provider"
+                                            type="button"
+                                            data-installment-provider="mispay"
+                                            data-installment-title="{{ trans('pages.products.kalles.installment_mispay_title') }}"
+                                            aria-label="{{ trans('pages.products.kalles.installment_mispay_info') }}"
+                                            hidden disabled>
+                                        <i class="sicon-info" aria-hidden="true"></i>
+                                        <span class="hadeel-installments__brand">
+                                            {{ trans('pages.products.kalles.installment_mispay') }}
+                                        </span>
+                                    </button>
                                 </div>
                             </div>
 
-                            {#
-                              Salla owns provider eligibility, pricing, scripts, and explanation
-                              dialogs. Keep the native component mounted and let the compact buttons
-                              invoke its real provider triggers instead of duplicating that logic.
-                            #}
-                            <div class="hadeel-installments__native" aria-hidden="true">
-                                <salla-installment price="{{ installment_price }}"></salla-installment>
-                            </div>
+                            <salla-modal id="hadeel-installment-modal"
+                                         width="sm"
+                                         position="middle"
+                                         modal-title="{{ trans('pages.products.kalles.installment_modal_title') }}">
+                                <div class="hadeel-installments__modal-content">
+                                    <div class="hadeel-installments__modal-brand"
+                                         data-installment-modal-brand></div>
+                                    <p>{{ trans('pages.products.kalles.installment_modal_intro') }}</p>
+                                    <ol class="hadeel-installments__steps">
+                                        <li>{{ trans('pages.products.kalles.installment_modal_step_cart') }}</li>
+                                        <li>{{ trans('pages.products.kalles.installment_modal_step_checkout') }}</li>
+                                        <li>{{ trans('pages.products.kalles.installment_modal_step_provider') }}</li>
+                                    </ol>
+                                    <p class="hadeel-installments__notice">
+                                        <i class="sicon-info" aria-hidden="true"></i>
+                                        <span>{{ trans('pages.products.kalles.installment_modal_notice') }}</span>
+                                    </p>
+                                </div>
+                            </salla-modal>
                         </section>
                     {% endif %}
 

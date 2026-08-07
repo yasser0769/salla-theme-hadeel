@@ -900,9 +900,15 @@
   display: inline-flex;
   align-items: center;
   flex: 0 0 auto;
+  gap: 7px;
   font-size: 12px;
   font-weight: 500;
   white-space: nowrap;
+
+  i {
+    color: var(--color-primary);
+    font-size: 15px;
+  }
 }
 
 .hadeel-installments__providers {
@@ -980,20 +986,67 @@
   font-style: italic;
 }
 
-/*
- * Keep Salla's component rendered so its provider SDKs own eligibility, pricing,
- * and explanation dialogs. Position only the verbose summaries off-screen; fixed
- * provider dialogs still render against the viewport when a compact button proxies
- * the native click.
- */
-.hadeel-installments__native {
-  width: min(600px, calc(100vw - 32px));
-  position: fixed;
-  top: 0;
-  inset-inline-start: -10000px;
+.hadeel-installments__modal-content {
+  color: var(--hadeel-ink);
+  display: grid;
+  gap: 16px;
+  line-height: 1.8;
+}
 
-  salla-installment {
-    margin: 0;
+.hadeel-installments__modal-brand {
+  width: fit-content;
+  min-width: 72px;
+  padding: 7px 12px;
+  border-radius: 7px;
+  color: var(--hadeel-provider-ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.hadeel-installments__modal-brand[data-installment-modal-provider="tamara"] {
+  background: var(--hadeel-provider-tamara);
+}
+
+.hadeel-installments__modal-brand[data-installment-modal-provider="tabby"] {
+  background: var(--hadeel-provider-tabby);
+  letter-spacing: -0.04em;
+}
+
+.hadeel-installments__modal-brand[data-installment-modal-provider="mispay"] {
+  color: var(--hadeel-provider-reverse);
+  background: var(--hadeel-provider-mispay);
+  font-style: italic;
+}
+
+.hadeel-installments__steps {
+  margin: 0;
+  padding-inline-start: 22px;
+  display: grid;
+  gap: 8px;
+  list-style: decimal;
+}
+
+.hadeel-installments__notice {
+  margin: 0;
+  padding: 12px 14px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 24%, var(--hadeel-line));
+  border-radius: var(--r-0);
+  color: var(--hadeel-muted);
+  background: color-mix(in srgb, var(--color-primary) 6%, var(--hadeel-surface));
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 12px;
+
+  i {
+    margin-top: 5px;
+    color: var(--color-primary);
+    flex: 0 0 auto;
   }
 }
 

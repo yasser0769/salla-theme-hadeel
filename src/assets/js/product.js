@@ -136,125 +136,54 @@ class Product extends BasePage {
     }
 
     /**
-     * Keeps Salla's real installment component mounted for eligibility, live pricing,
-     * provider scripts, and explanation dialogs. The compact Hadeel controls only
-     * proxy clicks to the provider widgets that Salla actually rendered.
+     * Renders the merchant-selected providers independently from checkout configuration.
+     * The dialog explains the service without claiming that the payment method is enabled.
      */
     initCompactInstallments() {
       const container = document.querySelector('[data-hadeel-installments]');
       const bar = container?.querySelector('[data-installment-bar]');
-      const nativeContainer = container?.querySelector('.hadeel-installments__native');
-      const installment = container?.querySelector('salla-installment');
+      const modal = document.getElementById('hadeel-installment-modal');
+      const modalBrand = modal?.querySelector('[data-installment-modal-brand]');
       const buttons = Array.from(container?.querySelectorAll('[data-installment-provider]') || []);
 
-      if (!container || !bar || !nativeContainer || !installment || !buttons.length) return;
+      if (!container || !bar || !modal || !modalBrand || !buttons.length) return;
 
-      const connectReadyProvider = (button) => {
-        if (button.dataset.installmentReady === 'true') return true;
+      let configuredProviders = [];
+      try {
+        const parsedProviders = JSON.parse(container.dataset.installmentProviders || '[]');
+        configuredProviders = (Array.isArray(parsedProviders) ? parsedProviders : [parsedProviders])
+          .map((provider) => typeof provider === 'string' ? provider : provider?.value)
+          .filter(Boolean);
+      } catch {
+        configuredProviders = [];
+      }
 
-        const provider = button.dataset.installmentProvider;
-        const source = this.getInstallmentProviderSource(installment, provider);
-        const trigger = this.getInstallmentProviderTrigger(source, provider);
-        if (!trigger) return false;
-
-        trigger.tabIndex = -1;
-        button._hadeelInstallmentTrigger = trigger;
-        button.dataset.installmentReady = 'true';
-        button.hidden = false;
-        button.disabled = false;
-        button.addEventListener('click', () => {
-          /* Provider dialogs live under the native widgets, so expose that subtree to
-             assistive technology immediately before opening the selected dialog. */
-          nativeContainer.removeAttribute('aria-hidden');
-
-          let currentTrigger = button._hadeelInstallmentTrigger;
-          if (!currentTrigger?.isConnected) {
-            const currentSource = this.getInstallmentProviderSource(installment, provider);
-            currentTrigger = this.getInstallmentProviderTrigger(currentSource, provider);
-            button._hadeelInstallmentTrigger = currentTrigger;
-          }
-
-          currentTrigger?.click();
-        });
-
-        return true;
-      };
-
-      customElements.whenDefined('salla-installment').then(async () => {
-        if (typeof installment.componentOnReady === 'function') {
-          await installment.componentOnReady();
-        }
-
-        let attempts = 0;
-        const refresh = () => {
-          attempts += 1;
-          const readyCount = buttons.filter(connectReadyProvider).length;
-          bar.hidden = readyCount === 0;
-
-          if (readyCount === buttons.length || attempts >= 40) {
-            window.clearInterval(readinessTimer);
-          }
-        };
-
-        const readinessTimer = window.setInterval(refresh, 250);
-        refresh();
+      const selectedProviders = new Set(configuredProviders);
+      const visibleButtons = buttons.filter((button) => {
+        const isSelected = selectedProviders.has(button.dataset.installmentProvider);
+        button.hidden = !isSelected;
+        button.disabled = !isSelected;
+        return isSelected;
       });
-    }
 
-    getInstallmentProviderSource(installment, provider) {
-      const selectors = {
-        tamara: 'tamara-widget, .tamara-product-widget',
-        tabby: '#tabbyPromo',
-        mispay: 'mispay-widget',
-      };
+      bar.hidden = visibleButtons.length === 0;
 
-      return selectors[provider] ? installment.querySelector(selectors[provider]) : null;
-    }
+      visibleButtons.forEach((button) => {
+        button.addEventListener('click', async () => {
+          const provider = button.dataset.installmentProvider;
+          const brand = button.querySelector('.hadeel-installments__brand')?.textContent?.trim() || '';
 
-    getInstallmentProviderTrigger(source, provider) {
-      if (!source) return null;
+          modalBrand.dataset.installmentModalProvider = provider;
+          modalBrand.textContent = brand;
 
-      if (provider === 'mispay') {
-        return this.findDeepInstallmentElement(source.shadowRoot, (element) => element.matches('a'));
-      }
-
-      if (provider === 'tamara' && source.matches('.tamara-product-widget')) {
-        return source;
-      }
-
-      const root = source.shadowRoot || source;
-      const semanticTrigger = this.findDeepInstallmentElement(root, (element) => (
-        element.matches('button, a, [role="button"]')
-      ));
-      if (semanticTrigger) return semanticTrigger;
-
-      /*
-       * Tamara and Tabby render their clickable summaries inside open shadow roots.
-       * Their private class names change between SDK releases, so detect the provider's
-       * own pointer target instead of depending on one of those class names.
-       */
-      return this.findDeepInstallmentElement(root, (element) => (
-        window.getComputedStyle(element).cursor === 'pointer'
-      ));
-    }
-
-    findDeepInstallmentElement(root, predicate) {
-      if (!root) return null;
-
-      const children = Array.from(root.children || []);
-      for (const element of children) {
-        if (predicate(element)) return element;
-      }
-
-      for (const element of children) {
-        const shadowMatch = this.findDeepInstallmentElement(element.shadowRoot, predicate);
-        if (shadowMatch) return shadowMatch;
-
-        const childMatch = this.findDeepInstallmentElement(element, predicate);
-        if (childMatch) return childMatch;
-      }
-
-      return null;
+          await customElements.whenDefined('salla-modal');
+          if (typeof modal.componentOnReady === 'function') {
+            await modal.componentOnReady();
+          }
+          await modal.setTitle(button.dataset.installmentTitle || '');
+          await modal.open();
+        });
+      });
     }
 
     initImagesZooming() {

@@ -605,36 +605,68 @@
         },
         {
             "type": "boolean",
-            "icon": "sicon-check-circle",
-            "label": "إظهار تمارا في شريط التقسيط",
-            "description": "تظهر فقط عندما تكون تمارا مفعلة ضمن وسائل الدفع في المتجر",
-            "id": "product_installment_show_tamara",
+            "icon": "sicon-money-bag",
+            "label": "إظهار أيقونة الأقساط",
+            "description": "إظهار شريط برامج التقسيط ونافذة الشرح في صفحة المنتج",
+            "id": "product_installment_enabled",
             "format": "switch",
             "required": false,
             "value": true,
             "selected": true
         },
         {
-            "type": "boolean",
+            "id": "product_installment_providers",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "برامج التقسيط الظاهرة",
+            "description": "حدد برنامجًا واحدًا أو أكثر ليظهر في شريط التقسيط",
             "icon": "sicon-check-circle",
-            "label": "إظهار تابي في شريط التقسيط",
-            "description": "تظهر فقط عندما تكون تابي مفعلة ضمن وسائل الدفع في المتجر",
-            "id": "product_installment_show_tabby",
-            "format": "switch",
+            "selected": [
+                {
+                    "label": "تمارا",
+                    "value": "tamara",
+                    "key": "5a66385f-f7cb-4cc7-ab55-388bc3921dd0"
+                },
+                {
+                    "label": "تابي",
+                    "value": "tabby",
+                    "key": "fd7f3d87-8d5d-43f2-8e6b-e42f25a3e9ae"
+                },
+                {
+                    "label": "MIS Pay",
+                    "value": "mispay",
+                    "key": "3977fcf4-683e-4e1b-a1ca-7ac84689127b"
+                }
+            ],
+            "options": [
+                {
+                    "label": "تمارا",
+                    "value": "tamara",
+                    "key": "5a66385f-f7cb-4cc7-ab55-388bc3921dd0"
+                },
+                {
+                    "label": "تابي",
+                    "value": "tabby",
+                    "key": "fd7f3d87-8d5d-43f2-8e6b-e42f25a3e9ae"
+                },
+                {
+                    "label": "MIS Pay",
+                    "value": "mispay",
+                    "key": "3977fcf4-683e-4e1b-a1ca-7ac84689127b"
+                }
+            ],
+            "source": "Manual",
+            "multichoice": true,
+            "searchable": false,
             "required": false,
-            "value": true,
-            "selected": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-check-circle",
-            "label": "إظهار MIS Pay في شريط التقسيط",
-            "description": "تظهر فقط عندما تكون MIS Pay مفعلة ضمن وسائل الدفع في المتجر",
-            "id": "product_installment_show_mispay",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": true
+            "value": ["tamara", "tabby", "mispay"],
+            "conditions": [
+                {
+                    "id": "product_installment_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
         },
         {
             "type": "boolean",
