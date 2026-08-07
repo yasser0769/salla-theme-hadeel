@@ -597,6 +597,46 @@
             "maximum": 40
         },
         {
+            "type": "static",
+            "format": "title",
+            "id": "static-product-installments-title",
+            "value": "برامج التقسيط في صفحة المنتج",
+            "variant": "h6"
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-check-circle",
+            "label": "إظهار تمارا في شريط التقسيط",
+            "description": "تظهر فقط عندما تكون تمارا مفعلة ضمن وسائل الدفع في المتجر",
+            "id": "product_installment_show_tamara",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-check-circle",
+            "label": "إظهار تابي في شريط التقسيط",
+            "description": "تظهر فقط عندما تكون تابي مفعلة ضمن وسائل الدفع في المتجر",
+            "id": "product_installment_show_tabby",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-check-circle",
+            "label": "إظهار MIS Pay في شريط التقسيط",
+            "description": "تظهر فقط عندما تكون MIS Pay مفعلة ضمن وسائل الدفع في المتجر",
+            "id": "product_installment_show_mispay",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
             "type": "boolean",
             "icon": "sicon-toggle-off",
             "label": "اظهار الوسوم",

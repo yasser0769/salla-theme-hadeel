@@ -33,4 +33,11 @@
 
   /* Collection promotion badge from the Figma product-card component. */
   --hadeel-promo: #ff4f00;
+
+  /* Payment-provider brand chips used by the compact installment bar. */
+  --hadeel-provider-tabby: #3df082;
+  --hadeel-provider-tamara: linear-gradient(90deg, #ffb4b4, #f7d8a3 50%, #c6a7ff);
+  --hadeel-provider-mispay: #6322d0;
+  --hadeel-provider-ink: #171717;
+  --hadeel-provider-reverse: #fff;
 }

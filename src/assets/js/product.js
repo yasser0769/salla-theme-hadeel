@@ -16,6 +16,7 @@ class Product extends BasePage {
         this.initProductOptionValidations();
         this.initRelatedProducts();
         this.initAddToCartAnimation();
+        this.initCompactInstallments();
         this.updateSalePricing();
 
         if(imageZoom){
@@ -132,6 +133,128 @@ class Product extends BasePage {
 
         window.setInterval(play, intervalSeconds * 1000);
       });
+    }
+
+    /**
+     * Keeps Salla's real installment component mounted for eligibility, live pricing,
+     * provider scripts, and explanation dialogs. The compact Hadeel controls only
+     * proxy clicks to the provider widgets that Salla actually rendered.
+     */
+    initCompactInstallments() {
+      const container = document.querySelector('[data-hadeel-installments]');
+      const bar = container?.querySelector('[data-installment-bar]');
+      const nativeContainer = container?.querySelector('.hadeel-installments__native');
+      const installment = container?.querySelector('salla-installment');
+      const buttons = Array.from(container?.querySelectorAll('[data-installment-provider]') || []);
+
+      if (!container || !bar || !nativeContainer || !installment || !buttons.length) return;
+
+      const connectReadyProvider = (button) => {
+        if (button.dataset.installmentReady === 'true') return true;
+
+        const provider = button.dataset.installmentProvider;
+        const source = this.getInstallmentProviderSource(installment, provider);
+        const trigger = this.getInstallmentProviderTrigger(source, provider);
+        if (!trigger) return false;
+
+        trigger.tabIndex = -1;
+        button._hadeelInstallmentTrigger = trigger;
+        button.dataset.installmentReady = 'true';
+        button.hidden = false;
+        button.disabled = false;
+        button.addEventListener('click', () => {
+          /* Provider dialogs live under the native widgets, so expose that subtree to
+             assistive technology immediately before opening the selected dialog. */
+          nativeContainer.removeAttribute('aria-hidden');
+
+          let currentTrigger = button._hadeelInstallmentTrigger;
+          if (!currentTrigger?.isConnected) {
+            const currentSource = this.getInstallmentProviderSource(installment, provider);
+            currentTrigger = this.getInstallmentProviderTrigger(currentSource, provider);
+            button._hadeelInstallmentTrigger = currentTrigger;
+          }
+
+          currentTrigger?.click();
+        });
+
+        return true;
+      };
+
+      customElements.whenDefined('salla-installment').then(async () => {
+        if (typeof installment.componentOnReady === 'function') {
+          await installment.componentOnReady();
+        }
+
+        let attempts = 0;
+        const refresh = () => {
+          attempts += 1;
+          const readyCount = buttons.filter(connectReadyProvider).length;
+          bar.hidden = readyCount === 0;
+
+          if (readyCount === buttons.length || attempts >= 40) {
+            window.clearInterval(readinessTimer);
+          }
+        };
+
+        const readinessTimer = window.setInterval(refresh, 250);
+        refresh();
+      });
+    }
+
+    getInstallmentProviderSource(installment, provider) {
+      const selectors = {
+        tamara: 'tamara-widget, .tamara-product-widget',
+        tabby: '#tabbyPromo',
+        mispay: 'mispay-widget',
+      };
+
+      return selectors[provider] ? installment.querySelector(selectors[provider]) : null;
+    }
+
+    getInstallmentProviderTrigger(source, provider) {
+      if (!source) return null;
+
+      if (provider === 'mispay') {
+        return this.findDeepInstallmentElement(source.shadowRoot, (element) => element.matches('a'));
+      }
+
+      if (provider === 'tamara' && source.matches('.tamara-product-widget')) {
+        return source;
+      }
+
+      const root = source.shadowRoot || source;
+      const semanticTrigger = this.findDeepInstallmentElement(root, (element) => (
+        element.matches('button, a, [role="button"]')
+      ));
+      if (semanticTrigger) return semanticTrigger;
+
+      /*
+       * Tamara and Tabby render their clickable summaries inside open shadow roots.
+       * Their private class names change between SDK releases, so detect the provider's
+       * own pointer target instead of depending on one of those class names.
+       */
+      return this.findDeepInstallmentElement(root, (element) => (
+        window.getComputedStyle(element).cursor === 'pointer'
+      ));
+    }
+
+    findDeepInstallmentElement(root, predicate) {
+      if (!root) return null;
+
+      const children = Array.from(root.children || []);
+      for (const element of children) {
+        if (predicate(element)) return element;
+      }
+
+      for (const element of children) {
+        const shadowMatch = this.findDeepInstallmentElement(element.shadowRoot, predicate);
+        if (shadowMatch) return shadowMatch;
+
+        const childMatch = this.findDeepInstallmentElement(element, predicate);
+        if (childMatch) return childMatch;
+      }
+
+      return null;
     }
 
     initImagesZooming() {
