@@ -35,7 +35,9 @@
       "retry": "Try again",
       "item_note": "Order note",
       "item_note_placeholder": "Write your note here...",
-      "shipping_tax_notice": "Shipping and taxes are calculated at checkout"
+      "shipping_tax_notice": "Shipping and taxes are calculated at checkout",
+      "page_title": "Shopping cart",
+      "delete_item": "Remove"
     },
     "products": {
       "kalles": {

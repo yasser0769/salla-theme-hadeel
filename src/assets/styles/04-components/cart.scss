@@ -1,0 +1,454 @@
+/*
+ * Cart page — Figma "08 · Cart" (nodes 232:3 desktop, 232:4 tablet, 232:5 mobile).
+ * The design draws two columns at desktop, one column at tablet and below, and
+ * restacks the line item under 768px.
+ */
+
+.cart-page {
+  padding-bottom: 40px;
+  color: var(--hadeel-ink);
+  background: var(--hadeel-soft);
+}
+
+.cart-page__breadcrumb {
+  display: flex;
+  min-height: 64px;
+  align-items: center;
+  font-size: 13px;
+}
+
+.cart-page__title {
+  margin-bottom: var(--sp-5);
+  color: var(--hadeel-ink);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.cart-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-6);
+}
+
+.cart-layout__items {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cart-layout__summary {
+  display: flex;
+  flex: 0 0 384px;
+  width: 384px;
+  flex-direction: column;
+  gap: 20px;
+  position: sticky;
+  /* Clears the header once it pins, which is what the previous layout used. */
+  top: 96px;
+}
+
+/* ------------------------------------------------------------------ line item */
+
+.cart-item {
+  padding: var(--sp-5);
+  border: 1px solid var(--hadeel-line);
+  border-radius: 8px;
+  background: var(--hadeel-surface);
+
+  salla-conditional-fields > section {
+    @apply px-0 pt-0 last:mb-0 last:pb-0;
+  }
+}
+
+.cart-item__row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cart-item__media {
+  position: relative;
+  display: block;
+  flex: 0 0 120px;
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--hadeel-soft);
+}
+
+.cart-item__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.free-ribbon {
+  position: absolute;
+  top: 11px;
+  inset-inline-end: -38px;
+  width: 128px;
+  padding-block: 4px;
+  transform: rotate(45deg);
+  color: var(--color-primary-reverse);
+  background: var(--hadeel-promo);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.cart-item__details {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.cart-item__name {
+  color: var(--hadeel-ink);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.cart-item__meta {
+  align-items: center;
+  gap: var(--sp-1);
+  color: var(--hadeel-muted);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/*
+ * `hidden` is toggled at runtime by cart.js, and Tailwind's utilities layer is
+ * emitted before this file. Scoping the display keeps the utility winning
+ * instead of adding a second rule to beat this one.
+ */
+.cart-item__meta:not(.hidden) {
+  display: flex;
+}
+
+.cart-item__prices {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.cart-item__prices .item-price {
+  color: var(--hadeel-ink);
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.cart-item__prices .item-original-price,
+.cart-item__prices .item-regular-price {
+  color: var(--hadeel-muted);
+  font-size: 14px;
+  line-height: 20px;
+  text-decoration: line-through;
+}
+
+.cart-item__controls {
+  display: flex;
+  flex: 0 0 210px;
+  min-height: 120px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-2);
+}
+
+.cart-item__remove {
+  padding: 0;
+  border: 0;
+  color: var(--hadeel-promo);
+  background: transparent;
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.cart-item__quantity-static {
+  min-width: 112px;
+  color: var(--hadeel-ink);
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Twilight exposes no styling slot for the quantity control internals.
+ * If these scoped class names change upstream the stepper falls back to its
+ * default presentation; delete these rules rather than stacking another layer. */
+.cart-item__controls salla-quantity-input {
+  display: block;
+  width: 112px;
+  margin: 0;
+  padding: 0;
+}
+
+.cart-item__controls .s-quantity-input-container {
+  width: 112px;
+  height: 40px;
+  min-height: 40px;
+  border: 1px solid var(--hadeel-line);
+  border-radius: var(--r-pill);
+  background: var(--hadeel-surface);
+}
+
+.cart-item__controls .s-quantity-input-button,
+.cart-item__controls .s-quantity-input-input {
+  height: 38px;
+  color: var(--hadeel-ink);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* The design puts the amount beside the stepper and the label at the far edge. */
+.cart-item__total {
+  display: flex;
+  width: 100%;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  line-height: 20px;
+}
+
+.cart-item__total-label {
+  color: var(--hadeel-muted);
+  font-size: 14px;
+}
+
+.cart-item__total .item-total {
+  color: var(--hadeel-ink);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.cart-item__options > * {
+  display: block;
+  margin-top: var(--sp-4);
+}
+
+/* --------------------------------------------------------------- sidebar cards */
+
+.cart-card {
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-5);
+  border: 1px solid var(--hadeel-line);
+  border-radius: 8px;
+  background: var(--hadeel-surface);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+/* See the note on `.cart-item__meta` — `hidden` is toggled by cart.js. */
+.cart-card:not(.hidden) {
+  display: flex;
+}
+
+.cart-card__title {
+  color: var(--hadeel-ink);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 22px;
+}
+
+.cart-card__note {
+  color: var(--hadeel-muted);
+  font-size: 13px;
+  line-height: 22px;
+}
+
+.cart-progress {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--hadeel-soft);
+}
+
+.cart-progress__fill {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--hadeel-accent);
+  transition: width 0.5s ease;
+}
+
+.cart-summary {
+  gap: var(--sp-4);
+}
+
+.cart-summary .cart-card__title {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.cart-summary__rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.cart-summary__row {
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  line-height: 20px;
+}
+
+/* See the note on `.cart-item__meta` — `hidden` is toggled by cart.js. */
+.cart-summary__row:not(.hidden) {
+  display: flex;
+}
+
+.cart-summary__row span {
+  color: var(--hadeel-muted);
+  font-size: 14px;
+}
+
+.cart-summary__row b {
+  color: var(--hadeel-ink);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.cart-summary__divider {
+  height: 1px;
+  background: var(--hadeel-line);
+}
+
+.cart-summary__total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.cart-summary__total span {
+  color: var(--hadeel-muted);
+  font-size: 16px;
+}
+
+.cart-summary__total b {
+  color: var(--hadeel-ink);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* The coupon field and its button are Twilight's own markup; the design asks for
+ * a plain field with a pill action beside it. */
+.cart-summary__coupon .s-cart-coupons-coupon-label {
+  color: var(--hadeel-ink);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.cart-summary__coupon .s-cart-coupons-coupon-input-container {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.cart-summary__coupon .form-input {
+  flex: 1 1 auto;
+  min-height: 44px;
+  padding-inline: 14px;
+  border: 1px solid var(--hadeel-line);
+  border-radius: 8px;
+  background: var(--hadeel-surface);
+  font-size: 14px;
+}
+
+.cart-summary__coupon .s-cart-coupons-coupon-button {
+  flex: 0 0 100px;
+  width: 100px;
+  margin: 0;
+}
+
+.cart-summary__coupon .s-cart-coupons-coupon-button .s-button-btn {
+  width: 100%;
+  min-height: 44px;
+  border-radius: var(--r-pill);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+#cart-submit .s-button-btn {
+  width: 100%;
+  min-height: 48px;
+  border-radius: var(--r-pill);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------------------ responsive */
+
+@media (max-width: 1023px) {
+  .cart-layout {
+    flex-direction: column;
+  }
+
+  .cart-layout__summary {
+    flex: 1 1 auto;
+    width: 100%;
+    position: static;
+  }
+}
+
+@media (max-width: 767px) {
+  .cart-page__title {
+    margin-bottom: var(--sp-4);
+    font-size: 24px;
+  }
+
+  .cart-layout,
+  .cart-layout__items,
+  .cart-layout__summary {
+    gap: var(--sp-4);
+  }
+
+  .cart-item {
+    padding: var(--sp-4);
+  }
+
+  /* The design drops the controls onto their own line under the product row. */
+  .cart-item__row {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .cart-item__media {
+    flex-basis: 96px;
+    width: 96px;
+    height: 96px;
+  }
+
+  .cart-item__controls {
+    flex: 0 0 100%;
+    min-height: 0;
+    margin-top: var(--sp-1);
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+
+  .cart-item__total {
+    width: auto;
+    flex: 0 0 auto;
+  }
+
+  .cart-item__controls .s-quantity-input-container {
+    height: 44px;
+    min-height: 44px;
+  }
+
+  .cart-item__controls .s-quantity-input-button,
+  .cart-item__controls .s-quantity-input-input {
+    height: 42px;
+  }
+}

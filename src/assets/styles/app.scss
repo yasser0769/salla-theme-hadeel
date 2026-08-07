@@ -33,6 +33,7 @@
  * Home Blocks..........Specific styles for home blocks.
  * Slider...............Specific styles for sliders.
  * Product..............Specific styles for single product page and it's elements.
+ * Cart.................Specific styles for the cart page.
  * Brands...............Specific styles for brands page.
  * Placeholder..........Specific styles for no content placeholders.
  * Gifting..............Specific styles for gifting system.
@@ -89,6 +90,7 @@
 @use './04-components/storefront-system' as *;
 @use './04-components/product-card' as *;
 @use './04-components/collection' as *;
+@use './04-components/cart' as *;
 
 @use './05-utilities/chat-bots' as *;
 @use './05-utilities/swal' as *;

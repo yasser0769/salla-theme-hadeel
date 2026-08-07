@@ -35,7 +35,9 @@
       "retry": "إعادة المحاولة",
       "item_note": "ملاحظة الطلب",
       "item_note_placeholder": "اكتب ملاحظتك هنا...",
-      "shipping_tax_notice": "يُحسب الشحن والضرائب عند إتمام الطلب"
+      "shipping_tax_notice": "يُحسب الشحن والضرائب عند إتمام الطلب",
+      "page_title": "سلة المشتريات",
+      "delete_item": "حذف"
     },
     "products": {
       "kalles": {
