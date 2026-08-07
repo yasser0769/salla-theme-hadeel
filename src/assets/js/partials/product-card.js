@@ -35,10 +35,10 @@ class ProductCard extends HTMLElement {
         this.startingPrice = salla.lang.get('pages.products.starting_price');
         this.addToCart = salla.lang.get('pages.cart.add_to_cart');
         this.outOfStock = salla.lang.get('pages.products.out_of_stock');
-        this.quickViewLabel = this.kallesLang('quick_view', 'Quick view');
-        this.quickAddLabel = this.kallesLang('quick_add', 'Quick add');
-        this.detailsLabel = this.kallesLang('view_details', 'View details');
-        this.wishlistLabel = this.kallesLang('add_to_wishlist', 'Add to wishlist');
+        this.quickViewLabel = this.productCardLang('quickView', 'quick_view', 'Quick view');
+        this.quickAddLabel = this.productCardLang('quickAdd', 'quick_add', 'Add to cart');
+        this.detailsLabel = this.productCardLang('viewDetails', 'view_details', 'View details');
+        this.wishlistLabel = this.productCardLang('addToWishlist', 'add_to_wishlist', 'Add to wishlist');
         this.newBadgeKeywords = this.kallesLang('new_badge_keywords', 'new')
           .split('|')
           .map((keyword) => keyword.trim().toLocaleLowerCase())
@@ -186,6 +186,20 @@ class ProductCard extends HTMLElement {
    */
   kallesLang(name, fallback) {
     return salla.lang.getWithDefault(`pages.products.kalles.${name}`, fallback);
+  }
+
+  /**
+   * `trans()` resolves the theme locale on Salla's server, whereas custom theme keys
+   * are not guaranteed to be present in the client-side `salla.lang` catalogue. The
+   * template in master.twig bridges those resolved values to client-rendered cards.
+   */
+  productCardLang(dataName, localeName, fallback) {
+    const value = document.getElementById('hadeel-product-card-i18n')?.dataset?.[dataName];
+    const unresolvedKey = `pages.products.kalles.${localeName}`;
+
+    return value && value !== unresolvedKey
+      ? value
+      : this.kallesLang(localeName, fallback);
   }
 
   escapeHTML(str = '') {

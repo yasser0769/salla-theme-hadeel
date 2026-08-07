@@ -111,6 +111,17 @@
     <a href="https://www.enable-javascript.com/" rel="noreferrer"
        target="_blank">To enable JavaScript on webpage</a>.
 </noscript>
+{#
+  Product cards are rendered client-side, while custom theme locale keys are reliably
+  resolved by Twilight's server-side `trans()` helper. Keep their copy in the locale
+  files and expose the resolved values without painting extra markup on the page.
+#}
+<template id="hadeel-product-card-i18n"
+          data-quick-view="{{ trans('pages.products.kalles.quick_view') }}"
+          data-quick-add="{{ trans('pages.products.kalles.quick_add') }}"
+          data-view-details="{{ trans('pages.products.kalles.view_details') }}"
+          data-add-to-wishlist="{{ trans('pages.products.kalles.add_to_wishlist') }}">
+</template>
 <div class="app-inner flex flex-col min-h-full">
     {% hook 'body:start' %}
     {% component 'header.header' %}
