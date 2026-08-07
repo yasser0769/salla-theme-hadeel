@@ -588,13 +588,19 @@
     min-height: 48px;
   }
 
-  /* The design sizes the button off the row, not off a fixed width. */
+  /*
+   * The design sizes the button off the row, not off a fixed width. The basis is
+   * spelled out because the template puts `w-full` on the element: with
+   * `flex-basis: auto` that resolves to the full row, and the wishlist beside it
+   * wrapped onto a line of its own.
+   */
   > salla-add-product-button {
-    min-width: 160px;
+    width: auto;
+    min-width: 0;
     height: 48px;
     min-height: 48px;
     margin: 0;
-    flex: 1 1 auto;
+    flex: 1 1 160px;
     order: 1;
   }
 
