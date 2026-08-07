@@ -85,6 +85,17 @@ body .s-button-btn {
   font-weight: 600;
 }
 
+/*
+ * Twilight renders the stepper increase-first, so on an RTL page the plus lands
+ * on the right and the minus on the left — backwards for both directions. One
+ * reversal fixes every stepper in the theme: plus at the inline end, minus at
+ * the inline start. The element+class selector outranks Twilight's own
+ * single-class rule, so this does not depend on import order.
+ */
+salla-quantity-input .s-quantity-input-container {
+  flex-direction: row-reverse;
+}
+
 /* Header */
 .announcement-bar__inner {
   min-height: 32px;
