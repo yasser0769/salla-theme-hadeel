@@ -215,39 +215,56 @@
   border-color: var(--hadeel-ink);
 }
 
-.density-icon {
-  display: grid;
-  width: 24px;
-  height: 18px;
-  grid-auto-flow: column;
-  gap: 3px;
+/*
+ * The border is the pressed state, so the global 2px accent outline drew a second
+ * frame around it. The same border carries focus instead of stacking a ring on it.
+ */
+.collection-toolbar__density button:focus-visible {
+  outline: none;
+  border-color: var(--hadeel-accent);
 }
 
-.density-icon::before,
-.density-icon::after {
-  content: '';
-  background: currentColor;
+/*
+ * One geometry for all four icons: `--cols` bars of `--bar` inside `--w`, so the
+ * column count is the only thing that changes between them. The bars were drawn
+ * with box-shadow offsets that did not land on the grid tracks they belonged to.
+ */
+.density-icon {
+  --w: 22px;
+  --gap: 3px;
+  --step: calc((var(--w) + var(--gap)) / var(--cols));
+  --bar: calc(var(--step) - var(--gap));
+  display: block;
+  width: var(--w);
+  height: 16px;
+  background-image: repeating-linear-gradient(
+    to right,
+    currentColor 0 var(--bar),
+    transparent var(--bar) var(--step)
+  );
+}
+
+.density-icon--2 {
+  --cols: 2;
 }
 
 .density-icon--3 {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.density-icon--3::before {
-  box-shadow: 9px 0 currentColor, 18px 0 currentColor;
-}
-
-.density-icon--3::after,
-.density-icon--4::after {
-  display: none;
+  --cols: 3;
 }
 
 .density-icon--4 {
-  grid-template-columns: repeat(4, 1fr);
+  --cols: 4;
 }
 
-.density-icon--4::before {
-  box-shadow: 7px 0 currentColor, 14px 0 currentColor, 21px 0 currentColor;
+/* The row view is the same drawing rotated: full-width bars stacked down. */
+.density-icon--list {
+  --cols: 3;
+  --step: calc((16px + var(--gap)) / var(--cols));
+  background-image: repeating-linear-gradient(
+    to bottom,
+    currentColor 0 var(--bar),
+    transparent var(--bar) var(--step)
+  );
 }
 
 .collection-toolbar__filter {
@@ -295,14 +312,105 @@
   grid-template-columns: 1fr;
 }
 
+/*
+ * Row view. The overlay rail has no meaning in a row, so the card's own children
+ * are promoted into the card's grid with `display: contents` and placed by hand:
+ * media and wishlist down the first column, copy and the two buttons down the
+ * second. Nothing here reveals on hover — a row shows its actions outright.
+ */
 .collection-page[data-grid-density='list'] custom-salla-product-card {
   display: grid;
   grid-template-columns: 180px minmax(0, 1fr);
-  gap: 24px;
+  grid-template-rows: 1fr auto auto auto;
+  column-gap: 24px;
+  align-items: start;
+}
+
+.collection-page[data-grid-density='list'] .s-product-card-image,
+.collection-page[data-grid-density='list'] .kalles-card-actions {
+  display: contents;
+}
+
+.collection-page[data-grid-density='list'] .s-product-card-image > a {
+  grid-column: 1;
+  grid-row: 1 / 4;
+  aspect-ratio: 264 / 336;
+  overflow: hidden;
+  background: var(--hadeel-soft);
+  position: relative;
 }
 
 .collection-page[data-grid-density='list'] .s-product-card-content {
-  padding-top: 12px;
+  grid-column: 2;
+  grid-row: 1;
+  padding-top: 0;
+}
+
+.collection-page[data-grid-density='list'] .kalles-card-actions > .kalles-card-quick-view,
+.collection-page[data-grid-density='list'] .kalles-card-actions > .kalles-card-quick-add {
+  grid-column: 2;
+  position: static;
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  min-height: 44px;
+  margin-top: 10px;
+  gap: 8px;
+  border-radius: var(--r-pill);
+  font-size: 13px;
+  line-height: 1;
+  opacity: 1;
+  transform: none;
+  box-shadow: none;
+}
+
+.collection-page[data-grid-density='list'] .kalles-card-actions > .kalles-card-quick-view {
+  grid-row: 2;
+  border: 1px solid var(--hadeel-line);
+  color: var(--hadeel-ink);
+  background: var(--hadeel-surface);
+}
+
+.collection-page[data-grid-density='list'] .kalles-card-actions > .kalles-card-quick-add {
+  grid-row: 3;
+  border: 0;
+  color: var(--color-primary-reverse, #fff);
+  background: var(--color-primary);
+}
+
+.collection-page[data-grid-density='list'] .kalles-card-quick-add > div,
+.collection-page[data-grid-density='list'] .kalles-card-quick-add salla-button,
+.collection-page[data-grid-density='list'] .kalles-card-quick-add .s-button-wrap,
+.collection-page[data-grid-density='list'] .kalles-card-quick-add .s-button-btn,
+.collection-page[data-grid-density='list'] .kalles-card-quick-add .s-button-element,
+.collection-page[data-grid-density='list'] .kalles-card-quick-add .s-add-product-button-main {
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  min-height: 44px;
+  gap: 8px;
+  border-radius: var(--r-pill);
+}
+
+.collection-page[data-grid-density='list'] .kalles-card-quick-view > span,
+.collection-page[data-grid-density='list'] .kalles-card-quick-add > span,
+.collection-page[data-grid-density='list'] .kalles-card-quick-add .s-button-text > span {
+  display: inline;
+}
+
+/* The wishlist keeps its circle and sits under the media, as Kalles has it. */
+.collection-page[data-grid-density='list'] .kalles-card-actions > .kalles-card-wishlist {
+  grid-column: 1;
+  grid-row: 4;
+  position: static;
+  justify-self: start;
+  margin-top: 12px;
+  opacity: 1;
+  transform: none;
+}
+
+.collection-page[data-grid-density='list'] .kalles-card-wishlist .s-button-text > span {
+  display: none;
 }
 
 .collection-filters-drawer .s-drawer-wrapper-right,
@@ -453,7 +561,25 @@
   }
 
   .collection-page[data-grid-density='list'] custom-salla-product-card {
-    grid-template-columns: 110px minmax(0, 1fr);
-    gap: 14px;
+    grid-template-columns: 120px minmax(0, 1fr);
+    column-gap: 14px;
+  }
+
+  .collection-page[data-grid-density='list'] .kalles-card-actions > .kalles-card-quick-view,
+  .collection-page[data-grid-density='list'] .kalles-card-actions > .kalles-card-quick-add {
+    height: 38px;
+    min-height: 38px;
+    margin-top: 8px;
+    font-size: 12px;
+  }
+
+  .collection-page[data-grid-density='list'] .kalles-card-quick-add > div,
+  .collection-page[data-grid-density='list'] .kalles-card-quick-add salla-button,
+  .collection-page[data-grid-density='list'] .kalles-card-quick-add .s-button-wrap,
+  .collection-page[data-grid-density='list'] .kalles-card-quick-add .s-button-btn,
+  .collection-page[data-grid-density='list'] .kalles-card-quick-add .s-button-element,
+  .collection-page[data-grid-density='list'] .kalles-card-quick-add .s-add-product-button-main {
+    height: 38px;
+    min-height: 38px;
   }
 }
