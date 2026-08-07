@@ -6,8 +6,9 @@
 | cart.total       | string  | Formatted total ex: "١٠٠ ر.س"   |
 #}
 <header class="store-header">
-  {% set announcement_text = theme.settings.get('announcement_text', '')|trim %}
-  {% if theme.settings.get('announcement_enabled', true) and announcement_text %}
+  {# Empty multilanguage values arrive from Salla as [], so keep them out of string-only filters. #}
+  {% set announcement_text = theme.settings.get('announcement_text', '')|default('') %}
+  {% if theme.settings.get('announcement_enabled', true) and announcement_text is not empty %}
   <div class="announcement-bar announcement-bar--{{ theme.settings.get('announcement_style', 'primary') }}">
     <div class="container announcement-bar__inner">
       {% if theme.settings.get('announcement_show_icon', true) %}
