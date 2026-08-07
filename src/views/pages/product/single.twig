@@ -280,6 +280,9 @@
                     {% set show_installment_tamara = theme.settings.get('product_installment_show_tamara', true) %}
                     {% set show_installment_tabby = theme.settings.get('product_installment_show_tabby', true) %}
                     {% set show_installment_mispay = theme.settings.get('product_installment_show_mispay', true) %}
+                    {% set installment_price = product.is_on_sale
+                        ? product.sale_price
+                        : (product.starting_price ? product.starting_price : product.price) %}
                     {% if show_installment_tamara or show_installment_tabby or show_installment_mispay %}
                         <section class="hadeel-installments" data-hadeel-installments>
                             <div class="hadeel-installments__bar" data-installment-bar hidden>
@@ -332,7 +335,7 @@
                               invoke its real provider triggers instead of duplicating that logic.
                             #}
                             <div class="hadeel-installments__native" aria-hidden="true">
-                                <salla-installment price="{{ product.price }}"></salla-installment>
+                                <salla-installment price="{{ installment_price }}"></salla-installment>
                             </div>
                         </section>
                     {% endif %}
