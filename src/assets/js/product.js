@@ -136,12 +136,15 @@ class Product extends BasePage {
     }
 
     /**
-     * Renders the merchant-selected providers independently from checkout configuration.
-     * The dialog explains the service without claiming that the payment method is enabled.
+     * Renders merchant-selected providers independently from checkout configuration.
+     * An active provider opens its authenticated Salla SDK dialog; otherwise the
+     * theme-owned guide remains available as a safe fallback.
      */
     initCompactInstallments() {
       const container = document.querySelector('[data-hadeel-installments]');
       const bar = container?.querySelector('[data-installment-bar]');
+      const nativeContainer = container?.querySelector('.hadeel-installments__native');
+      const installment = container?.querySelector('salla-installment');
       const modal = document.getElementById('hadeel-installment-modal');
       const modalBrand = modal?.querySelector('[data-installment-modal-brand]');
       const buttons = Array.from(container?.querySelectorAll('[data-installment-provider]') || []);
@@ -171,10 +174,19 @@ class Product extends BasePage {
       visibleButtons.forEach((button) => {
         button.addEventListener('click', async () => {
           const provider = button.dataset.installmentProvider;
-          const brand = button.querySelector('.hadeel-installments__brand')?.textContent?.trim() || '';
+          const nativeSource = this.getInstallmentProviderSource(installment, provider);
+          const nativeTrigger = this.getInstallmentProviderTrigger(nativeSource, provider);
+
+          if (nativeTrigger) {
+            nativeContainer?.removeAttribute('aria-hidden');
+            nativeTrigger.click();
+            return;
+          }
+
+          const brandLogo = button.querySelector('.hadeel-installments__brand-logo');
 
           modalBrand.dataset.installmentModalProvider = provider;
-          modalBrand.textContent = brand;
+          modalBrand.replaceChildren(brandLogo?.cloneNode(true) || document.createTextNode(''));
 
           await customElements.whenDefined('salla-modal');
           if (typeof modal.componentOnReady === 'function') {
@@ -184,6 +196,65 @@ class Product extends BasePage {
           await modal.open();
         });
       });
+
+      customElements.whenDefined('salla-installment').then(async () => {
+        if (typeof installment?.componentOnReady === 'function') {
+          await installment.componentOnReady();
+        }
+      });
+    }
+
+    getInstallmentProviderSource(installment, provider) {
+      if (!installment) return null;
+
+      const selectors = {
+        tamara: 'tamara-widget, .tamara-product-widget',
+        tabby: '#tabbyPromo',
+        mispay: 'mispay-widget',
+      };
+
+      return selectors[provider] ? installment.querySelector(selectors[provider]) : null;
+    }
+
+    getInstallmentProviderTrigger(source, provider) {
+      if (!source) return null;
+
+      if (provider === 'mispay') {
+        return this.findDeepInstallmentElement(source.shadowRoot, (element) => element.matches('a'));
+      }
+
+      if (provider === 'tamara' && source.matches('.tamara-product-widget')) {
+        return source;
+      }
+
+      const root = source.shadowRoot || source;
+      const semanticTrigger = this.findDeepInstallmentElement(root, (element) => (
+        element.matches('button, a, [role="button"]')
+      ));
+      if (semanticTrigger) return semanticTrigger;
+
+      return this.findDeepInstallmentElement(root, (element) => (
+        window.getComputedStyle(element).cursor === 'pointer'
+      ));
+    }
+
+    findDeepInstallmentElement(root, predicate) {
+      if (!root) return null;
+
+      const children = Array.from(root.children || []);
+      for (const element of children) {
+        if (predicate(element)) return element;
+      }
+
+      for (const element of children) {
+        const shadowMatch = this.findDeepInstallmentElement(element.shadowRoot, predicate);
+        if (shadowMatch) return shadowMatch;
+
+        const childMatch = this.findDeepInstallmentElement(element, predicate);
+        if (childMatch) return childMatch;
+      }
+
+      return null;
     }
 
     initImagesZooming() {

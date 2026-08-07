@@ -954,36 +954,19 @@
   }
 }
 
-.hadeel-installments__brand {
-  min-width: 42px;
-  padding: 3px 7px;
+.hadeel-installments__brand-logo {
+  width: auto;
+  height: 22px;
+  max-width: 72px;
+  display: block;
+  object-fit: contain;
+}
+
+[data-installment-provider="tamara"] .hadeel-installments__brand-logo,
+.hadeel-installments__modal-brand[data-installment-modal-provider="tamara"] .hadeel-installments__brand-logo {
+  padding: 5px 7px;
   border-radius: 5px;
-  color: var(--hadeel-provider-ink);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: 800;
-  line-height: 1;
-  white-space: nowrap;
-}
-
-[data-installment-provider="tamara"] .hadeel-installments__brand {
   background: var(--hadeel-provider-tamara);
-}
-
-[data-installment-provider="tabby"] .hadeel-installments__brand {
-  background: var(--hadeel-provider-tabby);
-  font-family: Arial, sans-serif;
-  font-size: 13px;
-  letter-spacing: -0.04em;
-}
-
-[data-installment-provider="mispay"] .hadeel-installments__brand {
-  color: var(--hadeel-provider-reverse);
-  background: var(--hadeel-provider-mispay);
-  font-family: Arial, sans-serif;
-  font-style: italic;
 }
 
 .hadeel-installments__modal-content {
@@ -994,33 +977,14 @@
 }
 
 .hadeel-installments__modal-brand {
-  width: fit-content;
-  min-width: 72px;
-  padding: 7px 12px;
-  border-radius: 7px;
-  color: var(--hadeel-provider-ink);
+  min-height: 38px;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  font-weight: 800;
-  line-height: 1;
-}
 
-.hadeel-installments__modal-brand[data-installment-modal-provider="tamara"] {
-  background: var(--hadeel-provider-tamara);
-}
-
-.hadeel-installments__modal-brand[data-installment-modal-provider="tabby"] {
-  background: var(--hadeel-provider-tabby);
-  letter-spacing: -0.04em;
-}
-
-.hadeel-installments__modal-brand[data-installment-modal-provider="mispay"] {
-  color: var(--hadeel-provider-reverse);
-  background: var(--hadeel-provider-mispay);
-  font-style: italic;
+  .hadeel-installments__brand-logo {
+    height: 38px;
+    max-width: 140px;
+  }
 }
 
 .hadeel-installments__steps {
@@ -1047,6 +1011,22 @@
     margin-top: 5px;
     color: var(--color-primary);
     flex: 0 0 auto;
+  }
+}
+
+/*
+ * Salla's component owns provider eligibility, pricing, credentials, and native
+ * dialogs. Keep its summaries off-screen while compact Hadeel controls proxy the
+ * real provider trigger when one exists.
+ */
+.hadeel-installments__native {
+  width: min(600px, calc(100vw - 32px));
+  position: fixed;
+  top: 0;
+  inset-inline-start: -10000px;
+
+  salla-installment {
+    margin: 0;
   }
 }
 
