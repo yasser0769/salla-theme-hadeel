@@ -44,6 +44,8 @@
         "availability": "Availability",
         "category": "Category",
         "close_filters": "Close filters",
+        "categories_next": "Next categories",
+        "categories_previous": "Previous categories",
         "collection_categories": "Product categories",
         "delivery_returns": "Delivery & Return",
         "display_density": "Product display density",

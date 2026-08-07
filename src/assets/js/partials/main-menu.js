@@ -30,6 +30,48 @@ class NavigationMenu extends HTMLElement {
             link.textContent = menu.title || '';
             return link;
         }));
+
+        this.initCollectionCategoryStripControls(strip);
+    }
+
+    /**
+     * The strip scrolls sideways with no scrollbar, so nothing announces that there
+     * is more to see. The chevrons only appear once the row actually overflows, and
+     * each one switches off at its end of the scroll.
+     */
+    initCollectionCategoryStripControls(strip) {
+        const nav = strip.closest('[data-collection-category-nav]');
+        if (!nav) return;
+
+        const buttons = [...nav.querySelectorAll('[data-strip-scroll]')];
+        if (!buttons.length) return;
+
+        /* Scroll offsets run negative towards the end in a right-to-left row. */
+        const endSign = () => (getComputedStyle(strip).direction === 'rtl' ? -1 : 1);
+        const distanceFromStart = () => Math.abs(strip.scrollLeft);
+
+        const sync = () => {
+            const overflow = strip.scrollWidth - strip.clientWidth;
+            nav.classList.toggle('is-scrollable', overflow > 1);
+            buttons.forEach((button) => {
+                const atEdge = button.dataset.stripScroll === 'start'
+                    ? distanceFromStart() <= 1
+                    : distanceFromStart() >= overflow - 1;
+                button.disabled = overflow <= 1 || atEdge;
+            });
+        };
+
+        buttons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const step = Math.max(strip.clientWidth * 0.8, 120);
+                const towardsEnd = button.dataset.stripScroll === 'end';
+                strip.scrollBy({ left: step * endSign() * (towardsEnd ? 1 : -1), behavior: 'smooth' });
+            });
+        });
+
+        strip.addEventListener('scroll', sync, { passive: true });
+        window.addEventListener('resize', sync, { passive: true });
+        sync();
     }
 
     /** 

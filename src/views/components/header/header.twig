@@ -82,8 +82,25 @@
   </div>
 
   {% if page.slug == 'product.index' %}
-    <nav class="collection-category-strip" aria-label="{{ trans('pages.products.kalles.collection_categories') }}">
+    <nav class="collection-category-strip" aria-label="{{ trans('pages.products.kalles.collection_categories') }}" data-collection-category-nav>
+      {#
+        Both chevrons use the same glyph: `sicon-keyboard_arrow_left` already points
+        at the inline-end in either direction (ltr.scss remaps it), so the start
+        button only has to mirror it. No direction branch is needed here.
+      #}
+      <button class="collection-category-strip__nav collection-category-strip__nav--start"
+              type="button"
+              data-strip-scroll="start"
+              aria-label="{{ trans('pages.products.kalles.categories_previous') }}">
+        <i class="sicon-keyboard_arrow_left" aria-hidden="true"></i>
+      </button>
       <div class="collection-category-strip__track" data-collection-category-strip></div>
+      <button class="collection-category-strip__nav collection-category-strip__nav--end"
+              type="button"
+              data-strip-scroll="end"
+              aria-label="{{ trans('pages.products.kalles.categories_next') }}">
+        <i class="sicon-keyboard_arrow_left" aria-hidden="true"></i>
+      </button>
     </nav>
   {% endif %}
 

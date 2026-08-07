@@ -14,6 +14,50 @@
   overflow: hidden;
   border-bottom: 1px solid var(--hadeel-line);
   background: var(--hadeel-surface);
+  position: relative;
+}
+
+.collection-category-strip__nav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 32px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  color: var(--hadeel-ink);
+  background: var(--hadeel-surface);
+  font-size: 18px;
+}
+
+.collection-category-strip__nav--start {
+  inset-inline-start: 0;
+}
+
+.collection-category-strip__nav--end {
+  inset-inline-end: 0;
+}
+
+/* The glyph points at the inline-end; the start button is the same one mirrored. */
+.collection-category-strip__nav--start i {
+  transform: scaleX(-1);
+}
+
+.collection-category-strip.is-scrollable .collection-category-strip__nav {
+  display: flex;
+}
+
+.collection-category-strip__nav:disabled {
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.collection-category-strip.is-scrollable .collection-category-strip__track {
+  padding-inline: 34px;
+  scroll-padding-inline: 34px;
 }
 
 .collection-category-strip__track {
