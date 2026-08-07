@@ -7,7 +7,16 @@ salla-slider{
     }
 
     .swiper-slide{
-      @apply relative rounded-md bg-white ring-1 ring-inset ring-gray-100;
+      @apply relative rounded-md bg-white;
+    }
+
+    /*
+     * The inset ring is for the main slides only. On a thumb it drew a second
+     * hairline inside the accent border that marks the selected one, so the
+     * selection read as two stacked frames.
+     */
+    .s-slider-container .swiper-slide{
+      @apply ring-1 ring-inset ring-gray-100;
     }
 
     salla-button.btn--wishlist{
