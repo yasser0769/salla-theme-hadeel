@@ -290,3 +290,10 @@ This append-oriented log records verified transitions, commands, evidence, appro
 - Completion evidence is `specs/002-figma-design-system/design-system-report.md`. T044 and T045 are closed; T046 remains pending until the bounded HDL-02 commit succeeds.
 - Accepted report SHA-256 after the lifecycle record and Markdown whitespace normalization: `ee66476cacff50c371d66276f829be8dca3074bfefd91a8bdbd0d99e6d626300`.
 - HDL-03 is now dependency-ready because HDL-01 and HDL-02 are both done. Per the autonomous goal, the next spec starts automatically after the HDL-02 commit and post-commit guard.
+
+### 22:09 +03 — HDL-02 committed and post-commit guard passed
+
+- Bounded completion commit created on `codex/hdl-02-figma-design-system`: `f6070638` (`docs(spec-kit): complete HDL-02 design system`).
+- The commit contains only the HDL-02 feature directory plus its ROADMAP, spec-index, and runtime lifecycle updates. User-owned `.vscode/settings.json` and unrelated untracked paths were not staged or committed.
+- Post-commit `node scripts/check-theme.mjs --build` returned `0 error(s), 0 warning(s)`; all six checks, including `build-sync`, reported `ok`.
+- T046 is complete. HDL-02 is closed; control passes automatically to HDL-03.

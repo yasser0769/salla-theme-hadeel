@@ -103,7 +103,7 @@ description: "HDL-02 documentation-only implementation tasks for the approved Fi
 - [x] T043 If T042 reports any blocker, route fixes only to Kimi K3 High in `specs/002-figma-design-system/design-system-report.md`, then rerun T036–T042 until `STATUS: PASS` and `BLOCKERS: 0`
 - [x] T044 Present the validated report for Yasser's final `ACCEPT HDL-02` Human Gate without changing HDL-02 to `done`
 - [x] T045 After Yasser accepts, set HDL-02 to `done`, add the evidence link, and record acceptance in `ROADMAP.md`, `docs/spec-kit/spec-index.json`, `specs/002-figma-design-system/spec.md`, `specs/002-figma-design-system/design-system-report.md`, and `.specify/.runtime/hadeel-night-run.md`
-- [ ] T046 Commit only the HDL-02-owned artifacts and lifecycle updates, leaving `.vscode/settings.json` and unrelated untracked paths untouched; record the commit in `.specify/.runtime/hadeel-night-run.md`
+- [x] T046 Commit only the HDL-02-owned artifacts and lifecycle updates, leaving `.vscode/settings.json` and unrelated untracked paths untouched; record the commit in `.specify/.runtime/hadeel-night-run.md`
 
 ## Dependencies & Story Completion Order
 
