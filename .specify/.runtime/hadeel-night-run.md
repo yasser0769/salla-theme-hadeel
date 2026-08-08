@@ -199,3 +199,94 @@ This append-oriented log records verified transitions, commands, evidence, appro
 - V19 final guard: `node scripts/check-theme.mjs --build --json` returned `0` errors, `0` warnings, and `build-sync: ok`.
 - T067 passed before the Kimi window closed. Protected hashes matched `/tmp/hdl-01-preimpl-shasums.txt`: `spec.md` `753daf0c1853e88a3022258c54bf7b071aed8167`; `design.md` `5792c1da587a9c9cd060666473c402930b8e2693`; runtime log `619fb346a1d12e1698ed29b3c6feb9762e44b7ff`.
 - Human Gate T073 closed at 2026-08-08 19:38 +03 when Yasser responded exactly: `ACCEPT HDL-01`. The report lifecycle moved `validated → accepted`; HDL-01 moved `implementing → done` in the feature spec, ROADMAP, and only the HDL-01 status field in `docs/spec-kit/spec-index.json`.
+
+### 19:40 +03 — HDL-01 committed and final guard passed
+
+- Independent HDL-01 commit created on `codex/hdl-01-baseline-evidence`: `9e22771b` (`docs(spec-kit): complete HDL-01 baseline evidence`).
+- Post-commit `node scripts/check-theme.mjs --build` returned `0 error(s), 0 warning(s)`; all six checks, including `build-sync`, reported `ok`.
+- User-owned `.vscode/settings.json` remained modified and unstaged. Goal-owned `caffeinate -is` remains active as PID `59630` because the HDL-01…HDL-29 program is not complete.
+
+### 19:47 +03 — HDL-02 Clarify completed; Figma design phase opened
+
+- Created and switched to `codex/hdl-02-figma-design-system` from accepted HDL-01 commit `9e22771b`.
+- Active SpecKit feature was explicitly resolved with `SPECIFY_FEATURE_DIRECTORY=specs/002-figma-design-system`; the stale persisted HDL-01 path was not used.
+- Claude Opus 5 High was retried at the start of the new spec and exited before work with the recorded monthly spend-limit message. Per owner policy this was not a Human Gate.
+- Actual refinement/Clarify model: **GPT-5.6 Sol High via Codex**. Result: `STATUS: CLARIFIED`; owner questions: 0.
+- Bounded HDL-02 deliverable: design-system governance, reusable Foundations, nine representative component families, Node ID Registry, Settings Matrix, QA/approval template, and revision lifecycle. Complete page flows and four Presets remain owned by later specs.
+- Status synchronized `planned → designing` in the feature spec, `ROADMAP.md`, and only the HDL-02 status field in `docs/spec-kit/spec-index.json`. Figma approval is the next Human Gate; Plan/Tasks/implementation remain unopened.
+
+### 20:07 +03 — HDL-02 Figma Revision 1 ready for owner review
+
+- Claude Opus 5 High remained unavailable at this major phase boundary because of the recorded monthly spend limit. Per owner policy, actual Figma/design model: **GPT-5.6 Sol High via Codex**; this did not create a Human Gate.
+- Discovery inventoried 19 existing pages, 8 local variable collections with 150 variables, 18 Tajawal text styles, 5 effect styles, and existing local components. Material 3 and Simple Design System were discovery-only and were not imported.
+- Created page `16 · HDL-02 Design System` (`381:2`) and one top-level design-system root `HDL-02/Shared/Design-System/Responsive/Bidirectional/Rev-1` (`381:3`). The protected HDL-01 page `359:2` and board `359:3` remain present and unchanged by name/ID.
+- Created 9 local component sets with 88 total variants: Button `384:37`, Form Control `384:61`, Badge `384:73`, Product Price `386:15`, Product Card Skeleton `386:49`, Overlay Shell `386:129`, Header Navigation `389:61`, Tabs Accordion `389:105`, and Feedback State `389:137`.
+- Created/reviewed governance `390:2`, Node ID Registry `390:24`, Settings Matrix `391:2`, Coverage Matrix `391:96`, and QA/Approval Gate `391:139`.
+- Corrective visual passes removed an unintended header metadata fill, added explicit Form Control direction variants, fixed Product Price grid overlap, and removed shared Text properties that erased semantic or English variant values.
+- Final structural audit: **PASS**. Root size `1440×10636`, 16 direct sections, no missing required nodes, no unnamed or duplicate components, no out-of-bounds children, no bad text, no broken aliases, no `ALL_SCOPES`, and no missing WEB syntax.
+- Code Connect mapping could not be created: no repository Code Connect declarations or clean 1:1 source component exist, and the Figma tool requires a Dev/Full Organization or Enterprise seat. This is recorded as a non-blocking tool constraint; traceability uses WEB variable syntax plus the Node ID Registry.
+- Source/build/live-preview verification: `N/A — no source change`. No Twig, SCSS, JavaScript, `twilight.json`, locale, `public/`, or package artifact was changed by this design phase.
+- Human Gate opened. HDL-02 remains `designing`; Plan, Tasks, Analyze, and Kimi implementation are unopened. Required owner response: `APPROVE HDL-02 REV 1` or `CHANGES HDL-02: ...`.
+
+### 20:42 +03 — HDL-02 Figma Revision 2 ready after RTL/LTR parity changes
+
+- Yasser rejected Revision 1 parity and required four directly comparable frames: Arabic Mobile RTL, English Mobile LTR, Arabic Desktop RTL, and English Desktop LTR. Revision 1 is now Superseded; Plan remains unopened.
+- Actual design/correction model: **GPT-5.6 Sol High via Codex**. Claude remains unavailable under the recorded monthly spend limit; this was not treated as a Human Gate.
+- Loaded and followed `figma-use`, `figma-generate-design`, and, after discovering a reusable-component property defect, `figma-generate-library`. Code Connect discovery remained N/A: no repository declarations exist.
+- Added QA matrix `398:2` and direct frames: Arabic Mobile RTL `398:5`, English Mobile LTR `398:6`, Arabic Desktop RTL `398:7`, English Desktop LTR `398:8`. The matrix includes a short `What mirrors / What does not mirror / Why` board.
+- All four frames use the same semantic content and states: Header Default, Tab Active, Input/Select Focus, Primary CTA Default, Carousel/Pagination, and Drawer Ready. Physical Auto Layout order, text alignment, icon/text order, logical start/end mapping, Drawer/Menu side, Breadcrumb/Back, directional arrows, mixed price/SKU/URL isolation, and `Focus/01…08` are explicit.
+- Non-directional assets remain stable: HADEEL logo geometry, product-media blocks, photos, and Search/Cart/Play/Check icons are not mirrored.
+- Component defect found and fixed in Form Control `384:61`: the existing `Label#384:17` property was wired to all 8 LTR labels but none of the 8 RTL labels. All 16 labels now reference the same property; Arabic instances correctly render `ابحث داخل المتجر` and `المقاس: M` while English instances render their paired values.
+- QA found and fixed two evidence defects: mobile focus-order text overflow, and parent comparison rows clipping each viewport to 120px. Final row heights are 980px mobile and 900px desktop.
+- Final structural audit: **PASS**. Root `381:3` is `1440×13018`; matrix `398:2` is `1312×2342`; every frame has zero out-of-bounds descendants, Tajawal-only text, correct directional alignment, correct Header/Drawer variants and side, Bidi isolates, and a complete focus contract.
+- Final visual review used post-fix screenshots of all four frames, the full matrix, and Form Control documentation. No crop, overlap, stale RTL placeholder, or direction-only language swap remained.
+- Figma `saveVersionHistoryAsync` is unsupported in the current tool environment; the attempted call failed atomically and changed nothing. Revision 2 is instead recorded in the root, documentation header, governance, registry, coverage, QA gate, and direct node IDs.
+- Source/build/live-preview verification remains `N/A — no source change`. Human Gate reopened for `APPROVE HDL-02 REV 2` or `CHANGES HDL-02: ...`; Plan, Tasks, Analyze, and Kimi implementation remain unopened.
+
+### 20:54 +03 — HDL-02 Figma Revision 2 approved; Plan phase opened
+
+- Yasser closed the visual Human Gate with the exact statement `APPROVE HDL-02 REV 2`.
+- Revision 2 is the sole approved planning reference. Revision 1 remains Superseded; any later material visual, behavioral, responsive, direction, or Variant change must reopen the gate and increment the revision.
+- Status synchronized `designing → planning` in the feature spec, `ROADMAP.md`, and only the HDL-02 status field in `docs/spec-kit/spec-index.json`.
+- Plan is now authorized. Claude Opus 5 High will be retried at this major phase boundary; if unavailable, the owner continuity policy transfers Plan immediately to **GPT-5.6 Sol High via Codex** without opening another Human Gate.
+
+### 21:01 +03 — HDL-02 Plan completed
+
+- Claude Opus 5 High was retried through `scripts/speckit-claude-opus-5-high.sh` at the Plan boundary. The session produced no output or artifacts and ended with `Execution error`; this was treated as temporary unavailability, not a Human Gate.
+- Actual Plan model: **GPT-5.6 Sol High via Codex** using `speckit-plan`.
+- Generated `plan.md`, `research.md`, `data-model.md`, `contracts/visual-spec-handoff.md`, and `quickstart.md`. No extension hooks were configured.
+- Constitution checks passed before and after Phase 1 with no exception. The bounded implementation is documentation-only: Kimi will create `design-system-report.md`; no Twig, SCSS, JavaScript, locale, `twilight.json`, dependency, or `public/` change is authorized.
+- Planned runtime impact is exactly `0 B`, 0 requests, and 0 runtime work. Production build and rendered preview remain `N/A — no source change`; the final theme guard and source-scope checks remain mandatory regression evidence.
+- Tasks phase opened automatically. Claude will be retried at this new major phase; fallback remains **GPT-5.6 Sol High via Codex** without owner interruption.
+
+### 21:11 +03 — HDL-02 Tasks and Analyze completed; Kimi implementation opened
+
+- Claude Opus 5 High was retried separately at the Tasks and Analyze boundaries. Each session produced no output or artifact and ended with `Execution error`; neither was treated as a Human Gate.
+- Actual Tasks model: **GPT-5.6 Sol High via Codex** using `speckit-tasks`. Generated 46 strictly formatted sequential tasks: 5 US1, 6 US2, 6 US3, 5 US4, and 8 parallel read-only opportunities; FR-001 through FR-010 each have implementation and verification coverage.
+- First read-only Analyze found three HIGH consistency issues: registry count 19 vs 20, approval terminology/checklist drift, and final-review ordering before the N/A source-impact section. GPT-5.6 Sol High remediated only those artifacts plus explicit Settings Matrix/accessibility/provenance task detail.
+- Fresh Analyze result: `STATUS: PASS`, `BLOCKERS: 0`, requirement coverage 10/10 (100%), no unresolved ambiguity, no duplication, no constitution conflict, and no unmapped implementation task.
+- Status synchronized `planning → implementing` in the feature spec, ROADMAP, and only the HDL-02 status field in `docs/spec-kit/spec-index.json`.
+- Kimi CLI `1.46.0` is installed and authenticated locally; its configured default is `kimi-code/k3`. Implementation will invoke that exact model with thinking enabled (Kimi K3 High) and restrict writes to `specs/002-figma-design-system/design-system-report.md`.
+- The temporary WebBridge daemon/browser path was not used for implementation: its extension was disconnected, the authenticated local Kimi CLI was verified instead, the temporary browser tab was closed, and the daemon was stopped. This did not change project files or open a Human Gate.
+- This is the final lifecycle write before the protected preimplementation hash snapshot and Kimi window.
+
+### 21:38 +03 — HDL-02 implementation and Final Review passed; owner acceptance gate opened
+
+- Actual implementation/fix model: **Kimi K3 High**, invoked through authenticated Kimi CLI `1.46.0` with exact model `kimi-code/k3` and thinking enabled. Kimi created and modified only `specs/002-figma-design-system/design-system-report.md`; session ID `458e5fcd-a9e5-4182-b8b5-e4629483045f`.
+- The report now contains 20 current registry records, exactly 9 shared component families, `variant_total = 88`, foundation counts 8/150/18/5/7, 12 Settings Evidence decisions, four parity frames, three end-to-end traces, and explicit downstream ownership through HDL-29 including HDL-28.
+- The initial GPT Final Review found report-only evidence mismatches after a fresh read-only Figma Plugin API audit: Button incorrectly included Pressed, Tabs incorrectly included Hover instead of Disabled, and several axis labels were descriptive aliases rather than the literal Figma keys. Kimi corrected only the report. A repeated review verified all nine set names, exact axis keys/values, and counts against nodes `384:37`, `384:61`, `384:73`, `386:15`, `386:49`, `386:129`, `389:61`, `389:105`, and `389:137`.
+- Claude Opus 5 High was retried at the Final Review boundary; the session produced no output or artifact and ended with `Execution error`. Per owner continuity policy, actual Final Review model: **GPT-5.6 Sol High via Codex**. Result in `/tmp/hdl-02-final-review.md`: `STATUS: PASS`, `BLOCKERS: 0`.
+- Final report SHA-256: `1d3b9451a8474f04a4544d8326b65dc925bd29c222134d4b0d3618bde358ca5e`. Protected design/planning hashes match `/tmp/hdl-02-preimpl-shasums.txt`; the later runtime lifecycle append is expected and outside Kimi's write window.
+- Final validation: Node Registry 20/20 sequential; family rows 9/9; exact Figma axes present; no invented setting IDs, unclassified merchant-selectable variants, placeholders, false Button Pressed evidence, or false Tabs Hover evidence. FR coverage remains 10/10.
+- `node scripts/check-theme.mjs --build`: PASS with 0 errors and 0 warnings. `git diff --check`: PASS. `docs/spec-kit/spec-index.json`: valid JSON. `src/`, `public/`, `twilight.json`, `package.json`, and `pnpm-lock.yaml` remain unchanged.
+- Production build and rendered Salla preview remain `N/A — no source change`; Figma proves visual intent only and does not claim runtime DOM, keyboard, ARIA, performance, or accessibility verification.
+- HDL-02 remains `implementing`; T044 is intentionally pending at the Human Gate. Required owner response: `ACCEPT HDL-02`.
+
+### 22:06 +03 — HDL-02 accepted; lifecycle moved to done
+
+- Yasser closed the final Human Gate with the exact statement `ACCEPT HDL-02`.
+- Final Review remained `STATUS: PASS`, `BLOCKERS: 0`; no design, report-evidence, source, build-sync, or ownership blocker reopened after the gate.
+- Kimi K3 High updated only `specs/002-figma-design-system/design-system-report.md` from `implementing` to `accepted` and added the exact owner acceptance record. Codex synchronized HDL-02 `implementing → done` in the feature spec, ROADMAP, and only the HDL-02 status field in `docs/spec-kit/spec-index.json`.
+- Completion evidence is `specs/002-figma-design-system/design-system-report.md`. T044 and T045 are closed; T046 remains pending until the bounded HDL-02 commit succeeds.
+- Accepted report SHA-256 after the lifecycle record and Markdown whitespace normalization: `ee66476cacff50c371d66276f829be8dca3074bfefd91a8bdbd0d99e6d626300`.
+- HDL-03 is now dependency-ready because HDL-01 and HDL-02 are both done. Per the autonomous goal, the next spec starts automatically after the HDL-02 commit and post-commit guard.

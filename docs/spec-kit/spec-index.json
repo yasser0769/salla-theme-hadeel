@@ -30,7 +30,7 @@
       "depends_on": [
         "HDL-01"
       ],
-      "status": "planned",
+      "status": "done",
       "spec": "specs/002-figma-design-system/spec.md",
       "design": "specs/002-figma-design-system/design.md",
       "input": "specs/002-figma-design-system/spec-input.md"
