@@ -202,7 +202,7 @@
   hadeel-header-density-{{ hadeel_resolved.header_density }}
   {{ hadeel_engine_on ? ' hadeel-preset-' ~ hadeel_profile : '' }}
   {{ page.slug == 'product.single' ? ' product-single-page' : '' }}
-  "{% if hadeel_engine_on %} data-hadeel-preset="{{ hadeel_profile }}" data-hadeel-preset-sources="{{ hadeel_sources_list|join(',') }}"{% if hadeel_review|length > 0 %} data-hadeel-preset-review="{{ hadeel_review|join(',') }}"{% endif %}{% endif %}>
+  "{% if hadeel_engine_on %} data-hadeel-preset="{{ hadeel_profile }}" data-hadeel-preset-sources="{{ hadeel_sources_list|join(',') }}"{% endif %}{% if hadeel_review|length > 0 %} data-hadeel-preset-review="{{ hadeel_review|join(',') }}"{% endif %}>
 <noscript>
     To get full functionality of this site you need to enable JavaScript. Here is how
     <a href="https://www.enable-javascript.com/" rel="noreferrer"
