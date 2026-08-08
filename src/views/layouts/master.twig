@@ -94,18 +94,21 @@
     {# tracking services, custom css feature. #}
     {% hook 'head:end' %}
 </head>
+{# HDL-03: resolve the six preset-aware class families once; engine-off reproduces the legacy values exactly. #}
+{% include 'partials.preset-classes' %}
 <body id="app" class="theme-raed overflow-x-hidden {% hook 'body:classes' %}
   {{ theme.settings.get('use_theme_font', false) ? ' use-theme-font' : '' }}
   {{ theme.settings.get('footer_is_dark') ? ' footer-is-dark' : ' footer-is-light' }}
   {{ theme.settings.get('sticky_add_to_cart') ? ' is-sticky-product-bar' : '' }}
-  hadeel-layout-{{ theme.settings.get('layout_width', 'wide') }}
-  hadeel-spacing-{{ theme.settings.get('section_spacing', 'balanced') }}
-  hadeel-corners-{{ theme.settings.get('corner_style', 'square') }}
-  hadeel-card-{{ theme.settings.get('product_card_style', 'minimal') }}
-  hadeel-header-{{ theme.settings.get('header_layout', 'centered') }}
-  hadeel-header-density-{{ theme.settings.get('header_density', 'comfortable') }}
+  hadeel-layout-{{ hadeel_resolved.layout_width }}
+  hadeel-spacing-{{ hadeel_resolved.section_spacing }}
+  hadeel-corners-{{ hadeel_resolved.corner_style }}
+  hadeel-card-{{ hadeel_resolved.product_card_style }}
+  hadeel-header-{{ hadeel_resolved.header_layout }}
+  hadeel-header-density-{{ hadeel_resolved.header_density }}
+  {{ hadeel_engine_on ? ' hadeel-preset-' ~ hadeel_profile : '' }}
   {{ page.slug == 'product.single' ? ' product-single-page' : '' }}
-  ">
+  "{% if hadeel_engine_on %} data-hadeel-preset="{{ hadeel_profile }}" data-hadeel-preset-sources="{{ hadeel_sources_list|join(',') }}"{% if hadeel_review|length > 0 %} data-hadeel-preset-review="{{ hadeel_review|join(',') }}"{% endif %}{% endif %}>
 <noscript>
     To get full functionality of this site you need to enable JavaScript. Here is how
     <a href="https://www.enable-javascript.com/" rel="noreferrer"

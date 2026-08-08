@@ -243,6 +243,285 @@
             "required": true
         },
         {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "تفعيل محرك التصميمات الجاهزة",
+            "description": "عند التفعيل تتبع الإعدادات المدعومة التصميم الجاهز المختار؛ قيمك الحالية تبقى محفوظة ولا تتغير",
+            "id": "preset_engine_enabled",
+            "format": "switch",
+            "required": false,
+            "value": false,
+            "selected": false
+        },
+        {
+            "id": "preset_profile",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "التصميم الجاهز",
+            "description": "يغيّر الإعدادات التي تتبع التصميم فقط، ولا يمس القيم المخصصة أو المحتوى أو ترتيب الصفحة",
+            "icon": "sicon-paint-brush",
+            "selected": [
+                {
+                    "label": "عصري",
+                    "value": "modern",
+                    "key": "a1006f59-6f03-43d8-aed2-ac6d4e58e017"
+                }
+            ],
+            "options": [
+                {
+                    "label": "فاخر",
+                    "value": "luxury",
+                    "key": "fb0ae1a1-2990-4651-997d-00c71458dacb"
+                },
+                {
+                    "label": "عصري",
+                    "value": "modern",
+                    "key": "a1006f59-6f03-43d8-aed2-ac6d4e58e017"
+                },
+                {
+                    "label": "بسيط",
+                    "value": "minimal",
+                    "key": "e00d364a-3f26-4f6a-bf8d-675ce3a8b471"
+                },
+                {
+                    "label": "عملي رقمي",
+                    "value": "practical_digital",
+                    "key": "de61ee54-eb05-4403-9e63-ac228a7bd0d0"
+                }
+            ],
+            "source": "Manual",
+            "required": true,
+            "conditions": [
+                {
+                    "id": "preset_engine_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "type": "static",
+            "format": "description",
+            "id": "static-preset-scope-note",
+            "value": "<div ><strong>كيف تعمل التصميمات الجاهزة؟</strong><br>عند تبديل التصميم الجاهز تتغير فقط الإعدادات في وضع «اتباع التصميم الجاهز». أي إعداد في وضع «مخصص» يبقى بقيمته الحالية ولا يتأثر بتبديل التصميم، ويمكنك إعادته إلى «اتباع التصميم الجاهز» في أي وقت من القائمة نفسها.</div>"
+        },
+        {
+            "id": "layout_width_mode",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "عرض المحتوى: اتباع التصميم أو تخصيص",
+            "description": "«اتباع التصميم الجاهز» يجعل عرض المحتوى يتبع التصميم المختار؛ «مخصص» يبقي قيمتك الحالية دون تغيير عند تبديل التصميم",
+            "icon": "sicon-layout-grid-rearrange",
+            "selected": [
+                {
+                    "label": "اتباع التصميم الجاهز",
+                    "value": "follow_preset",
+                    "key": "3c34aaad-c63e-4f6d-a8c4-a38e113660d6"
+                }
+            ],
+            "options": [
+                {
+                    "label": "اتباع التصميم الجاهز",
+                    "value": "follow_preset",
+                    "key": "3c34aaad-c63e-4f6d-a8c4-a38e113660d6"
+                },
+                {
+                    "label": "مخصص",
+                    "value": "custom",
+                    "key": "8d9f6588-01bd-4c16-8ca3-f54eee4c44aa"
+                }
+            ],
+            "source": "Manual",
+            "required": true,
+            "conditions": [
+                {
+                    "id": "preset_engine_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "section_spacing_mode",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "المسافة بين الأقسام: اتباع التصميم أو تخصيص",
+            "description": "«اتباع التصميم الجاهز» يجعل المسافة بين الأقسام تتبع التصميم المختار؛ «مخصص» يبقي قيمتك الحالية دون تغيير عند تبديل التصميم",
+            "icon": "sicon-layout-list",
+            "selected": [
+                {
+                    "label": "اتباع التصميم الجاهز",
+                    "value": "follow_preset",
+                    "key": "4e812d69-7284-40de-bcc8-1378d4956b1f"
+                }
+            ],
+            "options": [
+                {
+                    "label": "اتباع التصميم الجاهز",
+                    "value": "follow_preset",
+                    "key": "4e812d69-7284-40de-bcc8-1378d4956b1f"
+                },
+                {
+                    "label": "مخصص",
+                    "value": "custom",
+                    "key": "57c0e1da-bb6e-4181-8cab-c37ddf368cc2"
+                }
+            ],
+            "source": "Manual",
+            "required": true,
+            "conditions": [
+                {
+                    "id": "preset_engine_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "corner_style_mode",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "استدارة الحواف: اتباع التصميم أو تخصيص",
+            "description": "«اتباع التصميم الجاهز» يجعل استدارة الحواف تتبع التصميم المختار؛ «مخصص» يبقي قيمتك الحالية دون تغيير عند تبديل التصميم",
+            "icon": "sicon-crop",
+            "selected": [
+                {
+                    "label": "اتباع التصميم الجاهز",
+                    "value": "follow_preset",
+                    "key": "3cf3576d-9470-4c8c-b597-b5cabdbb248d"
+                }
+            ],
+            "options": [
+                {
+                    "label": "اتباع التصميم الجاهز",
+                    "value": "follow_preset",
+                    "key": "3cf3576d-9470-4c8c-b597-b5cabdbb248d"
+                },
+                {
+                    "label": "مخصص",
+                    "value": "custom",
+                    "key": "b72784ab-828f-4e56-bf0d-29c0770514ab"
+                }
+            ],
+            "source": "Manual",
+            "required": true,
+            "conditions": [
+                {
+                    "id": "preset_engine_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "product_card_style_mode",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "نمط بطاقات المنتجات: اتباع التصميم أو تخصيص",
+            "description": "«اتباع التصميم الجاهز» يجعل نمط البطاقات يتبع التصميم المختار؛ «مخصص» يبقي قيمتك الحالية دون تغيير عند تبديل التصميم",
+            "icon": "sicon-layout-grid-rearrange",
+            "selected": [
+                {
+                    "label": "اتباع التصميم الجاهز",
+                    "value": "follow_preset",
+                    "key": "873eb8e8-6368-44fb-959b-a8f8d3be6f65"
+                }
+            ],
+            "options": [
+                {
+                    "label": "اتباع التصميم الجاهز",
+                    "value": "follow_preset",
+                    "key": "873eb8e8-6368-44fb-959b-a8f8d3be6f65"
+                },
+                {
+                    "label": "مخصص",
+                    "value": "custom",
+                    "key": "1e9dc885-e1aa-43fe-ad1a-e62a5a2011a5"
+                }
+            ],
+            "source": "Manual",
+            "required": true,
+            "conditions": [
+                {
+                    "id": "preset_engine_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "header_layout_mode",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "تخطيط رأس المتجر: اتباع التصميم أو تخصيص",
+            "description": "«اتباع التصميم الجاهز» يجعل تخطيط الرأس يتبع التصميم المختار؛ «مخصص» يبقي قيمتك الحالية دون تغيير عند تبديل التصميم",
+            "icon": "sicon-layout-grid-rearrange",
+            "selected": [
+                {
+                    "label": "اتباع التصميم الجاهز",
+                    "value": "follow_preset",
+                    "key": "d8041d94-233d-412d-912b-71860d569d24"
+                }
+            ],
+            "options": [
+                {
+                    "label": "اتباع التصميم الجاهز",
+                    "value": "follow_preset",
+                    "key": "d8041d94-233d-412d-912b-71860d569d24"
+                },
+                {
+                    "label": "مخصص",
+                    "value": "custom",
+                    "key": "53d090d7-fdfc-4518-a058-4d72b3949165"
+                }
+            ],
+            "source": "Manual",
+            "required": true,
+            "conditions": [
+                {
+                    "id": "preset_engine_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "header_density_mode",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "ارتفاع رأس المتجر: اتباع التصميم أو تخصيص",
+            "description": "«اتباع التصميم الجاهز» يجعل ارتفاع الرأس يتبع التصميم المختار؛ «مخصص» يبقي قيمتك الحالية دون تغيير عند تبديل التصميم",
+            "icon": "sicon-layout-grid-rearrange",
+            "selected": [
+                {
+                    "label": "اتباع التصميم الجاهز",
+                    "value": "follow_preset",
+                    "key": "5fd2e06a-0456-4353-a9a8-8effa589114e"
+                }
+            ],
+            "options": [
+                {
+                    "label": "اتباع التصميم الجاهز",
+                    "value": "follow_preset",
+                    "key": "5fd2e06a-0456-4353-a9a8-8effa589114e"
+                },
+                {
+                    "label": "مخصص",
+                    "value": "custom",
+                    "key": "b7b14da3-c48c-4af1-831e-3d1148efac6c"
+                }
+            ],
+            "source": "Manual",
+            "required": true,
+            "conditions": [
+                {
+                    "id": "preset_engine_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
             "id": "squar_photo_bg_image_size",
             "type": "items",
             "format": "dropdown-list",
