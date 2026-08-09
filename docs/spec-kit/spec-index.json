@@ -71,7 +71,7 @@
       "design": "specs/004-localization-rtl-accessibility/design.md",
       "input": "specs/004-localization-rtl-accessibility/spec-input.md",
       "evidence": "specs/004-localization-rtl-accessibility/evidence/",
-      "evidence_status": "Independent review PASS / BLOCKERS 0; complete four-way runtime acceptance deferred to the HDL-07 owner checkpoint"
+      "evidence_status": "Implemented at 870c4b5b; independent review PASS / BLOCKERS 0; complete four-way runtime acceptance deferred to the HDL-07 owner checkpoint"
     },
     {
       "id": "HDL-05",
