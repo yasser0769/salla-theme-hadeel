@@ -1,0 +1,21 @@
+{
+  "fixture": "rollback",
+  "purpose": "Post-feature saved store replayed through the legacy path (T035): the new HDL-03 IDs are stored, but preset_engine_enabled is false, so only the six legacy values may influence output. New IDs must be ignored safely; the six old values must reproduce the baseline classes byte-for-byte.",
+  "captured_state": "Saved post-feature store after the merchant enrolled (preset_profile luxury, all six modes custom) and then disabled the engine — the exact rollback-drill input for T035 and T056.",
+  "store": {
+    "preset_engine_enabled": false,
+    "preset_profile": "luxury",
+    "layout_width": "full",
+    "section_spacing": "compact",
+    "corner_style": "rounded",
+    "product_card_style": "elevated",
+    "header_layout": "start",
+    "header_density": "compact",
+    "layout_width_mode": "custom",
+    "section_spacing_mode": "custom",
+    "corner_style_mode": "custom",
+    "product_card_style_mode": "custom",
+    "header_layout_mode": "custom",
+    "header_density_mode": "custom"
+  }
+}
