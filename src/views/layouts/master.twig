@@ -219,22 +219,6 @@
           data-view-details="{{ trans('pages.products.kalles.view_details') }}"
           data-add-to-wishlist="{{ trans('pages.products.kalles.add_to_wishlist') }}">
 </template>
-{#
-  HDL-03 SPIKE — temporary, disposable. Renders nothing visible; it only records the
-  actual Twig return shapes of the hdl03_spike_* fixture settings (json_encode keeps
-  null, false, "false", and "" distinguishable). Remove together with the fixture.
-#}
-<template id="hdl03-spike-settings"
-          data-hdl03-spike-bool-true="{{ theme.settings.get('hdl03_spike_bool_true') | json_encode }}"
-          data-hdl03-spike-bool-false="{{ theme.settings.get('hdl03_spike_bool_false') | json_encode }}"
-          data-hdl03-spike-bool-true-fallback="{{ theme.settings.get('hdl03_spike_bool_true', false) | json_encode }}"
-          data-hdl03-spike-string-default="{{ theme.settings.get('hdl03_spike_string_default') | json_encode }}"
-          data-hdl03-spike-string-unset="{{ theme.settings.get('hdl03_spike_string_unset') | json_encode }}"
-          data-hdl03-spike-string-unset-fallback="{{ theme.settings.get('hdl03_spike_string_unset', 'hdl03_spike_fb') | json_encode }}"
-          data-hdl03-spike-items-choice="{{ theme.settings.get('hdl03_spike_items_choice') | json_encode }}"
-          data-hdl03-spike-mode="{{ theme.settings.get('hdl03_spike_mode') | json_encode }}"
-          data-hdl03-spike-hidden-value="{{ theme.settings.get('hdl03_spike_hidden_value') | json_encode }}">
-</template>
 <div class="app-inner flex flex-col min-h-full">
     {% hook 'body:start' %}
     {% component 'header.header' %}
