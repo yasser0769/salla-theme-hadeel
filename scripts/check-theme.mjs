@@ -9,6 +9,8 @@
  *   4. var(--token) references with no definition and no fallback
  *   5. theme.settings.get(...) keys that twilight.json never declares
  *   6. public/ out of sync with src/  (only with --build)
+ *   7. settings registry drift from twilight.json / HDL-03 contracts (strict,
+ *      including witness fixtures)
  *
  * Usage:
  *   node scripts/check-theme.mjs                # static checks
@@ -26,6 +28,7 @@ import { execFileSync } from 'node:child_process';
 import { join, relative, extname, basename } from 'node:path';
 import { tmpdir } from 'node:os';
 import process from 'node:process';
+import { checkSettingsRegistry } from './check-settings-registry.mjs';
 
 const ROOT = new URL('..', import.meta.url).pathname.replace(/\/$/, '');
 const argv = process.argv.slice(2);
@@ -308,6 +311,32 @@ function checkThemeSettings() {
   if (!bad) note('theme-settings', 'ok', 'every setting read by a template is declared in twilight.json');
 }
 
+/* ---------------------------------------------------- 7. settings registry */
+
+/**
+ * HDL-03 contract guard. Runs the strict registry check (schema, uniqueness,
+ * coverage, mode pairing, profiles, allowlists, twig parity, witness fixtures)
+ * in both the normal and --build flows. Existing checks above are untouched.
+ */
+function checkSettingsRegistryContract() {
+  let bad = 0;
+  try {
+    const { findings: reg } = checkSettingsRegistry({ root: ROOT, strict: true });
+    for (const f of reg) {
+      if (f.level !== 'error') continue;
+      bad++;
+      note('settings-registry', 'error', `[${f.rule}] ${f.message}`, f.where);
+    }
+  } catch (err) {
+    bad++;
+    note('settings-registry', 'error',
+      `settings registry check failed to run: ${String(err.message).slice(0, 200)}`,
+      'src/config/settings-registry.json');
+  }
+  if (!bad) note('settings-registry', 'ok',
+    'settings registry matches twilight.json and the HDL-03 contracts (strict)');
+}
+
 /* ---------------------------------------------------------- 6. build sync */
 
 function sha(file) {
@@ -348,6 +377,7 @@ checkHardcodedArabic();
 checkDeadClasses();
 checkCssVariables();
 checkThemeSettings();
+checkSettingsRegistryContract();
 if (WANT_BUILD) checkBuildSync();
 
 const errors = findings.filter((f) => f.level === 'error');

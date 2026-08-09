@@ -1,0 +1,40 @@
+{
+  "assets": [
+    "http://localhost:8000/product-card.js",
+    "http://localhost:8000/main-menu.js",
+    "http://localhost:8000/add-product-toast.js",
+    "http://localhost:8000/app.css",
+    "http://localhost:8000/app.js",
+    "http://localhost:8000/home.js"
+  ],
+  "captured_at": "2026-08-09T04:11:31.477Z",
+  "classes": [
+    "hadeel-layout-wide",
+    "hadeel-spacing-balanced",
+    "hadeel-corners-square",
+    "hadeel-card-minimal",
+    "hadeel-header-centered",
+    "hadeel-header-density-comfortable",
+    "hadeel-preset-modern"
+  ],
+  "dir": "ltr",
+  "draft": "salla-draft-772906207",
+  "lang": "en",
+  "overflow": {
+    "innerWidth": 1240,
+    "pass": true,
+    "scrollWidth": 1240
+  },
+  "preset": "modern",
+  "sources": "layout_width:preset,section_spacing:preset,corner_style:preset,product_card_style:preset,header_layout:preset,header_density:preset",
+  "spike": false,
+  "url": "https://salla.design/en/dev-v37bn5qobfotqowz?preview=true",
+  "viewport": {
+    "h": 723,
+    "w": 1240
+  },
+  "preview_branch": "codex/preview-hdl-03-20260808",
+  "preview_commit": "058153baeca2351c023674c07ca7aac941505ff5",
+  "editor_url": "https://s.salla.sa/themes/editor/draft-772906207",
+  "classification": "accepted final-source iframe evidence"
+}

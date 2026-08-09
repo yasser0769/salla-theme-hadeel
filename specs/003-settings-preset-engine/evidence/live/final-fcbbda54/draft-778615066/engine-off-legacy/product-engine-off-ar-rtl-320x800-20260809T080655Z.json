@@ -1,0 +1,80 @@
+{
+ "captured_at": "2026-08-09T08:29:17.967Z",
+ "url": "https://salla.design/ar/dev-v37bn5qobfotqowz/%D9%81%D8%B3%D8%AA%D8%A7%D9%86/p1852650594",
+ "title": "فستان | dev-v37bn5qobfotqowz",
+ "html_lang": "ar",
+ "html_dir": "rtl",
+ "viewport": {
+  "innerWidth": 401,
+  "innerHeight": 1004,
+  "devicePixelRatio": 2,
+  "scrollWidth": 401,
+  "no_horizontal_overflow": true
+ },
+ "body_class": "theme-raed overflow-x-hidden product-single salla-draft-778615066 color-mode-dark rtl font-dubai  \n   footer-is-light\n   is-sticky-product-bar\n  hadeel-layout-compact\n  hadeel-spacing-spacious\n  hadeel-corners-rounded\n  hadeel-card-elevated\n  hadeel-header-start\n  hadeel-header-density-compact\n     product-single-page\n  ",
+ "body_data_attrs": {},
+ "has_draft_class": true,
+ "has_preset_marker_class": false,
+ "has_preset_data_attrs": false,
+ "engine_off_classes": {
+  "hadeel-layout-compact": true,
+  "hadeel-spacing-spacious": true,
+  "hadeel-corners-rounded": true,
+  "hadeel-card-elevated": true,
+  "hadeel-header-start": true,
+  "hadeel-header-density-compact": true
+ },
+ "localhost_asset_count": 9,
+ "localhost_assets": [
+  "http://localhost:8000/product-card.js",
+  "http://localhost:8000/main-menu.js",
+  "http://localhost:8000/add-product-toast.js",
+  "http://localhost:8000/app.css",
+  "http://localhost:8000/images/payment_icons/tamara.svg",
+  "http://localhost:8000/images/payment_icons/tabby.svg",
+  "http://localhost:8000/images/payment_icons/mispay.svg",
+  "http://localhost:8000/app.js",
+  "http://localhost:8000/product.js"
+ ],
+ "store": {
+  "id": 1736483913,
+  "name": "dev-v37bn5qobfotqowz"
+ },
+ "commerce": {
+  "product_cards": 0,
+  "price_sample": null,
+  "card_text_sample": null,
+  "add_to_cart_buttons": 1,
+  "add_to_cart_visible": true,
+  "cart_summary_present": true,
+  "search_present": true,
+  "cart_drawer_present": true
+ },
+ "capture": "product engine=OFF legacy AR RTL requested-320x800",
+ "draft": "draft-778615066",
+ "version_id": 192045281,
+ "source_sha": "fcbbda542b1b8dcc6747202ae616af32f4f66b1c",
+ "requested_viewport": {
+  "width": 320,
+  "height": 800,
+  "deviceScaleFactor": 2,
+  "mobile": true
+ },
+ "emulation": "CDP Emulation.setDeviceMetricsOverride",
+ "product_price_text": "١٧٤ ٣٤٩ وفر ١٧٥ د.إ",
+ "add_to_cart_button": {
+  "btnPresent": true,
+  "btnRect": {
+   "x": 43,
+   "y": 888,
+   "w": 266,
+   "h": 48
+  },
+  "btnVisible": true,
+  "btnText": "إضافة للسلة"
+ },
+ "overflow_320_verdict": "FAIL - scrollWidth=401",
+ "add_to_cart_button_note": "initial probe showed not-yet-rendered; visible after settle + scrollIntoView",
+ "screenshot": "product-engine-off-ar-rtl-320x800-v2-20260809T080655Z.png",
+ "screenshot_note": "first PNG (same basename without -v2) was captured after the tab drifted to home (ws live-reload replaced page); deleted as invalid. v2 re-navigated and shows product page with sticky add-to-cart; visible right-edge clipping is the recorded 320-overflow."
+}

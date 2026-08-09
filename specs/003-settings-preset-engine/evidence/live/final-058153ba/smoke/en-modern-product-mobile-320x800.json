@@ -1,0 +1,56 @@
+{
+  "body_classes": [
+    "hadeel-layout-wide",
+    "hadeel-spacing-balanced",
+    "hadeel-corners-square",
+    "hadeel-card-minimal",
+    "hadeel-header-centered",
+    "hadeel-header-density-comfortable",
+    "hadeel-preset-modern"
+  ],
+  "captured_at": "2026-08-09T04:13:09.775Z",
+  "commerce": {
+    "cta": true,
+    "ctaText": "Add to cart",
+    "ctaVisible": true,
+    "options": true,
+    "optionsText": "المقاس * Choose44 - XL - Out of Stock42 - L - Out of Stock40 - M - Out of Stock38 - S - Out of Stock36 - XS - Out of Stock",
+    "optionsVisible": true,
+    "outOfStockVisible": 5,
+    "price": true,
+    "priceText": "174 349 Save 175 AED 174",
+    "priceVisible": true
+  },
+  "draft_class": "salla-draft-772906207",
+  "editor_draft": "772906207",
+  "html": {
+    "dir": "ltr",
+    "lang": "en"
+  },
+  "overflow": {
+    "innerWidth": 320,
+    "pass": false,
+    "scrollWidth": 401
+  },
+  "preset": {
+    "id": "modern",
+    "sources": "layout_width:preset,section_spacing:preset,corner_style:preset,product_card_style:preset,header_layout:preset,header_density:preset"
+  },
+  "preview_assets": [
+    "http://localhost:8000/product-card.js",
+    "http://localhost:8000/main-menu.js",
+    "http://localhost:8000/add-product-toast.js",
+    "http://localhost:8000/app.css",
+    "http://localhost:8000/app.js",
+    "http://localhost:8000/product.js"
+  ],
+  "preview_branch": "codex/preview-hdl-03-20260808",
+  "preview_commit": "058153baeca2351c023674c07ca7aac941505ff5",
+  "spike_present": false,
+  "url": "https://salla.design/en/dev-v37bn5qobfotqowz/%D9%81%D8%B3%D8%AA%D8%A7%D9%86/p1852650594",
+  "viewport": {
+    "dpr": 1,
+    "h": 800,
+    "w": 320
+  }
+}

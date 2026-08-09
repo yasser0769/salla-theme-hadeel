@@ -1,0 +1,81 @@
+{
+ "captured_at": "2026-08-09T08:20:00Z",
+ "capture": "keyboard-only Tab focus sequence EN LTR 320x800 (home) — FAILED, not faked",
+ "draft": "draft-778615066",
+ "version_id": 192045281,
+ "source_sha": "fcbbda542b1b8dcc6747202ae616af32f4f66b1c",
+ "store": {
+  "id": 1736483913,
+  "username": "dev-v37bn5qobfotqowz"
+ },
+ "method": "CDP Page.bringToFront then Input.dispatchKeyEvent Tab (rawKeyDown/keyUp, windowsVirtualKeyCode 9; also tried keyDown+nativeVirtualKeyCode) from document.body focus",
+ "result": "FAIL - 16 trusted Tab dispatches (14 rawKeyDown/keyUp + 2 keyDown variant); document.activeElement remained BODY after every dispatch; no focusable element ever received focus",
+ "focus_log_excerpt": [
+  {
+   "n": 1,
+   "focus": {
+    "tag": "BODY",
+    "role": null,
+    "label": "dev-v37bn5qobfotqowz Latest Products Repurchase View All dev",
+    "href": null,
+    "id": "app",
+    "cls": "theme-raed overflow-x-hidden index salla-draft-778",
+    "rect": {
+     "x": 0,
+     "y": 0,
+     "w": 320,
+     "h": 1095
+    },
+    "outline": "none 3px rgb(34, 34, 34)",
+    "boxShadow": "none",
+    "fullyInViewport": false,
+    "deepActiveChain": "BODY"
+   }
+  },
+  {
+   "n": 2,
+   "focus": {
+    "tag": "BODY",
+    "role": null,
+    "label": "dev-v37bn5qobfotqowz Latest Products Repurchase View All dev",
+    "href": null,
+    "id": "app",
+    "cls": "theme-raed overflow-x-hidden index salla-draft-778",
+    "rect": {
+     "x": 0,
+     "y": 0,
+     "w": 320,
+     "h": 1095
+    },
+    "outline": "none 3px rgb(34, 34, 34)",
+    "boxShadow": "none",
+    "fullyInViewport": false,
+    "deepActiveChain": "BODY"
+   }
+  },
+  {
+   "n": 3,
+   "focus": {
+    "tag": "BODY",
+    "role": null,
+    "label": "dev-v37bn5qobfotqowz Latest Products Repurchase View All dev",
+    "href": null,
+    "id": "app",
+    "cls": "theme-raed overflow-x-hidden index salla-draft-778",
+    "rect": {
+     "x": 0,
+     "y": 0,
+     "w": 320,
+     "h": 1095
+    },
+    "outline": "none 3px rgb(34, 34, 34)",
+    "boxShadow": "none",
+    "fullyInViewport": false,
+    "deepActiveChain": "BODY"
+   }
+  }
+ ],
+ "environment_note": "Same limitation observed on the editor tab earlier (trusted Enter/Space/Escape also no-ops). CDP pointer input works on this tab; CDP keyboard input does not reach page targets in this WebBridge/extension setup. Likely cause: key events dropped for the debugged/background target.",
+ "product_page_sequence": "not attempted - home sequence already proved the input path dead",
+ "screenshot": "keyboard-tab-focus-en-ltr-320x800-FAILED-20260809T080655Z.png (page state; no visible focus ring exists to show)"
+}

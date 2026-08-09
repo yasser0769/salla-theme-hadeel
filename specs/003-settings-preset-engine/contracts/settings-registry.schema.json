@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hadeel.local/contracts/settings-registry.schema.json",
+  "title": "Hadeel Settings Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "baseline_commit", "profiles", "settings"],
+  "properties": {
+    "schema_version": { "type": "integer", "minimum": 1 },
+    "baseline_commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "profiles": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/profile" }
+    },
+    "settings": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/setting" }
+    }
+  },
+  "$defs": {
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "version", "name_ar", "name_en", "purpose",
+        "owned_values", "deferred_values"
+      ],
+      "properties": {
+        "id": { "enum": ["luxury", "modern", "minimal", "practical_digital"] },
+        "version": { "type": "integer", "minimum": 1 },
+        "name_ar": { "type": "string", "minLength": 1 },
+        "name_en": { "type": "string", "minLength": 1 },
+        "purpose": { "type": "string", "minLength": 1 },
+        "owned_values": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "layout_width", "section_spacing", "corner_style",
+            "product_card_style", "header_layout", "header_density"
+          ],
+          "properties": {
+            "layout_width": { "enum": ["compact", "wide", "full"] },
+            "section_spacing": { "enum": ["compact", "balanced", "spacious"] },
+            "corner_style": { "enum": ["square", "soft", "rounded"] },
+            "product_card_style": { "enum": ["minimal", "bordered", "elevated"] },
+            "header_layout": { "enum": ["centered", "start"] },
+            "header_density": { "enum": ["compact", "comfortable"] }
+          }
+        },
+        "deferred_values": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^HDL-[0-9]{2}$"
+          }
+        }
+      }
+    },
+    "setting": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "key", "id", "scope", "source_path", "owner_spec", "tier", "type",
+        "allowed_values", "declared_default", "safe_default", "preset_support",
+        "override_support", "mode_setting", "class_prefix", "base_variant",
+        "label_ar", "label_en", "description", "evidence_status"
+      ],
+      "properties": {
+        "key": { "type": "string", "minLength": 3 },
+        "id": { "type": "string", "minLength": 1 },
+        "scope": { "enum": ["global", "component"] },
+        "source_path": { "type": "string", "minLength": 1 },
+        "owner_spec": { "type": "string", "pattern": "^HDL-[0-9]{2}$" },
+        "tier": { "enum": ["basic", "advanced", "structural"] },
+        "type": { "type": "string", "minLength": 1 },
+        "allowed_values": { "type": "array", "uniqueItems": true },
+        "declared_default": {},
+        "safe_default": {},
+        "preset_support": { "type": "boolean" },
+        "override_support": { "type": "boolean" },
+        "mode_setting": { "type": ["string", "null"] },
+        "class_prefix": { "type": ["string", "null"] },
+        "class_marker": { "type": "boolean" },
+        "base_variant": { "type": "boolean" },
+        "label_ar": { "type": "string", "minLength": 1 },
+        "label_en": { "type": "string", "minLength": 1 },
+        "description": { "type": "string", "minLength": 1 },
+        "evidence_status": { "enum": ["existing", "build", "spike", "deferred"] }
+      }
+    }
+  }
+}

@@ -1,0 +1,342 @@
+{
+  "captured_at": "2026-08-09T03:59:30.193Z",
+  "preview_branch": "codex/preview-hdl-03-20260808",
+  "preview_commit": "662eca99d68c9a946b4ae241485571bc92a8ca93",
+  "url": "https://salla.design/en/dev-v37bn5qobfotqowz?preview=true&assets_url=http%3A%2F%2Flocalhost%3A8000&ws_port=8001",
+  "html": {
+    "lang": "en",
+    "dir": "ltr"
+  },
+  "viewport": {
+    "width": 1366,
+    "height": 768
+  },
+  "states": [
+    {
+      "ariaLabel": "Offers",
+      "className": "offers-link",
+      "focusStyle": {
+        "boxShadow": "none",
+        "outlineColor": "rgb(174, 216, 224)",
+        "outlineStyle": "solid",
+        "outlineWidth": "2px"
+      },
+      "href": "https://salla.design/en/dev-v37bn5qobfotqowz/offers",
+      "id": null,
+      "inViewport": true,
+      "index": 1,
+      "rect": {
+        "height": 72,
+        "width": 33.5078125,
+        "x": 32,
+        "y": 0
+      },
+      "scrollY": 1184.5,
+      "tag": "A",
+      "text": "Offers",
+      "viewport": {
+        "h": 768,
+        "w": 1366
+      }
+    },
+    {
+      "ariaLabel": "الفساتين",
+      "className": "",
+      "focusStyle": {
+        "boxShadow": "none",
+        "outlineColor": "rgb(174, 216, 224)",
+        "outlineStyle": "solid",
+        "outlineWidth": "2px"
+      },
+      "href": "https://salla.design/en/dev-v37bn5qobfotqowz/%D8%A7%D9%84%D9%81%D8%B3%D8%A7%D8%AA%D9%8A%D9%86/c2108520314",
+      "id": null,
+      "inViewport": true,
+      "index": 2,
+      "rect": {
+        "height": 72,
+        "width": 42.1640625,
+        "x": 80.53125,
+        "y": 0
+      },
+      "scrollY": 1184.5,
+      "tag": "A",
+      "text": "الفساتين",
+      "viewport": {
+        "h": 768,
+        "w": 1366
+      }
+    },
+    {
+      "ariaLabel": "البلايز",
+      "className": "",
+      "focusStyle": {
+        "boxShadow": "none",
+        "outlineColor": "rgb(174, 216, 224)",
+        "outlineStyle": "solid",
+        "outlineWidth": "2px"
+      },
+      "href": "https://salla.design/en/dev-v37bn5qobfotqowz/%D8%A7%D9%84%D8%A8%D9%84%D8%A7%D9%8A%D8%B2/c1334548091",
+      "id": null,
+      "inViewport": true,
+      "index": 3,
+      "rect": {
+        "height": 72,
+        "width": 26.1171875,
+        "x": 137.71875,
+        "y": 0
+      },
+      "scrollY": 1184.5,
+      "tag": "A",
+      "text": "البلايز",
+      "viewport": {
+        "h": 768,
+        "w": 1366
+      }
+    },
+    {
+      "ariaLabel": "التنانير",
+      "className": "",
+      "focusStyle": {
+        "boxShadow": "none",
+        "outlineColor": "rgb(174, 216, 224)",
+        "outlineStyle": "solid",
+        "outlineWidth": "2px"
+      },
+      "href": "https://salla.design/en/dev-v37bn5qobfotqowz/%D8%A7%D9%84%D8%AA%D9%86%D8%A7%D9%86%D9%8A%D8%B1/c424719684",
+      "id": null,
+      "inViewport": true,
+      "index": 4,
+      "rect": {
+        "height": 72,
+        "width": 30.375,
+        "x": 178.859375,
+        "y": 0
+      },
+      "scrollY": 1184.5,
+      "tag": "A",
+      "text": "التنانير",
+      "viewport": {
+        "h": 768,
+        "w": 1366
+      }
+    },
+    {
+      "ariaLabel": "الجاكيتات",
+      "className": "",
+      "focusStyle": {
+        "boxShadow": "none",
+        "outlineColor": "rgb(174, 216, 224)",
+        "outlineStyle": "solid",
+        "outlineWidth": "2px"
+      },
+      "href": "https://salla.design/en/dev-v37bn5qobfotqowz/%D8%A7%D9%84%D8%AC%D8%A7%D9%83%D9%8A%D8%AA%D8%A7%D8%AA/c1799214149",
+      "id": null,
+      "inViewport": true,
+      "index": 5,
+      "rect": {
+        "height": 72,
+        "width": 46.828125,
+        "x": 224.2578125,
+        "y": 0
+      },
+      "scrollY": 1184.5,
+      "tag": "A",
+      "text": "الجاكيتات",
+      "viewport": {
+        "h": 768,
+        "w": 1366
+      }
+    },
+    {
+      "ariaLabel": null,
+      "className": "navbar-brand",
+      "focusStyle": {
+        "boxShadow": "none",
+        "outlineColor": "rgb(174, 216, 224)",
+        "outlineStyle": "solid",
+        "outlineWidth": "2px"
+      },
+      "href": "https://salla.design/en/dev-v37bn5qobfotqowz",
+      "id": null,
+      "inViewport": true,
+      "index": 6,
+      "rect": {
+        "height": 43.9921875,
+        "width": 136.59375,
+        "x": 614.703125,
+        "y": 14
+      },
+      "scrollY": 1184.5,
+      "tag": "A",
+      "text": "dev-v37bn5qobfotqowz",
+      "viewport": {
+        "h": 768,
+        "w": 1366
+      }
+    },
+    {
+      "ariaLabel": "Search",
+      "className": "header-action header-action--search",
+      "focusStyle": {
+        "boxShadow": "none",
+        "outlineColor": "rgb(174, 216, 224)",
+        "outlineStyle": "solid",
+        "outlineWidth": "2px"
+      },
+      "href": null,
+      "id": null,
+      "inViewport": true,
+      "index": 7,
+      "rect": {
+        "height": 44,
+        "width": 40,
+        "x": 1174,
+        "y": 14
+      },
+      "scrollY": 1184.5,
+      "tag": "BUTTON",
+      "text": "",
+      "viewport": {
+        "h": 768,
+        "w": 1366
+      }
+    },
+    {
+      "ariaLabel": "Wishlist",
+      "className": "header-action header-action--wishlist",
+      "focusStyle": {
+        "boxShadow": "none",
+        "outlineColor": "rgb(174, 216, 224)",
+        "outlineStyle": "solid",
+        "outlineWidth": "2px"
+      },
+      "href": "https://salla.design/en/dev-v37bn5qobfotqowz/wishlist",
+      "id": null,
+      "inViewport": true,
+      "index": 8,
+      "rect": {
+        "height": 44,
+        "width": 40,
+        "x": 1214,
+        "y": 14
+      },
+      "scrollY": 1184.5,
+      "tag": "A",
+      "text": "",
+      "viewport": {
+        "h": 768,
+        "w": 1366
+      }
+    },
+    {
+      "ariaLabel": null,
+      "className": "s-cart-summary-wrapper",
+      "focusStyle": {
+        "boxShadow": "none",
+        "outlineColor": "rgb(174, 216, 224)",
+        "outlineStyle": "solid",
+        "outlineWidth": "2px"
+      },
+      "href": "https://salla.design/en/dev-v37bn5qobfotqowz/cart",
+      "id": null,
+      "inViewport": true,
+      "index": 9,
+      "rect": {
+        "height": 44,
+        "width": 40,
+        "x": 1294,
+        "y": 14
+      },
+      "scrollY": 1184.5,
+      "tag": "A",
+      "text": "cart 999 AED",
+      "viewport": {
+        "h": 768,
+        "w": 1366
+      }
+    },
+    {
+      "ariaLabel": null,
+      "className": "",
+      "focusStyle": {
+        "boxShadow": "none",
+        "outlineColor": "rgb(174, 216, 224)",
+        "outlineStyle": "solid",
+        "outlineWidth": "2px"
+      },
+      "href": "https://salla.design/en/dev-v37bn5qobfotqowz/%D9%81%D8%B3%D8%AA%D8%A7%D9%86/p1852650594",
+      "id": null,
+      "inViewport": true,
+      "index": 10,
+      "rect": {
+        "height": 392.109375,
+        "width": 308.0859375,
+        "x": 32,
+        "y": -3.40625
+      },
+      "scrollY": 191,
+      "tag": "A",
+      "text": "",
+      "viewport": {
+        "h": 768,
+        "w": 1366
+      }
+    },
+    {
+      "ariaLabel": "Add or remove to wishlist",
+      "className": "s-product-card-wishlist-btn animated s-button-element s-button-icon s-button-fill-none s-button-light s-button-loader-center",
+      "focusStyle": {
+        "boxShadow": "none",
+        "outlineColor": "rgb(174, 216, 224)",
+        "outlineStyle": "solid",
+        "outlineWidth": "2px"
+      },
+      "href": null,
+      "id": null,
+      "inViewport": true,
+      "index": 11,
+      "rect": {
+        "height": 40,
+        "width": 40,
+        "x": 284.0859375,
+        "y": 203.09375
+      },
+      "scrollY": 0.5,
+      "tag": "BUTTON",
+      "text": "heart",
+      "viewport": {
+        "h": 768,
+        "w": 1366
+      }
+    },
+    {
+      "ariaLabel": null,
+      "className": "",
+      "focusStyle": {
+        "boxShadow": "none",
+        "outlineColor": "rgb(174, 216, 224)",
+        "outlineStyle": "solid",
+        "outlineWidth": "2px"
+      },
+      "href": "https://salla.design/en/dev-v37bn5qobfotqowz/%D9%81%D8%B3%D8%AA%D8%A7%D9%86/p1852650594",
+      "id": null,
+      "inViewport": true,
+      "index": 12,
+      "rect": {
+        "height": 20,
+        "width": 308.0859375,
+        "x": 32,
+        "y": 593.703125
+      },
+      "scrollY": 0,
+      "tag": "A",
+      "text": "فستان",
+      "viewport": {
+        "h": 768,
+        "w": 1366
+      }
+    }
+  ],
+  "allVisible": true,
+  "allStyled": true
+}

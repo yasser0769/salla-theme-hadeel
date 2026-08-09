@@ -1,0 +1,191 @@
+{
+  "task": "T003",
+  "feature": "HDL-03 settings-preset-engine",
+  "captured_at_utc": "2026-08-08T19:58:51.266Z",
+  "commit_sha": "5deac563f21210529124c2c0a9101ab5befde4e1",
+  "sources": [
+    "twilight.json",
+    "src/views/layouts/master.twig (lines 101-106)",
+    "src/assets/styles/04-components/storefront-system.scss"
+  ],
+  "six_legacy_settings": [
+    {
+      "id": "layout_width",
+      "type": "items",
+      "format": "dropdown-list",
+      "class_prefix": "hadeel-layout-",
+      "options": [
+        "compact",
+        "wide",
+        "full"
+      ],
+      "declared_default_selected": [
+        "wide"
+      ],
+      "twig_fallback_default": "wide",
+      "master_twig_line": 101,
+      "scss_file": "src/assets/styles/04-components/storefront-system.scss",
+      "scss_selector_lines": {
+        "compact": [
+          845
+        ],
+        "wide": [
+          849
+        ],
+        "full": [
+          853
+        ]
+      },
+      "base_variants": []
+    },
+    {
+      "id": "section_spacing",
+      "type": "items",
+      "format": "dropdown-list",
+      "class_prefix": "hadeel-spacing-",
+      "options": [
+        "compact",
+        "balanced",
+        "spacious"
+      ],
+      "declared_default_selected": [
+        "balanced"
+      ],
+      "twig_fallback_default": "balanced",
+      "master_twig_line": 102,
+      "scss_file": "src/assets/styles/04-components/storefront-system.scss",
+      "scss_selector_lines": {
+        "compact": [
+          857
+        ],
+        "balanced": [
+          861
+        ],
+        "spacious": [
+          865
+        ]
+      },
+      "base_variants": []
+    },
+    {
+      "id": "corner_style",
+      "type": "items",
+      "format": "dropdown-list",
+      "class_prefix": "hadeel-corners-",
+      "options": [
+        "square",
+        "soft",
+        "rounded"
+      ],
+      "declared_default_selected": [
+        "square"
+      ],
+      "twig_fallback_default": "square",
+      "master_twig_line": 103,
+      "scss_file": "src/assets/styles/04-components/storefront-system.scss",
+      "scss_selector_lines": {
+        "square": [
+          869
+        ],
+        "soft": [
+          873
+        ],
+        "rounded": [
+          877
+        ]
+      },
+      "base_variants": []
+    },
+    {
+      "id": "product_card_style",
+      "type": "items",
+      "format": "dropdown-list",
+      "class_prefix": "hadeel-card-",
+      "options": [
+        "minimal",
+        "bordered",
+        "elevated"
+      ],
+      "declared_default_selected": [
+        "minimal"
+      ],
+      "twig_fallback_default": "minimal",
+      "master_twig_line": 104,
+      "scss_file": "src/assets/styles/04-components/storefront-system.scss",
+      "scss_selector_lines": {
+        "minimal": [],
+        "bordered": [
+          881,
+          882,
+          889
+        ],
+        "elevated": [
+          890,
+          895,
+          896
+        ]
+      },
+      "base_variants": [
+        "minimal"
+      ]
+    },
+    {
+      "id": "header_layout",
+      "type": "items",
+      "format": "dropdown-list",
+      "class_prefix": "hadeel-header-",
+      "options": [
+        "centered",
+        "start"
+      ],
+      "declared_default_selected": [
+        "centered"
+      ],
+      "twig_fallback_default": "centered",
+      "master_twig_line": 105,
+      "scss_file": "src/assets/styles/04-components/storefront-system.scss",
+      "scss_selector_lines": {
+        "centered": [],
+        "start": [
+          919,
+          923,
+          929,
+          935
+        ]
+      },
+      "base_variants": [
+        "centered"
+      ]
+    },
+    {
+      "id": "header_density",
+      "type": "items",
+      "format": "dropdown-list",
+      "class_prefix": "hadeel-header-density-",
+      "options": [
+        "compact",
+        "comfortable"
+      ],
+      "declared_default_selected": [
+        "comfortable"
+      ],
+      "twig_fallback_default": "comfortable",
+      "master_twig_line": 106,
+      "scss_file": "src/assets/styles/04-components/storefront-system.scss",
+      "scss_selector_lines": {
+        "compact": [
+          940,
+          941,
+          942,
+          943,
+          944,
+          948
+        ],
+        "comfortable": []
+      },
+      "base_variants": [
+        "comfortable"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "captured_at": "2026-08-08T23:05:04.648Z",
+  "preview_branch": "codex/preview-hdl-03-20260808",
+  "preview_commit": "662eca99d68c9a946b4ae241485571bc92a8ca93",
+  "draft": "salla-draft-1328326277",
+  "product_url": "https://salla.design/dev-f5vbpgh2dnmmvhzp/%D8%B2%D9%8A%D8%AA-%D8%B9%D8%B7%D8%B1%D9%8A-%D9%85%D8%A7%D8%A6%D9%8A-%D8%A8%D8%A7%D9%84%D8%B2%D9%87%D9%88%D8%B1-%D9%88%D8%A7%D9%84%D9%81%D9%88%D8%A7%D9%83%D9%87---%D9%85%D8%AB%D8%A7%D9%84%D9%8A-%D9%84%D9%84%D9%85%D8%B1%D8%B7%D8%A8%D8%A7%D8%AA-%D9%88%D9%85%D9%88%D8%B2%D8%B9%D8%A7%D8%AA-%D8%A7%D9%84%D8%B1%D9%88%D8%A7%D8%A6%D8%AD-%D9%84%D8%AA%D8%AE%D9%81%D9%8A%D9%81-%D8%A7%D9%84%D8%AA%D9%88%D8%AA%D8%B1-%D9%88%D8%AA%D8%B9%D8%B7%D9%8A%D8%B1-%D8%A7%D9%84%D9%87%D9%88%D8%A7%D8%A1/p1490242350",
+  "desktop_1366x768": [
+    {
+      "href": "https://salla.design/dev-f5vbpgh2dnmmvhzp/ادوات-منزلية/c902392690",
+      "id": null,
+      "outline": "rgb(237, 28, 36) solid 2px",
+      "tag": "A",
+      "text": "ادوات منزلية",
+      "visible": true
+    },
+    {
+      "href": "https://salla.design/dev-f5vbpgh2dnmmvhzp/اجهزة-شخصية/c1721595740",
+      "id": null,
+      "outline": "rgb(237, 28, 36) solid 2px",
+      "tag": "A",
+      "text": "اجهزة شخصية",
+      "visible": true
+    },
+    {
+      "href": "https://salla.design/dev-f5vbpgh2dnmmvhzp/brands",
+      "id": null,
+      "outline": "rgb(237, 28, 36) solid 2px",
+      "tag": "A",
+      "text": "null",
+      "visible": true
+    },
+    {
+      "href": "https://salla.design/dev-f5vbpgh2dnmmvhzp",
+      "id": null,
+      "outline": "rgb(237, 28, 36) solid 2px",
+      "tag": "A",
+      "text": "dev-f5vbpgh2dnmmvhzp",
+      "visible": true
+    },
+    {
+      "href": null,
+      "id": null,
+      "outline": "rgb(237, 28, 36) solid 2px",
+      "tag": "BUTTON",
+      "text": "البحث",
+      "visible": true
+    },
+    {
+      "href": "https://salla.design/dev-f5vbpgh2dnmmvhzp/wishlist",
+      "id": null,
+      "outline": "rgb(237, 28, 36) solid 2px",
+      "tag": "A",
+      "text": "المفضلة",
+      "visible": true
+    },
+    {
+      "href": "https://salla.design/dev-f5vbpgh2dnmmvhzp/cart",
+      "id": null,
+      "outline": "rgb(165, 30, 35) solid 2px",
+      "tag": "A",
+      "text": "9",
+      "visible": true
+    },
+    {
+      "href": "https://salla.design/dev-f5vbpgh2dnmmvhzp/",
+      "id": null,
+      "outline": "rgb(237, 28, 36) solid 2px",
+      "tag": "A",
+      "text": "الرئيسية",
+      "visible": true
+    },
+    {
+      "href": "https://salla.design/dev-f5vbpgh2dnmmvhzp/ادوات-منزلية/c902392690",
+      "id": null,
+      "outline": "rgb(237, 28, 36) solid 2px",
+      "tag": "A",
+      "text": "ادوات منزلية",
+      "visible": true
+    },
+    {
+      "href": "https://salla.design/dev-f5vbpgh2dnmmvhzp/معطرات-الجو/c868492965",
+      "id": null,
+      "outline": "rgb(237, 28, 36) solid 2px",
+      "tag": "A",
+      "text": "معطرات الجو",
+      "visible": true
+    },
+    {
+      "href": "https://cdn.salla.sa/XoBBY/73076d18-93e9-4745-b6c9-bfca16827e1b-1000x1000-TWWOnDYgT6lyRSdLOfouXP9dJO411yXYGp8Kej8f.webp",
+      "id": null,
+      "outline": "rgb(237, 28, 36) solid 2px",
+      "tag": "A",
+      "text": "1 / 6",
+      "visible": true
+    },
+    {
+      "href": "https://cdn.salla.sa/XoBBY/8b9a00fb-78e9-43d0-be59-144479b65d66-1000x1000-RUPh5JGSThikPsVS75AGfRvCg8ndkM03njK8OM63.webp",
+      "id": null,
+      "outline": "rgb(237, 28, 36) solid 2px",
+      "tag": "A",
+      "text": "2 / 6",
+      "visible": true
+    }
+  ],
+  "mobile_320x800": [
+    {
+      "href": "#mobile-menu",
+      "id": null,
+      "outline": "rgb(237, 28, 36) solid 2px",
+      "tag": "A",
+      "text": "فتح القائمة",
+      "visible": true
+    },
+    {
+      "href": "https://salla.design/dev-f5vbpgh2dnmmvhzp",
+      "id": null,
+      "outline": "rgb(237, 28, 36) solid 2px",
+      "tag": "A",
+      "text": "dev-f5vbpgh2dnmmvhzp",
+      "visible": true
+    },
+    {
+      "href": null,
+      "id": null,
+      "outline": "rgb(237, 28, 36) solid 2px",
+      "tag": "BUTTON",
+      "text": "البحث",
+      "visible": true
+    },
+    {
+      "href": "https://salla.design/dev-f5vbpgh2dnmmvhzp/cart",
+      "id": null,
+      "outline": "rgb(180, 30, 35) solid 2px",
+      "tag": "A",
+      "text": "9",
+      "visible": true
+    },
+    {
+      "href": "https://salla.design/dev-f5vbpgh2dnmmvhzp/",
+      "id": null,
+      "outline": "rgb(237, 28, 36) solid 2px",
+      "tag": "A",
+      "text": "الرئيسية",
+      "visible": true
+    },
+    {
+      "href": "https://salla.design/dev-f5vbpgh2dnmmvhzp/ادوات-منزلية/c902392690",
+      "id": null,
+      "outline": "rgb(237, 28, 36) solid 2px",
+      "tag": "A",
+      "text": "ادوات منزلية",
+      "visible": true
+    },
+    {
+      "href": "https://salla.design/dev-f5vbpgh2dnmmvhzp/معطرات-الجو/c868492965",
+      "id": null,
+      "outline": "rgb(237, 28, 36) solid 2px",
+      "tag": "A",
+      "text": "معطرات الجو",
+      "visible": true
+    },
+    {
+      "href": "https://cdn.salla.sa/XoBBY/73076d18-93e9-4745-b6c9-bfca16827e1b-1000x1000-TWWOnDYgT6lyRSdLOfouXP9dJO411yXYGp8Kej8f.webp",
+      "id": null,
+      "outline": "rgb(237, 28, 36) solid 2px",
+      "tag": "A",
+      "text": "1 / 6",
+      "visible": true
+    },
+    {
+      "href": "https://cdn.salla.sa/XoBBY/8b9a00fb-78e9-43d0-be59-144479b65d66-1000x1000-RUPh5JGSThikPsVS75AGfRvCg8ndkM03njK8OM63.webp",
+      "id": null,
+      "outline": "rgb(237, 28, 36) solid 2px",
+      "tag": "A",
+      "text": "2 / 6",
+      "visible": true
+    },
+    {
+      "href": "https://cdn.salla.sa/XoBBY/ec70649e-da18-492b-8156-d11c8a1b97fc-1000x1000-CzMy36BSO5zUJX9ehMd3bO5GTZVd9eHx2rcgBMFe.webp",
+      "id": null,
+      "outline": "rgb(237, 28, 36) solid 2px",
+      "tag": "A",
+      "text": "3 / 6",
+      "visible": true
+    },
+    {
+      "href": "https://cdn.salla.sa/XoBBY/e5526432-58cb-4ea5-8b4f-ed78baf17207-1000x1000-K1poSX6gl5OhoBr8L6HEeIIarlCzUNR78E9QWp3M.webp",
+      "id": null,
+      "outline": "rgb(237, 28, 36) solid 2px",
+      "tag": "A",
+      "text": "4 / 6",
+      "visible": true
+    },
+    {
+      "href": "https://cdn.salla.sa/XoBBY/6892a1eb-aa24-45bd-806f-1569af51333d-1000x1000-6YMQIW365DJgpEFCCST1pZoK49W6M25Aj2GI1FjA.webp",
+      "id": null,
+      "outline": "rgb(237, 28, 36) solid 2px",
+      "tag": "A",
+      "text": "5 / 6",
+      "visible": true
+    }
+  ],
+  "assertions": {
+    "all_desktop_visible": true,
+    "all_mobile_visible": true,
+    "all_desktop_outlined": true,
+    "all_mobile_outlined": true
+  }
+}

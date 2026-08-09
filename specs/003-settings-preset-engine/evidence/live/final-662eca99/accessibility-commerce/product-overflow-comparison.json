@@ -1,0 +1,49 @@
+{
+  "captured_at": "2026-08-08T23:06:06.500Z",
+  "preview_branch": "codex/preview-hdl-03-20260808",
+  "preview_commit": "662eca99d68c9a946b4ae241485571bc92a8ca93",
+  "viewport": "320x800",
+  "engine_on_modern": {
+    "overflow": {
+      "innerWidth": 320,
+      "pass": false,
+      "scrollWidth": 348
+    },
+    "commerce": {
+      "cta": true,
+      "ctaVisible": true,
+      "price": true,
+      "priceVisible": true
+    },
+    "assets": [
+      "http://localhost:8000/product-card.js",
+      "http://localhost:8000/main-menu.js",
+      "http://localhost:8000/add-product-toast.js",
+      "http://localhost:8000/app.css",
+      "http://localhost:8000/app.js",
+      "http://localhost:8000/product.js"
+    ]
+  },
+  "engine_off_legacy": {
+    "overflow": {
+      "innerWidth": 320,
+      "pass": false,
+      "scrollWidth": 348
+    },
+    "commerce": {
+      "cta": true,
+      "ctaVisible": true,
+      "price": true,
+      "priceVisible": true
+    },
+    "assets": [
+      "http://localhost:8000/product-card.js",
+      "http://localhost:8000/main-menu.js",
+      "http://localhost:8000/add-product-toast.js",
+      "http://localhost:8000/app.css",
+      "http://localhost:8000/app.js",
+      "http://localhost:8000/product.js"
+    ]
+  },
+  "conclusion": "PRE-EXISTING PRODUCT PAGE OVERFLOW — identical 348px scrollWidth at 320px with HDL-03 engine on and off; HDL-03 is no-regression, but 28px overflow remains a release risk for owning product/layout spec."
+}

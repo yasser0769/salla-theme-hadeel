@@ -1,0 +1,78 @@
+{
+ "captured_at": "2026-08-09T08:27:42.327Z",
+ "url": "https://salla.design/en/dev-v37bn5qobfotqowz/%D9%81%D8%B3%D8%AA%D8%A7%D9%86/p1852650594",
+ "title": "فستان | dev-v37bn5qobfotqowz",
+ "html_lang": "en",
+ "html_dir": "ltr",
+ "viewport": {
+  "innerWidth": 401,
+  "innerHeight": 1004,
+  "devicePixelRatio": 2,
+  "scrollWidth": 401,
+  "no_horizontal_overflow": true
+ },
+ "body_class": "theme-raed overflow-x-hidden product-single salla-draft-778615066 color-mode-dark ltr font-dubai footer-is-light is-sticky-product-bar hadeel-layout-compact hadeel-spacing-spacious hadeel-corners-rounded hadeel-card-elevated hadeel-header-start hadeel-header-density-compact product-single-page",
+ "body_data_attrs": {},
+ "has_draft_class": true,
+ "has_preset_marker_class": false,
+ "has_preset_data_attrs": false,
+ "engine_off_classes": {
+  "hadeel-layout-compact": true,
+  "hadeel-spacing-spacious": true,
+  "hadeel-corners-rounded": true,
+  "hadeel-card-elevated": true,
+  "hadeel-header-start": true,
+  "hadeel-header-density-compact": true
+ },
+ "localhost_asset_count": 9,
+ "localhost_assets": [
+  "http://localhost:8000/product-card.js",
+  "http://localhost:8000/main-menu.js",
+  "http://localhost:8000/add-product-toast.js",
+  "http://localhost:8000/app.css",
+  "http://localhost:8000/images/payment_icons/tamara.svg",
+  "http://localhost:8000/images/payment_icons/tabby.svg",
+  "http://localhost:8000/images/payment_icons/mispay.svg",
+  "http://localhost:8000/app.js",
+  "http://localhost:8000/product.js"
+ ],
+ "store": {
+  "id": 1736483913,
+  "name": "dev-v37bn5qobfotqowz"
+ },
+ "commerce": {
+  "product_cards": 0,
+  "price_sample": null,
+  "card_text_sample": null,
+  "add_to_cart_buttons": 1,
+  "add_to_cart_visible": true,
+  "cart_summary_present": true,
+  "search_present": true,
+  "cart_drawer_present": true
+ },
+ "capture": "product engine=OFF legacy EN LTR requested-320x800",
+ "draft": "draft-778615066",
+ "version_id": 192045281,
+ "source_sha": "fcbbda542b1b8dcc6747202ae616af32f4f66b1c",
+ "requested_viewport": {
+  "width": 320,
+  "height": 800,
+  "deviceScaleFactor": 2,
+  "mobile": true
+ },
+ "emulation": "CDP Emulation.setDeviceMetricsOverride",
+ "overflow_320_verdict": "FAIL - effective viewport expanded to 401px (innerWidth=scrollWidth=401 > requested 320); widest content: empty track DIVs w=340 inside .details-slider.image-slider; fixed bars .sticky-product-bar/.mobile-toolbar inherit expanded viewport",
+ "product_price_text": "174 349 Save 175 AED",
+ "add_to_cart_button": {
+  "btnPresent": true,
+  "btnRect": {
+   "x": 124,
+   "y": 888,
+   "w": 266,
+   "h": 48
+  },
+  "btnVisible": true,
+  "btnText": "Add to cart",
+  "price": "174 349 Save 175 AED"
+ }
+}

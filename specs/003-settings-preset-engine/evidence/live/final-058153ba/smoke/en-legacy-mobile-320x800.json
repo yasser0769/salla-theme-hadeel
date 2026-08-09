@@ -1,0 +1,71 @@
+{
+  "body_classes": [
+    "hadeel-layout-wide",
+    "hadeel-spacing-balanced",
+    "hadeel-corners-rounded",
+    "hadeel-card-minimal",
+    "hadeel-header-centered",
+    "hadeel-header-density-comfortable"
+  ],
+  "captured_at": "2026-08-09T04:18:22.399Z",
+  "commerce": {
+    "price": true,
+    "priceVisible": true
+  },
+  "draft_class": "salla-draft-772906207",
+  "editor_draft": "772906207",
+  "html": {
+    "dir": "ltr",
+    "lang": "en"
+  },
+  "network_urls": [
+    "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20data-codex-favicon-badge%3D%22codex-favicon-badge%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cimage%20href%3D%22data%3Aimage%2Fbmp%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAADzElEQVR4nKyWSS81QRSG%2B15tnuchBEFCYohITJEIEayR%2BAH%2BgPg1FjZs7FhZINgIK%2FMYhBiDmMU83O%2Fh%2BEppTculFp3qGt5zzvueOlWmx%2BMxnNrz8zNfl8sli6XDV%2Frf7zUNp6awLB2%2BbrfbcbvLMQK1QHdcHzR%2BGQEQQhHt7u4Or319fZUlx%2BZsQJm5ubm5uLjARlRUVHBw8A9tOJMoQARxfX0dFBQUEBBwcnKiz3pvwKM1fnd2djAQHx9%2FdXWldFap5Y0BSxAbGxtHR0fGa9bSfqWBynf5db22%2FPz8sLCwp6cnkVrW6EHYmrQGqC%2FVjxUu%2B%2Fj48DszM4OZ9PT0x8dHRsSAZb0O6Fa40mS14l11hJnNzc3FxcWkpCQLkO3eDwa%2Boejh4YEvzq6vr8%2FPz%2Bfl5Z2dnYn70GU4nTWXMq5DS4f9pmlKjs7Nze3v7ycmJubk5JCmt7e3kZGRcCXs6TXDQpdbsWyhRU4sU%2FiL40tLS6GhoejMINDovLe3d3l5%2BQLxim7ZroRxfR59em2Cfn5%2B3t%2Fff3p6WllZmZmZqeDu7%2B%2FX1tYODw9LSko4HDCmpvQ43ilS2QbjQEsW9vX1oWpMTExpaSnkiEmVprC0srJCHAUFBSSVWGWBJJsq5qZuEDb9%2Ff3pTE1NQfr29nZCQkJFRUVERISfnx%2FjBwcH8B4YGEifmoHgx8fH09PTcJWWlsaUgOhV3a3LgqR4MTs729nZOTIyUlRU1NLSgu%2Fd3d0oQYUYHh7GcYKg6ok3NTU1RDMwMDA5OcmUElxpYBofk72rq6u3t7eqqqq1tTU5OZmRsbExFIYrSF9dXa2vrx8fH19eXm5sbIQfCKyurk5NTR0dHSUU7OXm5urn4O2Uio2Ojg42l5eXNzQ0xMbGAgrQ0NCQaM4veqIHRQlVo6OjQ0JCamtrMzIyJI8JgmNYV1eHGcnDd4pE4fb2djgFgpTv6ekZHBycmJiA3%2BLiYtIJJTgE1NS4uLiysjJOA7cCKYswEJiVlYXvu7u7BCpH5%2B0oiO%2Fy39bWRr18kd40KcvAkZoLCwvNzc0ITnqkpKSAiwE053pgP0HgAYNbW1tkM2sKCwupJW8KE4SgSxzEzmrcYYKUgF9ShTiamprY%2BVVJgC4Sl43ghIeHy2WnkvNDbfoMAfuQm52djSUpHtiWcF3%2Fm%2BVt8UFhS%2BHEF1mtbnk5XGLJ0B4WljeS3qR8vXugG%2Fgcvo7l%2BfFLwj4C22m5HSXhjB%2B8gmxAvkL3%2FOBJ6YyuatFX0xYzXkTwVips0Q2vEG0M2KJ47N48f6nBX7V%2FAAAA%2F%2F9GZSvnAAAABklEQVQDAN5YImdmImgXAAAAAElFTkSuQmCC%22%20width%3D%2232%22%20height%3D%2232%22%20opacity%3D%220.3%22%20%2F%3E%3Cpath%20d%3D%22M3.04536%204.45259C2.7582%203.60299%203.60299%202.7582%204.45259%203.04536L14.1828%206.33403C15.1637%206.66558%2015.0872%208.08006%2014.0715%208.39045L10.2994%209.54319C9.93919%209.65327%209.65327%209.93919%209.54319%2010.2994L8.39046%2014.0715C8.08007%2015.0872%206.66558%2015.1637%206.33404%2014.1828L3.04536%204.45259Z%22%20fill%3D%22black%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linejoin%3D%22round%22%20paint-order%3D%22stroke%20fill%22%20transform%3D%22translate(-2%20-2)%20scale(2.1)%22%20%2F%3E%3C%2Fsvg%3E",
+    "http://localhost:8000/add-product-toast.js",
+    "http://localhost:8000/app.css",
+    "http://localhost:8000/app.js",
+    "http://localhost:8000/home.js",
+    "http://localhost:8000/main-menu.js",
+    "http://localhost:8000/product-card.js",
+    "https://cdn.assets.salla.network/",
+    "https://cdn.assets.salla.network/prod/stores/js/live-js.js",
+    "https://cdn.salla.network/",
+    "https://cdn.salla.network/fonts/dubai.css",
+    "https://cdn.salla.network/fonts/sallaicons.css",
+    "https://cdn.salla.network/js/twilight/2.14.538/twilight.esm.js",
+    "https://cdn.sift.com/s.js",
+    "https://salla-dev.s3.eu-central-1.amazonaws.com/logo/logo-fashion.jpg",
+    "https://salla.design/ar/dev-v37bn5qobfotqowz",
+    "https://salla.design/en/dev-v37bn5qobfotqowz",
+    "https://salla.design/en/dev-v37bn5qobfotqowz",
+    "https://salla.design/en/dev-v37bn5qobfotqowz",
+    "https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496",
+    "https://www.googletagmanager.com/gtm.js"
+  ],
+  "overflow": {
+    "innerWidth": 320,
+    "pass": true,
+    "scrollWidth": 320
+  },
+  "preset": {
+    "id": null,
+    "review": null,
+    "sources": null
+  },
+  "preview_assets": [
+    "http://localhost:8000/product-card.js",
+    "http://localhost:8000/main-menu.js",
+    "http://localhost:8000/add-product-toast.js",
+    "http://localhost:8000/app.css",
+    "http://localhost:8000/app.js",
+    "http://localhost:8000/home.js"
+  ],
+  "preview_branch": "codex/preview-hdl-03-20260808",
+  "preview_commit": "058153baeca2351c023674c07ca7aac941505ff5",
+  "spike_present": false,
+  "url": "https://salla.design/en/dev-v37bn5qobfotqowz?preview=true&assets_url=http%3A%2F%2Flocalhost%3A8000&ws_port=8001",
+  "viewport": {
+    "dpr": 1,
+    "h": 800,
+    "w": 320
+  }
+}

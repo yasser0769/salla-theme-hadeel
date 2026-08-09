@@ -1,0 +1,21 @@
+{
+  "captured_at": "2026-08-09T03:57:43.009Z",
+  "classification": "SALLA PREVIEW SYNC FAILURE",
+  "expected": {
+    "draft": "salla-draft-524850391",
+    "lang": "en",
+    "dir": "ltr",
+    "preview_assets": "localhost:8000"
+  },
+  "observed": {
+    "assets": [],
+    "classes": [],
+    "dir": "rtl",
+    "draft": null,
+    "lang": "ar",
+    "preset": null,
+    "sources": null,
+    "url": "https://salla.design/en/dev-v37bn5qobfotqowz/?preview=true"
+  },
+  "code_failure": false
+}

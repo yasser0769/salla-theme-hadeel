@@ -1,0 +1,19 @@
+{
+  "classification": "SALLA PREVIEW SYNC FAILURE",
+  "preview_branch": "codex/preview-hdl-03-20260808",
+  "preview_commit": "058153baeca2351c023674c07ca7aac941505ff5",
+  "events": [
+    {
+      "draft": "1548451294",
+      "result": "CLI-created direct watch route was not usable for final-source evidence.",
+      "code_failure": false
+    },
+    {
+      "draft": "772906207",
+      "result": "One return-to-Follow attempt temporarily rendered without the draft/Hadeel classes; the capture was excluded and a later recapture passed.",
+      "code_failure": false
+    }
+  ],
+  "authoritative_draft": "772906207",
+  "authoritative_store": "dev-v37bn5qobfotqowz"
+}

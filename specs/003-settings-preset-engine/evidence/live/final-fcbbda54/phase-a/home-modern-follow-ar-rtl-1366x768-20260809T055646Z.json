@@ -1,0 +1,46 @@
+{
+ "captured_at": "2026-08-09T06:06:30.895Z",
+ "url": "https://salla.design/ar/dev-v37bn5qobfotqowz?preview=true",
+ "title": "dev-v37bn5qobfotqowz",
+ "html_lang": "ar",
+ "html_dir": "rtl",
+ "viewport": {
+  "innerWidth": 1366,
+  "innerHeight": 768,
+  "scrollWidth": 1366,
+  "no_horizontal_overflow": true
+ },
+ "body_class": "theme-raed overflow-x-hidden index salla-draft-1095952682 color-mode-dark rtl font-dubai  \n   footer-is-light\n   is-sticky-product-bar\n  hadeel-layout-wide\n  hadeel-spacing-balanced\n  hadeel-corners-square\n  hadeel-card-minimal\n  hadeel-header-centered\n  hadeel-header-density-comfortable\n   hadeel-preset-modern  \n  ",
+ "body_data_attrs": {
+  "data-hadeel-preset": "modern",
+  "data-hadeel-preset-sources": "layout_width:preset,section_spacing:preset,corner_style:preset,product_card_style:preset,header_layout:preset,header_density:preset"
+ },
+ "has_draft_class": true,
+ "localhost_asset_count": 6,
+ "localhost_assets": [
+  "http://localhost:8000/app.css",
+  "http://localhost:8000/product-card.js",
+  "http://localhost:8000/app.js",
+  "http://localhost:8000/main-menu.js",
+  "http://localhost:8000/add-product-toast.js",
+  "http://localhost:8000/home.js"
+ ],
+ "store": {
+  "id": 1736483913,
+  "name": "dev-v37bn5qobfotqowz"
+ },
+ "commerce": {
+  "product_cards": 15,
+  "price_sample": "١٧٤ د.إ ٣٤٩ د.إ",
+  "add_to_cart_buttons": 0,
+  "cart_summary_present": true,
+  "search_present": true,
+  "cart_drawer_present": true
+ },
+ "capture": "home engine=on profile=modern all-follow AR RTL 1366x768",
+ "draft": "draft-1095952682",
+ "version_id": 192045281,
+ "source_sha": "fcbbda542b1b8dcc6747202ae616af32f4f66b1c",
+ "requested_viewport": "1366x768",
+ "emulation": "CDP Emulation.setDeviceMetricsOverride mobile=false dsf=1"
+}

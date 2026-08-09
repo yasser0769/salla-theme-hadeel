@@ -1,0 +1,61 @@
+{
+ "captured_at": "2026-08-09T08:18:08.062Z",
+ "url": "https://salla.design/en/dev-v37bn5qobfotqowz?preview=true",
+ "title": "dev-v37bn5qobfotqowz",
+ "html_lang": "en",
+ "html_dir": "ltr",
+ "viewport": {
+  "innerWidth": 320,
+  "innerHeight": 800,
+  "devicePixelRatio": 2,
+  "scrollWidth": 320,
+  "no_horizontal_overflow": true
+ },
+ "body_class": "theme-raed overflow-x-hidden index salla-draft-778615066 color-mode-dark ltr font-dubai footer-is-light is-sticky-product-bar hadeel-layout-compact hadeel-spacing-spacious hadeel-corners-rounded hadeel-card-elevated hadeel-header-start hadeel-header-density-compact",
+ "body_data_attrs": {},
+ "has_draft_class": true,
+ "has_preset_marker_class": false,
+ "has_preset_data_attrs": false,
+ "engine_off_classes": {
+  "hadeel-layout-compact": true,
+  "hadeel-spacing-spacious": true,
+  "hadeel-corners-rounded": true,
+  "hadeel-card-elevated": true,
+  "hadeel-header-start": true,
+  "hadeel-header-density-compact": true
+ },
+ "localhost_asset_count": 6,
+ "localhost_assets": [
+  "http://localhost:8000/app.css",
+  "http://localhost:8000/product-card.js",
+  "http://localhost:8000/app.js",
+  "http://localhost:8000/main-menu.js",
+  "http://localhost:8000/add-product-toast.js",
+  "http://localhost:8000/home.js"
+ ],
+ "store": {
+  "id": 1736483913,
+  "name": "dev-v37bn5qobfotqowz"
+ },
+ "commerce": {
+  "product_cards": 15,
+  "price_sample": "174 AED 349 AED",
+  "card_text_sample": "فستان 174 AED 349 AED",
+  "add_to_cart_buttons": 0,
+  "add_to_cart_visible": false,
+  "cart_summary_present": true,
+  "search_present": true,
+  "cart_drawer_present": true
+ },
+ "capture": "home engine=OFF legacy EN LTR 320x800",
+ "draft": "draft-778615066",
+ "version_id": 192045281,
+ "source_sha": "fcbbda542b1b8dcc6747202ae616af32f4f66b1c",
+ "requested_viewport": {
+  "width": 320,
+  "height": 800,
+  "deviceScaleFactor": 2,
+  "mobile": true
+ },
+ "emulation": "CDP Emulation.setDeviceMetricsOverride"
+}

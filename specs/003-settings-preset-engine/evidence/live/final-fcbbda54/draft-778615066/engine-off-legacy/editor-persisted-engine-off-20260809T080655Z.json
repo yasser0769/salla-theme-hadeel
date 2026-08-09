@@ -1,0 +1,53 @@
+{
+ "captured_at": "2026-08-09T08:06:55Z",
+ "capture": "editor persisted engine-OFF state after observed save + reload",
+ "editor_url": "https://s.salla.sa/themes/editor/theme-options",
+ "draft": "draft-778615066",
+ "version_id": 192045281,
+ "source_sha": "fcbbda542b1b8dcc6747202ae616af32f4f66b1c",
+ "store": {
+  "id": 1736483913,
+  "username": "dev-v37bn5qobfotqowz"
+ },
+ "engine": {
+  "preset_engine_enabled": {
+   "prop": false,
+   "inner_input": false,
+   "ui_active_class": false
+  }
+ },
+ "preset_controls_absent": [
+  "preset_profile",
+  "layout_width_mode",
+  "section_spacing_mode",
+  "corner_style_mode",
+  "product_card_style_mode",
+  "header_layout_mode",
+  "header_density_mode"
+ ],
+ "legacy_values": {
+  "layout_width": "compact",
+  "section_spacing": "spacious",
+  "corner_style": "rounded",
+  "product_card_style": "elevated",
+  "header_layout": "start",
+  "header_density": "compact"
+ },
+ "has_error_flags": 0,
+ "save_observation": {
+  "endpoint": "POST https://api.salla.dev/admin/v2/design/settings?version_id=192045281",
+  "http_status": 200,
+  "response": {
+   "status": 200,
+   "success": true,
+   "data": [],
+   "message": "Theme settings saved successfully"
+  },
+  "note": "request payload not exposed by capture tool; sent values proven by pre-save FormData; engine-off persistence proven by this post-reload read"
+ },
+ "screenshots": [
+  "editor-engine-off-legacy-values-20260809T080655Z.png",
+  "editor-engine-off-presets-group-20260809T080655Z.png"
+ ],
+ "verification_method": "post-save full editor reload; values read from live component props + shadow selects; all agree"
+}

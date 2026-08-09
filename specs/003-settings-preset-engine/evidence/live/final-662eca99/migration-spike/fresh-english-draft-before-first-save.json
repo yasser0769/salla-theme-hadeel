@@ -1,0 +1,165 @@
+{
+  "captured_at": "2026-08-09T03:41:30.053Z",
+  "controls": [
+    {
+      "checked": "false",
+      "id": "preset_engine_enabled",
+      "outer": "<s-toggle name=\"preset_engine_enabled\" id=\"preset_engine_enabled\" layout=\"end\" label=\"تفعيل محرك التصميمات الجاهزة\" wide=\"true\" desc=\"عند التفعيل تتبع الإعدادات المدعومة التصميم الجاهز المختار؛ قيمك الحالية تبقى محفوظة ولا تتغير\" value=\"false\" loading=\"false\" checked=\"false\" has-error=\"false\" class=\"s-toggle w-full end md rtl hydrated\"><i value=\"\" slot=\"start\" placeholder=\"\" class=\"sicon-toggle-off\"></i></s-toggle>",
+      "present": true,
+      "tag": "S-TOGGLE",
+      "text": "",
+      "value": "false"
+    },
+    {
+      "checked": null,
+      "id": "preset_profile",
+      "outer": null,
+      "present": false,
+      "tag": null,
+      "text": "",
+      "value": null
+    },
+    {
+      "checked": null,
+      "id": "layout_width_mode",
+      "outer": null,
+      "present": false,
+      "tag": null,
+      "text": "",
+      "value": null
+    },
+    {
+      "checked": null,
+      "id": "section_spacing_mode",
+      "outer": null,
+      "present": false,
+      "tag": null,
+      "text": "",
+      "value": null
+    },
+    {
+      "checked": null,
+      "id": "corner_style_mode",
+      "outer": null,
+      "present": false,
+      "tag": null,
+      "text": "",
+      "value": null
+    },
+    {
+      "checked": null,
+      "id": "product_card_style_mode",
+      "outer": null,
+      "present": false,
+      "tag": null,
+      "text": "",
+      "value": null
+    },
+    {
+      "checked": null,
+      "id": "header_layout_mode",
+      "outer": null,
+      "present": false,
+      "tag": null,
+      "text": "",
+      "value": null
+    },
+    {
+      "checked": null,
+      "id": "header_density_mode",
+      "outer": null,
+      "present": false,
+      "tag": null,
+      "text": "",
+      "value": null
+    },
+    {
+      "checked": "",
+      "id": "hdl03_spike_bool_true",
+      "outer": "<s-toggle name=\"hdl03_spike_bool_true\" id=\"hdl03_spike_bool_true\" layout=\"end\" label=\"HDL-03 Spike: Boolean default true\" wide=\"true\" desc=\"Temporary Spike fixture; also the condition source for the hidden-value field below.\" value=\"\" loading=\"false\" checked=\"\" has-error=\"false\" class=\"s-toggle w-full end md rtl active hydrated\"><i value=\"\" slot=\"start\" placeholder=\"\" class=\"sicon-toggle-off\"></i></s-toggle>",
+      "present": true,
+      "tag": "S-TOGGLE",
+      "text": "",
+      "value": ""
+    },
+    {
+      "checked": "false",
+      "id": "hdl03_spike_bool_false",
+      "outer": "<s-toggle name=\"hdl03_spike_bool_false\" id=\"hdl03_spike_bool_false\" layout=\"end\" label=\"HDL-03 Spike: Boolean default false\" wide=\"true\" desc=\"\" value=\"false\" loading=\"false\" checked=\"false\" has-error=\"false\" class=\"s-toggle w-full end md rtl hydrated\"><i value=\"\" slot=\"start\" placeholder=\"\" class=\"sicon-toggle-off\"></i></s-toggle>",
+      "present": true,
+      "tag": "S-TOGGLE",
+      "text": "",
+      "value": "false"
+    },
+    {
+      "checked": null,
+      "id": "hdl03_spike_string_default",
+      "outer": "<s-input id=\"hdl03_spike_string_default\" name=\"hdl03_spike_string_default\" type=\"text\" value=\"hdl03_spike_default_text\" placeholder=\"\" required=\"false\" has-error=\"false\" class=\"rounded w-full placeholder-gray-400 md rtl hydrated\"><i value=\"\" slot=\"start\" placeholder=\"\" class=\"sicon-format-text-alt\"></i></s-input>",
+      "present": true,
+      "tag": "S-INPUT",
+      "text": "",
+      "value": "hdl03_spike_default_text"
+    },
+    {
+      "checked": null,
+      "id": "hdl03_spike_string_unset",
+      "outer": "<s-input id=\"hdl03_spike_string_unset\" name=\"hdl03_spike_string_unset\" type=\"text\" placeholder=\"\" required=\"false\" has-error=\"false\" class=\"rounded w-full placeholder-gray-400 md rtl hydrated\"><i value=\"\" slot=\"start\" placeholder=\"\" class=\"sicon-format-text-alt\"></i></s-input>",
+      "present": true,
+      "tag": "S-INPUT",
+      "text": "",
+      "value": null
+    },
+    {
+      "checked": null,
+      "id": "hdl03_spike_items_choice",
+      "outer": "<s-select name=\"hdl03_spike_items_choice\" id=\"hdl03_spike_items_choice\" label=\"HDL-03 Spike: single-choice items\" placeholder=\"يرجى الاختيار من الخيارات\" wide=\"true\" searchable=\"false\" multiselect=\"false\" autocomplete=\"true\" has-error=\"false\" skip-filtering=\"false\" class=\"w-full rtl hydrated\"><i value=\"\" slot=\"start\" placeholder=\"\" class=\"sicon-keyboard_arrow_down\"></i></s-select>",
+      "present": true,
+      "tag": "S-SELECT",
+      "text": "",
+      "value": null
+    },
+    {
+      "checked": null,
+      "id": "hdl03_spike_mode",
+      "outer": "<s-select name=\"hdl03_spike_mode\" id=\"hdl03_spike_mode\" label=\"HDL-03 Spike: companion mode default\" placeholder=\"يرجى الاختيار من الخيارات\" wide=\"true\" searchable=\"false\" multiselect=\"false\" autocomplete=\"true\" has-error=\"false\" skip-filtering=\"false\" class=\"w-full rtl hydrated\"><i value=\"\" slot=\"start\" placeholder=\"\" class=\"sicon-keyboard_arrow_down\"></i></s-select>",
+      "present": true,
+      "tag": "S-SELECT",
+      "text": "",
+      "value": null
+    },
+    {
+      "checked": null,
+      "id": "hdl03_spike_hidden_value",
+      "outer": "<s-input id=\"hdl03_spike_hidden_value\" name=\"hdl03_spike_hidden_value\" type=\"text\" value=\"hdl03_spike_hidden_default\" placeholder=\"\" required=\"false\" has-error=\"false\" class=\"rounded w-full placeholder-gray-400 md rtl hydrated\"><i value=\"\" slot=\"start\" placeholder=\"\" class=\"sicon-format-text-alt\"></i></s-input>",
+      "present": true,
+      "tag": "S-INPUT",
+      "text": "",
+      "value": "hdl03_spike_hidden_default"
+    }
+  ],
+  "draft": "524850391",
+  "location": "https://s.salla.sa/themes/editor/theme-options",
+  "preview_branch": "codex/preview-hdl-03-20260808",
+  "preview_commit": "662eca99d68c9a946b4ae241485571bc92a8ca93",
+  "save_disabled": false,
+  "storefront_before_first_save": {
+    "assets": [
+      "http://localhost:8000/product-card.js",
+      "http://localhost:8000/main-menu.js",
+      "http://localhost:8000/add-product-toast.js",
+      "http://localhost:8000/app.css",
+      "http://localhost:8000/app.js",
+      "http://localhost:8000/home.js"
+    ],
+    "dir": "ltr",
+    "draft": "salla-draft-524850391",
+    "lang": "en",
+    "marker": "<template id=\"hdl03-spike-settings\" data-hdl03-spike-bool-true=\"null\" data-hdl03-spike-bool-false=\"null\" data-hdl03-spike-bool-true-fallback=\"false\" data-hdl03-spike-string-default=\"null\" data-hdl03-spike-string-unset=\"null\" data-hdl03-spike-string-unset-fallback=\"&quot;hdl03_spike_fb&quot;\" data-hdl03-spike-items-choice=\"null\" data-hdl03-spike-mode=\"null\" data-hdl03-spike-hidden-value=\"null\">\n</template>",
+    "preset": {
+      "id": null,
+      "review": null,
+      "sources": null
+    },
+    "url": "https://salla.design/en/dev-v37bn5qobfotqowz?preview=true&assets_url=http%3A%2F%2Flocalhost%3A8000&ws_port=8001"
+  }
+}

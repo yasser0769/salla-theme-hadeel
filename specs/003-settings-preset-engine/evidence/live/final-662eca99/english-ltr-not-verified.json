@@ -1,0 +1,26 @@
+{
+  "captured_at": "2026-08-08T23:06:50.748Z",
+  "preview_branch": "codex/preview-hdl-03-20260808",
+  "preview_commit": "662eca99d68c9a946b4ae241485571bc92a8ca93",
+  "draft": "salla-draft-1328326277",
+  "signed_query_probe": {
+    "requested_lang": "en",
+    "observed_lang": "ar",
+    "observed_dir": "rtl",
+    "local_assets": [
+      "http://localhost:8000/product-card.js",
+      "http://localhost:8000/main-menu.js",
+      "http://localhost:8000/add-product-toast.js",
+      "http://localhost:8000/app.css",
+      "http://localhost:8000/app.js",
+      "http://localhost:8000/home.js"
+    ]
+  },
+  "visible_language_controls": [],
+  "localization_component": {
+    "present": true,
+    "language_choices_observed": false,
+    "currency_choices_only": true
+  },
+  "status": "NOT VERIFIED — this demo store is Arabic-only in the confirmed draft; lang=en remains ar/rtl and no visible language control exists. Requires an English-enabled Salla draft/store, not a code assumption."
+}

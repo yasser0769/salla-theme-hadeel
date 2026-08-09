@@ -1,0 +1,101 @@
+{
+ "captured_at": "2026-08-09T05:56:46Z",
+ "page": "https://s.salla.sa/themes/editor/theme-options",
+ "draft": "draft-1095952682",
+ "version_id": 192045281,
+ "store": {
+  "id": 1736483913,
+  "username": "dev-v37bn5qobfotqowz"
+ },
+ "source_sha": "fcbbda542b1b8dcc6747202ae616af32f4f66b1c",
+ "panel": "s-panel-body children indices (DOM order, 0-based)",
+ "presets_group_control_order": [
+  {
+   "dom_index": 19,
+   "role": "group_title",
+   "kind": "form--static-title",
+   "text_ar": "التصميمات الجاهزة"
+  },
+  {
+   "dom_index": 20,
+   "role": "engine",
+   "kind": "s-toggle",
+   "id": "preset_engine_enabled",
+   "label_ar": "تفعيل محرك التصميمات الجاهزة",
+   "initial_state": "on"
+  },
+  {
+   "dom_index": 21,
+   "role": "profile",
+   "kind": "s-select",
+   "id": "preset_profile",
+   "label_ar": "التصميم الجاهز",
+   "initial_value": "modern",
+   "options": [
+    "luxury",
+    "modern",
+    "minimal",
+    "practical_digital"
+   ],
+   "boundary_note_ar": "يغيّر الإعدادات التي تتبع التصميم فقط، ولا يمس القيم المخصصة أو المحتوى أو ترتيب الصفحة"
+  },
+  {
+   "dom_index": 22,
+   "role": "inline_explainer",
+   "kind": "form--static-description",
+   "heading_ar": "كيف تعمل التصميمات الجاهزة؟"
+  },
+  {
+   "dom_index": 23,
+   "role": "basic_mode_1",
+   "kind": "s-select",
+   "id": "layout_width_mode",
+   "initial_value": "follow_preset"
+  },
+  {
+   "dom_index": 24,
+   "role": "basic_mode_2",
+   "kind": "s-select",
+   "id": "section_spacing_mode",
+   "initial_value": "follow_preset"
+  },
+  {
+   "dom_index": 25,
+   "role": "basic_mode_3",
+   "kind": "s-select",
+   "id": "corner_style_mode",
+   "initial_value": "follow_preset"
+  },
+  {
+   "dom_index": 26,
+   "role": "advanced_mode_1",
+   "kind": "s-select",
+   "id": "product_card_style_mode",
+   "initial_value": "follow_preset"
+  },
+  {
+   "dom_index": 27,
+   "role": "advanced_mode_2",
+   "kind": "s-select",
+   "id": "header_layout_mode",
+   "initial_value": "follow_preset"
+  },
+  {
+   "dom_index": 28,
+   "role": "advanced_mode_3",
+   "kind": "s-select",
+   "id": "header_density_mode",
+   "initial_value": "follow_preset"
+  },
+  {
+   "dom_index": 29,
+   "role": "boundary",
+   "kind": "form--static-line (hr)",
+   "note": "end of presets group; next group starts at index 30"
+  }
+ ],
+ "screenshots": [
+  "editor-presets-group-title-engine-profile-20260809T055646Z.png",
+  "editor-presets-group-modes-20260809T055646Z.png"
+ ]
+}

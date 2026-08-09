@@ -1,0 +1,86 @@
+{
+  "feature": "HDL-03 settings-preset-engine",
+  "generated_at": "2026-08-09T07:26:00+03:00",
+  "preview_branch": "codex/preview-hdl-03-20260808",
+  "full_matrix_commit": "662eca99d68c9a946b4ae241485571bc92a8ca93",
+  "final_source_commit": "058153baeca2351c023674c07ca7aac941505ff5",
+  "final_source_commit_time": "2026-08-09T07:04:16+03:00",
+  "drafts": {
+    "full_matrix": "1328326277",
+    "fresh_draft_spike": "524850391",
+    "final_source": "772906207"
+  },
+  "roots": [
+    "specs/003-settings-preset-engine/evidence/live/final-662eca99",
+    "specs/003-settings-preset-engine/evidence/live/final-058153ba"
+  ],
+  "final_source_earliest_capture": "2026-08-09T04:11:31Z",
+  "all_final_source_captures_later_than_final_source_commit": true,
+  "required_asset_pattern": "^http://localhost:[0-9]+/",
+  "cli_reported_asset_port": 8000,
+  "accepted_groups": [
+    {
+      "path": "final-662eca99/profiles",
+      "json": 16,
+      "png": 16,
+      "status": "PASS_ARABIC_ENGLISH"
+    },
+    {
+      "path": "final-662eca99/legacy-ar + legacy-en",
+      "json": 4,
+      "png": 4,
+      "status": "PASS"
+    },
+    {
+      "path": "final-662eca99/custom-switch + custom",
+      "status": "PASS_BILINGUAL"
+    },
+    {
+      "path": "final-662eca99/return-follow + custom/en-modern-return-follow-*",
+      "status": "PASS_BILINGUAL"
+    },
+    {
+      "path": "final-662eca99/accessibility-commerce + accessibility + product",
+      "status": "CAPTURED_WITH_OPEN_FINDINGS",
+      "notes": "Commerce remains visible. The product route overflows at 320px with engine on and off; one English mobile product-image focus target was fully off-screen."
+    },
+    {
+      "path": "final-058153ba/smoke",
+      "status": "PASS_FINAL_SOURCE_ENGLISH_SMOKE",
+      "notes": "Exact release source without the temporary Spike: four profiles, Custom persistence, return to Follow, legacy mode, product route, mobile and desktop."
+    }
+  ],
+  "asset_provenance": {
+    "accepted_final_source_home_captures_checked": 16,
+    "all_final_source_home_captures_have_local_assets": true,
+    "assets_per_home_capture": 6,
+    "query_canonicalized_network_delta": 0
+  },
+  "spike_results": {
+    "T006": "Captured on a fresh draft before/after first save; not evidence of a fresh theme installation.",
+    "T007": "Concluded: equality condition, companion default, and hidden persistence verified; option removal/re-addition not verified and not relied on."
+  },
+  "preview_sync_failures": [
+    "CLI draft 1548451294 did not expose the owner-confirmed final source watch route.",
+    "One transient return-to-Follow capture lost the draft/classes and was excluded, then recaptured successfully."
+  ],
+  "excluded": [
+    {
+      "path": "evidence/live/*-a7f991b9.png",
+      "reason": "Superseded by the final FR-012 source fix."
+    },
+    {
+      "path": "final-662eca99/english-ltr-not-verified.json",
+      "reason": "Superseded diagnostic from the earlier Arabic-only draft."
+    },
+    {
+      "path": "the first en-modern-return-follow-desktop capture",
+      "reason": "Transient Salla preview desynchronization; overwritten by the successful recapture."
+    }
+  ],
+  "open_release_findings": [
+    "HDL-03-FR-017 is not satisfied on the product route at 320px: English scrollWidth 401 and Arabic scrollWidth 348, both reproduced with the engine disabled.",
+    "One English mobile keyboard focus target (product-card image link) was fully off-screen although it retained a 2px outline.",
+    "Owner acceptance ACCEPT HDL-03 is pending."
+  ]
+}

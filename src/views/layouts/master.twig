@@ -94,18 +94,128 @@
     {# tracking services, custom css feature. #}
     {% hook 'head:end' %}
 </head>
+{#
+  HDL-03 preset resolution — one centralized, allowlisted resolver, kept inline
+  in this layout on purpose: Salla server rendering does not package a new
+  top-level src/views/partials/ directory (owner-confirmed draft 1402312628
+  rendered "File [src/views/partials/preset-classes.twig] Not Found"), while
+  layouts/master.twig is a proven packaged path. Do not extract this block
+  back into a new partial location without live-preview proof.
+
+  Contract: specs/003-settings-preset-engine/contracts/preset-resolution.md
+  Reference: tests/helpers/settings-preset-engine.mjs (must produce identical
+  outcomes; the maps below are pinned to src/config/settings-registry.json by
+  the "shipped Twig resolver maps match the canonical registry" test).
+
+  Rules honored here:
+  - Engine disabled (or unset/null before first save, per the migration Spike)
+    reproduces the exact legacy classes from the six legacy settings.
+  - The six legacy IDs are the persistent Custom stores; this resolver only
+    reads settings and never calls theme.settings.set().
+  - Every emitted class is prefix + an allowlisted value. Raw merchant input
+    is never concatenated into a class.
+  - Unknown/unset profile normalizes to `modern` with a needs_review marker;
+    unknown/unset mode marks needs_review, preserving a valid Custom value
+    first. Empty IS NOT a valid declared default once the engine is on.
+  - Every merchant-input comparison is strict and fails closed: Twig `in`/`==`
+    are loose, so activation uses `is same as` and the string allowlists are
+    guarded by an iterable/type check. Invalid raw types (booleans, numbers,
+    arrays) never activate the engine, select a profile, or match an allowlist.
+#}
+{% set hadeel_allowed = {"layout_width":["compact","wide","full"],"section_spacing":["compact","balanced","spacious"],"corner_style":["square","soft","rounded"],"product_card_style":["minimal","bordered","elevated"],"header_layout":["centered","start"],"header_density":["compact","comfortable"]} %}
+{% set hadeel_safe = {"layout_width":"wide","section_spacing":"balanced","corner_style":"square","product_card_style":"minimal","header_layout":"centered","header_density":"comfortable"} %}
+{% set hadeel_profiles = {"luxury":{"layout_width":"wide","section_spacing":"spacious","corner_style":"rounded","product_card_style":"elevated","header_layout":"centered","header_density":"comfortable"},"modern":{"layout_width":"wide","section_spacing":"balanced","corner_style":"square","product_card_style":"minimal","header_layout":"centered","header_density":"comfortable"},"minimal":{"layout_width":"wide","section_spacing":"spacious","corner_style":"square","product_card_style":"minimal","header_layout":"centered","header_density":"comfortable"},"practical_digital":{"layout_width":"compact","section_spacing":"compact","corner_style":"soft","product_card_style":"bordered","header_layout":"start","header_density":"compact"}} %}
+{% set hadeel_engine_raw = theme.settings.get('preset_engine_enabled', false) %}
+{# Fail-closed activation: only the four exact enrolled shapes count. A loose
+   `in [true, ...]` would let any truthy raw value (e.g. an unexpected string)
+   activate the engine; `is same as` never coerces. #}
+{% set hadeel_engine_on = hadeel_engine_raw is same as(true) or hadeel_engine_raw is same as('true') or hadeel_engine_raw is same as(1) or hadeel_engine_raw is same as('1') %}
+{% set hadeel_profile_raw = theme.settings.get('preset_profile') %}
+{# String-exact profile validation: the iterable guard plus self-cast identity
+   rejects arrays, booleans, and numbers before the allowlist `in`, so only an
+   exact canonical string selects a profile; anything else is modern + review. #}
+{% set hadeel_profile_ok = hadeel_profile_raw is not iterable and hadeel_profile_raw is same as(hadeel_profile_raw ~ '') and hadeel_profile_raw in hadeel_profiles|keys %}
+{% set hadeel_profile = hadeel_profile_ok ? hadeel_profile_raw : 'modern' %}
+{% set hadeel_profile_review = hadeel_engine_on and not hadeel_profile_ok %}
+{% set hadeel_resolved = {} %}
+{% set hadeel_sources = {} %}
+{% set hadeel_review = hadeel_profile_review ? ['preset_profile'] : [] %}
+{% for hadeel_id in hadeel_allowed|keys %}
+  {% set hadeel_stored = theme.settings.get(hadeel_id, hadeel_safe[hadeel_id]) %}
+  {# Strict allowlist membership: exact strings only; booleans/numbers/arrays fail closed. #}
+  {% set hadeel_custom_ok = hadeel_stored is not iterable and hadeel_stored is same as(hadeel_stored ~ '') and hadeel_stored in hadeel_allowed[hadeel_id] %}
+  {% set hadeel_value = null %}
+  {% set hadeel_from = null %}
+  {% set hadeel_flag = false %}
+  {% if not hadeel_engine_on %}
+    {# Contract step 1: legacy value if allowlisted, else safe default + review. #}
+    {% if hadeel_custom_ok %}
+      {% set hadeel_value = hadeel_stored %}
+      {% set hadeel_from = 'legacy' %}
+    {% else %}
+      {% set hadeel_value = hadeel_safe[hadeel_id] %}
+      {% set hadeel_from = 'safe_default' %}
+      {% set hadeel_flag = true %}
+    {% endif %}
+  {% else %}
+    {% set hadeel_mode = theme.settings.get(hadeel_id ~ '_mode') %}
+    {% set hadeel_map_value = hadeel_profiles[hadeel_profile][hadeel_id] %}
+    {% set hadeel_map_ok = hadeel_map_value in hadeel_allowed[hadeel_id] %}
+    {# `is same as` never coerces, so a raw boolean/number mode fails closed to the unknown-mode branch. #}
+    {% if hadeel_mode is same as('custom') and hadeel_custom_ok %}
+      {# Contract step 4: valid Custom wins. #}
+      {% set hadeel_value = hadeel_stored %}
+      {% set hadeel_from = 'custom' %}
+      {% set hadeel_flag = hadeel_profile_review %}
+    {% elseif hadeel_mode is same as('custom') %}
+      {# Contract step 5: invalid Custom -> review, then normalized profile. #}
+      {% set hadeel_flag = true %}
+    {% elseif hadeel_mode is same as('follow_preset') %}
+      {# Contract step 6: normalized profile value. #}
+      {% set hadeel_flag = hadeel_profile_review %}
+    {% else %}
+      {# Contract step 3: unknown/unset mode -> review; valid Custom preserved first. #}
+      {% set hadeel_flag = true %}
+      {% if hadeel_custom_ok %}
+        {% set hadeel_value = hadeel_stored %}
+        {% set hadeel_from = 'custom' %}
+      {% endif %}
+    {% endif %}
+    {% if hadeel_value is null %}
+      {% if hadeel_map_ok %}
+        {% set hadeel_value = hadeel_map_value %}
+        {% set hadeel_from = 'preset' %}
+      {% else %}
+        {# Contract step 7: missing/invalid profile candidate -> safe default + review. #}
+        {% set hadeel_value = hadeel_safe[hadeel_id] %}
+        {% set hadeel_from = 'safe_default' %}
+        {% set hadeel_flag = true %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+  {% if hadeel_flag %}
+    {% set hadeel_review = hadeel_review|merge([hadeel_id]) %}
+  {% endif %}
+  {% set hadeel_resolved = hadeel_resolved|merge({(hadeel_id): hadeel_value}) %}
+  {% set hadeel_sources = hadeel_sources|merge({(hadeel_id): hadeel_from}) %}
+{% endfor %}
+{% set hadeel_sources_list = [] %}
+{% for hadeel_id in hadeel_allowed|keys %}
+  {% set hadeel_sources_list = hadeel_sources_list|merge([hadeel_id ~ ':' ~ hadeel_sources[hadeel_id]]) %}
+{% endfor %}
 <body id="app" class="theme-raed overflow-x-hidden {% hook 'body:classes' %}
   {{ theme.settings.get('use_theme_font', false) ? ' use-theme-font' : '' }}
   {{ theme.settings.get('footer_is_dark') ? ' footer-is-dark' : ' footer-is-light' }}
   {{ theme.settings.get('sticky_add_to_cart') ? ' is-sticky-product-bar' : '' }}
-  hadeel-layout-{{ theme.settings.get('layout_width', 'wide') }}
-  hadeel-spacing-{{ theme.settings.get('section_spacing', 'balanced') }}
-  hadeel-corners-{{ theme.settings.get('corner_style', 'square') }}
-  hadeel-card-{{ theme.settings.get('product_card_style', 'minimal') }}
-  hadeel-header-{{ theme.settings.get('header_layout', 'centered') }}
-  hadeel-header-density-{{ theme.settings.get('header_density', 'comfortable') }}
+  hadeel-layout-{{ hadeel_resolved.layout_width }}
+  hadeel-spacing-{{ hadeel_resolved.section_spacing }}
+  hadeel-corners-{{ hadeel_resolved.corner_style }}
+  hadeel-card-{{ hadeel_resolved.product_card_style }}
+  hadeel-header-{{ hadeel_resolved.header_layout }}
+  hadeel-header-density-{{ hadeel_resolved.header_density }}
+  {% if hadeel_engine_on %} hadeel-preset-{{ hadeel_profile }}{% endif %}
   {{ page.slug == 'product.single' ? ' product-single-page' : '' }}
-  ">
+  "{% if hadeel_engine_on %} data-hadeel-preset="{{ hadeel_profile }}" data-hadeel-preset-sources="{{ hadeel_sources_list|join(',') }}"{% endif %}{% if hadeel_review|length > 0 %} data-hadeel-preset-review="{{ hadeel_review|join(',') }}"{% endif %}>
 <noscript>
     To get full functionality of this site you need to enable JavaScript. Here is how
     <a href="https://www.enable-javascript.com/" rel="noreferrer"

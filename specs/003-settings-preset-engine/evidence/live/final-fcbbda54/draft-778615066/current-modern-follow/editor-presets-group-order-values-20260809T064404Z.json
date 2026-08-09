@@ -1,0 +1,100 @@
+{
+ "captured_at": "2026-08-09T06:44:04Z",
+ "editor_url": "https://s.salla.sa/themes/editor/theme-options",
+ "editor_entry_url": "https://s.salla.sa/themes/editor/draft-778615066?assets_url=http://localhost:8000&legacy=0&with_editor=false&ws_port=8001",
+ "draft": "draft-778615066",
+ "version_id": 192045281,
+ "source_sha": "fcbbda542b1b8dcc6747202ae616af32f4f66b1c",
+ "store": {
+  "id": 1736483913,
+  "username": "dev-v37bn5qobfotqowz",
+  "url": "https://salla.sa/dev-v37bn5qobfotqowz"
+ },
+ "presets_group_dom_order": [
+  {
+   "i": 0,
+   "role": "group_title",
+   "text_ar": "التصميمات الجاهزة"
+  },
+  {
+   "i": 1,
+   "role": "engine",
+   "id": "preset_engine_enabled",
+   "value": "on"
+  },
+  {
+   "i": 2,
+   "role": "profile",
+   "id": "preset_profile",
+   "value": "modern",
+   "options": [
+    "luxury",
+    "modern",
+    "minimal",
+    "practical_digital"
+   ]
+  },
+  {
+   "i": 3,
+   "role": "inline_explainer",
+   "heading_ar": "كيف تعمل التصميمات الجاهزة؟"
+  },
+  {
+   "i": 4,
+   "role": "basic_mode_1",
+   "id": "layout_width_mode",
+   "value": "follow_preset"
+  },
+  {
+   "i": 5,
+   "role": "basic_mode_2",
+   "id": "section_spacing_mode",
+   "value": "follow_preset"
+  },
+  {
+   "i": 6,
+   "role": "basic_mode_3",
+   "id": "corner_style_mode",
+   "value": "follow_preset"
+  },
+  {
+   "i": 7,
+   "role": "advanced_mode_1",
+   "id": "product_card_style_mode",
+   "value": "follow_preset"
+  },
+  {
+   "i": 8,
+   "role": "advanced_mode_2",
+   "id": "header_layout_mode",
+   "value": "follow_preset"
+  },
+  {
+   "i": 9,
+   "role": "advanced_mode_3",
+   "id": "header_density_mode",
+   "value": "follow_preset"
+  },
+  {
+   "i": 10,
+   "role": "boundary",
+   "kind": "static-line hr"
+  }
+ ],
+ "legacy_stored_values": {
+  "layout_width": "wide",
+  "section_spacing": "balanced",
+  "corner_style": "rounded",
+  "product_card_style": "minimal",
+  "header_layout": "centered",
+  "header_density": "comfortable"
+ },
+ "screenshots": [
+  "editor-presets-group-top-20260809T064404Z.png",
+  "editor-presets-modes-six-follow-20260809T064404Z.png"
+ ],
+ "notes": [
+  "editor-embedded preview iframe renders partially unstyled (localhost css timing inside iframe); standalone watch tab renders fully styled - see storefront captures",
+  "values read from live DOM shadow selects + component props, matching server-persisted state verified after reload"
+ ]
+}

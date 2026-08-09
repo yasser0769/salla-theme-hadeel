@@ -1,0 +1,134 @@
+{
+ "captured_at": "2026-08-09T05:56:46.151Z",
+ "page": "https://s.salla.sa/themes/editor/theme-options",
+ "draft": "draft-1095952682",
+ "version_id": 192045281,
+ "engine": {
+  "id": "preset_engine_enabled",
+  "label": "تفعيل محرك التصميمات الجاهزة",
+  "checked": true,
+  "classActive": true
+ },
+ "profile": {
+  "id": "preset_profile",
+  "value": "modern",
+  "options": [
+   {
+    "value": "luxury",
+    "label": "فاخر"
+   },
+   {
+    "value": "modern",
+    "label": "عصري"
+   },
+   {
+    "value": "minimal",
+    "label": "بسيط"
+   },
+   {
+    "value": "practical_digital",
+    "label": "عملي رقمي"
+   }
+  ]
+ },
+ "modes": {
+  "layout_width_mode": "follow_preset",
+  "section_spacing_mode": "follow_preset",
+  "corner_style_mode": "follow_preset",
+  "product_card_style_mode": "follow_preset",
+  "header_layout_mode": "follow_preset",
+  "header_density_mode": "follow_preset"
+ },
+ "stored_values": {
+  "layout_width": "wide",
+  "section_spacing": "balanced",
+  "corner_style": "rounded",
+  "product_card_style": "minimal",
+  "header_layout": "centered",
+  "header_density": "comfortable"
+ },
+ "legacy_options": {
+  "layout_width": [
+   {
+    "value": "compact",
+    "label": "مضغوط - 1200 بكسل"
+   },
+   {
+    "value": "wide",
+    "label": "واسع - 1410 بكسل"
+   },
+   {
+    "value": "full",
+    "label": "فائق الاتساع - 1600 بكسل"
+   }
+  ],
+  "section_spacing": [
+   {
+    "value": "compact",
+    "label": "مدمجة"
+   },
+   {
+    "value": "balanced",
+    "label": "متوازنة"
+   },
+   {
+    "value": "spacious",
+    "label": "مريحة"
+   }
+  ],
+  "corner_style": [
+   {
+    "value": "square",
+    "label": "حواف حادة"
+   },
+   {
+    "value": "soft",
+    "label": "استدارة خفيفة"
+   },
+   {
+    "value": "rounded",
+    "label": "استدارة واضحة"
+   }
+  ],
+  "product_card_style": [
+   {
+    "value": "minimal",
+    "label": "بسيط"
+   },
+   {
+    "value": "bordered",
+    "label": "بإطار"
+   },
+   {
+    "value": "elevated",
+    "label": "بارز بظل"
+   }
+  ],
+  "header_layout": [
+   {
+    "value": "centered",
+    "label": "الشعار في المنتصف"
+   },
+   {
+    "value": "start",
+    "label": "الشعار في بداية الصف"
+   }
+  ],
+  "header_density": [
+   {
+    "value": "compact",
+    "label": "مدمج"
+   },
+   {
+    "value": "comfortable",
+    "label": "مريح"
+   }
+  ]
+ },
+ "source_sha": "fcbbda542b1b8dcc6747202ae616af32f4f66b1c",
+ "store": {
+  "id": 1736483913,
+  "username": "dev-v37bn5qobfotqowz"
+ },
+ "note": "Pre-change settings snapshot, draft 1095952682, before any Phase A mutation"
+}

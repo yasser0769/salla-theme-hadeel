@@ -1,0 +1,36 @@
+{
+ "captured_at": "20260809T084938Z",
+ "capture": "editor engine manually re-ON by user, UNSAVED, pre-Luxury-change",
+ "draft": "draft-778615066",
+ "version_id": 192045281,
+ "source_sha": "fcbbda542b1b8dcc6747202ae616af32f4f66b1c",
+ "store": {
+  "id": 1736483913,
+  "username": "dev-v37bn5qobfotqowz"
+ },
+ "engine": {
+  "prop": true,
+  "inner_input": true,
+  "ui_active": true
+ },
+ "preset_profile": "practical_digital",
+ "modes": {
+  "layout_width_mode": "follow_preset",
+  "section_spacing_mode": "follow_preset",
+  "corner_style_mode": "follow_preset",
+  "product_card_style_mode": "follow_preset",
+  "header_layout_mode": "follow_preset",
+  "header_density_mode": "follow_preset"
+ },
+ "legacy_raw_values_preserved": {
+  "layout_width": "compact",
+  "section_spacing": "spacious",
+  "corner_style": "rounded",
+  "product_card_style": "elevated",
+  "header_layout": "start",
+  "header_density": "compact"
+ },
+ "visible_errors": 0,
+ "borrowed_tab": 1244624527,
+ "correction": "initial read used the hidden native select which reported stale 'modern'; four-source recheck (component prop, hidden select, visible label, FormData) unanimously shows practical_digital. Screenshot also shows «عملي رقمي»."
+}
