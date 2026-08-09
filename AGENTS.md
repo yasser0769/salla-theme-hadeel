@@ -100,8 +100,11 @@ An empty diff proves you changed nothing; a non-empty one is the list you must j
 `scripts/check-theme.mjs` catches, in order: selectors declared in two component files,
 hardcoded Arabic outside `src/locales`, theme classes styled but never rendered,
 `var(--token)` with no definition, `theme.settings.get()` keys missing from
-`twilight.json`, and `public/` drift. It currently reports pre-existing errors — do not
-let that number grow.
+`twilight.json`, settings-registry drift, the HDL-04 localization/RTL/a11y contract
+(`scripts/check-localization-a11y.mjs`: locale parity, DOM lang/dir inference, positive
+tabindex, known hardcoded accessible literals, disclosure/collapse ARIA, global link
+focus suppression, unscoped letter spacing, non-directional mirroring, toolbar order),
+and `public/` drift. The current checked baseline is zero errors and zero warnings; do not regress it.
 
 ---
 

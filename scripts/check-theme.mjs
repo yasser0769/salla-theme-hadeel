@@ -11,6 +11,9 @@
  *   6. public/ out of sync with src/  (only with --build)
  *   7. settings registry drift from twilight.json / HDL-03 contracts (strict,
  *      including witness fixtures)
+ *   8. localization/RTL/a11y contract drift from HDL-04 (locale parity, direction
+ *      inference, tabindex, forbidden literals, ARIA, focus, letter spacing,
+ *      mirroring, toolbar order)
  *
  * Usage:
  *   node scripts/check-theme.mjs                # static checks
@@ -29,6 +32,7 @@ import { join, relative, extname, basename } from 'node:path';
 import { tmpdir } from 'node:os';
 import process from 'node:process';
 import { checkSettingsRegistry } from './check-settings-registry.mjs';
+import { checkLocalizationA11y } from './check-localization-a11y.mjs';
 
 const ROOT = new URL('..', import.meta.url).pathname.replace(/\/$/, '');
 const argv = process.argv.slice(2);
@@ -337,6 +341,33 @@ function checkSettingsRegistryContract() {
     'settings registry matches twilight.json and the HDL-03 contracts (strict)');
 }
 
+/* ------------------------------------------------- 8. localization / a11y */
+
+/**
+ * HDL-04 contract guard. Runs the source-only localization/RTL/accessibility
+ * check (locale parity, direction inference, tabindex, forbidden literals,
+ * disclosure/collapse ARIA, focus suppression, letter-spacing scoping,
+ * directional mirroring, toolbar order) in both the normal and --build flows.
+ */
+function checkLocalizationA11yContract() {
+  let bad = 0;
+  try {
+    const { findings: loc } = checkLocalizationA11y({ root: ROOT });
+    for (const f of loc) {
+      if (f.level !== 'error') continue;
+      bad++;
+      note('localization-a11y', 'error', `[${f.rule}] ${f.message}`, f.where);
+    }
+  } catch (err) {
+    bad++;
+    note('localization-a11y', 'error',
+      `localization/a11y check failed to run: ${String(err.message).slice(0, 200)}`,
+      'scripts/check-localization-a11y.mjs');
+  }
+  if (!bad) note('localization-a11y', 'ok',
+    'locale parity, direction inference, tabindex, literals, ARIA, focus, letter spacing, mirroring, and toolbar order contracts hold');
+}
+
 /* ---------------------------------------------------------- 6. build sync */
 
 function sha(file) {
@@ -378,6 +409,7 @@ checkDeadClasses();
 checkCssVariables();
 checkThemeSettings();
 checkSettingsRegistryContract();
+checkLocalizationA11yContract();
 if (WANT_BUILD) checkBuildSync();
 
 const errors = findings.filter((f) => f.level === 'error');

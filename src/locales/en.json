@@ -21,6 +21,10 @@
     },
     "appBanner": {
       "download_now": "download now"
+    },
+    "banner": {
+      "banner": "Banner",
+      "fixed_banner_alt": "Store banner"
     }
   },
   "pages": {
@@ -92,6 +96,15 @@
         "whatsapp_inquiry": "Hello, I have a question about this product:"
       }
     },
+    "blog": {
+      "kalles": {
+        "close_categories": "Close categories menu",
+        "like_article": "Like this article"
+      }
+    },
+    "thank_you": {
+      "email_placeholder": "your@email.com"
+    },
     "order": {
       "can_edit_or_delete_your_review_within": "You can edit or delete your review within",
       "edit_period_ended": "The period to edit the review has ended",
@@ -102,6 +115,9 @@
     }
   },
   "common": {
+    "a11y": {
+      "sidebar_navigation": "Sidebar navigation"
+    },
     "bank_offer_sub_title_multiple": "Pay for your purchases via one of the following bank cards and get the specified discount",
     "bank_offer_sub_title_single": "Pay for your purchases via :bank_name bank card and get discount"
   }

@@ -24,18 +24,15 @@
 
         {# Categories filter dropdown #}
         <div class="dropdown-toggler cat-filter lg:hidden">
-          <button aria-label="Categories Trigger" type="button" class="dropdown__trigger rtl:space-x-reverse space-x-1.5 flex text-sm text-primary" aria-expanded="true" aria-haspopup="true"> 
+          <button id="blog-categories-trigger" type="button" class="dropdown__trigger rtl:space-x-reverse space-x-1.5 flex text-sm text-primary" aria-expanded="false" aria-controls="blog-categories-menu">
             <i class="sicon-filter text-xs pointer-events-none"></i>
             <span class="fix-align pointer-events-none">{{ trans('pages.blog_categories.categories') }}</span>
           </button>
           <div class="dropdown__menu"
-              role="menu"
-              aria-orientation="vertical"
-              aria-labelledby="menu-button"
-              tabindex="-1">
+              id="blog-categories-menu">
               <div class="flex items-center p-4 border-b mb-1 lg:hidden relative">
                   <h2 class="font-bold">{{ trans('pages.blog_categories.categories') }}</h2>
-                  <button class="dropdown__close h-12 w-12 text-red-500 text-lg rounded-full absolute top-2 rtl:left-1 ltr:right-1 z-50">
+                  <button type="button" aria-label="{{ trans('pages.blog.kalles.close_categories') }}" class="dropdown__close h-12 w-12 text-red-500 text-lg rounded-full absolute top-2 rtl:left-1 ltr:right-1 z-50">
                       <i class="sicon-cancel pointer-events-none"></i>
                   </button>
               </div>
@@ -54,7 +51,7 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-8 gap-8">
-            <nav aria-label="Sidebar" class="hidden lg:block lg:sticky shrink-0 top-24 col-span-2" id="filters-menu">
+            <nav aria-label="{{ trans('common.a11y.sidebar_navigation') }}" class="hidden lg:block lg:sticky shrink-0 top-24 col-span-2" id="filters-menu">
                 <h2 class="font-bold mb-3">{{ trans('pages.blog_categories.categories') }}</h2>
                 <ul>
                     {% for category in categories %}

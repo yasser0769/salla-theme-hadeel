@@ -332,7 +332,7 @@ class ProductCard extends HTMLElement {
           </salla-add-product-button>`;
 
     modal.innerHTML = `
-      <div class="kalles-quick-view" dir="${document.documentElement.dir || 'rtl'}">
+      <div class="kalles-quick-view">
         <a class="kalles-quick-view__media" href="${productUrl}" aria-label="${productName}">
           <img src="${this.escapeHTML(imageUrl)}" alt="${productName}" loading="eager">
         </a>

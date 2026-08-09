@@ -160,11 +160,11 @@
                                     {% if item.type == 'donating' %}
                                         <span></span>
                                     {% elseif item.is_hidden_quantity %}
-                                        <input type="hidden" value="{{ item.quantity }}" name="quantity" aria-label="Quantity"/>
+                                        <input type="hidden" value="{{ item.quantity }}" name="quantity" aria-label="{{ trans('pages.cart.quantity') }}"/>
                                         <span class="cart-item__quantity-static">{{ item.quantity }}</span>
                                     {% else %}
                                         <salla-quantity-input cart-item-id="{{ item.id }}" max="{{ item.max_quantity }}"
-                                                              aria-label="Quantity"
+                                                              aria-label="{{ trans('pages.cart.quantity') }}"
                                                               value="{{ item.quantity }}" name="quantity">
                                         </salla-quantity-input>
                                     {% endif %}

@@ -66,7 +66,9 @@
                     {% if product.can_add_note %}
                         <button class="btn-tab btn--collapse"
                                 type="button"
-                                data-show="note_{{ product.id }}">
+                                data-show="note_{{ product.id }}"
+                                aria-controls="note_{{ product.id }}"
+                                aria-expanded="false">
                             <i class="font-medium sicon-chat-conversation-alt rtl:ml-1.5 ltr:mr-1.5"></i>
                             <span class="fix-align">{{ trans('pages.products.add_note') }} </span>
                         </button>
@@ -74,7 +76,9 @@
                     {% if product.can_upload_file %}
                         <button class="btn-tab btn--collapse"
                                 data-show="file_{{ product.id }}"
-                                type="button">
+                                type="button"
+                                aria-controls="file_{{ product.id }}"
+                                aria-expanded="false">
                             <i class="font-medium sicon-paperclip rtl:ml-1.5 ltr:mr-1.5"></i>
                             <span class="fix-align">{{ trans('pages.products.add_file') }}</span>
                         </button>
