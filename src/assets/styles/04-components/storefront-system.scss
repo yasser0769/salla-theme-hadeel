@@ -114,7 +114,11 @@ salla-quantity-input .s-quantity-input-container {
 .announcement-bar span {
   font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.01em;
+
+  /* Letter spacing is a Latin treatment; Arabic letterforms must stay connected. */
+  [dir='ltr'] & {
+    letter-spacing: 0.01em;
+  }
 }
 
 .main-nav-container {
@@ -523,6 +527,11 @@ salla-quantity-input .s-quantity-input-container {
   color: var(--hadeel-ink);
   font-size: 12px;
   font-weight: 600;
+
+  /* The glyph points left, i.e. forward only in RTL; in LTR it faces back. */
+  [dir='ltr'] & .sicon-arrow-left {
+    transform: scaleX(-1);
+  }
 }
 
 .s-block__display-all::after,
@@ -599,8 +608,11 @@ salla-quantity-input .s-quantity-input-container {
   color: #fff;
   font-size: clamp(46px, 5.4vw, 76px);
   font-weight: 800;
-  letter-spacing: -0.035em;
   line-height: 0.98;
+
+  [dir='ltr'] & {
+    letter-spacing: -0.035em;
+  }
 }
 
 .home-slider__copy .description {
@@ -626,6 +638,11 @@ salla-quantity-input .s-quantity-input-container {
   font-size: 13px;
   font-weight: 600;
   transition: background-color 180ms ease, transform 180ms ease;
+
+  /* The glyph points left, i.e. forward only in RTL; in LTR it faces back. */
+  [dir='ltr'] & .sicon-arrow-left {
+    transform: scaleX(-1);
+  }
 }
 
 .home-slider__cta:hover {
@@ -756,7 +773,10 @@ salla-quantity-input .s-quantity-input-container {
   color: var(--hadeel-muted);
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+
+  [dir='ltr'] & {
+    letter-spacing: 0.08em;
+  }
 }
 
 .kalles-quick-view__summary h3 {
@@ -819,6 +839,11 @@ salla-quantity-input .s-quantity-input-container {
   gap: var(--sp-2);
   font-size: 13px;
   font-weight: 600;
+
+  /* The glyph points left, i.e. forward only in RTL; in LTR it faces back. */
+  [dir='ltr'] & .sicon-arrow-left {
+    transform: scaleX(-1);
+  }
 }
 
 @media (max-width: 767px) {

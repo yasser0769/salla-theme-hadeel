@@ -47,10 +47,12 @@
         "HDL-01",
         "HDL-02"
       ],
-      "status": "planned",
+      "status": "done",
       "spec": "specs/003-settings-preset-engine/spec.md",
       "design": "specs/003-settings-preset-engine/design.md",
-      "input": "specs/003-settings-preset-engine/spec-input.md"
+      "input": "specs/003-settings-preset-engine/spec-input.md",
+      "evidence": "specs/003-settings-preset-engine/evidence/final/evidence-index.json",
+      "evidence_status": "Done / Approved by owner directive; inherited product overflow and browser-keyboard limitations remain routed risks"
     },
     {
       "id": "HDL-04",
@@ -64,10 +66,12 @@
         "HDL-01",
         "HDL-02"
       ],
-      "status": "planned",
+      "status": "implemented",
       "spec": "specs/004-localization-rtl-accessibility/spec.md",
       "design": "specs/004-localization-rtl-accessibility/design.md",
-      "input": "specs/004-localization-rtl-accessibility/spec-input.md"
+      "input": "specs/004-localization-rtl-accessibility/spec-input.md",
+      "evidence": "specs/004-localization-rtl-accessibility/evidence/",
+      "evidence_status": "Independent review PASS / BLOCKERS 0; complete four-way runtime acceptance deferred to the HDL-07 owner checkpoint"
     },
     {
       "id": "HDL-05",

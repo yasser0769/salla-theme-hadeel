@@ -10,8 +10,8 @@
 #}
 <section class="s-block s-block--fixed-banner wide-placeholder">
     <div class="container">
-        {% set alt_text = image.alt|trim ? image.alt : 'fixed banner' %}
-        <a href="{{ url }}" class="banner banner--fixed overflow-hidden" aria-label="Banner {{ alt_text }}">
+        {% set alt_text = image.alt|trim ? image.alt : trans('blocks.banner.fixed_banner_alt') %}
+        <a href="{{ url }}" class="banner banner--fixed overflow-hidden" aria-label="{{ trans('blocks.banner.banner') }} {{ alt_text }}">
             <picture>
                 {% if image.small_url %}
                     <source

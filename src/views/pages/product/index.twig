@@ -52,17 +52,16 @@
 
         <div class="collection-container collection-content">
             <div class="collection-toolbar" data-collection-toolbar>
-                <div class="collection-toolbar__sort">
-                    {% if sort_options|length %}
-                        <label class="sr-only" for="product-filter">{{ trans('pages.categories.sorting') }}</label>
-                        <i class="sicon-keyboard_arrow_down" aria-hidden="true"></i>
-                        <select id="product-filter" class="form-input" aria-label="{{ trans('pages.categories.sorting') }}">
-                            {% for sort in sort_options %}
-                                <option value="{{ sort.id }}" {{ sort.is_selected ? 'selected' : '' }}>{{ sort.name }}</option>
-                            {% endfor %}
-                        </select>
-                    {% endif %}
-                </div>
+                {% if filters %}
+                    <button class="collection-toolbar__filter"
+                            type="button"
+                            data-collection-filter-trigger
+                            aria-controls="collection-filters-drawer"
+                            aria-label="{{ trans('pages.products.kalles.open_filters') }}">
+                        <i class="sicon-filter" aria-hidden="true"></i>
+                        <span>{{ trans('pages.products.kalles.filters') }}</span>
+                    </button>
+                {% endif %}
 
                 <div class="collection-toolbar__density" role="group" aria-label="{{ trans('pages.products.kalles.display_density') }}">
                     <button type="button" data-grid-density="list" aria-label="{{ trans('pages.products.kalles.view_list') }}" aria-pressed="false">
@@ -79,16 +78,17 @@
                     </button>
                 </div>
 
-                {% if filters %}
-                    <button class="collection-toolbar__filter"
-                            type="button"
-                            data-collection-filter-trigger
-                            aria-controls="collection-filters-drawer"
-                            aria-label="{{ trans('pages.products.kalles.open_filters') }}">
-                        <i class="sicon-filter" aria-hidden="true"></i>
-                        <span>{{ trans('pages.products.kalles.filters') }}</span>
-                    </button>
-                {% endif %}
+                <div class="collection-toolbar__sort">
+                    {% if sort_options|length %}
+                        <label class="sr-only" for="product-filter">{{ trans('pages.categories.sorting') }}</label>
+                        <i class="sicon-keyboard_arrow_down" aria-hidden="true"></i>
+                        <select id="product-filter" class="form-input" aria-label="{{ trans('pages.categories.sorting') }}">
+                            {% for sort in sort_options %}
+                                <option value="{{ sort.id }}" {{ sort.is_selected ? 'selected' : '' }}>{{ sort.name }}</option>
+                            {% endfor %}
+                        </select>
+                    {% endif %}
+                </div>
             </div>
 
             <p class="collection-results-summary" data-products-summary aria-live="polite"></p>

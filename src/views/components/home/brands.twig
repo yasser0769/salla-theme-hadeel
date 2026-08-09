@@ -18,7 +18,7 @@
               </div>
             {% endif %}
             {% if display_all_url and component.show_all is not same as(false) %}
-              <a href="{{ link('brands') }}" class="s-block__display-all"> {{ trans('blocks.home.display_all') }} <i class="sicon-arrow-left"></i></a>
+              <a href="{{ link('brands') }}" class="s-block__display-all"> {{ trans('blocks.home.display_all') }} <i class="sicon-arrow-left" aria-hidden="true"></i></a>
             {% endif %}
           </div>
         {% endif %}

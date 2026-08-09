@@ -200,15 +200,41 @@ isElementLoaded(selector){
   }
 
   initiateDropdowns() {
-    this.onClick('.dropdown__trigger', ({ target: btn }) => {
-      btn.parentElement.classList.toggle('is-opened');
-      document.body.classList.toggle('dropdown--is-opened');
-      // Click Outside || Click on close btn
-      window.addEventListener('click', ({ target: element }) => {
-        if (!element.closest('.dropdown__menu') && element !== btn || element.classList.contains('dropdown__close')) {
-          btn.parentElement.classList.remove('is-opened');
-          document.body.classList.remove('dropdown--is-opened');
-        }
+    document.querySelectorAll('.dropdown-toggler').forEach((wrapper) => {
+      const btn = wrapper.querySelector('.dropdown__trigger');
+      const menu = wrapper.querySelector('.dropdown__menu');
+      if (!btn || !menu) return;
+
+      const setOpen = (isOpen) => {
+        wrapper.classList.toggle('is-opened', isOpen);
+        document.body.classList.toggle('dropdown--is-opened', isOpen);
+        btn.setAttribute('aria-expanded', String(isOpen));
+        // Keyboard users land on the first destination, not the chrome around it.
+        if (isOpen) menu.querySelector('a')?.focus({ preventScroll: true });
+      };
+
+      btn.addEventListener('click', () => setOpen(!wrapper.classList.contains('is-opened')));
+
+      wrapper.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape' || !wrapper.classList.contains('is-opened')) return;
+        event.stopPropagation();
+        setOpen(false);
+        btn.focus();
+      });
+
+      menu.querySelector('.dropdown__close')?.addEventListener('click', () => {
+        setOpen(false);
+        btn.focus();
+      });
+    });
+
+    // Click outside any open dropdown closes it and re-syncs its trigger state.
+    document.addEventListener('click', ({ target }) => {
+      document.querySelectorAll('.dropdown-toggler.is-opened').forEach((wrapper) => {
+        if (wrapper.contains(target)) return;
+        wrapper.classList.remove('is-opened');
+        document.body.classList.remove('dropdown--is-opened');
+        wrapper.querySelector('.dropdown__trigger')?.setAttribute('aria-expanded', 'false');
       });
     });
   }
@@ -240,16 +266,26 @@ isElementLoaded(selector){
         const content = document.querySelector('#' + trigger.dataset.show);
         if (!content) return;
 
-        const state = { isOpen: false }
+        const setOpen = (isOpen) => {
+          // The helper adds its FIRST class when the callback is true, so the
+          // open class must come first — inverted order keeps the panel closed.
+          this.toggleElementClassIf([content, trigger], 'is-opened', 'is-closed', () => isOpen);
+          trigger.setAttribute('aria-expanded', String(isOpen));
+          // Collapsed content is visually folded but must also leave the tab order.
+          content.inert = !isOpen;
+        };
 
-        const toggleState = (isOpen) => {
-          state.isOpen = !isOpen;
-          this.toggleElementClassIf([content, trigger], 'is-closed', 'is-opened', () => isOpen);
-        }
+        if (!content.classList.contains('is-opened')) content.inert = true;
 
         trigger.addEventListener('click', () => {
-          const { isOpen } = state;
-          toggleState(isOpen);
+          setOpen(!content.classList.contains('is-opened'));
+        });
+
+        content.addEventListener('keydown', (event) => {
+          if (event.key !== 'Escape') return;
+          event.stopPropagation();
+          setOpen(false);
+          trigger.focus();
         });
       });
   }
@@ -308,13 +344,8 @@ isElementLoaded(selector){
   initIconOnlyCartButtons() {
     const selector = '.s-product-card-content-footer salla-add-product-button';
 
-    const getAddToCartLabel = () => {
-      try {
-        return salla.lang.getWithDefault('pages.cart.add_to_cart', 'Add to cart');
-      } catch {
-        return 'Add to cart';
-      }
-    };
+    /* The server-resolved catalogue is the bridge; the default is English-only. */
+    const getAddToCartLabel = () => salla.lang.getWithDefault('pages.cart.add_to_cart', 'Add to cart');
 
     const applyToButton = (button) => {
       if (!(button instanceof HTMLElement) || button.dataset.iconOnlyCartApplied === 'true') {

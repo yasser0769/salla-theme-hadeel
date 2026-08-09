@@ -6,6 +6,8 @@ class NavigationMenu extends HTMLElement {
                 this.menus = [];
                 this.displayAllText = salla.lang.get('blocks.home.display_all');
                 this.moreText = salla.lang.get('common.titles.more');
+                /* English-only default; Arabic resolves from src/locales via salla.lang. */
+                this.categoryLabel = salla.lang.getWithDefault('pages.products.kalles.category', 'Category');
                 this.visibleMenus = [];
                 this.overflowMenus = [];
 
@@ -47,7 +49,7 @@ class NavigationMenu extends HTMLElement {
         if (!buttons.length) return;
 
         /* Scroll offsets run negative towards the end in a right-to-left row. */
-        const endSign = () => (getComputedStyle(strip).direction === 'rtl' ? -1 : 1);
+        const endSign = () => (salla.config.get('theme.is_rtl', true) ? -1 : 1);
         const distanceFromStart = () => Math.abs(strip.scrollLeft);
 
         const sync = () => {
@@ -115,7 +117,7 @@ class NavigationMenu extends HTMLElement {
         return `
         <li class="lg:hidden text-sm font-bold" ${menu.attrs}>
             ${!this.hasChildren(menu) ? `
-                <a href="${menu.url}" aria-label="${menu.title || 'category'}" class="text-gray-500 ${menu.image ? '!py-3' : ''}" ${menu.link_attrs}>
+                <a href="${menu.url}" aria-label="${menu.title || this.categoryLabel}" class="text-gray-500 ${menu.image ? '!py-3' : ''}" ${menu.link_attrs}>
                     ${menuImage}
                     <span>${menu.title || ''}</span>
                 </a>` :
@@ -144,7 +146,7 @@ class NavigationMenu extends HTMLElement {
     getDesktopMenu(menu, isRootMenu, additionalClasses = '') {
         return `
         <li class="${this.getDesktopClasses(menu, isRootMenu)} ${additionalClasses}" ${menu.attrs} data-menu-item>
-            <a href="${menu.url}" aria-label="${menu.title || 'category'}" ${menu.link_attrs}>
+            <a href="${menu.url}" aria-label="${menu.title || this.categoryLabel}" ${menu.link_attrs}>
                 <span>${menu.title}</span>
             </a>
             ${this.hasChildren(menu) ? `

@@ -21,6 +21,10 @@
     },
     "appBanner": {
       "download_now": "حمله الان"
+    },
+    "banner": {
+      "banner": "بانر",
+      "fixed_banner_alt": "بانر المتجر"
     }
   },
   "pages": {
@@ -92,6 +96,15 @@
         "whatsapp_inquiry": "مرحبًا، لدي استفسار عن المنتج:"
       }
     },
+    "blog": {
+      "kalles": {
+        "close_categories": "إغلاق قائمة التصنيفات",
+        "like_article": "الإعجاب بهذا المقال"
+      }
+    },
+    "thank_you": {
+      "email_placeholder": "name@example.com"
+    },
     "order": {
       "can_edit_or_delete_your_review_within": "يمكنك تعديل أو حذف تقييمك خلال",
       "edit_period_ended": "تم انتهاء المدة المحددة لتعديل التقييم",
@@ -102,6 +115,9 @@
     }
   },
   "common": {
+    "a11y": {
+      "sidebar_navigation": "التنقل الجانبي"
+    },
     "bank_offer_sub_title_multiple": "ادفع قيمة مشترياتك عبر أحد البطاقات البنكة التالية واحصل على الخصم المحدد",
     "bank_offer_sub_title_single": "ادفع قيمة مشترياتك عبر أحد بطاقات بنك :bank_name واحصل على خصم بنسبة "
   }
