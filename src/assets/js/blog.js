@@ -61,27 +61,16 @@ class Blog extends BasePage {
     updateLikesCount(isLiked) {
         const likeButton = document.querySelector('#blog-like');
         const countSpan = likeButton.querySelector('span');
-        let currentCount = parseInt(countSpan?.innerText) || 0;
+        const currentCount = parseInt(countSpan?.innerText) || 0;
 
         likeButton.classList.toggle("liked", isLiked);
 
-        anime({
-            targets: countSpan,
-            innerHTML: isLiked ? currentCount + 1 : currentCount - 1,
-            duration: 400,
-            round: 1,
-            easing: 'easeOutExpo',
-            complete: function () {
-                countSpan.removeAttribute('style');
-            }
-        });
-
-        anime({
-            targets: countSpan,
-            scale: [1, 1.2],
-            duration: 300,
-            easing: 'easeInOutQuad',
-        });
+        // HDL-06 (T018): native, synchronous state — the count is correct the
+        // moment the request resolves, and Salla still owns success/failure.
+        // Feedback is optional, bounded, and goes through the shared motion
+        // controller so the live reduced-motion state always wins.
+        countSpan.textContent = String(isLiked ? currentCount + 1 : currentCount - 1);
+        window.hadeelMotion?.feedback(countSpan);
     }
 }
 

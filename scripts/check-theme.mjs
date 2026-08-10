@@ -17,6 +17,9 @@
  *   8. localization/RTL/a11y contract drift from HDL-04 (locale parity, direction
  *      inference, tabindex, forbidden literals, ARIA, focus, letter spacing,
  *      mirroring, toolbar order)
+ *   9. HDL-06 motion contract drift (active phase 2: settings, resolver,
+ *      tokens, reveal confinement, smooth-scroll gating, direction, timer/Anime
+ *      bans, raw-timing tokenization, Tailwind motion utilities, controller)
  *
  * Usage:
  *   node scripts/check-theme.mjs                # static checks
@@ -37,6 +40,7 @@ import { pathToFileURL } from 'node:url';
 import process from 'node:process';
 import { checkSettingsRegistry } from './check-settings-registry.mjs';
 import { checkLocalizationA11y } from './check-localization-a11y.mjs';
+import { checkMotionSystem } from './check-motion-system.mjs';
 
 const ROOT = new URL('..', import.meta.url).pathname.replace(/\/$/, '');
 const argv = process.argv.slice(2);
@@ -409,6 +413,34 @@ function checkBundleBudgetContract() {
     'demo-media and dependency-policy gates hold (compressed publishing compliance is the dedicated package-budget CI job)');
 }
 
+/* ------------------------------------------------- 10. HDL-06 motion contract */
+
+/**
+ * HDL-06 motion guard at the active phase 2: foundation (settings, resolver,
+ * tokens, reveal confinement, smooth-scroll gating, direction) plus the
+ * runtime-adoption rules (timer/Anime bans, raw-timing tokenization, Tailwind
+ * motion utility ban, shared controller). Phase 2 was promoted by T021 after
+ * --full reached zero errors; the active phase only ever moves forward.
+ */
+function checkMotionSystemContract() {
+  let bad = 0;
+  try {
+    const { findings: motion } = checkMotionSystem({ root: ROOT });
+    for (const f of motion) {
+      if (f.level !== 'error') continue;
+      bad++;
+      note('motion-system', 'error', `[${f.rule}] ${f.message}`, f.where);
+    }
+  } catch (err) {
+    bad++;
+    note('motion-system', 'error',
+      `motion system check failed to run: ${String(err.message).slice(0, 200)}`,
+      'scripts/check-motion-system.mjs');
+  }
+  if (!bad) note('motion-system', 'ok',
+    'motion settings, resolver, token caps, reduced/mobile overrides, reveal confinement, smooth-scroll gating, direction, timer/Anime bans, raw-timing and utility tokenization, and controller contracts hold (active phase 2)');
+}
+
 /* ---------------------------------------------------------- 6. build sync */
 function sha(file) {
   return createHash('sha256').update(readFileSync(file)).digest('hex');
@@ -501,6 +533,7 @@ function main() {
   checkSettingsRegistryContract();
   checkLocalizationA11yContract();
   checkBundleBudgetContract();
+  checkMotionSystemContract();
   if (WANT_BUILD) checkBuildSync();
 
 const errors = findings.filter((f) => f.level === 'error');

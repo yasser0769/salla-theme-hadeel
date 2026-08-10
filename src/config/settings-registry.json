@@ -1182,7 +1182,7 @@
       "base_variant": false,
       "label_ar": "مدة تكرار حركة زر الإضافة للسلة",
       "label_en": "Add-to-cart animation interval",
-      "description": "Existing integer consumed as data-add-to-cart-animation-interval in single.twig with fallback 6.",
+      "description": "Explicit compatibility no-op (HDL-06 FR-013): the stored value is preserved for backward compatibility but is no longer rendered or consumed anywhere — add-to-cart feedback is action-driven only and no recurring timer exists.",
       "evidence_status": "existing"
     },
     {
@@ -2740,6 +2740,76 @@
       "label_en": "Custom testimonials — Items Text",
       "description": "Existing component field 'items.text' of home.custom-testimonials (type string); visual detail is owned by HDL-17.",
       "evidence_status": "existing"
+    },
+    {
+      "key": "global::static-motion-title",
+      "id": "static-motion-title",
+      "scope": "global",
+      "source_path": "twilight.json#/settings/55",
+      "owner_spec": "HDL-06",
+      "tier": "structural",
+      "type": "static",
+      "allowed_values": [],
+      "declared_default": null,
+      "safe_default": null,
+      "preset_support": false,
+      "override_support": false,
+      "mode_setting": null,
+      "class_prefix": null,
+      "base_variant": false,
+      "label_ar": "عنوان قسم نظام الحركة",
+      "label_en": "Motion system section title",
+      "description": "Static panel heading grouping the HDL-06 motion settings in the Salla settings panel.",
+      "evidence_status": "build"
+    },
+    {
+      "key": "global::motion_level",
+      "id": "motion_level",
+      "scope": "global",
+      "source_path": "twilight.json#/settings/56",
+      "owner_spec": "HDL-06",
+      "tier": "basic",
+      "type": "items",
+      "allowed_values": [
+        "calm",
+        "balanced",
+        "rich"
+      ],
+      "declared_default": "balanced",
+      "safe_default": "balanced",
+      "preset_support": false,
+      "override_support": false,
+      "mode_setting": null,
+      "class_prefix": "hadeel-motion-",
+      "base_variant": false,
+      "label_ar": "مستوى الحركة",
+      "label_en": "Motion level",
+      "description": "HDL-06 motion personality: calm (functional feedback only), balanced (default, one light reveal), rich (clearer distance and bounded stagger). Resolved through the master.twig allowlist with balanced fallback; never changes content or DOM order.",
+      "evidence_status": "build"
+    },
+    {
+      "key": "global::motion_reduce_mobile",
+      "id": "motion_reduce_mobile",
+      "scope": "global",
+      "source_path": "twilight.json#/settings/57",
+      "owner_spec": "HDL-06",
+      "tier": "advanced",
+      "type": "boolean",
+      "allowed_values": [
+        true,
+        false
+      ],
+      "declared_default": true,
+      "safe_default": true,
+      "preset_support": false,
+      "override_support": false,
+      "mode_setting": null,
+      "class_prefix": null,
+      "base_variant": false,
+      "label_ar": "تقليل الحركة على الجوال",
+      "label_en": "Reduce motion on mobile",
+      "description": "HDL-06 switch capping the rich level to balanced reveal/hover behavior below the tablet breakpoint; normalized fail-closed in master.twig and never disables drawers, feedback, or loading/error states.",
+      "evidence_status": "build"
     }
   ]
 }

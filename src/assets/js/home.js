@@ -15,12 +15,10 @@ class Home extends BasePage {
         app.all('.tab-trigger', el => {
             el.addEventListener('click', ({ currentTarget: btn }) => {
                 let id = btn.dataset.componentId;
-                // btn.setAttribute('fill', 'solid');
-                app.toggleClassIf(`#${id} .tabs-wrapper>div`, 'is-active opacity-0 translate-y-3', 'inactive', tab => tab.id == btn.dataset.target)
+                // Critical product content switches to its final visible state
+                // immediately — no hide-then-fade timer (HDL-06 FR-007/FR-008).
+                app.toggleClassIf(`#${id} .tabs-wrapper>div`, 'is-active opacity-100 translate-y-0', 'inactive opacity-0 translate-y-3', tab => tab.id == btn.dataset.target)
                     .toggleClassIf(`#${id} .tab-trigger`, 'is-active', 'inactive', tabBtn => tabBtn == btn);
-
-                // fadeIn active tabe
-                setTimeout(() => app.toggleClassIf(`#${id} .tabs-wrapper>div`, 'opacity-100 translate-y-0', 'opacity-0 translate-y-3', tab => tab.id == btn.dataset.target), 100);
             })
         });
         document.querySelectorAll('.s-block-tabs').forEach(block => block.classList.add('tabs-initialized'));

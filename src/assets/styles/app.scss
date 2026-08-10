@@ -55,6 +55,7 @@
 @use './01-settings/tokens' as *;
 @use './01-settings/global' as *;
 @use './01-settings/breakpoints' as *;
+@use './01-settings/motion' as *;
 
 @use './02-generic/reset' as *;
 @use './02-generic/common' as *;

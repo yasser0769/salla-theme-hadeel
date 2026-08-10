@@ -15,7 +15,8 @@
 
     li{
       > a{
-        @apply flex justify-between items-center transition duration-300 p-3 text-sm hover:text-primary hover:no-underline; 
+        @apply flex justify-between items-center p-3 text-sm hover:text-primary hover:no-underline;
+        transition: color var(--motion-duration-ui) var(--motion-easing-standard), background-color var(--motion-duration-ui) var(--motion-easing-standard);
       }
 
       &.root-level{
@@ -41,7 +42,8 @@
       > a:after{
         font-family: 'sallaicons';
         content: "\e970";
-        @apply inline-block transition-transform duration-300 self-end mx-0.5 text-lg opacity-50 leading-4;
+        @apply inline-block self-end mx-0.5 text-lg opacity-50 leading-4;
+        transition: transform var(--motion-duration-ui) var(--motion-easing-standard), opacity var(--motion-duration-ui) var(--motion-easing-standard);
       }
 
       &.root-level {
@@ -57,7 +59,8 @@
     }
 
     .sub-menu {
-      @apply z-20 transition opacity-0 invisible absolute bg-white -translate-y-3 shadow-default rounded-b-md border-t border-gray-300/30;
+      @apply z-20 opacity-0 invisible absolute bg-white -translate-y-3 shadow-default rounded-b-md border-t border-gray-300/30;
+      transition: opacity var(--motion-duration-ui) var(--motion-easing-standard), transform var(--motion-duration-ui) var(--motion-easing-standard), visibility var(--motion-duration-ui);
 
       .sub-menu {
         top: -1px;
@@ -117,8 +120,9 @@
       // Keep deeper levels visible inside the same column (no fly-out)
       > .sub-menu {
         .sub-menu {
-          @apply static opacity-0 invisible transform-none shadow-none border-0 m-0 p-0 bg-transparent max-h-0 overflow-hidden transition-[max-height,opacity,visibility] duration-200 ease-in;
-          transition-duration: 250ms, 200ms, 200ms; 
+          @apply static opacity-0 invisible transform-none shadow-none border-0 m-0 p-0 bg-transparent max-h-0 overflow-hidden;
+          // max-height toggles instantly; only opacity/visibility transition (no layout animation).
+          transition: opacity var(--motion-duration-ui) var(--motion-easing-exit), visibility var(--motion-duration-ui);
         }
 
         li.has-children {
@@ -189,7 +193,8 @@
 
     &.mm-spn--navbar{
       &:after {
-        @apply transition-all duration-300 rtl:pr-12 ltr:pl-12 text-start opacity-90 font-bold;
+        @apply rtl:pr-12 ltr:pl-12 text-start opacity-90 font-bold;
+        transition: color var(--motion-duration-ui) var(--motion-easing-standard), opacity var(--motion-duration-ui) var(--motion-easing-standard);
       }
 
       &.mm-spn--main{

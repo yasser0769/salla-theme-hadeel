@@ -1,5 +1,9 @@
 html {
-  scroll-behavior: smooth;
+  // HDL-06: smooth scroll only when the OS has not asked for reduced motion
+  // (FR-004). This is the single source — the token owner never overrides it.
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
 }
 
 // using salla.document.onClick(...), become effective when all children are none pointer events.
@@ -85,7 +89,7 @@ input[type="number"] {
 .cart-thumb {
   position: fixed;
   z-index: 30;
-  transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1);
+  transition: opacity var(--motion-duration-ui) var(--motion-easing-emphasized), transform var(--motion-duration-ui) var(--motion-easing-emphasized);
 }
 
 
@@ -162,6 +166,15 @@ body {
   }
 }
 
+// OS reduce stops the spinner — the only continuous theme-owned animation
+// (FR-004). The static ring stays visible, so the loading state remains
+// understandable without repetitive motion.
+@media (prefers-reduced-motion: reduce) {
+  .loader:before {
+    animation: none;
+  }
+}
+
 
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
 .animated {
@@ -185,7 +198,7 @@ body {
 
 .pulse-anime {
   animation-name: pulse-anime;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: var(--motion-easing-emphasized);
 }
 
 
@@ -360,10 +373,12 @@ salla-modal {
     @apply hidden;
   }
   &[open=true][position=top] {
-    @apply flex transform duration-500;
+    @apply flex transform;
+    transition: transform var(--motion-duration-ui) var(--motion-easing-standard), opacity var(--motion-duration-ui) var(--motion-easing-standard);
   }
   &[open=true][position=bottom] {
-    @apply flex animate-slideUpFromBottom;
+    @apply flex;
+    animation: slideUpFromBottom var(--motion-duration-ui) var(--motion-easing-standard);
   }
   &[position=top] {
     @apply top-0 relative m-0 w-full rounded-none;
@@ -372,8 +387,7 @@ salla-modal {
     @apply bottom-0;
   }
   &[closing][position=bottom] {
-    @apply animate-slideDownFromBottom;
-    animation-fill-mode: forwards;
+    animation: slideDownFromBottom var(--motion-duration-ui) var(--motion-easing-exit) forwards;
   }
   &-title {
     @apply text-base font-bold text-primary;
@@ -413,7 +427,9 @@ salla-modal {
   display: grid;
   grid-template-rows: 0fr;
   opacity: 0;
-  transition: grid-template-rows 225ms ease-out, opacity 225ms ease-out;
+  // grid-template-rows toggles instantly; only opacity transitions, so no
+  // layout property is ever animated (HDL-06 FR-010).
+  transition: opacity var(--motion-duration-ui) var(--motion-easing-standard);
 
   > * {
     overflow: hidden;
@@ -426,11 +442,23 @@ salla-modal {
   }
 }
 
-// Slide in animation (from right)
+// Slide in from the logical start edge (FR-011): the sign flips with the
+// document direction, while distance, time, and stagger come from the motion
+// tokens. JS sets --motion-stagger-index as data; --motion-stagger owns the
+// time (0ms outside Rich and under OS reduce).
+:root {
+  --hadeel-motion-start-sign: -1;
+  // Per-element stagger index (JS sets it as data; the token owns the time).
+  --motion-stagger-index: 0;
+}
+[dir="rtl"] {
+  --hadeel-motion-start-sign: 1;
+}
+
 @keyframes slideInStart {
   from {
     opacity: 0;
-    transform: translateX(20px);
+    transform: translateX(calc(var(--hadeel-motion-start-sign, -1) * var(--motion-reveal-distance)));
   }
   to {
     opacity: 1;
@@ -439,7 +467,8 @@ salla-modal {
 }
 
 .slide-in-start {
-  animation: slideInStart 500ms ease-out forwards;
+  animation: slideInStart var(--motion-duration-reveal) var(--motion-easing-standard) forwards;
+  animation-delay: calc(var(--motion-stagger-index, 0) * var(--motion-stagger));
 }
 
 // Scale pulse animation
@@ -456,13 +485,35 @@ salla-modal {
 }
 
 .scale-pulse {
-  animation: scalePulse 400ms ease-out;
+  animation: scalePulse var(--motion-duration-feedback) var(--motion-easing-standard);
 }
 
-// Fade out and collapse animation
+// Fade-out exit for wishlist removal: opacity only — no layout-property
+// animation (HDL-06 FR-010). wishlist.js removes the element on transitionend.
 .fade-out-collapse {
-  transition: height 300ms ease-in-out, opacity 300ms ease-in-out;
-  height: 0 !important;
+  transition: opacity var(--motion-duration-ui) var(--motion-easing-exit);
   opacity: 0;
   overflow: hidden;
+}
+
+// App-install banner slide keyframes (migrated off the Tailwind animate-*
+// utilities so duration/easing come from the motion tokens; vertical axis,
+// non-directional).
+@keyframes slideUpFromBottom {
+  from { opacity: 0; transform: translateY(100%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideDownFromBottom {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(100%); }
+}
+
+// Theme modal transitions (data-modal-trigger modals). The markup may be
+// runtime-injected by Salla apps, so the motion lives on the shared classes;
+// app.js only toggles state classes and derives its cleanup from the token.
+.s-salla-modal-overlay {
+  transition: opacity var(--motion-duration-ui) var(--motion-easing-standard);
+}
+.s-salla-modal-body {
+  transition: opacity var(--motion-duration-ui) var(--motion-easing-standard), transform var(--motion-duration-ui) var(--motion-easing-standard);
 }

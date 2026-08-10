@@ -1,0 +1,103 @@
+// HDL-06 — the single owner of the motion token contract.
+//
+// Contract: specs/006-motion-system/contracts/motion-contract.md
+// Guard:    scripts/check-motion-system.mjs (rules motion-tokens / motion-scroll
+//           / motion-direction) and tests/motion-system.test.mjs pin every
+//           value below — caps, reveal distances, the reduced override, and the
+//           mobile Rich cap are executable, not documented intent.
+//
+// Rules of this file:
+// - Semantic tokens only. Components consume var(--motion-*); a raw time or
+//   distance literal anywhere else needs a named functional exception in the
+//   static guard.
+// - One owner, no !important, no late override layer. A level changes values
+//   of the same tokens on the body class — never a second stylesheet.
+// - Logical, non-directional motion only: distances are magnitudes, so RTL
+//   and LTR stay identical (FR-011). No physical-direction properties here.
+//
+// Effective profiles (noncontinuous caps, from the approved contract):
+//   Calm      <= 160ms, reveal off,    distance 0px,  no stagger
+//   Balanced  <= 240ms, reveal once,   distance <= 8px
+//   Rich      <= 400ms, reveal once,   distance <= 20px, bounded stagger
+//   OS reduce <= 100ms, reveal off,    distance 0px,  no stagger, no smooth scroll
+
+:root {
+  // Balanced values are the base: they are the safe default the Twig resolver
+  // falls back to, so an unpainted or pre-save storefront already behaves.
+  --motion-duration-feedback: 120ms;
+  --motion-duration-ui: 200ms;
+  --motion-duration-reveal: 240ms;
+  --motion-stagger: 0ms;
+  --motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --motion-easing-exit: cubic-bezier(0.4, 0, 1, 1);
+  --motion-easing-emphasized: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --motion-distance-sm: 2px;
+  --motion-distance-md: 4px;
+  --motion-distance-lg: 8px;
+  --motion-reveal-distance: 4px;
+  // The reduced-motion floor the OS override converges on (FR-004).
+  --motion-duration-reduced: 80ms;
+  --motion-distance-reduced: 0px;
+}
+
+// Calm — functional feedback only; no reveal, no spatial pull, no stagger.
+.hadeel-motion-calm {
+  --motion-duration-feedback: 100ms;
+  --motion-duration-ui: 140ms;
+  --motion-duration-reveal: 0ms;
+  --motion-stagger: 0ms;
+  --motion-reveal-distance: 0px;
+}
+
+// Balanced — the merchant default: one light reveal, moderate transitions.
+.hadeel-motion-balanced {
+  --motion-duration-feedback: 120ms;
+  --motion-duration-ui: 200ms;
+  --motion-duration-reveal: 240ms;
+  --motion-stagger: 0ms;
+  --motion-reveal-distance: 4px;
+}
+
+// Rich — clearer distance and a bounded stagger; never hides content and
+// never repeats automatically (FR-003, FR-013).
+.hadeel-motion-rich {
+  --motion-duration-feedback: 160ms;
+  --motion-duration-ui: 320ms;
+  --motion-duration-reveal: 400ms;
+  --motion-stagger: 40ms;
+  --motion-distance-lg: 12px;
+  --motion-reveal-distance: 12px;
+}
+
+// Mobile Rich reduction (FR-006): with motion_reduce_mobile on, Rich is
+// capped to Balanced reveal/hover values below the tablet breakpoint. Drawer
+// opening, feedback, and loading/error states are never disabled.
+@media (max-width: 767px) {
+  .hadeel-motion-rich.hadeel-motion-reduce-mobile {
+    --motion-duration-feedback: 120ms;
+    --motion-duration-ui: 200ms;
+    --motion-duration-reveal: 240ms;
+    --motion-stagger: 0ms;
+    --motion-distance-lg: 8px;
+    --motion-reveal-distance: 4px;
+  }
+}
+
+// OS reduced motion outranks every merchant level (FR-004): durations converge
+// on the reduced floor, reveal and stagger switch off, distance is zero.
+// Smooth scroll is disabled at its single source in 02-generic/common.scss,
+// gated behind prefers-reduced-motion: no-preference — not overridden here.
+@media (prefers-reduced-motion: reduce) {
+  .hadeel-motion-calm,
+  .hadeel-motion-balanced,
+  .hadeel-motion-rich {
+    --motion-duration-feedback: 80ms;
+    --motion-duration-ui: 80ms;
+    --motion-duration-reveal: 0ms;
+    --motion-stagger: 0ms;
+    --motion-distance-sm: 0px;
+    --motion-distance-md: 0px;
+    --motion-distance-lg: 0px;
+    --motion-reveal-distance: 0px;
+  }
+}

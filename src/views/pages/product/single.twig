@@ -373,7 +373,6 @@
                                 {{product.is_require_shipping ? 'required-shipping' : ''}}
                                 {{product.has_preorder_campaign ? 'has-pre-order' : ''}}
                                 data-add-to-cart-animation="{{ theme.settings.get('product_add_to_cart_animation', 'tada') }}"
-                                data-add-to-cart-animation-interval="{{ theme.settings.get('product_add_to_cart_animation_interval', 6) }}"
                                 amount="{{ product.base_currency_price }}"
                                 class="mt-5 w-full sticky-product-bar__btn"
                                 product-status="{{ product.status }}"
@@ -552,7 +551,7 @@
                                    onclick="salla.event.dispatch('scopes::open', {mode: 'availability', product_id: '{{ product.id }}' })"
                                    class="with-arrow group text-primary flex items-center justify-center">
                                     <span>{{ trans('pages.products.select_branch') }}</span>
-                                    <span class="sicon-keyboard_arrow_left rtl:mr-2 ltr:ml-2 transition-all rtl:group-hover:-translate-x-1 ltr:group-hover:translate-x-1" aria-hidden="true"></span>
+                                    <span class="sicon-keyboard_arrow_left rtl:mr-2 ltr:ml-2 rtl:group-hover:-translate-x-1 ltr:group-hover:translate-x-1" aria-hidden="true"></span>
                                 </a>
                             </div>
                         </div>

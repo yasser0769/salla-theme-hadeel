@@ -660,21 +660,21 @@ function walkFiles(dir, exts) {
 
 /* ------------------------------------------------------------------- T039 */
 
-describe('T039 US4: all 55 global + 62 component records, legal repeated raw ids', () => {
+describe('T039 US4: all 58 global + 62 component records, legal repeated raw ids', () => {
   test('the current registry passes the full strict checker with zero errors', () => {
     const result = checkSettingsRegistry({ root: ROOT, strict: true });
     assert.equal(errorsOf(result).length, 0,
       `registry must be clean, got: ${JSON.stringify(errorsOf(result).slice(0, 3))}`);
-    assert.equal(result.stats.globals, 55);
+    assert.equal(result.stats.globals, 58);
     assert.equal(result.stats.components, 62);
     assert.equal(result.stats.profiles, 4);
-    assert.equal(result.stats.twilight_globals, 55);
+    assert.equal(result.stats.twilight_globals, 58);
     assert.equal(result.stats.twilight_components, 62);
   });
 
-  test('all 55 current global records are registered, including the 45 baseline globals', () => {
+  test('all 58 current global records are registered, including the 45 baseline globals', () => {
     const globals = registry.settings.filter((s) => s.scope === 'global');
-    assert.equal(globals.length, 55);
+    assert.equal(globals.length, 58);
     assert.equal(inventory.counts.global_records, 45, 'baseline inventory must pin 45 globals');
     assert.equal(inventory.globals.length, 45);
     for (const base of inventory.globals) {
@@ -684,15 +684,17 @@ describe('T039 US4: all 55 global + 62 component records, legal repeated raw ids
       assert.equal(rec.type, base.type, `${base.key}: legacy type drift (meaning is immutable)`);
       assert.equal(rec.scope, 'global');
     }
-    // The ten post-baseline additions are exactly the HDL-03 engine controls,
-    // scope note, and the explicit Presets group title.
+    // The thirteen post-baseline additions are exactly the HDL-03 engine
+    // controls, scope note, and explicit Presets group title, plus the three
+    // HDL-06 motion records (group title, level, mobile reduction).
     const baselineKeys = new Set(inventory.globals.map((g) => g.key));
     const added = globals.filter((s) => !baselineKeys.has(s.key)).map((s) => s.id).sort();
     assert.deepEqual(added, [
       'corner_style_mode', 'header_density_mode', 'header_layout_mode',
-      'layout_width_mode', 'preset_engine_enabled', 'preset_profile',
-      'product_card_style_mode', 'section_spacing_mode', 'static-preset-scope-note',
-      'static-presets-title',
+      'layout_width_mode', 'motion_level', 'motion_reduce_mobile',
+      'preset_engine_enabled', 'preset_profile',
+      'product_card_style_mode', 'section_spacing_mode', 'static-motion-title',
+      'static-preset-scope-note', 'static-presets-title',
     ].sort());
   });
 

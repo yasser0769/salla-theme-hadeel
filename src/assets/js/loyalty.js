@@ -2,40 +2,15 @@ import BasePage from './base-page';
 
 class Loyalty extends BasePage {
     onReady() {
-        let count = app.element(".count-anime")?.dataset?.count || 0;
-        (new anime.timeline()).add({
-            targets: '.loyality-item',
-            opacity: [0, 1],
-            translateX: [20, 0],
-            delay: function (el, i) {
-                return i * 100;
-            },
-        }).add({
-            targets: '.star-anime',
-            opacity: [0, 1],
-            rotate: [50, 0],
-            duration: 4000,
-            delay: function (el, i) {
-                return i * 100;
-            },
-        }, '-=1000').add({
-            targets: `.count-anime`,
-            innerText: [0, count],
-            duration: 2000,
-            easing: "linear",
-            round: true,
-            delay: function (el, i) {
-                return i * 150;
-            },
-        }, '-=3700').add({
-            targets: '.btn-anime',
-            opacity: [0, 1],
-            duration: 2000,
-            translateX: [20, 0],
-            delay: function (el, i) {
-                return i * 100;
-            },
-        }, '-=3200')
+        // HDL-06: the real points total is server-rendered by loyalty.twig —
+        // this page script never counts from zero, never manufactures a value,
+        // and never hides it. The only runtime motion is one optional, bounded
+        // feedback pulse through the shared controller, which no-ops under
+        // reduced motion or when WAAPI is unavailable.
+        const counter = document.querySelector('.count-anime');
+        if (counter) {
+            window.hadeelMotion?.feedback(counter);
+        }
     }
 }
 

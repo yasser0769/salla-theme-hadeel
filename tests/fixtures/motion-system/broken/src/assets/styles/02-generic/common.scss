@@ -1,0 +1,9 @@
+// Broken witness: smooth scroll with no prefers-reduced-motion gate.
+html {
+  scroll-behavior: smooth;
+}
+
+// Broken witness: banned Tailwind motion utilities (default/raw timing).
+.card {
+  @apply flex transition-all duration-500 ease-in;
+}

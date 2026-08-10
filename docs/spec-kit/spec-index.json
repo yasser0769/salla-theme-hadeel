@@ -104,10 +104,11 @@
         "HDL-03",
         "HDL-05"
       ],
-      "status": "planned",
+      "status": "implementing",
       "spec": "specs/006-motion-system/spec.md",
       "design": "specs/006-motion-system/design.md",
-      "input": "specs/006-motion-system/spec-input.md"
+      "input": "specs/006-motion-system/spec-input.md",
+      "evidence_status": "Figma Revision 1 approved after CTA logical-start correction; Constitution Plan PASS and 36-task execution list complete; implementation in progress (T001–T030 scope)"
     },
     {
       "id": "HDL-07",

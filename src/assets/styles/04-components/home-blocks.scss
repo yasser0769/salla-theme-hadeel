@@ -40,7 +40,8 @@
 
     .swiper-lazy{
       &:after{
-        @apply content-[''] absolute transition top-0 bg-black/60 w-full h-full;
+        @apply content-[''] absolute top-0 bg-black/60 w-full h-full;
+        transition: opacity var(--motion-duration-ui) var(--motion-easing-standard), background-color var(--motion-duration-ui) var(--motion-easing-standard);
       }
     }
 
@@ -57,11 +58,11 @@
   @media screen and (min-width: 768px) {
     &:hover {
       .banner__title {
-        animation: toTopFromBottom 0.9s;
+        animation: toTopFromBottom var(--motion-duration-ui);
       }
 
       .banner__description {
-        animation: delayKeyframe 0.3s, toTopFromBottom 0.9s 0.3s;
+        animation: delayKeyframe var(--motion-stagger), toTopFromBottom var(--motion-duration-ui) var(--motion-stagger);
       }
     }
   }
@@ -105,10 +106,13 @@
   }
 
   h3,p{
-    @apply lg:opacity-0  transition-all duration-300 relative z-1 lg:translate-y-6;
+    @apply lg:opacity-0 relative z-1 lg:translate-y-6;
+    transition: opacity var(--motion-duration-ui) var(--motion-easing-standard), transform var(--motion-duration-ui) var(--motion-easing-standard);
   }
-  
-  &:hover{
+
+  // Keyboard parity: focus-within reveals the same content hover does (FR-009).
+  &:hover,
+  &:focus-within{
     h3{
       @apply opacity-100 translate-y-0;
     }
@@ -135,12 +139,13 @@
 
 .has-overlay{ 
   &:after{
-    @apply content-[''] h-full w-full bg-black/60 absolute top-0 left-0 transition-colors duration-300;
+    @apply content-[''] h-full w-full bg-black/60 absolute top-0 left-0;
+    transition: background-color var(--motion-duration-ui) var(--motion-easing-standard);
   }
 
   &.with-hover{
     &:after{
-      transition: opacity .3s;
+      transition: opacity var(--motion-duration-ui);
       opacity: 0;
     }
     &:hover{
@@ -158,7 +163,8 @@
 
 /* Full banner block */
 .full-banner-entry {
-  @apply row-span-2 h-80 md:h-96 lg:h-116 xl:h-132 bg-stone-200 transition-opacity hover:opacity-95 bg-center bg-cover text-white text-center p-5 overflow-hidden relative bg-fixed;
+  @apply row-span-2 h-80 md:h-96 lg:h-116 xl:h-132 bg-stone-200 hover:opacity-95 bg-center bg-cover text-white text-center p-5 overflow-hidden relative bg-fixed;
+  transition: opacity var(--motion-duration-ui) var(--motion-easing-standard);
 
   background-attachment: initial;
 
@@ -171,7 +177,7 @@
     content: "";
     background: var(--color-primary);
     position: absolute;
-    transition: all 0.3s ease-in-out;
+    transition: opacity var(--motion-duration-ui) var(--motion-easing-emphasized), transform var(--motion-duration-ui) var(--motion-easing-emphasized);
     transform: rotate(220deg) translateY(-50%) translateX(33%);
     opacity: 0.25;
   }
@@ -208,7 +214,8 @@
 */
 .tabs-wrapper{
   .tabs__item{
-    @apply hidden transition-all duration-300;
+    @apply hidden;
+    transition: opacity var(--motion-duration-ui) var(--motion-easing-standard), transform var(--motion-duration-ui) var(--motion-easing-standard);
 
     &.is-active{
       @apply block;
@@ -275,7 +282,8 @@
   @apply bg-gray-100 pb-8 sm:pb-16 mt-8 sm:mt-16 first-of-type:mt-0;
 
   .slider-bg{
-    @apply h-96 sm:h-116 transition-opacity bg-center bg-cover text-white relative;
+    @apply h-96 sm:h-116 bg-center bg-cover text-white relative;
+    transition: opacity var(--motion-duration-ui) var(--motion-easing-standard);
 
     &:before{
       content: '';
@@ -304,7 +312,7 @@
 */
 /* Surface, height, padding, border and hover colour come from storefront-system.scss. */
 .slide--cat-entry {
-  @apply text-center flex flex-col items-center justify-center transition duration-500;
+  @apply text-center flex flex-col items-center justify-center;
 
   i {
     @apply inline-block text-primary text-icon-lg mb-4;
@@ -319,7 +327,8 @@
   offers slider
 */
 .slide--offer-entry {
-  @apply bg-white rounded-md h-36 text-center flex flex-col items-center justify-between text-gray-600 transition duration-500 hover:shadow-default border border-gray-200;
+  @apply bg-white rounded-md h-36 text-center flex flex-col items-center justify-between text-gray-600 hover:shadow-default border border-gray-200;
+  transition: box-shadow var(--motion-duration-ui) var(--motion-easing-standard), color var(--motion-duration-ui) var(--motion-easing-standard);
 }
 
 
@@ -361,7 +370,8 @@
 
   &--features{
     &__item{
-      @apply cursor-pointer bg-white transition-shadow duration-500 hover:shadow-default rounded-md flex-grow flex flex-col items-center px-4 py-8 md:px-8 text-center;
+      @apply cursor-pointer bg-white hover:shadow-default rounded-md flex-grow flex flex-col items-center px-4 py-8 md:px-8 text-center;
+      transition: box-shadow var(--motion-duration-ui) var(--motion-easing-standard);
 
       &:first-child{
         @apply col-span-2 md:col-span-1;
@@ -383,9 +393,12 @@
         @apply text-sm text-gray-500;
       }
 
-      &:hover {
+      // Hover and keyboard parity (FR-009); the effect itself is
+      // non-directional (featureIconPop), so nothing mirrors in RTL.
+      &:hover,
+      &:focus-within {
         .feature-icon i {
-          animation: toRightFromLeft 0.3s forwards;
+          animation: featureIconPop var(--motion-duration-ui) var(--motion-easing-standard) forwards;
         }
       }
     }

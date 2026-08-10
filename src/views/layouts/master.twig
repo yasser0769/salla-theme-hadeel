@@ -203,6 +203,20 @@
 {% for hadeel_id in hadeel_allowed|keys %}
   {% set hadeel_sources_list = hadeel_sources_list|merge([hadeel_id ~ ':' ~ hadeel_sources[hadeel_id]]) %}
 {% endfor %}
+{#
+  HDL-06 motion resolution — a closed allowlist with a balanced fallback.
+  Mirrors resolveMotionLevel()/normalizeMotionReduceMobile() in
+  scripts/check-motion-system.mjs (contract: specs/006-motion-system/contracts/
+  motion-contract.md). Exactly one hadeel-motion-{level} class is emitted; a
+  raw merchant value is never interpolated into a class. String-exact
+  validation: the iterable guard plus self-cast identity rejects arrays,
+  booleans, and numbers before the allowlist `in`; `is same as` never coerces.
+#}
+{% set hadeel_motion_levels = ['calm', 'balanced', 'rich'] %}
+{% set hadeel_motion_raw = theme.settings.get('motion_level', 'balanced') %}
+{% set hadeel_motion_level = (hadeel_motion_raw is not iterable and hadeel_motion_raw is same as(hadeel_motion_raw ~ '') and hadeel_motion_raw in hadeel_motion_levels) ? hadeel_motion_raw : 'balanced' %}
+{% set hadeel_motion_reduce_mobile_raw = theme.settings.get('motion_reduce_mobile', true) %}
+{% set hadeel_motion_reduce_mobile = hadeel_motion_reduce_mobile_raw is same as(true) or hadeel_motion_reduce_mobile_raw is same as('true') or hadeel_motion_reduce_mobile_raw is same as(1) or hadeel_motion_reduce_mobile_raw is same as('1') %}
 <body id="app" class="theme-raed overflow-x-hidden {% hook 'body:classes' %}
   {{ theme.settings.get('use_theme_font', false) ? ' use-theme-font' : '' }}
   {{ theme.settings.get('footer_is_dark') ? ' footer-is-dark' : ' footer-is-light' }}
@@ -213,9 +227,11 @@
   hadeel-card-{{ hadeel_resolved.product_card_style }}
   hadeel-header-{{ hadeel_resolved.header_layout }}
   hadeel-header-density-{{ hadeel_resolved.header_density }}
+  hadeel-motion-{{ hadeel_motion_level }}
+  {% if hadeel_motion_reduce_mobile %} hadeel-motion-reduce-mobile{% endif %}
   {% if hadeel_engine_on %} hadeel-preset-{{ hadeel_profile }}{% endif %}
   {{ page.slug == 'product.single' ? ' product-single-page' : '' }}
-  "{% if hadeel_engine_on %} data-hadeel-preset="{{ hadeel_profile }}" data-hadeel-preset-sources="{{ hadeel_sources_list|join(',') }}"{% endif %}{% if hadeel_review|length > 0 %} data-hadeel-preset-review="{{ hadeel_review|join(',') }}"{% endif %}>
+  " data-hadeel-motion="{{ hadeel_motion_level }}"{% if hadeel_motion_reduce_mobile %} data-hadeel-motion-reduce-mobile="true"{% endif %}{% if hadeel_engine_on %} data-hadeel-preset="{{ hadeel_profile }}" data-hadeel-preset-sources="{{ hadeel_sources_list|join(',') }}"{% endif %}{% if hadeel_review|length > 0 %} data-hadeel-preset-review="{{ hadeel_review|join(',') }}"{% endif %}>
 <noscript>
     To get full functionality of this site you need to enable JavaScript. Here is how
     <a href="https://www.enable-javascript.com/" rel="noreferrer"

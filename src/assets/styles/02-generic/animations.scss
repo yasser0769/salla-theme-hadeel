@@ -1,6 +1,6 @@
 @keyframes fadeInDown {
   from {
-    transform: translate3d(0, -15px, 0)
+    transform: translate3d(0, calc(var(--motion-reveal-distance) * -1), 0)
   }
 
   to {
@@ -11,7 +11,7 @@
 
 @-webkit-keyframes fadeInDown {
   from {
-    transform: translate3d(0, -15px, 0)
+    transform: translate3d(0, calc(var(--motion-reveal-distance) * -1), 0)
   }
 
   to {
@@ -21,7 +21,7 @@
 }
 
 .animated {
-  animation-duration: 400ms;
+  animation-duration: var(--motion-duration-ui);
   animation-fill-mode: both;
 }
 
@@ -35,29 +35,29 @@
   -webkit-animation-name: fadeInDown;
 }
 
-// toRightFromLeft
-@keyframes toRightFromLeft {
-  49% {
-    transform: translate(100%);
-  }
-  50% {
-    opacity: 0;
-    transform: translate(-100%);
-  }
-  51% {
+// Non-directional icon pop: scale/opacity only, so RTL and LTR stay identical
+// and icons never mirror.
+@keyframes featureIconPop {
+  0%, 100% {
     opacity: 1;
+    transform: scale(1);
+  }
+  45%, 55% {
+    opacity: 0;
+    transform: scale(0.4);
   }
 }
 
-// toRightFromLeft
+// toTopFromBottom — vertical entrance, matching its name: translateY only
+// (non-directional), distance from the motion tokens so reduce zeroes it.
 @keyframes toTopFromBottom {
   0% {
     opacity: 0;
-    transform: translateX(50px);
+    transform: translateY(var(--motion-reveal-distance));
   }
   100% {
     opacity: 1 !important;
-    transform: translateX(0);
+    transform: translateY(0);
   }
 }
 
@@ -103,7 +103,7 @@
 
 .rubberBand {
   animation-name: rubberBand;
-  animation-duration: 1s;
+  animation-duration: var(--motion-duration-feedback);
   animation-fill-mode: both;
   animation-iteration-count: 1;
 }
