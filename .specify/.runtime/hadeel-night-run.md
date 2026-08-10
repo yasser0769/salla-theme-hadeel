@@ -749,3 +749,147 @@ This append-oriented log records verified transitions, commands, evidence, appro
   Package result remains `475,903 / 1,000,000 B` compressed (47.59%).
 - STATE: HDL-05 remains `done`; corrective independent review remains
   `STATUS: PASS / BLOCKERS: 0`. Focused commit is pending; primary push is not authorized.
+
+### HDL-05 — FOCUSED COMMIT CREATED / NO PUSH — 2026-08-10 15:00 +03
+
+- BRANCH: `codex/hdl-05-performance-bundle-ci`.
+- COMMIT: `e5f99aed110422ad557d4eee0953c8cfb5b6fd7c` — `feat(hdl-05): enforce compressed package budget`.
+- SCOPE: only the explicitly staged HDL-05/Constitution/history paths were committed. User-owned `.vscode/settings.json`, `AGENTS.md`, and HDL-06+ work remained unstaged and unchanged by the commit.
+- PUSH: not performed; primary push remains unauthorized.
+- STATE: HDL-05 done. Next active Spec: HDL-06.
+
+### HDL-06 — SPEC REFINEMENT + FIGMA REVISION 1 / HUMAN GATE — 2026-08-10 15:20 +03
+
+- MODE: HADEEL LEAN MODE. Constitution v1.0.1 and the corrected compressed-package gate remain authoritative.
+- SPEC MODEL: Claude Opus 5 High was retried at the new-Spec boundary through the project wrapper, produced no output, and was stopped after a bounded wait. Actual refinement model: **GPT-5.6 Sol High via Codex**. This was not treated as a Human Gate.
+- AUDIT: the current motion system is partial and scattered: shared `animejs` import for limited usage, more than twenty duration values, partial reduced-motion coverage, smooth scroll without a global reduce override, and periodic product CTA attention. Salla/Swiper internal transitions remain a documented Platform-owned Spike.
+- SPEC CONTRACT: three levels only (`calm`, `balanced`, `rich`), Balanced default, reduced-motion highest priority and dynamic, mobile Rich capped to Balanced by default, critical commerce visible at `0ms`, feedback begins within `100ms`, zero motion-attributed CLS, and no periodic CTA attention. New settings are limited to `motion_level` and `motion_reduce_mobile`; legacy animation IDs are preserved.
+- DESIGN MODEL: **GPT-5.6 Sol High via Codex** using the approved HDL-02 variables, Tajawal Figma typography, and shared button component. Runtime typography remains merchant-selected with system fallback; no local font is introduced.
+- FIGMA: Revision 1 created on page `443:2` (`18 · HDL-06 Motion System`), main board `443:3`. Storyboards: Calm `444:3`, Balanced `444:49`, Rich `444:95`, Rich + Reduced `444:141`; parity matrix `446:3`; QA/Settings `446:100`.
+- PROTOTYPES: standard Figma interactions are live in both directions: Calm `447:7 ↔ 447:24` at 160ms Dissolve; Balanced `447:43 ↔ 447:60` at 240ms Smart Animate; Rich `447:79 ↔ 447:96` at 400ms Smart Animate; Reduced `447:115 ↔ 447:132` at 100ms Dissolve with no spatial movement. The advanced `metronome` timeline API is unavailable in this tool session, so no unsupported timeline claim is made.
+- VALIDATION: final post-edit screenshots were captured from the Figma nodes; 257 text nodes use only Tajawal Regular/Bold/Black; all eight open/close controls have one verified destination and the intended transition; required boards and four parity frames are present. This validates the Figma artifact only, not Salla runtime behavior.
+- STATE: `design review`. Owner approval is the active Human Gate. **Plan, Tasks, implementation, build, and Salla preview have not started.** No browser preview or temporary preview branch is needed at this gate.
+- WORKSPACE: branch remains `codex/hdl-05-performance-bundle-ci` at `e5f99aed110422ad557d4eee0953c8cfb5b6fd7c`; `caffeinate -is` PID `82378` remains active.
+
+### HDL-06 — CTA LOGICAL-START CORRECTION / FIGMA REVISION 1 APPROVED — 2026-08-10
+
+- OWNER FINDING: the parity matrix placed both Arabic and English Add-to-cart controls on the left. This contradicted logical-start parity: Arabic RTL must place the control on the right; English LTR remains on the left.
+- FIGMA FIX: the four CTA controls were wrapped in explicit direction-aware auto-layout rows. Arabic Mobile/Desktop use `MAX` alignment (right); English Mobile/Desktop use `MIN` alignment (left). Wrapper nodes: `451:23`, `451:24`, `451:25`, `451:26`; parity frame remains `446:3`.
+- POST-FIX EVIDENCE: a fresh 1312×800 screenshot from node `446:3` was visually inspected after the mutation and confirms right-aligned Arabic CTAs and left-aligned English CTAs with no clipping or overlap.
+- OWNER DECISION: `APPROVE HDL-06 REV 1`. Revision 1 is now **Approved for Implementation**; this focused parity correction is part of Revision 1 and does not require Revision 2.
+- STATE: Figma Gate PASS. Plan is authorized. No implementation, build, Salla preview, commit, or push occurred in this correction step.
+
+### HDL-06 — PLAN + TASKS COMPLETE / ANALYZE NEXT — 2026-08-10
+
+- BRANCH: `codex/hdl-06-motion-system` at base `e5f99aed110422ad557d4eee0953c8cfb5b6fd7c`; no push.
+- PLAN MODEL: Claude Opus 5 High was retried at the Plan boundary and returned the monthly spend-limit message. Actual Plan model: **GPT-5.6 Sol High via Codex**; this was not treated as a Human Gate.
+- PLAN: `plan.md`, `research.md`, `data-model.md`, `contracts/motion-contract.md`, and `quickstart.md` generated. Constitution v1.0.1 check PASS with no exception; latest compressed-package rule and independent runtime gates are reflected.
+- TASKS MODEL: Claude Opus 5 High was retried at the Tasks boundary and again returned the monthly spend-limit message. Actual Tasks model: **GPT-5.6 Sol High via Codex**.
+- TASKS: `tasks.md` contains 36 executable tasks: 6 for US1, 9 for US2, 5 for US3, plus blocking foundation and build/preview/review gates. Strict checklist format PASS; no falsely parallel shared-core work.
+- SCOPE DECISIONS: one token owner, one validated Twig resolver, progressive-enhancement reveal, dynamic OS reduce, no periodic CTA attention, no private Salla transition override, and AnimeJS removed from runtime while dependency files remain unchanged in this feature.
+- BASELINE: static theme guard 0/0; package estimate `475,903 / 1,000,000 B`; `app.css` 802,202 B; `app.js` 129,221 B; aggregate 931,423 B. No HDL-06 implementation/build/preview has started.
+- STATE: Plan and Tasks complete. Analyze is next. `caffeinate -is` PID `82378` remains active.
+
+### HDL-06 — IMPLEMENTATION START (T001–T004 GATES) — 2026-08-10
+
+- DEPENDENCIES: HDL-02 `done`, HDL-03 `done`, HDL-05 `done — corrective review PASS / blockers 0` (ROADMAP.md rows 12–15). HDL-06 dependency gate satisfied.
+- GATES: spec.md has no unresolved `[NEEDS CLARIFICATION]`; design.md records Revision 1 **Approved for Implementation** (`APPROVE HDL-06 REV 1`, 2026-08-10) including the CTA logical-start correction (wrappers `451:23`–`451:26`).
+- BASELINE recorded in `specs/006-motion-system/evidence/baseline.md`: static guard 0 errors/0 warnings; compressed package `475,903 / 1,000,000 B` PASS (47.59%); `public/` 1,151,263 B raw; `app.css` 802,202 B raw / 103,810 B gzip-9; `app.js` 129,221 B raw / 37,063 B gzip-9; aggregate app entry 931,423 B raw; CSS snapshot 6,838 rules at `/tmp/hdl06-before-css.txt`.
+- PLATFORM BOUNDARY: `salla-drawer`/`salla-modal`/`salla-slider` internal transition control recorded as Platform-owned Spike with native-behavior fallback in `specs/006-motion-system/evidence/platform-boundary.md`.
+- STATE: HDL-06 `implementing`. Scope of this run: T001–T030 only; no Salla preview, no commit/push, `.vscode/settings.json` and `AGENTS.md` untouched.
+
+### HDL-06 — FINAL OWNER-CONFIRMED PREVIEW EVIDENCE — 2026-08-10 21:57 +03
+
+- PREVIEW IDENTITY: isolated clean worktree `.worktrees/preview-hdl-06-20260810`;
+  branch `codex/preview-hdl-06-20260810`; local HEAD and `origin` both
+  `3194eda5fadf8f42b312b1fe484082d8ebbcc13a`; owner-confirmed Salla draft
+  `722988000`; store `dev-v37bn5qobfotqowz`; Chrome explicitly selected.
+- SYNC: direct draft `app.css` and `app.js` matched the local production build
+  byte-for-byte and by SHA-256 (`24348738…`, `fb71e33…`). This preview is
+  current; **no `SALLA PREVIEW SYNC FAILURE`**.
+- MATRIX: 16/16 Home/Collection/Product/Cart captures across Arabic mobile RTL
+  390×844, English mobile LTR 390×844, Arabic desktop RTL 1366×768, and English
+  desktop LTR 1366×768 have correct `lang`/`dir`, draft provenance, visible
+  critical commerce, and no document-level horizontal overflow.
+- PROFILE PROOF: live compiled CSS yields Calm 140/100/0 ms,
+  Balanced 200/120/240 ms, Rich 320/160/400 ms; mobile Rich is capped to
+  Balanced under the enabled mobile-reduction class. The DOM-only probe was
+  restored to Balanced and does not claim editor save persistence.
+- REDUCED MOTION: one real theme-owned feedback animation was active before a
+  live OS media change; afterward the controller reported reduced state and
+  active animations fell 1→0. Initial reduced load also passed with reveal,
+  distance, and stagger at zero. Media emulation was reset.
+- PROGRESSIVE/KEYBOARD: with draft `app.js` blocked, title, price, CTA, and
+  main content remained visible with no overflow. Both Arabic RTL and English
+  LTR mobile product flows recorded 14 Chrome Tab stops, all focus-visible and
+  within the viewport. Network blocking was reset.
+- PLATFORM BOUNDARIES: Salla search modal and legacy `mmenu-light` both open and
+  lock scrolling, but Escape did not close either; mmenu backdrop close
+  returned focus to `BODY`. Recorded `NOT VERIFIED — platform/legacy-owned`,
+  with no private-internal patch; route to HDL-09/12/29 as applicable.
+- CLS: all 16 observations were supported, but several Home/Product/Cart rows
+  retain high total CLS from existing Salla hydration/Swiper/forms/section
+  reorder. HDL-06 layout-property animation guards pass, yet live causality is
+  not separable; total CLS remains an explicit release risk for page owners
+  and HDL-29, not an invented SC-005 PASS.
+- NOT VERIFIED: current Home composition contains zero reveal opt-ins, so
+  one-shot reveal is source/test-proven only. A genuine Add-to-cart click is
+  pending explicit owner permission because it mutates the demo cart; no live
+  ≤100ms/no-repeat claim is made yet.
+- FINAL BUNDLE: `app.css` 799,430 B, `app.js` 116,474 B, aggregate 915,904 B;
+  compressed Salla package 478,773 / 1,000,000 B PASS; `public/` 1,134,522 B
+  raw / 209,186 B gzip-9. No new entry, chunk, dependency, font, media, or
+  theme asset basename.
+- STATE: T031 and T032 complete. T033 remains open only for the explicitly
+  permissioned CTA action and unavailable reveal/platform internals. No
+  primary-tree commit, push, merge, reset, or revert occurred.
+
+### HDL-06 — T033 CLOSED / INDEPENDENT FINAL REVIEW PASS — 2026-08-10 22:10 +03
+
+- SAFE LIVE COMPLETION: the actual draft controller was exercised with a
+  temporary noncritical reveal target. It ran exactly once at 240ms/4px,
+  remained at one call after a second attempt, and the target/observer were
+  fully cleaned. No merchant data changed.
+- CTA MOTION: the exact shared controller plus merchant-selected `shake` class
+  was exercised on the real CTA host without dispatching a click or initiating
+  a cart request. Start delay 8.3ms; one animation; clean settle; no repeat;
+  zero new resources; motion-attributed CLS `0.000`. The real host click
+  binding remains pinned by source/behavioral tests. A Salla cart transaction
+  itself was deliberately not claimed.
+- T033: COMPLETE. Drawer/search platform boundaries remain explicitly NOT
+  VERIFIED as allowed by the Spec; existing total page CLS stays routed to
+  page owners/HDL-29 while controlled theme motion is zero-shift.
+- CLAUDE RETRY: Claude Opus 5 High was retried at the Final Review boundary,
+  returned no artifact, and ended `Execution error` after a bounded wait.
+  Actual reviewer: **GPT-5.6 Sol High via Codex**, using the read-only
+  `speckit-analyze` procedure plus source/build/live evidence. This was not a
+  Human Gate.
+- FINAL REVIEW: **STATUS: PASS / BLOCKERS: 0**. Coverage 18/18 FR + 8/8 SC =
+  26/26 (100%); no Constitution conflict, uncovered requirement, unmapped
+  task, or source blocker. Nonblocking risks are recorded in
+  `specs/006-motion-system/evidence/final-review.md`.
+- RE-RUN GATES: motion 112/112; settings 73/73; localization 26/26;
+  performance 39/39; motion full/strict 0 errors; theme build-sync 0/0;
+  compressed package 478,773/1,000,000 B PASS; diff-check PASS.
+- STATE: T001–T035 complete. **T036 / `ACCEPT HDL-06` is the only remaining
+  Human Gate.** HDL-07 has not started. No primary-tree commit, staging, push,
+  merge, reset, or revert occurred.
+
+### HDL-06 — OWNER ACCEPTANCE / COMPLETE — 2026-08-10
+
+- OWNER DECISION: `ACCEPT HDL-06`.
+- RESULT: HDL-06 is `done` in `ROADMAP.md`, `docs/spec-kit/spec-index.json`,
+  and `specs/006-motion-system/spec.md`; T001–T036 are complete.
+- FINAL REVIEW: `STATUS: PASS`, `BLOCKERS: 0`; coverage 26/26; final evidence
+  index `specs/006-motion-system/evidence/final-review.md`.
+- VERIFIED ARTIFACT: owner-confirmed Salla preview branch
+  `codex/preview-hdl-06-20260810` at
+  `3194eda5fadf8f42b312b1fe484082d8ebbcc13a`, draft `722988000`, with no
+  preview sync failure.
+- GATES: production build/build-sync PASS; motion 112/112; settings 73/73;
+  localization 26/26; performance 39/39; compressed package
+  478,773/1,000,000 B PASS.
+- GIT: focused HDL-06 commit is the next atomic action; no primary push is
+  authorized. User-owned unrelated changes remain excluded.
+- NEXT SPEC: HDL-07 — Four Header Layouts. This is the next manual storefront
+  checkpoint under HADEEL LEAN MODE.

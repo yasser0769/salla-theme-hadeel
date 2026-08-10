@@ -1,0 +1,49 @@
+{
+  "captured_at": "2026-08-10T21:57:48+03:00",
+  "preview": {
+    "branch": "codex/preview-hdl-06-20260810",
+    "local_sha": "3194eda5fadf8f42b312b1fe484082d8ebbcc13a",
+    "origin_sha": "3194eda5fadf8f42b312b1fe484082d8ebbcc13a",
+    "worktree_clean": true,
+    "salla_draft_id": "722988000",
+    "store": "dev-v37bn5qobfotqowz",
+    "owner_confirmed_branch": true,
+    "sync_failure": false
+  },
+  "artifacts": {
+    "app.css": {
+      "local_bytes": 799430,
+      "draft_bytes": 799430,
+      "local_sha256": "2434873818d7ce2230292a35e52ab25e10cb1d747a0e6d16a96c37aec5e97722",
+      "draft_sha256": "2434873818d7ce2230292a35e52ab25e10cb1d747a0e6d16a96c37aec5e97722",
+      "match": true,
+      "draft_url": "https://salla.design/themes/draft/722988000/app.css"
+    },
+    "app.js": {
+      "local_bytes": 116474,
+      "draft_bytes": 116474,
+      "local_sha256": "fb71e33f6f0ad3b3683a0da3fb8773214f9397de401b388347a35101618caacd",
+      "draft_sha256": "fb71e33f6f0ad3b3683a0da3fb8773214f9397de401b388347a35101618caacd",
+      "match": true,
+      "draft_url": "https://salla.design/themes/draft/722988000/app.js"
+    }
+  },
+  "request_contract": {
+    "new_webpack_entries": 0,
+    "new_chunks": 0,
+    "new_dependencies": 0,
+    "new_theme_asset_basenames": 0,
+    "observed_existing_basenames": [
+      "app.css",
+      "app.js",
+      "product-card.js",
+      "main-menu.js",
+      "add-product-toast.js",
+      "home.js",
+      "product.js",
+      "checkout.js",
+      "pages.js"
+    ],
+    "note": "The exact subset is route-specific. The browser isolated world did not expose resource timing entries; DOM asset URLs and direct draft hash comparison are the sync authority."
+  }
+}

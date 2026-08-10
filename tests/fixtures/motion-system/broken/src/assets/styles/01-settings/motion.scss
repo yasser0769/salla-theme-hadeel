@@ -1,0 +1,10 @@
+// Broken witness: missing semantic tokens, an over-cap Calm profile, no
+// Balanced/Rich profiles, no reduced-motion override, no mobile Rich cap,
+// and physical-direction motion.
+
+.hadeel-motion-calm {
+  --motion-duration-ui: 320ms;
+  --motion-duration-feedback: 320ms;
+  --motion-reveal-distance: 12px;
+  left: 8px;
+}

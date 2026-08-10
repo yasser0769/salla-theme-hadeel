@@ -1,0 +1,91 @@
+{
+  "desktop": {
+    "captured_at": "2026-08-10T18:55:57.402Z",
+    "scope": "temporary DOM class swap against live compiled CSS; does not claim editor persistence",
+    "url": "https://salla.design/en/dev-v37bn5qobfotqowz?preview=true",
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    },
+    "original": "balanced",
+    "rows": {
+      "calm": {
+        "--motion-duration-feedback": "100ms",
+        "--motion-duration-ui": "140ms",
+        "--motion-duration-reveal": "0ms",
+        "--motion-ui": "140ms cubic-bezier(0.2,0,0,1)",
+        "--motion-feedback": "100ms cubic-bezier(0.2,0,0,1)",
+        "--motion-reveal": "0ms cubic-bezier(0.2,0,0,1)",
+        "--motion-stagger": "0ms",
+        "--motion-reveal-distance": "0px"
+      },
+      "balanced": {
+        "--motion-duration-feedback": "120ms",
+        "--motion-duration-ui": "200ms",
+        "--motion-duration-reveal": "240ms",
+        "--motion-ui": "200ms cubic-bezier(0.2,0,0,1)",
+        "--motion-feedback": "120ms cubic-bezier(0.2,0,0,1)",
+        "--motion-reveal": "240ms cubic-bezier(0.2,0,0,1)",
+        "--motion-stagger": "0ms",
+        "--motion-reveal-distance": "4px"
+      },
+      "rich": {
+        "--motion-duration-feedback": "160ms",
+        "--motion-duration-ui": "320ms",
+        "--motion-duration-reveal": "400ms",
+        "--motion-ui": "320ms cubic-bezier(0.2,0,0,1)",
+        "--motion-feedback": "160ms cubic-bezier(0.2,0,0,1)",
+        "--motion-reveal": "400ms cubic-bezier(0.2,0,0,1)",
+        "--motion-stagger": "40ms",
+        "--motion-reveal-distance": "12px"
+      }
+    },
+    "restored": "balanced",
+    "draftClass": true
+  },
+  "mobile": {
+    "captured_at": "2026-08-10T18:55:59.674Z",
+    "scope": "temporary DOM class swap against live compiled CSS; mobile Rich cap active; does not claim editor persistence",
+    "url": "https://salla.design/en/dev-v37bn5qobfotqowz?preview=true",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "reduceMobileClass": true,
+    "original": "balanced",
+    "rows": {
+      "calm": {
+        "--motion-duration-feedback": "100ms",
+        "--motion-duration-ui": "140ms",
+        "--motion-duration-reveal": "0ms",
+        "--motion-ui": "140ms cubic-bezier(0.2,0,0,1)",
+        "--motion-feedback": "100ms cubic-bezier(0.2,0,0,1)",
+        "--motion-reveal": "0ms cubic-bezier(0.2,0,0,1)",
+        "--motion-stagger": "0ms",
+        "--motion-reveal-distance": "0px"
+      },
+      "balanced": {
+        "--motion-duration-feedback": "120ms",
+        "--motion-duration-ui": "200ms",
+        "--motion-duration-reveal": "240ms",
+        "--motion-ui": "200ms cubic-bezier(0.2,0,0,1)",
+        "--motion-feedback": "120ms cubic-bezier(0.2,0,0,1)",
+        "--motion-reveal": "240ms cubic-bezier(0.2,0,0,1)",
+        "--motion-stagger": "0ms",
+        "--motion-reveal-distance": "4px"
+      },
+      "rich": {
+        "--motion-duration-feedback": "120ms",
+        "--motion-duration-ui": "200ms",
+        "--motion-duration-reveal": "240ms",
+        "--motion-ui": "200ms cubic-bezier(0.2,0,0,1)",
+        "--motion-feedback": "120ms cubic-bezier(0.2,0,0,1)",
+        "--motion-reveal": "240ms cubic-bezier(0.2,0,0,1)",
+        "--motion-stagger": "0ms",
+        "--motion-reveal-distance": "4px"
+      }
+    },
+    "restored": "balanced",
+    "draftClass": true
+  }
+}

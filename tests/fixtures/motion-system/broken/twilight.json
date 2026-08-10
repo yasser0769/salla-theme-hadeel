@@ -1,0 +1,31 @@
+{
+  "settings": [
+    {
+      "id": "motion_level",
+      "type": "items",
+      "format": "dropdown-list",
+      "label": "مستوى الحركة",
+      "selected": [
+        {
+          "label": "غني",
+          "value": "rich",
+          "key": "00000000-0000-4000-8000-0000000000b1"
+        }
+      ],
+      "options": [
+        {
+          "label": "غني",
+          "value": "rich",
+          "key": "00000000-0000-4000-8000-0000000000b1"
+        },
+        {
+          "label": "مفرط",
+          "value": "extreme",
+          "key": "00000000-0000-4000-8000-0000000000b2"
+        }
+      ],
+      "source": "Manual",
+      "required": true
+    }
+  ]
+}

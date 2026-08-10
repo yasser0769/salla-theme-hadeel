@@ -1,0 +1,6 @@
+/* Broken witness: the settings layer never imports the motion token owner. */
+
+@use './01-settings/tokens' as *;
+@use './01-settings/global' as *;
+
+@use './02-generic/common' as *;

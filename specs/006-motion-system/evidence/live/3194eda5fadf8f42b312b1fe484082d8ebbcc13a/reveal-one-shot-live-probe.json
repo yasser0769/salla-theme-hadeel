@@ -1,0 +1,54 @@
+{
+  "captured_at": "2026-08-10T19:03:39.357Z",
+  "url": "https://salla.design/en/dev-v37bn5qobfotqowz?preview=true",
+  "html": {
+    "lang": "en",
+    "dir": "ltr"
+  },
+  "draftClass": true,
+  "profile": "balanced",
+  "scope": "temporary noncritical DOM probe against the real draft; removed after measurement",
+  "controllerPresent": true,
+  "tokens": {
+    "duration": "240ms",
+    "distance": "4px"
+  },
+  "before": {
+    "revealTargets": 1,
+    "active": 0,
+    "calls": 0
+  },
+  "during": {
+    "calls": 1,
+    "active": 1,
+    "animations": 1,
+    "revealed": true
+  },
+  "afterSecondAttempt": {
+    "calls": 1,
+    "active": 0,
+    "animations": 0,
+    "revealed": true,
+    "computedOpacity": "1",
+    "computedTransform": "none"
+  },
+  "observedKeyframes": [
+    {
+      "opacity": 0,
+      "transform": "translateY(4px)"
+    },
+    {
+      "opacity": 1,
+      "transform": "translateY(0px)"
+    }
+  ],
+  "observedOptions": {
+    "duration": 240,
+    "easing": "cubic-bezier(0.2,0,0,1)"
+  },
+  "cleanup": {
+    "probePresent": false,
+    "revealTargets": 0
+  },
+  "pass": true
+}

@@ -41,7 +41,7 @@ custom-salla-product-card,
   height: 100%;
   opacity: 1;
   object-fit: cover;
-  transition: transform 320ms ease;
+  transition: transform var(--motion-ui);
 }
 
 .s-product-card-image .s-product-card-image-contain {
@@ -61,7 +61,7 @@ custom-salla-product-card,
   opacity: 0;
   object-fit: cover;
   pointer-events: none;
-  transition: opacity 300ms ease;
+  transition: opacity var(--motion-ui);
 }
 
 .s-product-card-promotion-title,
@@ -343,7 +343,7 @@ custom-salla-product-card,
     top: 12px;
     opacity: 0;
     transform: translateY(-6px);
-    transition: opacity 180ms ease, transform 180ms ease;
+    transition: opacity var(--motion-ui), transform var(--motion-ui);
   }
 
   /* Centering is direction-agnostic, so it stays physical in both directions. */
@@ -359,7 +359,7 @@ custom-salla-product-card,
     border-radius: var(--r-pill);
     opacity: 0;
     transform: translate(-50%, -50%);
-    transition: opacity 180ms ease, background-color 180ms ease;
+    transition: opacity var(--motion-ui), background-color var(--motion-ui);
   }
 
   .kalles-card-actions > .kalles-card-quick-view {

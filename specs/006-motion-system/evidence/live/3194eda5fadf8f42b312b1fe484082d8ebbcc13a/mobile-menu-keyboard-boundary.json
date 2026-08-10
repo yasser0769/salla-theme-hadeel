@@ -1,0 +1,49 @@
+{
+  "owner": "theme legacy mmenu-light mobile menu (outside HDL-06 motion scope)",
+  "afterOpen": {
+    "captured_at": "2026-08-10T18:52:38.962Z",
+    "drawerPresent": true,
+    "drawerClasses": [
+      "mm-ocd",
+      "mm-ocd--right",
+      "mm-ocd--open"
+    ],
+    "bodyOverflow": "hidden",
+    "active": {
+      "tag": "A",
+      "aria": "فتح القائمة",
+      "text": ""
+    },
+    "html": {
+      "lang": "ar",
+      "dir": "rtl"
+    }
+  },
+  "afterEscape": {
+    "captured_at": "2026-08-10T18:52:39.392Z",
+    "drawerClasses": [
+      "mm-ocd",
+      "mm-ocd--right",
+      "mm-ocd--open"
+    ],
+    "bodyOverflow": "hidden",
+    "active": {
+      "tag": "A",
+      "aria": "فتح القائمة",
+      "text": ""
+    }
+  },
+  "afterBackdrop": {
+    "captured_at": "2026-08-10T18:52:40.041Z",
+    "drawerClasses": [
+      "mm-ocd",
+      "mm-ocd--right"
+    ],
+    "bodyOverflow": "hidden auto",
+    "active": {
+      "tag": "BODY",
+      "aria": "",
+      "text": "To get full functionality of this site you need to enable JavaScript. Here is ho"
+    }
+  }
+}

@@ -28,7 +28,7 @@
           opacity: 0;
           display: inline-block;
           transform: scale(0.4);
-          transition: all 0.3s ease;
+          transition: opacity var(--motion-ui), transform var(--motion-ui);
           font-family: "sallaicons" !important;
           // speak: never;
           font-style: normal;
@@ -85,7 +85,7 @@
 
     input[type="radio"] {
       + label {
-        transition: transform 0.2s, color 0.3s;
+        transition: transform var(--motion-duration-ui), color var(--motion-duration-ui);
         filter: grayscale(1);
 
 

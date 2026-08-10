@@ -8,7 +8,7 @@
 | position        | Int     | Sorting number start from zero                                   |
 
 #}
-<section class="s-block s-block--fixed-banner wide-placeholder">
+<section class="s-block s-block--fixed-banner wide-placeholder" data-hadeel-reveal>
     <div class="container">
         {% set alt_text = image.alt|trim ? image.alt : trans('blocks.banner.fixed_banner_alt') %}
         <a href="{{ url }}" class="banner banner--fixed overflow-hidden" aria-label="{{ trans('blocks.banner.banner') }} {{ alt_text }}">

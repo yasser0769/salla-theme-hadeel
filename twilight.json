@@ -1005,6 +1005,58 @@
             "required": false,
             "value": false,
             "selected": false
+        },
+        {
+            "type": "static",
+            "format": "title",
+            "id": "static-motion-title",
+            "value": "نظام الحركة",
+            "variant": "h6"
+        },
+        {
+            "id": "motion_level",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "مستوى الحركة",
+            "description": "شخصية الحركة في المتجر: هادئ يقتصر على تنبيه وظيفي قصير، متوازن يضيف ظهورًا خفيفًا مرة واحدة، غني يسمح بمسافة وتتابع أوضح. لا يغيّر المحتوى أو ترتيب الصفحة",
+            "icon": "sicon-magic",
+            "selected": [
+                {
+                    "label": "متوازن",
+                    "value": "balanced",
+                    "key": "de22c85d-a9bc-4e19-b001-dacebc010e0c"
+                }
+            ],
+            "options": [
+                {
+                    "label": "هادئ",
+                    "value": "calm",
+                    "key": "701e9523-be9c-414b-8cd9-760db7c17706"
+                },
+                {
+                    "label": "متوازن",
+                    "value": "balanced",
+                    "key": "de22c85d-a9bc-4e19-b001-dacebc010e0c"
+                },
+                {
+                    "label": "غني",
+                    "value": "rich",
+                    "key": "4932cfd6-9c31-4cfc-8b1e-64b2774157ea"
+                }
+            ],
+            "source": "Manual",
+            "required": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-mobile",
+            "label": "تقليل الحركة على الجوال",
+            "description": "عند التفعيل يُقيد المستوى الغني على الجوال إلى سلوك متوازن في الظهور والتحويم، دون تعطيل فتح القوائم أو التنبيه الوظيفي أو حالات التحميل",
+            "id": "motion_reduce_mobile",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
         }
     ],
     "components": [

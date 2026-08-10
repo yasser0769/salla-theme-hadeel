@@ -10,7 +10,7 @@
 
 import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { checkLocalizationA11y } from '../scripts/check-localization-a11y.mjs';
 
@@ -304,6 +304,52 @@ describe('US3: disclosure and collapse ARIA contract', () => {
 
   test('no positive tabindex anywhere in templates or scripts', () => {
     assert.deepEqual(errorsByRule('positive-tabindex'), []);
+  });
+});
+
+/* ---------------------------------------------------- T035 (HDL-06 review) */
+
+describe('T035: product description long-content overflow protection', () => {
+  // Live preview evidence (SHA 422d5f2a…, 390×844, ar-RTL and en-LTR): the
+  // merchant description can be one unbroken mixed Arabic/Latin/digit string,
+  // which pushed #product-details .article--main to scrollWidth 386 inside a
+  // 360 client width and overflowed the whole document (scrollWidth 401 vs
+  // innerWidth 390). The fix must wrap long tokens in the owning rule —
+  // never clip overflow globally.
+
+  test('the owning .kalles-product-details .article rule wraps unbroken mixed content', () => {
+    const productScss = read('src/assets/styles/04-components/product.scss');
+    const ownerRule = productScss.match(/\.kalles-product-details\s*\{[\s\S]*?\.article\s*\{([^}]*)\}/);
+    assert.ok(ownerRule, 'product.scss must own .kalles-product-details .article');
+    assert.match(
+      ownerRule[1],
+      /overflow-wrap:\s*(anywhere|break-word)/,
+      'the article rule must break unbroken merchant strings (overflow-wrap)',
+    );
+  });
+
+  test('no global or body-level overflow clipping is introduced anywhere', () => {
+    const stylesRoot = join(ROOT, 'src/assets/styles');
+    const stack = [stylesRoot];
+    const files = [];
+    while (stack.length) {
+      const dir = stack.pop();
+      for (const entry of readdirSync(dir)) {
+        const full = join(dir, entry);
+        if (statSync(full).isDirectory()) stack.push(full);
+        else if (entry.endsWith('.scss')) files.push(full);
+      }
+    }
+    for (const file of files) {
+      const text = readFileSync(file, 'utf8');
+      // Strip comments before scanning so documented rationale cannot false-positive.
+      const code = text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/[^\n]*/g, '');
+      assert.doesNotMatch(
+        code,
+        /(^|[},])[^\S\n]*(html|body|\*)[^\S\n]*(,[^\S\n]*(html|body|\*)[^\S\n]*)*\{[^}]*overflow(-x|-y)?:\s*(hidden|clip)/m,
+        `${file} must not clip overflow on html/body/* — wrap long content in its owner instead`,
+      );
+    }
   });
 });
 

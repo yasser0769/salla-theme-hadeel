@@ -1,7 +1,8 @@
 
 // sliders lazyloading opacity transition
 .swiper-lazy{
-  @apply transition-opacity duration-500 opacity-0;
+  @apply opacity-0;
+  transition: opacity var(--motion-ui);
   @apply absolute top-0 h-full w-full bg-cover bg-center;
 
   &.swiper-lazy-loaded{
@@ -10,7 +11,8 @@
 }
 
 .lazy__bg{
-  @apply absolute top-0 left-0 w-full h-full bg-cover bg-center transition-opacity duration-500 opacity-0;
+  @apply absolute top-0 left-0 w-full h-full bg-cover bg-center opacity-0;
+  transition: opacity var(--motion-ui);
 
   &.loaded{
     @apply opacity-100;

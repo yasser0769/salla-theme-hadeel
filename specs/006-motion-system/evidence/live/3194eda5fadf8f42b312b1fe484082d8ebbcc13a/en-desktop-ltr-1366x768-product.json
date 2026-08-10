@@ -1,0 +1,93 @@
+{
+  "body_classes": [
+    "theme-raed",
+    "overflow-x-hidden",
+    "product-single",
+    "salla-draft-722988000",
+    "color-mode-dark",
+    "ltr",
+    "font-dubai",
+    "footer-is-light",
+    "is-sticky-product-bar",
+    "hadeel-layout-wide",
+    "hadeel-spacing-spacious",
+    "hadeel-corners-rounded",
+    "hadeel-card-elevated",
+    "hadeel-header-centered",
+    "hadeel-header-density-comfortable",
+    "hadeel-motion-balanced",
+    "hadeel-motion-reduce-mobile",
+    "hadeel-preset-luxury",
+    "product-single-page"
+  ],
+  "body_data": {
+    "hadeelMotion": "balanced",
+    "hadeelMotionReduceMobile": "true",
+    "hadeelPreset": "luxury",
+    "hadeelPresetSources": "layout_width:preset,section_spacing:preset,corner_style:preset,product_card_style:preset,header_layout:preset,header_density:preset"
+  },
+  "captured_at": "2026-08-10T18:47:41.465Z",
+  "cls": 0,
+  "content": {
+    "ctaPresent": true,
+    "ctaVisible": true,
+    "focusableVisible": 45,
+    "pricePresent": true,
+    "priceVisible": true,
+    "revealTargets": 0,
+    "revealed": 0
+  },
+  "expected": {
+    "dir": "ltr",
+    "lang": "en",
+    "viewport": {
+      "h": 768,
+      "w": 1366
+    }
+  },
+  "html": {
+    "dir": "ltr",
+    "lang": "en"
+  },
+  "motion": {
+    "--motion-duration-feedback": "120ms",
+    "--motion-duration-reveal": "240ms",
+    "--motion-duration-ui": "200ms",
+    "--motion-feedback": "120ms cubic-bezier(0.2,0,0,1)",
+    "--motion-reveal": "240ms cubic-bezier(0.2,0,0,1)",
+    "--motion-reveal-distance": "4px",
+    "--motion-stagger": "0ms",
+    "--motion-ui": "200ms cubic-bezier(0.2,0,0,1)",
+    "--motion-ui-exit": "200ms cubic-bezier(0.4,0,1,1)"
+  },
+  "network": {
+    "count": 0,
+    "draftAssets": [],
+    "localhost": []
+  },
+  "overflow": {
+    "innerWidth": 1366,
+    "pass": true,
+    "scrollWidth": 1366
+  },
+  "provenance": {
+    "css": [
+      "https://salla.design/themes/draft/722988000/app.css"
+    ],
+    "draftClass": true,
+    "scripts": [
+      "https://salla.design/themes/draft/722988000/product-card.js",
+      "https://salla.design/themes/draft/722988000/main-menu.js",
+      "https://salla.design/themes/draft/722988000/add-product-toast.js",
+      "https://salla.design/themes/draft/722988000/app.js",
+      "https://salla.design/themes/draft/722988000/product.js"
+    ]
+  },
+  "route": "product",
+  "url": "https://salla.design/en/dev-v37bn5qobfotqowz/%D9%81%D8%B3%D8%AA%D8%A7%D9%86/p1852650594?preview=true",
+  "viewport": {
+    "dpr": 1,
+    "h": 768,
+    "w": 1366
+  }
+}

@@ -104,10 +104,12 @@
         "HDL-03",
         "HDL-05"
       ],
-      "status": "planned",
+      "status": "done",
       "spec": "specs/006-motion-system/spec.md",
       "design": "specs/006-motion-system/design.md",
-      "input": "specs/006-motion-system/spec-input.md"
+      "input": "specs/006-motion-system/spec-input.md",
+      "evidence": "specs/006-motion-system/evidence/final-review.md",
+      "evidence_status": "Owner ACCEPT HDL-06; independent Final Review PASS / BLOCKERS 0; 26/26 requirements covered; production build, build-sync, compressed package, and owner-confirmed Salla evidence PASS"
     },
     {
       "id": "HDL-07",

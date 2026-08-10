@@ -15,7 +15,7 @@ class Product extends BasePage {
 
         this.initProductOptionValidations();
         this.initRelatedProducts();
-        this.initAddToCartAnimation();
+        this.initAddToCartFeedback();
         this.initCompactInstallments();
         this.updateSalePricing();
 
@@ -91,12 +91,18 @@ class Product extends BasePage {
     }
 
     /**
-     * Mirrors Kalles' buy-button control: wait for the configured interval, apply the
-     * selected animation for one second, then remove it so the next loop can replay.
-     * The class is applied to Twilight's real button rather than the custom-element
-     * host. Reduced-motion users get no timer, and unavailable products are skipped.
+     * Add-to-cart feedback (HDL-06 FR-013, T017/T026). The legacy periodic
+     * attention loop is gone: the merchant-selected effect plays once per real
+     * customer click on the theme-rendered `salla-add-product-button` host,
+     * delegated to the shared controller's `playClassFeedback`, which restarts
+     * the class, tracks the resulting CSS animations so a live OS reduce
+     * change settles them like every other theme-owned animation, and removes
+     * the class after completion. The effect is pure confirmation that the
+     * press landed — it never implies cart success or failure; Salla owns the
+     * request and its outcome. Reduced-motion gating lives in the controller,
+     * so a mid-session OS change stops new effects without reload.
      */
-    initAddToCartAnimation() {
+    initAddToCartFeedback() {
       const component = document.querySelector('[data-add-to-cart-animation]');
       const animation = component?.dataset.addToCartAnimation;
       const allowedAnimations = new Set([
@@ -110,28 +116,11 @@ class Product extends BasePage {
       ]);
 
       if (!component || !allowedAnimations.has(animation)) return;
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-      const configuredInterval = Number(component.dataset.addToCartAnimationInterval);
-      const intervalSeconds = Math.min(40, Math.max(2, configuredInterval || 6));
       const animationClass = `hadeel-atc-animation--${animation}`;
 
-      customElements.whenDefined('salla-add-product-button').then(async () => {
-        if (typeof component.componentOnReady === 'function') {
-          await component.componentOnReady();
-        }
-
-        const play = () => {
-          const button = component.querySelector('.s-button-btn:not(:disabled), .s-button-element:not(:disabled)');
-          if (!button) return;
-
-          button.classList.remove(animationClass);
-          void button.offsetWidth;
-          button.classList.add(animationClass);
-          window.setTimeout(() => button.classList.remove(animationClass), 1000);
-        };
-
-        window.setInterval(play, intervalSeconds * 1000);
+      component.addEventListener('click', () => {
+        window.hadeelMotion?.playClassFeedback(component, animationClass);
       });
     }
 

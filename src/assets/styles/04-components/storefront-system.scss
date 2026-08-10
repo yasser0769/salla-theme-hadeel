@@ -183,7 +183,7 @@ salla-quantity-input .s-quantity-input-container {
   background: transparent;
   display: inline-grid;
   place-items: center;
-  transition: color 160ms ease, transform 160ms ease;
+  transition: color var(--motion-ui), transform var(--motion-ui);
 }
 
 .header-action:hover {
@@ -266,7 +266,7 @@ salla-quantity-input .s-quantity-input-container {
   display: grid;
   place-items: center;
   position: relative;
-  transition: color 160ms ease, transform 160ms ease;
+  transition: color var(--motion-ui), transform var(--motion-ui);
 }
 
 .header-account-control:hover {
@@ -539,7 +539,7 @@ salla-quantity-input .s-quantity-input-container {
   display: block;
   transform: scaleX(0.35);
   transform-origin: right;
-  transition: transform 180ms ease;
+  transition: transform var(--motion-ui);
 }
 
 [dir="ltr"] .s-block__display-all::after,
@@ -633,7 +633,7 @@ salla-quantity-input .s-quantity-input-container {
   gap: var(--sp-3);
   font-size: 13px;
   font-weight: 600;
-  transition: background-color 180ms ease, transform 180ms ease;
+  transition: background-color var(--motion-ui), transform var(--motion-ui);
 
   /* The glyph points left, i.e. forward only in RTL; in LTR it faces back. */
   [dir='ltr'] & .sicon-arrow-left {
@@ -670,6 +670,7 @@ salla-quantity-input .s-quantity-input-container {
   border-radius: var(--r-0);
   color: var(--hadeel-ink);
   background: transparent;
+  transition: color var(--motion-ui), background-color var(--motion-ui);
   box-shadow: none;
 }
 
@@ -685,7 +686,7 @@ salla-quantity-input .s-quantity-input-container {
   aspect-ratio: 1;
   border-radius: var(--r-0);
   object-fit: cover;
-  transition: transform 260ms ease;
+  transition: transform var(--motion-ui);
 }
 
 .slide--cat-entry:hover img {
@@ -1354,7 +1355,7 @@ salla-quantity-input .s-quantity-input-container {
     bottom: -5px;
     opacity: 0;
     transform: scaleX(0);
-    transition: opacity 160ms ease, transform 160ms ease;
+    transition: opacity var(--motion-ui), transform var(--motion-ui);
   }
 
   .mobile-toolbar__item.is-active::after {

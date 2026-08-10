@@ -22,8 +22,8 @@ class Wishlist extends BasePage {
                 return;
             }
 
-            item.style.height = item.offsetHeight + 'px';
-            void item.offsetWidth; // trigger reflow
+            // Opacity-only exit (HDL-06): no layout-property animation and no
+            // forced reflow; the element is removed when the transition ends.
             item.classList.add('fade-out-collapse');
 
             item.addEventListener('transitionend', function handler(e) {

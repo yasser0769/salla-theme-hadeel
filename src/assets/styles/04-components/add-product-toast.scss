@@ -23,8 +23,8 @@ salla-hadeel-cart-drawer {
 
 .hadeel-cart-drawer .s-drawer-overlay {
   transition-property: opacity;
-  transition-duration: 300ms;
-  transition-timing-function: ease;
+  transition-duration: var(--motion-duration-ui);
+  transition-timing-function: var(--motion-easing-standard);
 }
 
 .hadeel-cart-drawer .s-drawer-body {
@@ -38,8 +38,8 @@ salla-hadeel-cart-drawer {
   box-shadow: var(--hadeel-shadow-drawer);
   opacity: 1;
   transition-property: transform;
-  transition-duration: 300ms;
-  transition-timing-function: ease;
+  transition-duration: var(--motion-duration-ui);
+  transition-timing-function: var(--motion-easing-standard);
 }
 
 .hadeel-cart-drawer .s-drawer-header {
@@ -103,7 +103,7 @@ salla-hadeel-cart-drawer {
 .hadeel-cart-drawer__item {
   padding: 0 0 var(--sp-4);
   border-bottom: 1px solid var(--hadeel-line);
-  transition: opacity 150ms ease;
+  transition: opacity var(--motion-ui);
 }
 
 .hadeel-cart-drawer__item + .hadeel-cart-drawer__item {

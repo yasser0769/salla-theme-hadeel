@@ -1,6 +1,6 @@
 import MobileMenu from 'mmenu-light';
 import Swal from 'sweetalert2';
-import Anime from './partials/anime';
+import initHadeelMotion from './partials/motion';
 import initTootTip from './partials/tooltip';
 import AppHelpers from "./app-helpers";
 
@@ -11,6 +11,9 @@ class App extends AppHelpers {
   }
 
   loadTheApp() {
+    // HDL-06: one shared motion controller on the existing entry — no new
+    // chunk or request; everything it drives is progressive enhancement.
+    initHadeelMotion();
     this.commonThings();
     this.initiateNotifier();
     this.initiateMobileMenu();
@@ -249,14 +252,19 @@ isElementLoaded(selector){
   }
 
   toggleModal(id, isOpen) {
-    this.toggleClassIf(`${id} .s-salla-modal-overlay`, 'ease-out duration-300 opacity-100', 'opacity-0', () => isOpen)
+    // The transition lives in 02-generic/common.scss on the shared
+    // .s-salla-modal-* classes (the markup may be runtime-injected by Salla
+    // apps, so it stays class-based); only state classes are toggled here.
+    this.toggleClassIf(`${id} .s-salla-modal-overlay`, 'opacity-100', 'opacity-0', () => isOpen)
       .toggleClassIf(`${id} .s-salla-modal-body`,
-        'ease-out duration-300 opacity-100 translate-y-0 sm:scale-100', //add these classes
+        'opacity-100 translate-y-0 sm:scale-100', //add these classes
         'opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95', //remove these classes
         () => isOpen)
       .toggleElementClassIf(document.body, 'modal-is-open', 'modal-is-closed', () => isOpen);
     if (!isOpen) {
-      setTimeout(() => this.addClass(id, 'hidden'), 350);
+      // Bounded, token-derived cleanup: hide only after the close transition settles.
+      const settle = (window.hadeelMotion?.durationMs?.('--motion-duration-ui', 300) ?? 300) + 50;
+      setTimeout(() => this.addClass(id, 'hidden'), settle);
     }
   }
 
@@ -290,20 +298,6 @@ isElementLoaded(selector){
       });
   }
 
-
-  /**
-   * Workaround for seeking to simplify & clean, There are three ways to use this method:
-   * 1- direct call: `this.anime('.my-selector')` - will use default values
-   * 2- direct call with overriding defaults: `this.anime('.my-selector', {duration:3000})`
-   * 3- return object to play it letter: `this.anime('.my-selector', false).duration(3000).play()` - will not play animation unless calling play method.
-   * @param {string|HTMLElement} selector
-   * @param {object|undefined|null|null} options - in case there is need to set attributes one by one set it `false`;
-   * @return {Anime|*}
-   */
-  anime(selector, options = null) {
-    let anime = new Anime(selector, options);
-    return options === false ? anime : anime.play();
-  }
 
   /**
    * These actions are responsible for pressing "add to cart" button,

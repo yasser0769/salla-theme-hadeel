@@ -1,0 +1,42 @@
+{
+  "captured_at": "2026-08-10T19:06:09.496Z",
+  "url": "https://salla.design/en/dev-v37bn5qobfotqowz/%D9%81%D8%B3%D8%AA%D8%A7%D9%86/p1852650594?preview=true",
+  "html": {
+    "lang": "en",
+    "dir": "ltr"
+  },
+  "draftClass": true,
+  "scope": "non-mutating direct exercise of the exact shared controller + merchant-selected CTA class; no click event dispatched and no cart request initiated",
+  "controllerPresent": true,
+  "componentPresent": true,
+  "selectedAnimation": "shake",
+  "className": "hadeel-atc-animation--shake",
+  "immediate": {
+    "classApplied": true,
+    "componentAnimations": 1,
+    "controllerActive": 1,
+    "elapsedMs": 0.2999999523162842,
+    "handleCount": 1
+  },
+  "feedbackStartDelayMs": 8.299999952316284,
+  "animationNames": [
+    "hadeelAtcShake"
+  ],
+  "afterSettle": {
+    "animationStarts": 1,
+    "classApplied": false,
+    "componentAnimations": 0,
+    "controllerActive": 0
+  },
+  "afterNoRepeatWindow": {
+    "animationStarts": 1,
+    "classApplied": false,
+    "componentAnimations": 0,
+    "controllerActive": 0
+  },
+  "motionAttributedCls": 0,
+  "clsEntries": [],
+  "newResourceCount": 0,
+  "cartMutationAttempted": false,
+  "pass": true
+}

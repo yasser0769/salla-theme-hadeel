@@ -53,7 +53,7 @@
                         {% if user.loyalty_points %}
                             <div class="loyalty-points">
                                 {{ trans('pages.loyalty_program.you_have') }}
-                                <span class="count-number count-anime" data-count="{{ user.loyalty_points }}">0</span>
+                                <span class="count-number count-anime" data-count="{{ user.loyalty_points }}">{{ user.loyalty_points }}</span>
                                 {{ trans("pages.loyalty_program.point") }}
                             </div>
                         {% endif %}

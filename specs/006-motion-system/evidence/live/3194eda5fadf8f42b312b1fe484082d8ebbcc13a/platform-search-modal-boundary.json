@@ -1,0 +1,122 @@
+{
+  "owner": "Salla platform search component",
+  "focusBeforeOpen": {
+    "tag": "BUTTON",
+    "aria": "البحث",
+    "class": "header-action header-action--search"
+  },
+  "afterOpen": {
+    "captured_at": "2026-08-10T18:52:59.859Z",
+    "bodyClasses": [
+      "theme-raed",
+      "overflow-x-hidden",
+      "index",
+      "salla-draft-722988000",
+      "color-mode-dark",
+      "rtl",
+      "font-dubai",
+      "footer-is-light",
+      "is-sticky-product-bar",
+      "hadeel-layout-wide",
+      "hadeel-spacing-spacious",
+      "hadeel-corners-rounded",
+      "hadeel-card-elevated",
+      "hadeel-header-centered",
+      "hadeel-header-density-comfortable",
+      "hadeel-motion-balanced",
+      "hadeel-motion-reduce-mobile",
+      "hadeel-preset-luxury",
+      "modal-is-open"
+    ],
+    "bodyOverflow": "hidden",
+    "active": {
+      "tag": "INPUT",
+      "aria": "",
+      "placeholder": "ادخل كلمة البحث"
+    },
+    "searchElements": [
+      {
+        "tag": "SALLA-SEARCH",
+        "class": "hydrated",
+        "open": false
+      },
+      {
+        "tag": "SALLA-DRAWER",
+        "class": "hadeel-cart-drawer salla-drawer s-drawer s-drawer-container s-hidden hydrated",
+        "open": false
+      },
+      {
+        "tag": "SALLA-MODAL",
+        "class": "s-search-modal salla-modal s-modal s-modal-container hydrated",
+        "open": false
+      },
+      {
+        "tag": "SALLA-MODAL",
+        "class": "s-offer-modal-type- salla-modal s-modal s-modal-container s-hidden hydrated",
+        "open": false
+      },
+      {
+        "tag": "SALLA-MODAL",
+        "class": "s-hidden salla-modal s-modal s-modal-container hydrated",
+        "open": false
+      }
+    ]
+  },
+  "afterEscape": {
+    "captured_at": "2026-08-10T18:53:00.804Z",
+    "bodyClasses": [
+      "theme-raed",
+      "overflow-x-hidden",
+      "index",
+      "salla-draft-722988000",
+      "color-mode-dark",
+      "rtl",
+      "font-dubai",
+      "footer-is-light",
+      "is-sticky-product-bar",
+      "hadeel-layout-wide",
+      "hadeel-spacing-spacious",
+      "hadeel-corners-rounded",
+      "hadeel-card-elevated",
+      "hadeel-header-centered",
+      "hadeel-header-density-comfortable",
+      "hadeel-motion-balanced",
+      "hadeel-motion-reduce-mobile",
+      "hadeel-preset-luxury",
+      "modal-is-open"
+    ],
+    "bodyOverflow": "hidden",
+    "active": {
+      "tag": "INPUT",
+      "aria": "",
+      "placeholder": "ادخل كلمة البحث"
+    },
+    "searchElements": [
+      {
+        "tag": "SALLA-SEARCH",
+        "class": "hydrated",
+        "open": false
+      },
+      {
+        "tag": "SALLA-DRAWER",
+        "class": "hadeel-cart-drawer salla-drawer s-drawer s-drawer-container s-hidden hydrated",
+        "open": false
+      },
+      {
+        "tag": "SALLA-MODAL",
+        "class": "s-search-modal salla-modal s-modal s-modal-container hydrated",
+        "open": false
+      },
+      {
+        "tag": "SALLA-MODAL",
+        "class": "s-offer-modal-type- salla-modal s-modal s-modal-container s-hidden hydrated",
+        "open": false
+      },
+      {
+        "tag": "SALLA-MODAL",
+        "class": "s-hidden salla-modal s-modal s-modal-container hydrated",
+        "open": false
+      }
+    ]
+  }
+}

@@ -1,7 +1,10 @@
 input[type="radio"] {
   &.sr-only {
-    div.absolute {
-      transition: all 0.3s;
+    // [class~="absolute"] is identical matching semantics to div.absolute but
+    // is not a Tailwind class selector, so the pipeline no longer expands this
+    // one rule into 112 aliased safe-list rules in the built bundle.
+    div[class~="absolute"] {
+      transition: border-color var(--motion-ui), background-color var(--motion-ui);
     }
 
     &:checked~div.absolute {
@@ -21,7 +24,8 @@ input[type="text"]:disabled {
 }
 
 .form-input {
-  @apply w-full h-10 transition-colors duration-300 focus:ring-transparent focus:border-primary dark:focus:border-primary text-sm border-gray-200 dark:bg-gray-600 dark:border-gray-600 rounded-md;
+  @apply w-full h-10 focus:ring-transparent focus:border-primary dark:focus:border-primary text-sm border-gray-200 dark:bg-gray-600 dark:border-gray-600 rounded-md;
+  transition: color var(--motion-ui), background-color var(--motion-ui), border-color var(--motion-ui);
   appearance: none;
   -webkit-appearance: none;
 }

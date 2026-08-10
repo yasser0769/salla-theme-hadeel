@@ -1,0 +1,857 @@
+{
+  "instrumentation": "Buffered PerformanceObserver(layout-shift) after DOMContentLoaded; entries with hadRecentInput excluded",
+  "captured_at": "2026-08-10T18:55:30.571Z",
+  "rows": [
+    {
+      "captured_at": "2026-08-10T18:54:19.809Z",
+      "url": "https://salla.design/ar/dev-v37bn5qobfotqowz?preview=true",
+      "html": {
+        "lang": "ar",
+        "dir": "rtl"
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "draftClass": true,
+      "supported": true,
+      "value": 0.6185563251913963,
+      "entries": [
+        {
+          "value": 0.6185563251913963,
+          "startTime": 1748.6000000238419,
+          "sources": [
+            {
+              "tag": "FOOTER",
+              "id": null,
+              "cls": "store-footer"
+            },
+            {
+              "tag": "SECTION",
+              "id": "reorder-section",
+              "cls": "s-block container mt-6 sm:mt-8"
+            },
+            {
+              "tag": "H2",
+              "id": null,
+              "cls": ""
+            }
+          ]
+        }
+      ],
+      "label": "ar-mobile-rtl-390x844",
+      "page": "home"
+    },
+    {
+      "captured_at": "2026-08-10T18:54:23.992Z",
+      "url": "https://salla.design/ar/dev-v37bn5qobfotqowz/%D8%A7%D9%84%D9%81%D8%B3%D8%A7%D8%AA%D9%8A%D9%86/c2108520314?preview=true",
+      "html": {
+        "lang": "ar",
+        "dir": "rtl"
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "draftClass": true,
+      "supported": true,
+      "value": 0.0007793151191903677,
+      "entries": [
+        {
+          "value": 0.0007793151191903677,
+          "startTime": 1240.1000000238419,
+          "sources": [
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "collection-hero__content"
+            }
+          ]
+        }
+      ],
+      "label": "ar-mobile-rtl-390x844",
+      "page": "collection"
+    },
+    {
+      "captured_at": "2026-08-10T18:54:28.245Z",
+      "url": "https://salla.design/ar/dev-v37bn5qobfotqowz/%D9%81%D8%B3%D8%AA%D8%A7%D9%86/p1852650594?preview=true",
+      "html": {
+        "lang": "ar",
+        "dir": "rtl"
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "draftClass": true,
+      "supported": true,
+      "value": 0.4734861601263669,
+      "entries": [
+        {
+          "value": 0.10791542877489677,
+          "startTime": 1026.8999999761581,
+          "sources": [
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "main-content kalles-product-summary"
+            },
+            {
+              "tag": null,
+              "id": null,
+              "cls": ""
+            },
+            {
+              "tag": "SECTION",
+              "id": "product-details",
+              "cls": "kalles-product-details"
+            },
+            {
+              "tag": "A",
+              "id": null,
+              "cls": "swiper-slide magnify-wrapper homeslider__slide"
+            },
+            {
+              "tag": "A",
+              "id": null,
+              "cls": "swiper-slide magnify-wrapper homeslider__slide"
+            }
+          ]
+        },
+        {
+          "value": 0.3655707313514701,
+          "startTime": 1191.2000000476837,
+          "sources": [
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "main-content kalles-product-summary"
+            },
+            {
+              "tag": "DL",
+              "id": null,
+              "cls": "kalles-product-meta"
+            },
+            {
+              "tag": "SECTION",
+              "id": "product-details",
+              "cls": "kalles-product-details"
+            },
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "kalles-product-support-links"
+            },
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "kalles-product-share"
+            }
+          ]
+        }
+      ],
+      "label": "ar-mobile-rtl-390x844",
+      "page": "product"
+    },
+    {
+      "captured_at": "2026-08-10T18:54:34.191Z",
+      "url": "https://salla.design/ar/dev-v37bn5qobfotqowz/cart?preview=true",
+      "html": {
+        "lang": "ar",
+        "dir": "rtl"
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "draftClass": true,
+      "supported": true,
+      "value": 0.3963555264038463,
+      "entries": [
+        {
+          "value": 0.3963555264038463,
+          "startTime": 2887.2999999523163,
+          "sources": [
+            {
+              "tag": "FORM",
+              "id": {},
+              "cls": ""
+            },
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "cart-item__options"
+            },
+            {
+              "tag": "FORM",
+              "id": {},
+              "cls": ""
+            },
+            {
+              "tag": "A",
+              "id": null,
+              "cls": "cart-item__media"
+            },
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "cart-item__cell cart-item__cell--total"
+            }
+          ]
+        }
+      ],
+      "label": "ar-mobile-rtl-390x844",
+      "page": "cart"
+    },
+    {
+      "captured_at": "2026-08-10T18:54:37.905Z",
+      "url": "https://salla.design/en/dev-v37bn5qobfotqowz?preview=true",
+      "html": {
+        "lang": "en",
+        "dir": "ltr"
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "draftClass": true,
+      "supported": true,
+      "value": 0.965739424898305,
+      "entries": [
+        {
+          "value": 0.2096086678196806,
+          "startTime": 1138.7999999523163,
+          "sources": [
+            {
+              "tag": "FOOTER",
+              "id": null,
+              "cls": "store-footer"
+            },
+            {
+              "tag": "SECTION",
+              "id": "reorder-section",
+              "cls": "s-block container mt-6 sm:mt-8"
+            },
+            {
+              "tag": "H2",
+              "id": null,
+              "cls": ""
+            }
+          ]
+        },
+        {
+          "value": 0.7561307570786244,
+          "startTime": 1297.2999999523163,
+          "sources": [
+            {
+              "tag": "CUSTOM-SALLA-PRODUCT-CARD",
+              "id": "1119614560",
+              "cls": "s-product-card-entry s-product-card-vertical"
+            },
+            {
+              "tag": "CUSTOM-SALLA-PRODUCT-CARD",
+              "id": "653379686",
+              "cls": "s-product-card-entry s-product-card-vertical s-product-card-out-of-stock"
+            },
+            {
+              "tag": "FOOTER",
+              "id": null,
+              "cls": "store-footer"
+            },
+            {
+              "tag": "CUSTOM-SALLA-PRODUCT-CARD",
+              "id": "2068810340",
+              "cls": "s-product-card-entry s-product-card-vertical"
+            },
+            {
+              "tag": "CUSTOM-SALLA-PRODUCT-CARD",
+              "id": "694250267",
+              "cls": "s-product-card-entry s-product-card-vertical s-product-card-out-of-stock"
+            }
+          ]
+        }
+      ],
+      "label": "en-mobile-ltr-390x844",
+      "page": "home"
+    },
+    {
+      "captured_at": "2026-08-10T18:54:41.791Z",
+      "url": "https://salla.design/en/dev-v37bn5qobfotqowz/%D8%A7%D9%84%D9%81%D8%B3%D8%A7%D8%AA%D9%8A%D9%86/c2108520314?preview=true",
+      "html": {
+        "lang": "en",
+        "dir": "ltr"
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "draftClass": true,
+      "supported": true,
+      "value": 0.0005543336218747822,
+      "entries": [
+        {
+          "value": 0.0005543336218747822,
+          "startTime": 967.5,
+          "sources": [
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "collection-hero__content"
+            }
+          ]
+        }
+      ],
+      "label": "en-mobile-ltr-390x844",
+      "page": "collection"
+    },
+    {
+      "captured_at": "2026-08-10T18:54:45.959Z",
+      "url": "https://salla.design/en/dev-v37bn5qobfotqowz/%D9%81%D8%B3%D8%AA%D8%A7%D9%86/p1852650594?preview=true",
+      "html": {
+        "lang": "en",
+        "dir": "ltr"
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "draftClass": true,
+      "supported": true,
+      "value": 0.3143415136147937,
+      "entries": [
+        {
+          "value": 0.3143415136147937,
+          "startTime": 1124,
+          "sources": [
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "main-content kalles-product-summary"
+            },
+            {
+              "tag": "DL",
+              "id": null,
+              "cls": "kalles-product-meta"
+            },
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "kalles-product-support-links"
+            },
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "kalles-product-share"
+            },
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "kalles-product-demand bg-white py-2.5 mb-5 rounded-md inline-flex text-sm"
+            }
+          ]
+        }
+      ],
+      "label": "en-mobile-ltr-390x844",
+      "page": "product"
+    },
+    {
+      "captured_at": "2026-08-10T18:54:52.040Z",
+      "url": "https://salla.design/en/dev-v37bn5qobfotqowz/cart?preview=true",
+      "html": {
+        "lang": "en",
+        "dir": "ltr"
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "draftClass": true,
+      "supported": true,
+      "value": 0.3979785000624885,
+      "entries": [
+        {
+          "value": 0.3979785000624885,
+          "startTime": 2113.600000023842,
+          "sources": [
+            {
+              "tag": "FORM",
+              "id": {},
+              "cls": ""
+            },
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "cart-item__options"
+            },
+            {
+              "tag": "FORM",
+              "id": {},
+              "cls": ""
+            },
+            {
+              "tag": "A",
+              "id": null,
+              "cls": "cart-item__media"
+            },
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "cart-item__cell cart-item__cell--total"
+            }
+          ]
+        }
+      ],
+      "label": "en-mobile-ltr-390x844",
+      "page": "cart"
+    },
+    {
+      "captured_at": "2026-08-10T18:54:56.475Z",
+      "url": "https://salla.design/ar/dev-v37bn5qobfotqowz?preview=true",
+      "html": {
+        "lang": "ar",
+        "dir": "rtl"
+      },
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "draftClass": true,
+      "supported": true,
+      "value": 0.680977964179738,
+      "entries": [
+        {
+          "value": 0.07909971373744912,
+          "startTime": 1735.7999999523163,
+          "sources": [
+            {
+              "tag": "FOOTER",
+              "id": null,
+              "cls": "store-footer"
+            },
+            {
+              "tag": "SECTION",
+              "id": "reorder-section",
+              "cls": "s-block container mt-6 sm:mt-8"
+            },
+            {
+              "tag": "H2",
+              "id": null,
+              "cls": ""
+            }
+          ]
+        },
+        {
+          "value": 0.6018782504422889,
+          "startTime": 1972.8999999761581,
+          "sources": [
+            {
+              "tag": "FOOTER",
+              "id": null,
+              "cls": "store-footer"
+            },
+            {
+              "tag": "SECTION",
+              "id": "reorder-section",
+              "cls": "s-block container mt-6 sm:mt-8"
+            },
+            {
+              "tag": "CUSTOM-SALLA-PRODUCT-CARD",
+              "id": "2068810340",
+              "cls": "s-product-card-entry s-product-card-vertical"
+            },
+            {
+              "tag": "CUSTOM-SALLA-PRODUCT-CARD",
+              "id": "694250267",
+              "cls": "s-product-card-entry s-product-card-vertical s-product-card-out-of-stock"
+            },
+            {
+              "tag": "CUSTOM-SALLA-PRODUCT-CARD",
+              "id": "1602505754",
+              "cls": "s-product-card-entry s-product-card-vertical"
+            }
+          ]
+        }
+      ],
+      "label": "ar-desktop-rtl-1366x768",
+      "page": "home"
+    },
+    {
+      "captured_at": "2026-08-10T18:55:00.540Z",
+      "url": "https://salla.design/ar/dev-v37bn5qobfotqowz/%D8%A7%D9%84%D9%81%D8%B3%D8%A7%D8%AA%D9%8A%D9%86/c2108520314?preview=true",
+      "html": {
+        "lang": "ar",
+        "dir": "rtl"
+      },
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "draftClass": true,
+      "supported": true,
+      "value": 0.0006811370041348778,
+      "entries": [
+        {
+          "value": 0.00013452387140961523,
+          "startTime": 1181.5,
+          "sources": [
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "collection-hero__content"
+            }
+          ]
+        },
+        {
+          "value": 0.0005466131327252626,
+          "startTime": 1534.5,
+          "sources": [
+            {
+              "tag": "SALLA-PRODUCTS-LIST",
+              "id": null,
+              "cls": "collection-products s-products-list hydrated"
+            }
+          ]
+        }
+      ],
+      "label": "ar-desktop-rtl-1366x768",
+      "page": "collection"
+    },
+    {
+      "captured_at": "2026-08-10T18:55:04.910Z",
+      "url": "https://salla.design/ar/dev-v37bn5qobfotqowz/%D9%81%D8%B3%D8%AA%D8%A7%D9%86/p1852650594?preview=true",
+      "html": {
+        "lang": "ar",
+        "dir": "rtl"
+      },
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "draftClass": true,
+      "supported": true,
+      "value": 0.03163168642528464,
+      "entries": [
+        {
+          "value": 0.00004526835037910862,
+          "startTime": 1089.8999999761581,
+          "sources": [
+            {
+              "tag": "A",
+              "id": null,
+              "cls": "swiper-slide magnify-wrapper homeslider__slide"
+            },
+            {
+              "tag": "A",
+              "id": null,
+              "cls": "swiper-slide magnify-wrapper homeslider__slide"
+            },
+            {
+              "tag": "A",
+              "id": null,
+              "cls": "swiper-slide magnify-wrapper homeslider__slide swiper-slide-next"
+            }
+          ]
+        },
+        {
+          "value": 0.01954085099759185,
+          "startTime": 1308.3000000715256,
+          "sources": [
+            {
+              "tag": "FORM",
+              "id": {},
+              "cls": "form product-form kalles-product-form"
+            },
+            {
+              "tag": "DL",
+              "id": null,
+              "cls": "kalles-product-meta"
+            },
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "kalles-product-support-links"
+            },
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "kalles-product-share"
+            },
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "kalles-product-demand bg-white py-2.5 mb-5 rounded-md inline-flex text-sm"
+            }
+          ]
+        },
+        {
+          "value": 0.012038065206253524,
+          "startTime": 1475.8000000715256,
+          "sources": [
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "slide--one-fourth swiper-slide swiper-slide-visible swiper-slide-fully-visible swiper-slide-active swiper-slide-thumb-active"
+            },
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "slide--one-fourth swiper-slide swiper-slide-visible swiper-slide-fully-visible"
+            },
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "slide--one-fourth swiper-slide swiper-slide-visible swiper-slide-fully-visible swiper-slide-next"
+            },
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "slide--one-fourth swiper-slide swiper-slide-visible"
+            },
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "slide--one-fourth swiper-slide"
+            }
+          ]
+        },
+        {
+          "value": 0.0000075018710601525275,
+          "startTime": 1557.6000000238419,
+          "sources": [
+            {
+              "tag": "SPAN",
+              "id": null,
+              "cls": ""
+            }
+          ]
+        }
+      ],
+      "label": "ar-desktop-rtl-1366x768",
+      "page": "product"
+    },
+    {
+      "captured_at": "2026-08-10T18:55:09.807Z",
+      "url": "https://salla.design/ar/dev-v37bn5qobfotqowz/cart?preview=true",
+      "html": {
+        "lang": "ar",
+        "dir": "rtl"
+      },
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "draftClass": true,
+      "supported": true,
+      "value": 0.04134261472403422,
+      "entries": [
+        {
+          "value": 0.04134261472403422,
+          "startTime": 1853.5,
+          "sources": [
+            {
+              "tag": "FORM",
+              "id": {},
+              "cls": ""
+            }
+          ]
+        }
+      ],
+      "label": "ar-desktop-rtl-1366x768",
+      "page": "cart"
+    },
+    {
+      "captured_at": "2026-08-10T18:55:16.794Z",
+      "url": "https://salla.design/en/dev-v37bn5qobfotqowz?preview=true",
+      "html": {
+        "lang": "en",
+        "dir": "ltr"
+      },
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "draftClass": true,
+      "supported": true,
+      "value": 0.5839834217911176,
+      "entries": [
+        {
+          "value": 0.5839834217911176,
+          "startTime": 4166.700000047684,
+          "sources": [
+            {
+              "tag": "FOOTER",
+              "id": null,
+              "cls": "store-footer"
+            },
+            {
+              "tag": "SECTION",
+              "id": "reorder-section",
+              "cls": "s-block container mt-6 sm:mt-8"
+            },
+            {
+              "tag": "H2",
+              "id": null,
+              "cls": ""
+            }
+          ]
+        }
+      ],
+      "label": "en-desktop-ltr-1366x768",
+      "page": "home"
+    },
+    {
+      "captured_at": "2026-08-10T18:55:21.115Z",
+      "url": "https://salla.design/en/dev-v37bn5qobfotqowz/%D8%A7%D9%84%D9%81%D8%B3%D8%A7%D8%AA%D9%8A%D9%86/c2108520314?preview=true",
+      "html": {
+        "lang": "en",
+        "dir": "ltr"
+      },
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "draftClass": true,
+      "supported": true,
+      "value": 0.0006811370041348778,
+      "entries": [
+        {
+          "value": 0.00013452387140961523,
+          "startTime": 1262.2000000476837,
+          "sources": [
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "collection-hero__content"
+            }
+          ]
+        },
+        {
+          "value": 0.0005466131327252626,
+          "startTime": 1754,
+          "sources": [
+            {
+              "tag": "SALLA-PRODUCTS-LIST",
+              "id": null,
+              "cls": "collection-products s-products-list hydrated"
+            }
+          ]
+        }
+      ],
+      "label": "en-desktop-ltr-1366x768",
+      "page": "collection"
+    },
+    {
+      "captured_at": "2026-08-10T18:55:25.773Z",
+      "url": "https://salla.design/en/dev-v37bn5qobfotqowz/%D9%81%D8%B3%D8%AA%D8%A7%D9%86/p1852650594?preview=true",
+      "html": {
+        "lang": "en",
+        "dir": "ltr"
+      },
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "draftClass": true,
+      "supported": true,
+      "value": 0.03401100966281451,
+      "entries": [
+        {
+          "value": 0.02197294445656099,
+          "startTime": 1339.1000000238419,
+          "sources": [
+            {
+              "tag": "FORM",
+              "id": {},
+              "cls": "form product-form kalles-product-form"
+            },
+            {
+              "tag": "DL",
+              "id": null,
+              "cls": "kalles-product-meta"
+            },
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "kalles-product-support-links"
+            },
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "kalles-product-share"
+            },
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "kalles-product-demand bg-white py-2.5 mb-5 rounded-md inline-flex text-sm"
+            }
+          ]
+        },
+        {
+          "value": 0.012038065206253524,
+          "startTime": 1457,
+          "sources": [
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "slide--one-fourth swiper-slide swiper-slide-visible swiper-slide-fully-visible swiper-slide-active swiper-slide-thumb-active"
+            },
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "slide--one-fourth swiper-slide swiper-slide-visible swiper-slide-fully-visible"
+            },
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "slide--one-fourth swiper-slide swiper-slide-visible swiper-slide-fully-visible swiper-slide-next"
+            },
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "slide--one-fourth swiper-slide swiper-slide-visible"
+            },
+            {
+              "tag": "DIV",
+              "id": null,
+              "cls": "slide--one-fourth swiper-slide"
+            }
+          ]
+        }
+      ],
+      "label": "en-desktop-ltr-1366x768",
+      "page": "product"
+    },
+    {
+      "captured_at": "2026-08-10T18:55:30.567Z",
+      "url": "https://salla.design/en/dev-v37bn5qobfotqowz/cart?preview=true",
+      "html": {
+        "lang": "en",
+        "dir": "ltr"
+      },
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "draftClass": true,
+      "supported": true,
+      "value": 0.04134261472403422,
+      "entries": [
+        {
+          "value": 0.04134261472403422,
+          "startTime": 1557.6999999284744,
+          "sources": [
+            {
+              "tag": "FORM",
+              "id": {},
+              "cls": ""
+            }
+          ]
+        }
+      ],
+      "label": "en-desktop-ltr-1366x768",
+      "page": "cart"
+    }
+  ],
+  "allSupported": true,
+  "max": 0.965739424898305
+}

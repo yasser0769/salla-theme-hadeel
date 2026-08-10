@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-08-10T18:50:51.456Z",
+  "url": "https://salla.design/ar/dev-v37bn5qobfotqowz/%D9%81%D8%B3%D8%AA%D8%A7%D9%86/p1852650594?preview=true",
+  "html": {
+    "lang": "ar",
+    "dir": "rtl"
+  },
+  "ready": "complete",
+  "controllerPresent": false,
+  "appPresent": true,
+  "productTitle": "فستان",
+  "ctaPresent": true,
+  "ctaVisible": true,
+  "pricePresent": true,
+  "bodyVisible": true,
+  "overflow": {
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "pass": true
+  },
+  "draftClass": true
+}

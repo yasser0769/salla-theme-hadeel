@@ -64,7 +64,7 @@
 
         <div class="lg:flex rtl:space-x-reverse lg:space-x-8">
             {% if order.email_sent %}
-                <div class="duration-500 hover:shadow-default flex-1 bg-white p-8 rounded-md mb-6 md:mb-10 flex flex-col items-center justify-center">
+                <div class="thankyou-card hover:shadow-default flex-1 bg-white p-8 rounded-md mb-6 md:mb-10 flex flex-col items-center justify-center">
                     <div class="bg-gray-100 rounded-icon w-12 h-12 mb-2.5">
                         <i class="sicon-newspaper-alt text-xl"></i>
                     </div>
@@ -98,7 +98,7 @@
                     {% if store.contacts.mobile %}
                         <div class="text-sm unicode flex items-center">
                             <i class="sicon-phone"></i>
-                            <a href="tel:{{ store.contacts.mobile }}" class="hover:text-primary transition"><b
+                            <a href="tel:{{ store.contacts.mobile }}" class="hover:text-primary"><b
                                        class="unicode mx-1.5">{{ store.contacts.mobile }}</b></a>
                         </div>
                     {% endif %}
@@ -106,7 +106,7 @@
                     {% if store.contacts.whatsapp %}
                         <div class="text-sm unicode flex items-center">
                             <i class="sicon-whatsapp"></i>
-                            <a href="https://wa.me/{{ store.contacts.whatsapp|replace({' ': '', '+': '', '-': ''}) }}" class="hover:text-primary transition" target="_blank" rel="noopener"><b
+                            <a href="https://wa.me/{{ store.contacts.whatsapp|replace({' ': '', '+': '', '-': ''}) }}" class="hover:text-primary" target="_blank" rel="noopener"><b
                                         class="unicode mx-1.5">{{ store.contacts.whatsapp }}</b></a>
                         </div>
                     {% endif %}

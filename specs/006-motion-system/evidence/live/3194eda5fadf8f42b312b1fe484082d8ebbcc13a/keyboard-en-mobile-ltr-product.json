@@ -1,0 +1,276 @@
+{
+  "captured_at": "2026-08-10T18:52:17.659Z",
+  "locale": "en",
+  "expectedDir": "ltr",
+  "url": "https://salla.design/en/dev-v37bn5qobfotqowz/%D9%81%D8%B3%D8%AA%D8%A7%D9%86/p1852650594?preview=true",
+  "allFocusVisible": true,
+  "allInViewport": true,
+  "steps": [
+    {
+      "tag": "A",
+      "id": "",
+      "class": "mobile-menu-trigger",
+      "role": "",
+      "aria": "Open menu",
+      "text": "",
+      "rect": {
+        "x": 15,
+        "y": 8,
+        "w": 40,
+        "h": 44
+      },
+      "scrollY": 0,
+      "inViewport": true,
+      "focusVisible": true,
+      "outline": "rgb(174, 216, 224) solid 2px",
+      "boxShadow": "none"
+    },
+    {
+      "tag": "A",
+      "id": "",
+      "class": "navbar-brand",
+      "role": "",
+      "aria": "",
+      "text": "dev-v37bn5qobfotqowz",
+      "rect": {
+        "x": 101,
+        "y": 8.5,
+        "w": 118,
+        "h": 42.9921875
+      },
+      "scrollY": 0,
+      "inViewport": true,
+      "focusVisible": true,
+      "outline": "rgb(174, 216, 224) solid 2px",
+      "boxShadow": "none"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "class": "header-action header-action--search",
+      "role": "",
+      "aria": "Search",
+      "text": "",
+      "rect": {
+        "x": 279,
+        "y": 8,
+        "w": 36,
+        "h": 44
+      },
+      "scrollY": 0,
+      "inViewport": true,
+      "focusVisible": true,
+      "outline": "rgb(174, 216, 224) solid 2px",
+      "boxShadow": "none"
+    },
+    {
+      "tag": "A",
+      "id": "",
+      "class": "s-cart-summary-wrapper",
+      "role": "",
+      "aria": "",
+      "text": "8",
+      "rect": {
+        "x": 337,
+        "y": 8,
+        "w": 40,
+        "h": 44
+      },
+      "scrollY": 0,
+      "inViewport": true,
+      "focusVisible": true,
+      "outline": "rgb(96, 114, 118) solid 2.5px",
+      "boxShadow": "none"
+    },
+    {
+      "tag": "A",
+      "id": "",
+      "class": "",
+      "role": "",
+      "aria": "",
+      "text": "Home",
+      "rect": {
+        "x": 15,
+        "y": 68.5,
+        "w": 34.2734375,
+        "h": 22.5
+      },
+      "scrollY": 0,
+      "inViewport": true,
+      "focusVisible": true,
+      "outline": "rgb(174, 216, 224) solid 2px",
+      "boxShadow": "none"
+    },
+    {
+      "tag": "A",
+      "id": "",
+      "class": "",
+      "role": "",
+      "aria": "",
+      "text": "الجاكيتات",
+      "rect": {
+        "x": 79.2734375,
+        "y": 68.5,
+        "w": 50.4296875,
+        "h": 22.5
+      },
+      "scrollY": 0,
+      "inViewport": true,
+      "focusVisible": true,
+      "outline": "rgb(174, 216, 224) solid 2px",
+      "boxShadow": "none"
+    },
+    {
+      "tag": "A",
+      "id": "",
+      "class": "swiper-slide magnify-wrapper homeslider__slide swiper-slide-active",
+      "role": "group",
+      "aria": "1 / 7",
+      "text": "",
+      "rect": {
+        "x": 1,
+        "y": 101,
+        "w": 388,
+        "h": 388
+      },
+      "scrollY": 0,
+      "inViewport": true,
+      "focusVisible": true,
+      "outline": "rgb(174, 216, 224) solid 2px",
+      "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 0px inset, rgb(243, 244, 246) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+    },
+    {
+      "tag": "A",
+      "id": "",
+      "class": "swiper-slide magnify-wrapper homeslider__slide swiper-slide-active",
+      "role": "group",
+      "aria": "2 / 7",
+      "text": "",
+      "rect": {
+        "x": 1,
+        "y": 101,
+        "w": 388,
+        "h": 388
+      },
+      "scrollY": 0,
+      "inViewport": true,
+      "focusVisible": true,
+      "outline": "rgb(174, 216, 224) solid 2px",
+      "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 0px inset, rgb(243, 244, 246) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+    },
+    {
+      "tag": "A",
+      "id": "",
+      "class": "swiper-slide magnify-wrapper homeslider__slide swiper-slide-active",
+      "role": "group",
+      "aria": "3 / 7",
+      "text": "",
+      "rect": {
+        "x": 1,
+        "y": 101,
+        "w": 388,
+        "h": 388
+      },
+      "scrollY": 0,
+      "inViewport": true,
+      "focusVisible": true,
+      "outline": "rgb(174, 216, 224) solid 2px",
+      "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 0px inset, rgb(243, 244, 246) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+    },
+    {
+      "tag": "A",
+      "id": "",
+      "class": "swiper-slide magnify-wrapper homeslider__slide swiper-slide-active",
+      "role": "group",
+      "aria": "4 / 7",
+      "text": "",
+      "rect": {
+        "x": 1,
+        "y": 101,
+        "w": 388,
+        "h": 388
+      },
+      "scrollY": 0,
+      "inViewport": true,
+      "focusVisible": true,
+      "outline": "rgb(174, 216, 224) solid 2px",
+      "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 0px inset, rgb(243, 244, 246) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+    },
+    {
+      "tag": "A",
+      "id": "",
+      "class": "swiper-slide magnify-wrapper homeslider__slide swiper-slide-active",
+      "role": "group",
+      "aria": "5 / 7",
+      "text": "",
+      "rect": {
+        "x": 1,
+        "y": 101,
+        "w": 388,
+        "h": 388
+      },
+      "scrollY": 0,
+      "inViewport": true,
+      "focusVisible": true,
+      "outline": "rgb(174, 216, 224) solid 2px",
+      "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 0px inset, rgb(243, 244, 246) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+    },
+    {
+      "tag": "A",
+      "id": "",
+      "class": "swiper-slide magnify-wrapper homeslider__slide swiper-slide-active",
+      "role": "group",
+      "aria": "6 / 7",
+      "text": "",
+      "rect": {
+        "x": 1,
+        "y": 101,
+        "w": 388,
+        "h": 388
+      },
+      "scrollY": 0,
+      "inViewport": true,
+      "focusVisible": true,
+      "outline": "rgb(174, 216, 224) solid 2px",
+      "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 0px inset, rgb(243, 244, 246) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+    },
+    {
+      "tag": "A",
+      "id": "",
+      "class": "swiper-slide magnify-wrapper homeslider__slide swiper-slide-active",
+      "role": "group",
+      "aria": "7 / 7",
+      "text": "",
+      "rect": {
+        "x": 1,
+        "y": 101,
+        "w": 388,
+        "h": 388
+      },
+      "scrollY": 0,
+      "inViewport": true,
+      "focusVisible": true,
+      "outline": "rgb(174, 216, 224) solid 2px",
+      "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 0px inset, rgb(243, 244, 246) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+    },
+    {
+      "tag": "SPAN",
+      "id": "",
+      "class": "swiper-pagination-bullet",
+      "role": "button",
+      "aria": "Go to slide 1",
+      "text": "",
+      "rect": {
+        "x": 150,
+        "y": 467,
+        "w": 6,
+        "h": 6
+      },
+      "scrollY": 0,
+      "inViewport": true,
+      "focusVisible": true,
+      "outline": "rgb(174, 216, 224) solid 2px",
+      "boxShadow": "none"
+    }
+  ]
+}
