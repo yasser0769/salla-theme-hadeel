@@ -16,7 +16,9 @@ $main-text-color: var(--main-text-color);
   /* font-size */
   --font-sm: 0.8685714286rem;
   /* font-family: ; */
-  --font-main: "DINNextLTArabic";
+  /* HDL-05 owner rule: no local/project font names. master.twig overrides this
+     with the merchant's Salla theme.font; this is only the safe system fallback. */
+  --font-main: sans-serif;
 
   /* plugins */
   --mm-ocd-width: calc(100% - 51px);

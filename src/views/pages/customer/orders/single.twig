@@ -251,7 +251,7 @@
                                 {% if item.product %}
                                     <div class="flex rtl:space-x-reverse space-x-5 mb-4">
                                         <a href="{{ item.product.url }}" class="shrink-0">
-                                            <img src="{{ item.image ?: 'images/placeholder.png' | asset }}"
+                                            <img src="{{ item.image ?: 'images/placeholder.webp' | asset }}"
                                                  alt="{{ item.name }}"
                                                  class="w-18 h-14 object-{{ item.image ? 'cover':'contain' }} rounded-md">
                                         </a>

@@ -27,15 +27,11 @@ body {
   min-width: 320px;
   color: var(--hadeel-ink);
   background: var(--hadeel-surface);
-  font-family: var(--font-main), sans-serif;
+  font-family: var(--font-main), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 15px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-}
-
-body.use-theme-font {
-  font-family: "Thmanyah Sans", var(--font-main), sans-serif;
 }
 
 body .container {

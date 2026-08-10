@@ -62,3 +62,109 @@ jobs:
 
       - name: Verify public/ matches a fresh production build
         run: node scripts/check-theme.mjs --build --max-errors=0
+
+  # --- HDL-05 gates (specs/005-performance-bundle-ci) -------------------------
+  # These four jobs are independent on purpose: each failure signal stays
+  # readable on its own. None of them may be weakened: no continue-on-error,
+  # no label/branch skip, and no allowance above the 1,000,000 B hard cap.
+  #
+  # bundle-budget is EXPECTED RED inside the implementation branch from the
+  # moment it lands — the committed tree measures 1,172,885 B raw against the
+  # 1,000,000 B official cap (post-T005F font removal; see
+  # specs/005-performance-bundle-ci/evidence/). That transient red is
+  # intentional: it is the release failure signal that forces real remediation.
+  # What is NOT permitted is a final HDL-05 review or closing commit shipping
+  # with this job red — if it is still red then, HDL-05 is delivered
+  # explicitly not-done per Spec §13, never declared passing over a red cap.
+
+  bundle-budget:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Enforce the raw-byte hard cap and per-file ceilings
+        run: node scripts/check-bundle-budget.mjs --budget
+
+  demo-media:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Reject demo/sample media, video containers, and unregistered media
+        run: node scripts/check-bundle-budget.mjs --demo-media
+
+  dependency-policy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Reject dependencies outside the committed allowlist
+        run: node scripts/check-bundle-budget.mjs --dependency-policy
+
+  bundle-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run the HDL-05 budget/CI contract tests (including negative tests)
+        run: node --test tests/performance-bundle-ci.test.mjs

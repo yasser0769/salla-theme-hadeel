@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "generatedFromSha": "eb40134dcda5c147ff03a048ad05b3e11ba8a15b",
+  "hardCapBytes": 1000000,
+  "internalTargetBytes": 850000,
+  "dependencies": [
+    "@babel/core",
+    "@babel/plugin-transform-runtime",
+    "@babel/preset-env",
+    "@babel/runtime",
+    "@salla.sa/twilight",
+    "@salla.sa/twilight-components",
+    "@salla.sa/twilight-tailwind-theme",
+    "@tailwindcss/forms",
+    "@tailwindcss/line-clamp",
+    "@tailwindcss/nesting",
+    "animejs",
+    "autoprefixer",
+    "babel-loader",
+    "babel-loader-exclude-node-modules-except",
+    "copy-webpack-plugin",
+    "css-loader",
+    "css-minimizer-webpack-plugin",
+    "fslightbox",
+    "glob",
+    "lite-youtube-embed",
+    "mini-css-extract-plugin",
+    "mmenu-light",
+    "postcss",
+    "postcss-import",
+    "postcss-loader",
+    "postcss-preset-env",
+    "sass",
+    "sass-loader",
+    "sweetalert2",
+    "tailwindcss",
+    "webpack",
+    "webpack-cli"
+  ],
+  "registeredMedia": [
+    {
+      "path": "images/placeholder.webp",
+      "reason": "Functional placeholder preventing layout shift while product images lazy-load (design.md). Lossless WebP since T010 C5 (owner decision 2026-08-10).",
+      "maxBytes": 25000
+    },
+    {
+      "path": "images/s-empty.png",
+      "reason": "Functional empty-state illustration shipped with the theme (design.md).",
+      "maxBytes": 1024
+    },
+    {
+      "path": "images/s-empty-small.png",
+      "reason": "Functional empty-state illustration shipped with the theme (design.md).",
+      "maxBytes": 1024
+    },
+    {
+      "path": "images/s-empty-square.png",
+      "reason": "Functional empty-state illustration shipped with the theme (design.md).",
+      "maxBytes": 1024
+    },
+    {
+      "path": "images/s-empty-wide.png",
+      "reason": "Functional empty-state illustration shipped with the theme (design.md).",
+      "maxBytes": 1024
+    }
+  ],
+  "files": [
+    {
+      "path": "add-product-toast.js",
+      "rawBytes": 25612,
+      "gzip9Bytes": 7479,
+      "sha256": "f6ece72ea0396b78a4ac137a2d400505202f30deafeeaa718acf27aeb825757f",
+      "ceilingBytes": 25612
+    },
+    {
+      "path": "add-product-toast.js.LICENSE.txt",
+      "rawBytes": 163,
+      "gzip9Bytes": 156,
+      "sha256": "8c9946dfc859a2bfb26cc541125631cd96e7110fa20a702eb19275c9d1658805",
+      "ceilingBytes": 163
+    },
+    {
+      "path": "app.css",
+      "rawBytes": 648682,
+      "gzip9Bytes": 85694,
+      "sha256": "6f54a8213fc13066b8ca4e1cd1e50b989439c260ce8617591f7458c2af75b48b",
+      "ceilingBytes": 648682
+    },
+    {
+      "path": "app.js",
+      "rawBytes": 129228,
+      "gzip9Bytes": 37099,
+      "sha256": "add707c2dd50315cfd92b63062aa3dc8b927c4bd1762721e9460fb9b637bf65a",
+      "ceilingBytes": 129228
+    },
+    {
+      "path": "app.js.LICENSE.txt",
+      "rawBytes": 163,
+      "gzip9Bytes": 156,
+      "sha256": "8c9946dfc859a2bfb26cc541125631cd96e7110fa20a702eb19275c9d1658805",
+      "ceilingBytes": 163
+    },
+    {
+      "path": "checkout.js",
+      "rawBytes": 11727,
+      "gzip9Bytes": 3805,
+      "sha256": "fd5cbdb0a914c88320d1a99259f7d002edac014eb0f7954b61ecb70ca9532989",
+      "ceilingBytes": 11727
+    },
+    {
+      "path": "digital-files.js",
+      "rawBytes": 5720,
+      "gzip9Bytes": 1759,
+      "sha256": "5fd0c849bff166cd6e0dde16e3f10fc279e007688eafb7242591e95cacfde0c8",
+      "ceilingBytes": 5720
+    },
+    {
+      "path": "home.js",
+      "rawBytes": 36947,
+      "gzip9Bytes": 11836,
+      "sha256": "adfdb82c08459223560b1d05fa04a7a9dedc19884da9a0979fdf0d78089a8ebf",
+      "ceilingBytes": 36947
+    },
+    {
+      "path": "images/check.svg",
+      "rawBytes": 459,
+      "gzip9Bytes": 267,
+      "sha256": "a3ab72d1668b6103df7646895371f47f758ffd25a5a93afdb0d7ec9e60c70112",
+      "ceilingBytes": 459
+    },
+    {
+      "path": "images/delivery-bro.svg",
+      "rawBytes": 3702,
+      "gzip9Bytes": 1459,
+      "sha256": "d3e9a655ac18868421f4707bdf1ac7b215ea0d4cdeeaa4d438629e6d9b962dfa",
+      "ceilingBytes": 3702
+    },
+    {
+      "path": "images/payment_icons/mispay.svg",
+      "rawBytes": 5775,
+      "gzip9Bytes": 2208,
+      "sha256": "5040db9b10ad39ac739637a4ddb5625b67317c83426f3a22c167d5338e58641c",
+      "ceilingBytes": 5775
+    },
+    {
+      "path": "images/payment_icons/tabby.svg",
+      "rawBytes": 1688,
+      "gzip9Bytes": 833,
+      "sha256": "9ff888cd36e123d2eaf22b8e692384558071a6d2e67271b5848b84d2b4c3fe8c",
+      "ceilingBytes": 1688
+    },
+    {
+      "path": "images/payment_icons/tamara.svg",
+      "rawBytes": 635,
+      "gzip9Bytes": 385,
+      "sha256": "e0490a0857da1612c994be3e045bbe09212a5c1f5e4cf9e03d60b705f14a3104",
+      "ceilingBytes": 635
+    },
+    {
+      "path": "images/placeholder.webp",
+      "rawBytes": 4310,
+      "gzip9Bytes": 4285,
+      "sha256": "401e04acb08ab1309aacd5977e8b2e5065f23e91966d84f3a2817b6bc0a96bd4",
+      "ceilingBytes": 4310
+    },
+    {
+      "path": "images/s-empty-small.png",
+      "rawBytes": 107,
+      "gzip9Bytes": 120,
+      "sha256": "c8fd3fc49f7433b63ddbdf00a309ff3713eac113b8a5540b0d5f504b9bc5587a",
+      "ceilingBytes": 107
+    },
+    {
+      "path": "images/s-empty-square.png",
+      "rawBytes": 95,
+      "gzip9Bytes": 104,
+      "sha256": "172e4e1fca052a61b5d95ba3b321c1f748fbd0aa08ec5914391abef89ee9f3cd",
+      "ceilingBytes": 95
+    },
+    {
+      "path": "images/s-empty-wide.png",
+      "rawBytes": 125,
+      "gzip9Bytes": 139,
+      "sha256": "3aaf1b82ca349247c1da5e8a293e7482c063c77b41140f1b640bc1983411e4bc",
+      "ceilingBytes": 125
+    },
+    {
+      "path": "images/s-empty.png",
+      "rawBytes": 119,
+      "gzip9Bytes": 122,
+      "sha256": "bf2ffbcf4269eac339246b6ef2e37f3abb33a2905decffba0e1cf198190342e8",
+      "ceilingBytes": 119
+    },
+    {
+      "path": "main-menu.js",
+      "rawBytes": 10522,
+      "gzip9Bytes": 3497,
+      "sha256": "db346aa01dc0b6c1815c8b644df7f98207fe729485d9700e22349d0f482cc04e",
+      "ceilingBytes": 10522
+    },
+    {
+      "path": "order.js",
+      "rawBytes": 3389,
+      "gzip9Bytes": 1334,
+      "sha256": "185569ef7d44f41f2f1fe1b0bae6700b397500b7558f3612065e5b5f6d99bef1",
+      "ceilingBytes": 3389
+    },
+    {
+      "path": "pages.js",
+      "rawBytes": 5284,
+      "gzip9Bytes": 1883,
+      "sha256": "a8421c06015aeadea2fbe2963b75dcdb48503fe1781aec274e89d797d6d5cd02",
+      "ceilingBytes": 5284
+    },
+    {
+      "path": "product-card.js",
+      "rawBytes": 31595,
+      "gzip9Bytes": 8701,
+      "sha256": "d5956b389bb60756470b39fc5b3b0ab7e529980acdaaea06b7e502e5f967fc7e",
+      "ceilingBytes": 31595
+    },
+    {
+      "path": "product-card.js.LICENSE.txt",
+      "rawBytes": 163,
+      "gzip9Bytes": 156,
+      "sha256": "8c9946dfc859a2bfb26cc541125631cd96e7110fa20a702eb19275c9d1658805",
+      "ceilingBytes": 163
+    },
+    {
+      "path": "product.js",
+      "rawBytes": 56133,
+      "gzip9Bytes": 17323,
+      "sha256": "968662a36b3b667c3ceea1c259f11f8976e47bf0ce46d8233242a3ef1b1fefcb",
+      "ceilingBytes": 56133
+    },
+    {
+      "path": "product.js.LICENSE.txt",
+      "rawBytes": 163,
+      "gzip9Bytes": 156,
+      "sha256": "8c9946dfc859a2bfb26cc541125631cd96e7110fa20a702eb19275c9d1658805",
+      "ceilingBytes": 163
+    },
+    {
+      "path": "testimonials.js",
+      "rawBytes": 9963,
+      "gzip9Bytes": 3643,
+      "sha256": "b026f0d9c5dab5ebcfd515ecc92dc27671a1103dcb27dedfddf5416a6a2c9a1b",
+      "ceilingBytes": 9963
+    },
+    {
+      "path": "testimonials.js.LICENSE.txt",
+      "rawBytes": 163,
+      "gzip9Bytes": 156,
+      "sha256": "8c9946dfc859a2bfb26cc541125631cd96e7110fa20a702eb19275c9d1658805",
+      "ceilingBytes": 163
+    },
+    {
+      "path": "wishlist-card.js",
+      "rawBytes": 5142,
+      "gzip9Bytes": 1845,
+      "sha256": "1754e853d9c3f2ab265d4f3ca2f778680b4d43958d80bd54b0e5e12596ef919b",
+      "ceilingBytes": 5142
+    }
+  ]
+}

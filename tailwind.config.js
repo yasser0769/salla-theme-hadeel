@@ -3,8 +3,15 @@ module.exports = {
     content: [
         "src/views/**/*.twig",
         "src/assets/js/**/*.js",
-        //todo:: inject it via the plugin or easier way
-        'node_modules/@salla.sa/twilight-tailwind-theme/safe-list-css.txt',
+        // HDL-05 T010 C1 (owner decision 2026-08-10, HIGH RISK accepted):
+        // source-owned safelist `C1-LAUNCH-CORE-FULL-LOYALTY`, an exact copy of the approved
+        // artifact specs/005-performance-bundle-ci/evidence/t009-spike/safelist-launch-core-full-loyalty.txt
+        // (1,630 lines, SHA-256 833fae3b9bf4d9266d57bb6e21609a3417695b38694b5b2ef5c5c44d075ba5b8).
+        // The previous full input is reproducible from
+        // specs/005-performance-bundle-ci/evidence/t009-spike/safelist-full-baseline.txt
+        // (byte-identical to the full safelist shipped inside the twilight-tailwind-theme package).
+        // Revert = restore that content path; never patch forward with an override layer.
+        'src/config/salla-safelist.txt',
     ],
     darkMode: 'class', // or 'media' or 'class'
     theme   : {

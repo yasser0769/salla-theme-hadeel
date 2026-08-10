@@ -368,8 +368,47 @@ function checkLocalizationA11yContract() {
     'locale parity, direction inference, tabindex, literals, ARIA, focus, letter spacing, mirroring, and toolbar order contracts hold');
 }
 
-/* ---------------------------------------------------------- 6. build sync */
+/* ------------------------------------------- 9. HDL-05 media / dependency */
 
+/**
+ * HDL-05 contract guard, deliberately scoped to the gates that stay green
+ * during the remediation window: demo-media and dependency-policy. The
+ * raw-byte hard cap is intentionally NOT part of this guard — it is the
+ * dedicated bundle-budget CI job's signal and is expected red until real
+ * remediation lands (see specs/005-performance-bundle-ci). This separation
+ * keeps ordinary static/build-sync verification runnable during the
+ * transient-red measurement window.
+ */
+function checkBundleBudgetContract() {
+  let bad = 0;
+  for (const gate of ['--demo-media', '--dependency-policy']) {
+    let report;
+    try {
+      const out = execFileSync(process.execPath,
+        [join(ROOT, 'scripts/check-bundle-budget.mjs'), gate, '--json'],
+        { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+      report = JSON.parse(out);
+    } catch (err) {
+      try { report = JSON.parse(err.stdout); } catch { report = null; }
+      if (!report) {
+        bad++;
+        note('bundle-budget-contract', 'error',
+          `${gate} failed to run: ${String(err.message).slice(0, 200)}`,
+          'scripts/check-bundle-budget.mjs');
+        continue;
+      }
+    }
+    for (const f of report.findings ?? []) {
+      if (f.level !== 'error') continue;
+      bad++;
+      note('bundle-budget-contract', 'error', `[${f.gate}] ${f.message}`, 'src/config/bundle-budget.json');
+    }
+  }
+  if (!bad) note('bundle-budget-contract', 'ok',
+    'demo-media and dependency-policy gates hold (hard cap is the dedicated bundle-budget CI job, green since T010 C1+C5 on 2026-08-10)');
+}
+
+/* ---------------------------------------------------------- 6. build sync */
 function sha(file) {
   return createHash('sha256').update(readFileSync(file)).digest('hex');
 }
@@ -410,6 +449,7 @@ checkCssVariables();
 checkThemeSettings();
 checkSettingsRegistryContract();
 checkLocalizationA11yContract();
+checkBundleBudgetContract();
 if (WANT_BUILD) checkBuildSync();
 
 const errors = findings.filter((f) => f.level === 'error');
