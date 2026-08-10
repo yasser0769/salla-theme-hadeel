@@ -1100,6 +1100,12 @@
     color: var(--hadeel-muted);
     font-size: 14px;
     line-height: 1.8;
+    // Merchant descriptions arrive as raw HTML and can be one unbroken mixed
+    // Arabic/Latin/digit string; without wrapping it overflows the container
+    // and the whole document (live 390px evidence: article scrollWidth 386 in
+    // a 360 client width). Break long tokens here, in the owner — never clip
+    // overflow globally.
+    overflow-wrap: anywhere;
   }
 }
 
