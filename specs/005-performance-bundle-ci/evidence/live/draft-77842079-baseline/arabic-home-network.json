@@ -1,0 +1,80 @@
+{
+  "captured_at": "2026-08-10T09:22:22.465Z",
+  "browser": "Chrome",
+  "cacheDisabled": true,
+  "throttling": "none",
+  "networkCount": 103,
+  "encodedBytes": 4752410,
+  "localhostCount": 6,
+  "localhostBytes": 1686422,
+  "localhost": [
+    {
+      "url": "http://localhost:8000/app.css",
+      "status": 200,
+      "mimeType": "text/css",
+      "type": "Stylesheet",
+      "encodedDataLength": 1028350,
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "url": "http://localhost:8000/product-card.js",
+      "status": 200,
+      "mimeType": "application/javascript",
+      "type": "Script",
+      "encodedDataLength": 98913,
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "url": "http://localhost:8000/app.js",
+      "status": 200,
+      "mimeType": "application/javascript",
+      "type": "Script",
+      "encodedDataLength": 356899,
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "url": "http://localhost:8000/main-menu.js",
+      "status": 200,
+      "mimeType": "application/javascript",
+      "type": "Script",
+      "encodedDataLength": 51229,
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "url": "http://localhost:8000/add-product-toast.js",
+      "status": 200,
+      "mimeType": "application/javascript",
+      "type": "Script",
+      "encodedDataLength": 85642,
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "url": "http://localhost:8000/home.js",
+      "status": 200,
+      "mimeType": "application/javascript",
+      "type": "Script",
+      "encodedDataLength": 65389,
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    }
+  ],
+  "nonThemeFailures": [
+    {
+      "url": "https://salla.design/_app/e/api/s/page",
+      "status": 405
+    },
+    {
+      "url": "https://salla.design/_app/e/api/s/track",
+      "status": 405
+    },
+    {
+      "owner": "Google telemetry",
+      "result": "net::ERR_ABORTED"
+    }
+  ]
+}

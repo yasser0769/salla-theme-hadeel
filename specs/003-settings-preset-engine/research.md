@@ -64,7 +64,7 @@
 
 **Decision**: Add no dependency, Webpack entry/chunk, runtime request, CSS rule, or JavaScript. HDL-03's maximum `public/` delta is zero bytes.
 
-**Rationale**: The existing six class families can represent the bootstrap profiles. The current committed public output is already 1,557,969 bytes, above Salla's documented 1 MB publication ceiling; HDL-05 owns reduction and HDL-03 may not worsen it.
+**Rationale**: The existing six class families can represent the bootstrap profiles. The measured 1,557,969-byte raw `public/` value remains historical build telemetry; the 2026-08-10 HDL-05 correction establishes compressed distributable-package size as the publishing gate. HDL-03 still may not add public bytes.
 
 **Rejected**: preset-specific stylesheets, duplicated selector trees, or editor/storefront scripts.
 

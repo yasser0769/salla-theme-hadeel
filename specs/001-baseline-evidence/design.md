@@ -1,5 +1,9 @@
 # Design Handoff: HDL-01 — خط الأساس وخريطة الموجود والأدلة
 
+> **HISTORICAL BASELINE — publishing interpretation superseded 2026-08-10.** Any
+> raw-1MB publishing comparison displayed by this archived board is historical, not a
+> current release rule. Current authority is HDL-05's compressed-package contract.
+
 **Design gate type**: توثيق بصري/تعليقات/QA  
 **Status**: Approved  
 **Figma file**: https://www.figma.com/design/12z0jRutTHcdhlZQrRmcXU/Untitled  

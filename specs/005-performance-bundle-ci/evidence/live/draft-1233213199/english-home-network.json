@@ -1,0 +1,566 @@
+[
+  {
+    "url": "https://salla.design/en/dev-v37bn5qobfotqowz",
+    "status": 200,
+    "mime": "text/html",
+    "bytes": 19994
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/twilight.esm.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/fonts/sallaicons.css?v=2.0.5",
+    "status": 200,
+    "mime": "text/css",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/fonts/dubai.css?v=2.0.5",
+    "status": 200,
+    "mime": "text/css",
+    "bytes": 0
+  },
+  {
+    "url": "http://localhost:8000/app.css",
+    "status": 200,
+    "mime": "text/css",
+    "bytes": 832933
+  },
+  {
+    "url": "http://localhost:8000/product-card.js",
+    "status": 200,
+    "mime": "application/javascript",
+    "bytes": 98913
+  },
+  {
+    "url": "http://localhost:8000/app.js",
+    "status": 200,
+    "mime": "application/javascript",
+    "bytes": 356899
+  },
+  {
+    "url": "https://cdn.assets.salla.network/prod/stores/js/live-js.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://www.googletagmanager.com/gtm.js?id=GTM-TGFC6FV",
+    "status": 200,
+    "mime": "application/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://salla-dev.s3.eu-central-1.amazonaws.com/logo/logo-fashion.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-5UtJVEzd.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "chrome-extension://hoklmmgfnpapgjgcpechhaamimifchmp/frame_ant/frame_ant.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 23405
+  },
+  {
+    "url": "https://cdn.salla.network/fonts/lib/dubai/DubaiW23-Regular.woff2",
+    "status": 200,
+    "mime": "font/woff2",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/fonts/lib/sallaicons/sallaicons.woff?i91vnj",
+    "status": 200,
+    "mime": "font/woff",
+    "bytes": 0
+  },
+  {
+    "url": "http://localhost:8000/main-menu.js",
+    "status": 200,
+    "mime": "application/javascript",
+    "bytes": 51229
+  },
+  {
+    "url": "http://localhost:8000/add-product-toast.js",
+    "status": 200,
+    "mime": "application/javascript",
+    "bytes": 85643
+  },
+  {
+    "url": "http://localhost:8000/home.js",
+    "status": 200,
+    "mime": "application/javascript",
+    "bytes": 65389
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-2d62c356.entry.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-0895958b.entry.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-4cff8533.entry.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-02df1c31.entry.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-66448f0f.entry.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-575b3b4c.entry.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-fe222cbe.entry.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-497cc3a6.entry.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-0ecbe43b.entry.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-c224fa3a.entry.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-088c1ab3.entry.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-acd1a9d8.entry.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-bb7bc52f.entry.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-8dab94d8.entry.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-f27472f4.entry.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://www.google.com/ccm/collect?rcb=15&frm=0&apvc=1&ae=g&auid=777424412.1785144302&dt=dev-v37bn5qobfotqowz&en=page_view&dl=https%3A%2F%2Fsalla.design%2Fen%2Fdev-v37bn5qobfotqowz&scrsrc=www.googletagmanager.com&rnd=1296607941.1786337104&navt=r&npa=0&ep.ads_data_redaction=0&gtm=45He6860h2v811065323za200zd811065323xea&gcd=13l3l3l3l1l1&dma=0&tag_exp=115938465~115938469~118897920~118897930~119527019~119896802&tft=1786337104474&tfd=1029&fmt=8",
+    "status": 200,
+    "mime": "text/plain",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-Ctkfc4K-.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-DRvZV5oe.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-DCZbpt2a.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-D3mWkc-3.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-DY4LZmNP.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-CeFAfcTv.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-BsLF_HK7.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-D4oPi1Ov.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-BChI23pG.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-BscTeWDc.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-DOBDDG4K.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://api.salla.dev/store/v1/menus/header?store_id=1736483913&lang=en",
+    "status": 204,
+    "mime": "",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-CgtvEd63.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-CJUR4sUM.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-CgR-T_ZS.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-DzAIgzdz.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-CO-PeZ27.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-Vqpj4CWE.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-BV4kqbdL.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-BedNk7k1.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-B9q7ymSg.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-DiKTtDW5.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://api.salla.dev/store/v1/menus/header?store_id=1736483913&lang=en",
+    "status": 200,
+    "mime": "application/json",
+    "bytes": 1402
+  },
+  {
+    "url": "https://api.salla.dev/store/v1/menus/footer?store_id=1736483913&lang=en",
+    "status": 204,
+    "mime": "",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-f5747d3c.entry.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/js/twilight/2.14.539/p-d505caaf.entry.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/cdn-cgi/image/fit=scale-down,width=58,height=58,onerror=redirect,format=auto/images/payment/bank_mini.png",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.network/cdn-cgi/image/fit=scale-down,width=58,height=58,onerror=redirect,format=auto/images/payment/cod_mini.png",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 0
+  },
+  {
+    "url": "https://cdn.salla.sa/customer_profiles/i1hsKBlGYftkCYnZlMnrbtMdg1JPvgcDx03sK8AT.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 0
+  },
+  {
+    "url": "https://api.salla.dev/store/v1/currencies",
+    "status": 204,
+    "mime": "",
+    "bytes": 0
+  },
+  {
+    "url": "https://api.salla.dev/store/v1/advertisements",
+    "status": 204,
+    "mime": "",
+    "bytes": 0
+  },
+  {
+    "url": "https://api.salla.dev/store/v1/products?source=reorder&limit=4",
+    "status": 204,
+    "mime": "",
+    "bytes": 0
+  },
+  {
+    "url": "https://api.salla.dev/store/v1/products?source=latest&filterable=1",
+    "status": 204,
+    "mime": "",
+    "bytes": 0
+  },
+  {
+    "url": "https://salla.design/_app/e/api/s/page",
+    "status": 405,
+    "mime": "application/json",
+    "bytes": 1136
+  },
+  {
+    "url": "https://cdn.sift.com/s.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 0
+  },
+  {
+    "url": "https://api.salla.dev/store/v1/menus/footer?store_id=1736483913&lang=en",
+    "status": 200,
+    "mime": "application/json",
+    "bytes": 1015
+  },
+  {
+    "url": "https://api.salla.dev/store/v1/currencies",
+    "status": 200,
+    "mime": "application/json",
+    "bytes": 1132
+  },
+  {
+    "url": "https://api.salla.dev/store/v1/advertisements",
+    "status": 200,
+    "mime": "application/json",
+    "bytes": 1014
+  },
+  {
+    "url": "https://api.salla.dev/store/v1/products?source=latest&filterable=1",
+    "status": 200,
+    "mime": "application/json",
+    "bytes": 4287
+  },
+  {
+    "url": "https://api.salla.dev/store/v1/products?source=reorder&limit=4",
+    "status": 200,
+    "mime": "application/json",
+    "bytes": 1871
+  },
+  {
+    "url": "https://salla-dev.s3.eu-central-1.amazonaws.com/nWzD/zbgJtlRIcJ81ExBMmNZX8X3KVZVPM2Hzmi4vleMI.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 0
+  },
+  {
+    "url": "https://salla.design/cdn-cgi/rum?",
+    "status": 204,
+    "mime": "text/plain",
+    "bytes": 457
+  },
+  {
+    "url": "chrome-extension://hehggadaopoacecdllhhajmbjkdcmajg/images/cursor-chat.png",
+    "status": 200,
+    "mime": "image/png",
+    "bytes": 1843
+  },
+  {
+    "url": "https://salla-dev.s3.eu-central-1.amazonaws.com/nWzD/bL3FLXsYnlcjdn2TbeSdXh1y6nhiXWkzg7bMV9Lf.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 0
+  },
+  {
+    "url": "https://salla-dev.s3.eu-central-1.amazonaws.com/nWzD/ACknxzEIkcTdaFr1DETbQlXo5UwupBedJ9ZGyR8v.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 0
+  },
+  {
+    "url": "https://salla-dev.s3.eu-central-1.amazonaws.com/nWzD/m1JuFPTZeyNjtDm9pNK32leRr6m7zsetmFLlSw52.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 0
+  },
+  {
+    "url": "https://salla-dev.s3.eu-central-1.amazonaws.com/nWzD/b6OgmDMuYUBQ4CZmO0JjyoJLHQd4uSL5zPIdeY8z.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 0
+  },
+  {
+    "url": "https://salla-dev.s3.eu-central-1.amazonaws.com/nWzD/Pseddamb67f447Gxg17knASStc7Wy9t7W7xUZjhL.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 0
+  },
+  {
+    "url": "https://salla-dev.s3.eu-central-1.amazonaws.com/nWzD/D8jLeCWnenY3NXWxxNTNzCRyGZKPhtgoRXDfB3da.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 0
+  },
+  {
+    "url": "https://salla-dev.s3.eu-central-1.amazonaws.com/nWzD/iBBzFqENAn2B2X6cy8ssWkuzS7PAhZ9OQqpnd5ov.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 0
+  },
+  {
+    "url": "https://salla-dev.s3.eu-central-1.amazonaws.com/nWzD/4kiVSOgGx1X5tJHWEVdppINWIY85QYDjNt34Qu8U.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 0
+  },
+  {
+    "url": "https://salla-dev.s3.eu-central-1.amazonaws.com/nWzD/kt4Oo7NWwX5jl5oI7mxG1L1izJTxm7lXGhhaZytq.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 0
+  },
+  {
+    "url": "https://salla-dev.s3.eu-central-1.amazonaws.com/nWzD/wElvrlhUPDLY6p2qm7eVXFTzMx4SQlSzdptVVNMO.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 0
+  },
+  {
+    "url": "https://salla-dev.s3.eu-central-1.amazonaws.com/nWzD/1hRAERajowUESkHsJZ0Pi1n8JXU2yUlufqI7pvYD.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 0
+  },
+  {
+    "url": "https://salla-dev.s3.eu-central-1.amazonaws.com/nWzD/5mRUwApRNhkwlPfUAUrDp1eaKp51IeNzy7XfkSpN.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 0
+  },
+  {
+    "url": "https://salla-dev.s3.eu-central-1.amazonaws.com/nWzD/ZNz2swF2pTNYGvetBJEnioxfg8Y9nqDLOEvOsM1G.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 0
+  },
+  {
+    "url": "https://salla-dev.s3.eu-central-1.amazonaws.com/nWzD/AjpD0eWhkiYeAejM9H127990dumszfmWZ6TU5JxA.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 0
+  },
+  {
+    "url": "https://salla-dev.s3.eu-central-1.amazonaws.com/logo/logo-fashion.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 0
+  },
+  {
+    "url": "https://salla-dev.s3.eu-central-1.amazonaws.com/logo/logo-fashion.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 0
+  },
+  {
+    "url": "https://hexagon-analytics.com/images/973900.gif?bk=42e2369b33&r=874489860&v=121&cs=UTF-8&h=salla.design&l=en-US&S=56f9bb2daa2c9bd235dc535d50d03931&ui=1098397717&uu=e6a7c153-52b3-4125-89d0-7a92d139d3da&t=dev-v37bn5qobfotqowz&u=https%3A%2F%2Fsalla.design%2Fen%2Fdev-v37bn5qobfotqowz&ua=Mozilla%2F5.0%20(Macintosh%3B%20Intel%20Mac%20OS%20X%2010_15_7)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F151.0.0.0%20Safari%2F537.36&nm=2&mh=63196a00446a1e285d1992cfe444aa55&np=5&ph=332b72bdb211e34e6e3c24f88d7c393b&sh=1050&sw=1680&cd=24&p=MacIntel&to=-180&d=0&ce=true&tp=0&ol=true&pr=Gecko&ps=20030107&vd=Google%20Inc.&hc=6&je=false&ss=true&ls=true&in=true&db=false&tl=false&tr=false&ts=false&tb=false&ab=false&cf=8f8fd466a0dbc3004251ee58eb8a67de&sri=0&pf=138&inc=false&bn=Chrome&ow=1366&oh=768&wd=false&npe=default&fph=c0f48806e2dc75d6fcbd91de7957bb6f&fsh=1050&fsw=1680&fcd=24&fp=MacIntel&ftp=0&fhc=6&fss=true&fls=true&fin=true&fvch=8678246d2b639bb026f3cb83c2b0f8a6&fad=124.04347657808103&fdm=16&fvf=chrome&fcg=p3&ffc=false&fm=0&fc=0&frm=false&fhdr=false&fmf=70d5293b39f33c702acb3eef83e768dd&fa=255&fte=false&fts=false&fce=true&fpdf=true&fl=cce16c45e622d9ceae4b626c9353ecec&ft=Asia/Riyadh&pfe=52&z=z",
+    "status": 200,
+    "mime": "image/gif",
+    "bytes": 60
+  }
+]

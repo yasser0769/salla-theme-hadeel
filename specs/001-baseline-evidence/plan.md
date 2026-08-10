@@ -1,5 +1,10 @@
 # Implementation Plan: خط الأساس وخريطة الموجود والأدلة (Baseline, Existing-Capability Map, and Evidence)
 
+> **HISTORICAL BASELINE — publishing interpretation superseded 2026-08-10.** Raw
+> measurements and the recorded decisions remain evidence of the HDL-01 execution; the
+> raw-1MB comparison and former 85% target are not current policy. HDL-05 now gates a
+> deterministic compressed distributable-theme estimate.
+
 **Branch**: `codex/hdl-01-baseline-evidence` | **Date**: 2026-08-08 | **Spec**: [spec.md](spec.md)  
 **Input**: Feature specification from `/specs/001-baseline-evidence/spec.md`  
 **Roadmap ID**: `HDL-01`  

@@ -1,5 +1,9 @@
 # Phase 1 Data Model: HDL-01 — Report Structure and Validation Rules
 
+> **HISTORICAL BASELINE — publishing interpretation superseded 2026-08-10.** Preserve
+> the recorded raw measurements, but do not use their raw-1MB comparison or former 85%
+> target as current policy. HDL-05's compressed distributable-package model is authoritative.
+
 **Feature**: `HDL-01` · **Date**: 2026-08-08 · **Baseline commit**: `66b7b69e`  
 **Plan**: [plan.md](plan.md) · **Research**: [research.md](research.md) · **Spec**: [spec.md](spec.md)
 

@@ -315,7 +315,7 @@ class HadeelCartDrawer extends HTMLElement {
   getProductImage(item) {
     const image = item.product_image || item.image;
     if (typeof image === "string") return image;
-    return image?.url || salla.url.asset("images/placeholder.png");
+    return image?.url || salla.url.asset("images/placeholder.webp");
   }
 
   extractOptions(options) {

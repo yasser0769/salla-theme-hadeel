@@ -1,5 +1,9 @@
 # Tasks: خط الأساس وخريطة الموجود والأدلة (Baseline, Existing-Capability Map, and Evidence)
 
+> **HISTORICAL TASK RECORD — publishing interpretation superseded 2026-08-10.** Task
+> wording that treats raw `public/` as Salla's limit or uses the former 85% target records
+> what HDL-01 did; it is not current policy. HDL-05's compressed-package gate supersedes it.
+
 **Input**: `/specs/001-baseline-evidence/spec.md`, `design.md`, `plan.md`, `research.md`, `data-model.md`, `quickstart.md`
 **Roadmap ID**: `HDL-01`
 **Branch**: `codex/hdl-01-baseline-evidence`

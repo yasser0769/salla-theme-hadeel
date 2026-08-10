@@ -1,0 +1,28 @@
+{
+  "captured_at": "2026-08-10T04:46:48.939Z",
+  "english_home": {
+    "Timestamp": 571990.363526,
+    "Nodes": 2465,
+    "LayoutCount": 0,
+    "RecalcStyleCount": 0,
+    "ScriptDuration": 0.000023,
+    "TaskDuration": 0.000317,
+    "JSHeapUsedSize": 11279672,
+    "FirstMeaningfulPaint": 571888.012366,
+    "DomContentLoaded": 571885.997315,
+    "NavigationStart": 571884.966836
+  },
+  "arabic_cart": {
+    "Timestamp": 571990.463773,
+    "Nodes": 4160,
+    "LayoutCount": 0,
+    "RecalcStyleCount": 0,
+    "ScriptDuration": 0.042662,
+    "TaskDuration": 0.052466,
+    "JSHeapUsedSize": 11803296,
+    "FirstMeaningfulPaint": 571838.896389,
+    "DomContentLoaded": 571838.855513,
+    "NavigationStart": 571837.368868
+  },
+  "note": "CDP development-preview diagnostics only; not Lighthouse or Core Web Vitals"
+}

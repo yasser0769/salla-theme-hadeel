@@ -1,0 +1,38 @@
+{
+  "captured_at": "2026-08-10T04:47:27.739Z",
+  "commerce": {
+    "addButtons": 1,
+    "priceText": [
+      "174 \n                        349 \n                        \n                            Save\n                            175 \n                        \n                    \n                    \n                                                174",
+      "174 \n                        349 \n                        \n                            Save\n                            175",
+      "174",
+      "349",
+      "174",
+      "174"
+    ]
+  },
+  "html": {
+    "dir": "ltr",
+    "lang": "en"
+  },
+  "localAssets": [
+    "http://localhost:8000/product-card.js",
+    "http://localhost:8000/main-menu.js",
+    "http://localhost:8000/add-product-toast.js",
+    "http://localhost:8000/app.css",
+    "http://localhost:8000/images/payment_icons/tamara.svg",
+    "http://localhost:8000/images/payment_icons/tabby.svg",
+    "http://localhost:8000/images/payment_icons/mispay.svg",
+    "http://localhost:8000/app.js",
+    "http://localhost:8000/product.js"
+  ],
+  "overflow": {
+    "pass": true,
+    "scrollWidth": 1366
+  },
+  "url": "https://salla.design/en/dev-v37bn5qobfotqowz/%D9%81%D8%B3%D8%AA%D8%A7%D9%86/p1852650594",
+  "viewport": {
+    "h": 768,
+    "w": 1366
+  }
+}

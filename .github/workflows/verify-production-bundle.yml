@@ -62,3 +62,103 @@ jobs:
 
       - name: Verify public/ matches a fresh production build
         run: node scripts/check-theme.mjs --build --max-errors=0
+
+  # --- HDL-05 gates (specs/005-performance-bundle-ci) -------------------------
+  # These four jobs are independent on purpose: each failure signal stays
+  # readable on its own. None of them may be weakened: no continue-on-error,
+  # no label/branch skip. package-budget gates Salla publishing compliance on
+  # the deterministic compressed distributable-theme estimate. Raw public/,
+  # gzip-9, and per-file growth remain separately reported engineering
+  # telemetry and never substitute for the compressed package verdict.
+
+  package-budget:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Enforce compressed package compliance and report build telemetry
+        run: node scripts/check-bundle-budget.mjs --package-budget --report
+
+  demo-media:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Reject demo/sample media, video containers, and unregistered media
+        run: node scripts/check-bundle-budget.mjs --demo-media
+
+  dependency-policy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Reject dependencies outside the committed allowlist
+        run: node scripts/check-bundle-budget.mjs --dependency-policy
+
+  bundle-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run the HDL-05 budget/CI contract tests (including negative tests)
+        run: node --test tests/performance-bundle-ci.test.mjs

@@ -1,0 +1,42 @@
+{
+  "captured_at": "2026-08-10T09:36:44.682Z",
+  "browser": "Chrome",
+  "cacheDisabled": true,
+  "throttling": "none",
+  "networkCount": 110,
+  "encodedBytes": 4693289,
+  "localhostCount": 6,
+  "localhostBytes": 1491006,
+  "localhost": [
+    {
+      "url": "http://localhost:8000/app.css",
+      "status": 200,
+      "encodedDataLength": 832933
+    },
+    {
+      "url": "http://localhost:8000/product-card.js",
+      "status": 200,
+      "encodedDataLength": 98913
+    },
+    {
+      "url": "http://localhost:8000/app.js",
+      "status": 200,
+      "encodedDataLength": 356899
+    },
+    {
+      "url": "http://localhost:8000/add-product-toast.js",
+      "status": 200,
+      "encodedDataLength": 85643
+    },
+    {
+      "url": "http://localhost:8000/home.js",
+      "status": 200,
+      "encodedDataLength": 65389
+    },
+    {
+      "url": "http://localhost:8000/main-menu.js",
+      "status": 200,
+      "encodedDataLength": 51229
+    }
+  ]
+}

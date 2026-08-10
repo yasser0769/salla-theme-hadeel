@@ -150,7 +150,7 @@ One non-interactive static record may explain that profile switching changes Fol
 - **New dependencies**: none; `package.json` and `pnpm-lock.yaml` are out of scope.
 - **Network requests**: 0 before / 0 after for preset resolution.
 - **Runtime work**: bounded server-side scalar comparisons during render; 0 client listeners, observers, storage writes, or hydration.
-- **Inherited release gate**: the current public total exceeds Salla's published 1 MB ceiling; HDL-05 owns remediation. HDL-03 must not increase it and cannot declare the project release-ready.
+- **Inherited release gate (corrected 2026-08-10)**: HDL-05 gates the deterministic compressed distributable-theme estimate against Salla's 1 MB ceiling. Raw `public/` is telemetry; HDL-03's zero-byte delta remains a valid regression constraint.
 - **Rollback trigger**: any public byte delta, duplicated preset selectors/styles, new request, lost Custom value, unknown class, visible commerce regression, or unapproved Figma deviation.
 
 ## Project Structure

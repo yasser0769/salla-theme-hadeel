@@ -212,7 +212,7 @@
       "base_variant": false,
       "label_ar": "استخدام خط ثيم هديل",
       "label_en": "Use Hadeel theme font",
-      "description": "Existing identity switch rendered as the use-theme-font body class in master.twig; merchant-controlled and never follows a preset profile.",
+      "description": "Deprecated compatibility no-op (HDL-05 T005F): still rendered as the use-theme-font body class in master.twig so merchant storage and markup stay valid, but no longer selects any bundled font — runtime font is Salla theme.font via --font-main with a system fallback. Merchant-controlled and never follows a preset profile.",
       "evidence_status": "existing"
     },
     {

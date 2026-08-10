@@ -1,0 +1,66 @@
+{
+  "captured_at": "2026-08-10T10:12:34.187Z",
+  "browser": "Chrome",
+  "cacheDisabled": true,
+  "throttling": "none",
+  "networkCount": 107,
+  "encodedBytes": 4782495,
+  "localhostCount": 6,
+  "localhostBytes": 1686422,
+  "localhost": [
+    {
+      "url": "http://localhost:8000/app.css",
+      "status": 200,
+      "mimeType": "text/css",
+      "type": "Stylesheet",
+      "encodedDataLength": 1028350,
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "url": "http://localhost:8000/product-card.js",
+      "status": 200,
+      "mimeType": "application/javascript",
+      "type": "Script",
+      "encodedDataLength": 98913,
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "url": "http://localhost:8000/app.js",
+      "status": 200,
+      "mimeType": "application/javascript",
+      "type": "Script",
+      "encodedDataLength": 356899,
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "url": "http://localhost:8000/main-menu.js",
+      "status": 200,
+      "mimeType": "application/javascript",
+      "type": "Script",
+      "encodedDataLength": 51229,
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "url": "http://localhost:8000/add-product-toast.js",
+      "status": 200,
+      "mimeType": "application/javascript",
+      "type": "Script",
+      "encodedDataLength": 85642,
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "url": "http://localhost:8000/home.js",
+      "status": 200,
+      "mimeType": "application/javascript",
+      "type": "Script",
+      "encodedDataLength": 65389,
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    }
+  ]
+}

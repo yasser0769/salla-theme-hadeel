@@ -1,0 +1,309 @@
+{
+  "safeLines": 2494,
+  "sourceFiles": 111,
+  "sourceTags": [
+    "s-add-product-button",
+    "s-apps-icons",
+    "s-breadcrumb",
+    "s-button",
+    "s-cart-coupons",
+    "s-cart-item-offers",
+    "s-cart-summary",
+    "s-comments",
+    "s-conditional-fields",
+    "s-conditional-offer",
+    "s-contacts",
+    "s-count-down",
+    "s-datetime-picker",
+    "s-drawer",
+    "s-fast-checkout-button-width",
+    "s-file-upload",
+    "s-filters",
+    "s-gifting",
+    "s-hadeel-cart-drawer",
+    "s-infinite-scroll",
+    "s-installment",
+    "s-loading",
+    "s-localization-modal",
+    "s-login-modal",
+    "s-loyalty",
+    "s-menu",
+    "s-metadata",
+    "s-mini-checkout-widget",
+    "s-modal",
+    "s-modal-body",
+    "s-modal-overlay",
+    "s-multiple-bundle-product",
+    "s-notifications",
+    "s-offer",
+    "s-offer-modal",
+    "s-order-details",
+    "s-order-totals-card",
+    "s-orders",
+    "s-payments",
+    "s-product-card",
+    "s-product-options",
+    "s-product-size-guide",
+    "s-products-list",
+    "s-products-slider",
+    "s-progress-bar",
+    "s-quantity-input",
+    "s-quick-order",
+    "s-rating-modal",
+    "s-rating-stars",
+    "s-reviews",
+    "s-scopes",
+    "s-search",
+    "s-skeleton",
+    "s-slider",
+    "s-social",
+    "s-social-share",
+    "s-tel-input",
+    "s-theme-hadeel",
+    "s-tiered-offer",
+    "s-trust-badges",
+    "s-user-menu",
+    "s-user-settings",
+    "s-verify",
+    "s-wallet"
+  ],
+  "launchTags": [
+    "s-add-product-button",
+    "s-apps-icons",
+    "s-breadcrumb",
+    "s-button",
+    "s-cart-coupons",
+    "s-cart-item-offers",
+    "s-cart-summary",
+    "s-comments",
+    "s-conditional-offer",
+    "s-contacts",
+    "s-count-down",
+    "s-drawer",
+    "s-file-upload",
+    "s-filters",
+    "s-gifting",
+    "s-hadeel-cart-drawer",
+    "s-installment",
+    "s-localization-modal",
+    "s-login-modal",
+    "s-loyalty",
+    "s-menu",
+    "s-metadata",
+    "s-modal",
+    "s-multiple-bundle-product",
+    "s-offer",
+    "s-offer-modal",
+    "s-payments",
+    "s-product-card",
+    "s-product-options",
+    "s-product-size-guide",
+    "s-products-list",
+    "s-products-slider",
+    "s-quantity-input",
+    "s-quick-order",
+    "s-rating-stars",
+    "s-reviews",
+    "s-scopes",
+    "s-search",
+    "s-slider",
+    "s-social",
+    "s-social-share",
+    "s-tiered-offer",
+    "s-trust-badges",
+    "s-user-menu"
+  ],
+  "directTokens": 156,
+  "variants": {
+    "theme-direct": {
+      "kept": 341,
+      "removed": 2153
+    },
+    "theme-reachable": {
+      "kept": 1811,
+      "removed": 683
+    },
+    "theme-reachable-core": {
+      "kept": 1858,
+      "removed": 636
+    },
+    "launch-core": {
+      "kept": 1630,
+      "removed": 864
+    },
+    "launch-core-loyalty-cart": {
+      "kept": 1488,
+      "removed": 1006
+    },
+    "launch-core-no-loyalty-inferred": {
+      "kept": 1361,
+      "removed": 1133
+    },
+    "launch-core-essential": {
+      "kept": 964,
+      "removed": 1530
+    }
+  },
+  "topFamilies": [
+    [
+      "s-loyalty",
+      284
+    ],
+    [
+      "s-offer",
+      92
+    ],
+    [
+      "s-product-options",
+      89
+    ],
+    [
+      "s-product-card",
+      85
+    ],
+    [
+      "s-rating-modal",
+      71
+    ],
+    [
+      "s-gifting",
+      65
+    ],
+    [
+      "s-reviews",
+      63
+    ],
+    [
+      "s-button",
+      54
+    ],
+    [
+      "s-comments",
+      51
+    ],
+    [
+      "s-slider",
+      49
+    ],
+    [
+      "s-multiple-bundle-product",
+      48
+    ],
+    [
+      "s-drawer",
+      44
+    ],
+    [
+      "s-offer-modal",
+      43
+    ],
+    [
+      "s-file-upload",
+      42
+    ],
+    [
+      "s-order-details",
+      41
+    ],
+    [
+      "s-modal",
+      40
+    ],
+    [
+      "s-user-menu",
+      39
+    ],
+    [
+      "s-tiered-offer",
+      38
+    ],
+    [
+      "s-scopes",
+      37
+    ],
+    [
+      "s-cart-summary",
+      33
+    ],
+    [
+      "s-cart-coupons",
+      32
+    ],
+    [
+      "s-count-down",
+      32
+    ],
+    [
+      "s-search",
+      28
+    ],
+    [
+      "s-conditional-offer",
+      26
+    ],
+    [
+      "s-filters",
+      26
+    ],
+    [
+      "(generic)",
+      25
+    ],
+    [
+      "s-orders",
+      24
+    ],
+    [
+      "s-quick-order",
+      24
+    ],
+    [
+      "s-wallet",
+      22
+    ],
+    [
+      "s-order-totals-card",
+      19
+    ],
+    [
+      "s-cart-item-offers",
+      18
+    ],
+    [
+      "s-localization-modal",
+      17
+    ],
+    [
+      "s-user-settings",
+      17
+    ],
+    [
+      "s-add-product-button",
+      15
+    ],
+    [
+      "s-verify",
+      15
+    ],
+    [
+      "s-notifications",
+      13
+    ],
+    [
+      "s-menu",
+      11
+    ],
+    [
+      "s-products-list",
+      11
+    ],
+    [
+      "s-rating-stars",
+      11
+    ],
+    [
+      "s-breadcrumb",
+      10
+    ]
+  ]
+}

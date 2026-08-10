@@ -1,0 +1,99 @@
+{
+  "captured_on": "2026-08-10",
+  "branch": "codex/preview-hdl-05-baseline-20260810",
+  "sha": "86c53092106d6771be5d20d2e4b00624c05179d3",
+  "draft": "1253467711",
+  "store": "dev-f5vbpgh2dnmmvhzp",
+  "browser": "Chrome",
+  "cache_disabled": true,
+  "throttling": "none",
+  "capture_method": "Chrome CDP Page.getResourceTree contentSize after a cache-disabled reload; Page.getResourceContent verified app.css bytes; pageAssets independently verified every observed localhost URL",
+  "salla_preview_sync_failure": {
+    "cli_created_draft": "614237496",
+    "owner_confirmed_draft": "1253467711",
+    "classification": "SALLA PREVIEW SYNC FAILURE — not code FAIL"
+  },
+  "rows": [
+    {
+      "captured_at": "2026-08-10T10:53:25.664Z",
+      "route": "product",
+      "path_id": "p1523882456",
+      "locale": "ar",
+      "direction": "rtl",
+      "viewport": { "width": 390, "height": 844, "dpr": 1 },
+      "draft_body_class": "salla-draft-1253467711",
+      "product_cards": 6,
+      "price_present": true,
+      "cta_present": true,
+      "overflow": { "scroll_width": 390, "inner_width": 390, "pass": true },
+      "theme_local_profile": "product",
+      "theme_local_requests": 9,
+      "theme_local_content_bytes": 1755545
+    },
+    {
+      "captured_at": "2026-08-10T10:55:10.126Z",
+      "route": "product",
+      "path_id": "p1523882456",
+      "locale": "en",
+      "direction": "ltr",
+      "viewport": { "width": 1366, "height": 768, "dpr": 1 },
+      "draft_body_class": "salla-draft-1253467711",
+      "product_cards": 6,
+      "price_present": true,
+      "cta_present": true,
+      "overflow": { "scroll_width": 1366, "inner_width": 1366, "pass": true },
+      "theme_local_profile": "product",
+      "theme_local_requests": 9,
+      "theme_local_content_bytes": 1755545
+    },
+    {
+      "captured_at": "2026-08-10T10:54:42.618Z",
+      "route": "collection",
+      "path_id": "c902392690",
+      "locale": "ar",
+      "direction": "rtl",
+      "viewport": { "width": 390, "height": 844, "dpr": 1 },
+      "draft_body_class": "salla-draft-1253467711",
+      "product_cards": 11,
+      "overflow": { "scroll_width": 390, "inner_width": 390, "pass": true },
+      "theme_local_profile": "collection",
+      "theme_local_requests": 6,
+      "theme_local_content_bytes": 1746472
+    },
+    {
+      "captured_at": "2026-08-10T10:55:38.484Z",
+      "route": "collection",
+      "path_id": "c902392690",
+      "locale": "en",
+      "direction": "ltr",
+      "viewport": { "width": 1366, "height": 768, "dpr": 1 },
+      "draft_body_class": "salla-draft-1253467711",
+      "product_cards": 11,
+      "overflow": { "scroll_width": 1366, "inner_width": 1366, "pass": true },
+      "theme_local_profile": "collection",
+      "theme_local_requests": 6,
+      "theme_local_content_bytes": 1746472
+    }
+  ],
+  "resource_profiles": {
+    "product": [
+      { "path": "add-product-toast.js", "content_bytes": 85232 },
+      { "path": "app.css", "content_bytes": 1027952 },
+      { "path": "app.js", "content_bytes": 356488 },
+      { "path": "images/payment_icons/mispay.svg", "content_bytes": 5796 },
+      { "path": "images/payment_icons/tabby.svg", "content_bytes": 2625 },
+      { "path": "images/payment_icons/tamara.svg", "content_bytes": 652 },
+      { "path": "main-menu.js", "content_bytes": 50820 },
+      { "path": "product-card.js", "content_bytes": 98503 },
+      { "path": "product.js", "content_bytes": 127477 }
+    ],
+    "collection": [
+      { "path": "add-product-toast.js", "content_bytes": 85232 },
+      { "path": "app.css", "content_bytes": 1027952 },
+      { "path": "app.js", "content_bytes": 356488 },
+      { "path": "main-menu.js", "content_bytes": 50820 },
+      { "path": "product-card.js", "content_bytes": 98503 },
+      { "path": "product.js", "content_bytes": 127477 }
+    ]
+  }
+}

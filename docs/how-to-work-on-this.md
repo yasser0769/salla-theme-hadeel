@@ -166,17 +166,19 @@ starts ahead.
 
 Four things, listed so they do not get quietly forgotten:
 
-0. **The theme is over the publication size limit.** Salla caps public themes at 1 MB;
-   `public/` is 1.5 MB. Two thirds of `app.css` is Salla's own component CSS, which the
-   theme is required to ship — see `docs/building-a-salla-theme.md`, Part 6, for the
-   measured breakdown and the ~160 KB that might be trimmable.
+0. **Package compliance and runtime performance are separate.** Salla Support confirmed
+   that the public-theme limit is measured on the compressed distributable theme package,
+   excluding `node_modules`; raw `public/` size is telemetry, not publishing compliance.
+   Run `node scripts/check-bundle-budget.mjs --package-budget --report` for the current
+   authoritative estimate and headroom. Continue treating large CSS, route transfer, and
+   request scaling as runtime-performance work, but never prune required Salla/Twilight
+   states merely to force raw `public/` below 1 MB.
 
 
-1. **No live verification.** Every change here is verified statically — build, guard, CSS
-   diff. Nothing has been rendered on a real Salla storefront since 2026-07-29. Before
-   launch, run one preview pass over: product page (desktop + mobile), a product with
-   required options, category, home, cart, and an English/LTR store. That is stage 1 and
-   stage 9 of `FIX-PROMPT-V2.md`.
+1. **Live verification remains incomplete.** HDL-05's 2026-08-10 corrective tree has a
+   fresh Arabic/RTL home DOM check and screenshot with no horizontal overflow. Its exact
+   corrective draft did not rerun product, collection, cart, or English/LTR. Before launch,
+   run those routes on desktop/mobile and record any unavailable row as `NOT VERIFIED`.
 2. **The fake account icon.** The header hides Salla's real trigger with `opacity: 0` and
    paints an SVG over it. `salla-user-menu` exposes no slot for the trigger, so there is
    no clean fix — it is documented as a known liability. If Salla renames

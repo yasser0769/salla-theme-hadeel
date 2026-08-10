@@ -1,5 +1,11 @@
 # Feature Specification: خط الأساس وخريطة الموجود والأدلة
 
+> **HISTORICAL BASELINE — publishing interpretation superseded 2026-08-10.** The
+> raw `public/` measurements below remain valid for commit `66b7b69e`, but every claim
+> that they are directly comparable to Salla's 1 MB publishing limit, every raw-over-cap
+> verdict, and the former 85% target are `SUPERSEDED` by HDL-05's compressed
+> distributable-package contract. See `specs/005-performance-bundle-ci/spec.md`.
+
 **English name**: Baseline, Existing-Capability Map, and Evidence  
 **Roadmap ID**: `HDL-01`  
 **Parent roadmap**: `ROADMAP.md` → `HDL-01`  

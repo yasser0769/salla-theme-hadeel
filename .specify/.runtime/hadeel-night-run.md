@@ -569,3 +569,183 @@ This append-oriented log records verified transitions, commands, evidence, appro
 - PREVIEW: proven temporary branch `preview/hdl-04-207a4d1e` at `7c89f9a6`, owner-confirmed draft `1209839665`; Arabic Home/Product/Cart evidence captured. English disabled, Blog 403, populated Collection unavailable, Lighthouse absent, and the post-review collapse interaction remain explicitly NOT VERIFIED and carry to the HDL-07 owner checkpoint. Product 320px overflow is routed to HDL-18/19 and HDL-29.
 - COMMIT: `870c4b5b` (`feat(hdl-04): improve localization rtl and accessibility`); not pushed.
 - STATUS: `IMPLEMENTED`; integrated owner acceptance remains at the specified HDL-07 manual checkpoint. Next Spec: HDL-05.
+
+### HDL-05 — T001–T008 COMPLETE / T009 HUMAN GATE — 2026-08-09 17:54 +03
+
+- MODE: `LEAN`; branch `codex/hdl-05-performance-bundle-ci`; HEAD `eb40134dcda5c147ff03a048ad05b3e11ba8a15b`; no commit, push, merge, reset, revert, staging, Salla preview, or browser preview was performed.
+- PLAN/REVIEW: Claude Opus retry reached the monthly spend limit; per owner routing, `GPT-5.6 Sol High via Codex` completed the planning/review work. IMPLEMENTATION: `Kimi K3 High` implemented the font removal, bundle checker, manifest, tests, CI gates, classification, and candidate packet. A final atomic fallback shortening was applied by Codex only after Kimi Code returned billing-cycle 403 and WebBridge was confirmed browser-only; this routing exception is explicit rather than silently attributed to Kimi.
+- OWNER FONT DECISION: permanent zero-local-font architecture implemented. Deleted five Thmanyah WOFF2 source files and their generated `public/` copies, removed `src/assets/styles/01-settings/fonts.scss`, all custom `@font-face` rules/imports, and bundled-font selection. `master.twig` still maps `--font-main` to Salla `theme.font`; source default is the generic system fallback `sans-serif`; `use_theme_font` ID/type/default/storage remains present as a deprecated compatibility no-op.
+- FONT/BUNDLE RESULT: baseline 33 files / 1,559,227 raw / 609,438 gzip-9; final 28 files / 1,172,827 raw / 227,413 gzip-9. Saving: **386,400 raw / 382,025 gzip-9**. `app.css`: 803,110 → 802,202 (−908 raw). Remaining hard-cap gap: 172,827 B; internal-target gap: 322,827 B.
+- STATIC VERIFICATION: production webpack PASS with the inherited three size warnings; HDL-05 suite 20/20; HDL-04 suite 24/24; HDL-03 suite 73/73; `check-theme --build --json` 0 errors / 0 warnings with build-sync OK; media/dependency gates PASS; `git diff --check` PASS; zero WOFF/WOFF2, custom `@font-face`, or Thmanyah references under `src/`/`public/`. Live Salla RTL/LTR font rendering remains explicitly NOT VERIFIED until the owner-confirmed preview step T012.
+- BUNDLE GATE: correctly RED only for the raw hard cap: 1,172,827 > 1,000,000 by 172,827 B. Manifest drift, per-file ceiling, media, font, dependency, and build-sync checks are green.
+- T001/T002/T003/T004/T005/T005F/T006/T007/T008: complete. T009 is the current explicit Human Gate; no destructive Safelist/CSS change has started.
+- SAFELIST DECISION PACKET: conservative Tier-A-only scope removes 281 unproven Tier-D lines and measures −58,045 raw, leaving 1,114,782 B (114,782 over cap). Conservative C1 + measured C3 + maximum C5 still leaves 1,101,494 B (101,494 over). Full Safelist removal would reach 679,419 B but is explicitly unsafe/rejected. A deeper named experimental scope requires owner acceptance plus T012 and HDL-24…27/HDL-29 revalidation.
+- PROCESS NOTE: an old user/external `pnpm run watch` process (PID 4589 / webpack PID 4598, started 2026-08-07 in the primary worktree) was discovered overwriting production output during measurement. It predates this Goal and was not stopped or modified. Final measurements were taken after it became idle and a fresh production build was verified in sync. Goal `caffeinate -is` PID 31513 and Kimi WebBridge daemon PID 39126 remain running.
+- UNRELATED FILES: user/external `.vscode/settings.json` and newly observed `AGENTS.md` modifications were not edited, staged, or reverted by this phase.
+- STATUS: `HUMAN GATE — HDL-05 T009 SAFELIST SCOPE`.
+
+### HDL-05 — T009 DECISION PACKET RECONCILED — 2026-08-09
+
+- `speckit-implement` continuation checks found no extension hooks or checklists. The prerequisite helper incorrectly resolved Spec 004 from legacy branch-selection logic, so the active HDL-05 `plan.md`/`tasks.md` were loaded manually; no prerequisite file was changed.
+- A read-only deeper spike ran in `/tmp/hdl05-deeper-safelist.8IPMZs`. It did not edit primary source/config/public, Git index, branch, commit, or remote. The isolated full-Safelist build reproduced current `app.css` exactly at 802,202 B; a 32-raw/212-gzip JS environment offset was excluded by projecting CSS deltas onto the authoritative primary manifest.
+- Evidence conflict corrected: strict exhaustive Salla package coverage gives 2,472 Tier A + 5 Tier C + 17 Tier D and only 487 raw bytes of conservative saving. The earlier 2,213/281 split and 58,045-byte saving is now labelled experimental, not conservative.
+- Named cap-passing scope measured twice byte-identically: **`C1-LAUNCH-CORE-LOYALTY-CART`**, 1,488/2,494 rows, `app.css` 620,784 B, raw delta −181,418 B, projected `public/` 991,409 B, hard-cap margin 8,591 B, projected gzip-9 206,049 B. Candidate SHA-256: `c5dee58b5c32c63b3498464b3f4ff1d8a17d09ffa92b241f5589920a70cff87a`; built CSS SHA-256: `36810c968f002040c8497c6151de0a82f678b4d84b9f2e5c350a51f7bea232d6`.
+- Scope retains launch-route families and 142 Loyalty cart/widget/reward/modal/points-banner/confirmation/prize-item rows, but omits supporting-route family expansion and 142 inferred full Loyalty landing/history rows. Risk level is explicitly **HIGH**; runtime safety is NOT VERIFIED.
+- If accepted, T012 must include Cart plus authenticated Loyalty evidence, HDL-23 owns supporting-route revalidation, HDL-24…27 own preset revalidation, and HDL-29 is the final gate. Any regression reverts C1; no forward override patch is permitted.
+- Reproducibility artifacts saved under `specs/005-performance-bundle-ci/evidence/t009-spike/`; authoritative packet: `evidence/deeper-safelist-spike.md`. No T010 change has started. T009 remains the Human Gate.
+
+### HDL-05 — T009 LOSSLESS-MEDIA SPIKE REFINED — 2026-08-10
+
+- Owner resumed HADEEL LEAN MODE and requested sleep prevention. The prior process had ended during the pause; `caffeinate -is` was restarted in persistent execution session `36324`. No Salla preview or browser was opened.
+- A read-only C5 spike completed in `/tmp/hdl05-media-spike.XYDeSh`. No primary `src/`, generated `public/`, Git index, branch, commit, or remote was changed. Evidence-only candidate outputs and metrics were preserved under `specs/005-performance-bundle-ci/evidence/t009-media/` and `evidence/media-optimization-spike.md`.
+- Accessibility-preserving SVG optimization saves **5,211 B**. `check`, MISpay, and Tamara render byte-equivalent RGBA frames; Delivery measures PSNR 67.039895 dB / SSIM 0.999995 and Tabby PSNR 77.965563 dB / SSIM 1.000000, with no observed visual difference. All payment icons retain valid XML, `role="img"`, `aria-labelledby`, and a matching title ID. The default SVGO result that removed accessible names was rejected.
+- Lossless WebP converts the 20,664-byte opaque placeholder to 4,310 B, saving **16,354 B**; both decoders produce exact RGBA MD5 `49a075f8c5a5ed03958ebeeb4954f459`. Total C5 saving: **21,565 B**.
+- New recommended owner path: exact 1,630-line `C1-LAUNCH-CORE-FULL-LOYALTY` Safelist artifact (SHA-256 `833fae3b9bf4d9266d57bb6e21609a3417695b38694b5b2ef5c5c44d075ba5b8`) plus `C5-LOSSLESS-MEDIA`. Projected total: **997,742 B**, only **2,258 B** below the hard cap and **147,742 B** above the internal target. This retains all 284 Loyalty rows but still omits supporting-route family expansion.
+- Risk remains **experimental / HIGH**: live Salla asset resolution/rendering is `NOT VERIFIED`, supporting routes may contain injected states, and cap margin is narrow. T012, HDL-23, HDL-24…27, and HDL-29 revalidation/rollback obligations are explicit in the evidence. No T010 source change has started; T009 remains the Human Gate.
+
+### HDL-05 — T009 OWNER DECISION ACCEPTED — 2026-08-10
+
+- OWNER: `HDL-05: C1-LAUNCH-CORE-FULL-LOYALTY + C5-LOSSLESS-MEDIA — ACCEPT HIGH RISK`.
+- ACCEPTED SCOPE: exact 1,630-line Safelist artifact SHA-256 `833fae3b9bf4d9266d57bb6e21609a3417695b38694b5b2ef5c5c44d075ba5b8` plus the accessibility-preserving 21,565-byte C5 candidate. Projected `public/`: 997,742 B, margin 2,258 B below the hard cap; full 284-row Loyalty family retained.
+- ACCEPTED RISK: supporting-route Salla-injected states and live asset resolution/rendering remain unverified; margin is narrow. T012 is the immediate confirm-or-revert gate, with further obligations in HDL-23, HDL-24…27, and HDL-29.
+- C3: not authorized/executed because its isolated measurement increases `public/` by 3,692 raw bytes.
+- NEXT: T010 via Kimi K3 High. No Salla preview/browser before the owner confirms the exact preview branch and SHA.
+
+### HDL-05 — T010 C1 + C5 EXECUTED — 2026-08-10
+
+- IMPLEMENTER: Kimi K3 High (`kimi-code/k3`, thinking enabled). The first Kimi session was interrupted after remaining silent without edits; a bounded retry executed both accepted reductions. No model substitution was used.
+- C1: `src/config/salla-safelist.txt` is the exact accepted 1,630-line artifact, SHA-256 `833fae3b9bf4d9266d57bb6e21609a3417695b38694b5b2ef5c5c44d075ba5b8`; Tailwind no longer consumes the package's full 2,494-line Safelist. `app.css` 802,202 → 648,682 B (−153,520); normalized rules 6,838 → 5,646.
+- C5: source assets match the approved accessibility-preserving evidence. Placeholder PNG 20,664 B became lossless WebP 4,310 B; five SVGs save 5,211 B; pure media saving 21,565 B. The longer `.webp` fallback literal adds one byte to `add-product-toast.js`, so net built saving is 21,564 B. C5 CSS snapshot diff is empty; payment accessible-name attributes remain pinned by tests.
+- FINAL BUNDLE: 28 files / **997,743 raw** / **196,388 gzip-9**. Hard cap is green by **2,257 B**; internal target remains 147,743 B over under the explicit temporary exception recorded in `plan.md` and `evidence/t010-execution.md`.
+- RATCHET: `add-product-toast.js` ceiling rose exactly one byte, 25,605 → 25,606, solely for the approved `.png` → `.webp` literal; no other ceiling increased. This is not a budget bypass and the aggregate gate moved from red to green.
+- PRE-T011 CHECKS: HDL-05 29/29; production webpack PASS; `check-theme --build` 0/0; bundle budget PASS; `git diff --check` PASS. No commit, staging, push, package/lock change, Salla preview, or browser action occurred. T012 runtime safety remains NOT VERIFIED.
+
+### HDL-05 — T011 AUTOMATED GATES PASS — 2026-08-10 07:25 +03
+
+- HDL-05 tests 29/29; `check-theme --json` 0 errors / 0 warnings; production webpack PASS with the inherited browser-data/plugin and three size warnings; `check-theme --build --max-errors=0` 0/0 with build-sync PASS; bundle gate PASS; `git diff --check` clean.
+- Measured production tree: 28 files / 997,743 raw / 196,388 gzip-9. Hard-cap margin 2,257 B; the recorded temporary internal-target exception remains active.
+- Literal command outputs and capture provenance are under `specs/005-performance-bundle-ci/evidence/t011-final-gates.md`.
+- NEXT: T012 rendered Salla confirm-or-revert gate. Before any Salla preview/browser, state the exact preview branch and SHA and wait for owner confirmation in Partners Portal.
+
+### HDL-05 — T012 PREVIEW BRANCH READY / OWNER CONFIRMATION GATE — 2026-08-10
+
+- TEMPORARY WORKTREE: `.worktrees/preview-hdl-05-20260810`; branch `codex/preview-hdl-05-20260810`.
+- PREVIEW-ONLY COMMIT: `a9e9ab0c11eeafe1bf0024b8aad2342eef4ec3b9` (`chore(preview): mirror hdl-05 bundle remediation`). Local HEAD, upstream, and remote SHA match exactly; worktree is clean. No primary-tree commit or staging occurred.
+- PREVIEW VERIFICATION: production webpack PASS; HDL-05 29/29; `check-theme --build --max-errors=0` 0/0; bundle gate PASS; `git diff --check` clean.
+- ENVIRONMENT OFFSET: the isolated worktree's path-sensitive minification produces 997,774 raw / 196,600 gzip-9, 31 raw / 212 gzip above the authoritative primary build while still passing the hard cap by 2,226 B. Source, app.css, C1 Safelist, and C5 media hashes remain identical; the preview-only manifest records the offset and is not copied back to primary.
+- PUSH: branch pushed to `origin`; GitHub returned no workflow run for this branch (`gh run list` empty), so CI is `NOT TRIGGERED`, not claimed green.
+- STOP: no Salla CLI or browser opened. Waiting for the owner to confirm branch `codex/preview-hdl-05-20260810` at SHA `a9e9ab0c11eeafe1bf0024b8aad2342eef4ec3b9` in Partners Portal.
+
+### HDL-05 — BLOCKER-4 ATOMIC FIX / INDEPENDENT RE-REVIEW PASS — 2026-08-10
+
+- REVIEW BOUNDARY: Claude Opus 5 High was unavailable at the review boundary (monthly spend limit, as already recorded at the HDL-05 planning/review boundary); per the established owner routing the independent re-review fell to `GPT-5.6 Sol High`.
+- FIX: Kimi K3 High performed the bounded atomic Blocker-4 remediation only. The tracked T009 inventory script (`specs/005-performance-bundle-ci/evidence/t009-spike/hdl05-tier-inventory.mjs`) previously derived ROOT from its own evidence directory and exited 1 seeking `node_modules` there; it now resolves the repository root four levels up from its tracked location and confines its two generated safelist outputs to `evidence/t009-spike/`. Corpus definition, tier classifier, and documented counts are unchanged and were re-verified by execution: 2,494 tokens / 2,358 corpus files / Tier A 2,472 / Tier B 0 / Tier C 5 / Tier D 17. One focused regression test added; evidence SHA statements updated honestly (script no longer byte-identical to the worktree original: `c30ba199…` → `51d372bd…`; results doc unchanged at `709f520a…`).
+- RE-REVIEW: independent `GPT-5.6 Sol High` returned `STATIC_STATUS: PASS`, `STATIC_BLOCKERS: 0`, `CLOSED_BLOCKER_4: yes`, `NEW_BLOCKERS: 0`.
+- VALIDATION: HDL-05 suite 36/36 (35 prior + 1 new Blocker-4 regression); `check-theme --build` 0 errors / 0 warnings with build-sync PASS across all 28 files; bundle budget PASS at 997,743 raw / 196,388 gzip-9 (hard cap green by 2,257 B); `git diff --check` clean. No commit, staging, push, package/lock change, Salla preview, or browser action occurred.
+- STATUS: T012 remains reopened and T013 remains incomplete — exactly two runtime blockers remain: the strict same-collection comparison at two product counts and genuine bilingual before/after network evidence. HDL-05 is NOT marked complete/accepted.
+
+### HDL-05 — PRE-C1/C5 BASELINE PREVIEW CAPTURE / SYNC FAILURE — 2026-08-10 12:22 +03
+
+- CONFIRMED PREVIEW: branch `codex/preview-hdl-05-baseline-20260810`; SHA `86c53092106d6771be5d20d2e4b00624c05179d3`; owner-confirmed draft `77842079`; Chrome explicitly selected.
+- SYNC FAILURE 1: the confirmed draft initially served remote `app.css` at 648,682 B / SHA-256 `6f54a821…`, byte-identical to the post-C1/C5 primary bundle rather than the baseline worktree's 802,202 B production CSS. Classified `SALLA PREVIEW SYNC FAILURE`, not code FAIL.
+- SYNC FAILURE 2: the CLI, run only in the temporary baseline worktree with `--browser chrome`, created draft `1169141734` instead of `77842079`. The CLI-created draft was not used as identity evidence.
+- PROVEN BASELINE: the owner-confirmed draft was rebound to the baseline worktree's `localhost:8000` server. Live body class `salla-draft-77842079` and six localhost theme assets proved draft/source identity together. Arabic mobile home: 15 cards, `lang=ar`, `dir=rtl`, no overflow, 103 responses / 4,752,410 encoded B total; six theme-local responses / 1,686,422 B; development `app.css` 1,028,350 B.
+- UNRESOLVED BLOCKER 1: collection `c902392690` exposed 11 unique cards and no pagination/load-more state; strict same-collection two-count comparison remains NOT VERIFIED without merchant catalogue mutation.
+- UNRESOLVED BLOCKER 2: `/en/dev-f5vbpgh2dnmmvhzp` rendered `lang=ar`, `dir=rtl`; genuine English/LTR baseline remains NOT VERIFIED. Prior post-change bilingual evidence used different store/draft `dev-v37bn5qobfotqowz` / `1233213199`, so no cross-store comparison is claimed.
+- EVIDENCE: `specs/005-performance-bundle-ci/evidence/live/draft-77842079-baseline/`. T012 remains reopened; T013 remains incomplete; HDL-05 is not marked complete/accepted.
+
+### HDL-05 — POST-C1/C5 BILINGUAL + TWO-COUNT CAPTURE — 2026-08-10 12:38 +03
+
+- CONFIRMED PREVIEW: branch `codex/preview-hdl-05-20260810`; SHA `a9e9ab0c11eeafe1bf0024b8aad2342eef4ec3b9`; owner-confirmed draft `999707124`; store `dev-f5vbpgh2dnmmvhzp`; Chrome explicitly selected.
+- PUBLISHED IDENTITY: draft `app.css` matched the proven post-change production artifact exactly at 648,682 B / SHA-256 `6f54a821…`.
+- SYNC FAILURE: CLI run only in the temporary after worktree created draft `50585072` instead of `999707124`; classified `SALLA PREVIEW SYNC FAILURE`, not code FAIL. The confirmed draft was rebound to the proven localhost server and identified by body class plus six local assets.
+- BILINGUAL AFTER: English desktop `lang=en`, `dir=ltr`, 15 cards, no overflow; Arabic mobile `lang=ar`, `dir=rtl`, 15 cards, no overflow. Each saved cache-disabled capture: six localhost responses / 1,491,006 encoded B; development `app.css` 832,933 B.
+- ARABIC BEFORE/AFTER: same store, route class, 15-product count, build mode, and cache policy; baseline local total 1,686,422 B / CSS 1,028,350 B versus after 1,491,006 B / CSS 832,933 B.
+- BLOCKER 1 CLOSED: one rendered `Latest Products` list increased 15 → 16 unique products through `Load more`; delta was six non-theme responses / 35,388 B and exactly zero theme-local responses / zero theme-local bytes; no merchant mutation.
+- BLOCKER 2 REMAINS: English post-change is genuine, but English was enabled only after the baseline capture. A fresh owner-confirmed baseline-branch English capture is still required; no cross-store or Arabic-as-English comparison is accepted.
+- EVIDENCE: `specs/005-performance-bundle-ci/evidence/live/draft-999707124-after/`. T012 and T013 remain incomplete; HDL-05 is not marked complete/accepted.
+
+### HDL-05 — ENGLISH BASELINE / T012 COMPLETE — 2026-08-10 13:12 +03
+
+- CONFIRMED PREVIEW: baseline branch `codex/preview-hdl-05-baseline-20260810`; SHA `86c53092106d6771be5d20d2e4b00624c05179d3`; owner-confirmed draft `1779563474`; same store `dev-f5vbpgh2dnmmvhzp`; Chrome explicitly selected.
+- SYNC FAILURE: CLI created draft `1207835347` instead of `1779563474`; classified `SALLA PREVIEW SYNC FAILURE`, not code FAIL. Accepted evidence uses the confirmed draft body class plus six localhost assets.
+- ENGLISH BASELINE: exact 1366×768 / DPR 1, `lang=en`, `dir=ltr`, 15 products, no overflow, cache disabled, no throttling. Six localhost responses / 1,686,422 encoded B; development `app.css` 1,028,350 B; all local responses 200 with no disk-cache/service-worker attribution.
+- BILINGUAL BEFORE/AFTER: Arabic and English each retain the same six-request set and fall 1,686,422 → 1,491,006 local encoded B (−195,416). CSS accounts for −195,417 B; the approved WebP fallback literal accounts for the +1 B toast-script delta.
+- T012: PASS / COMPLETE. Both independent-review runtime blockers are closed. Explicitly routed Lighthouse/CWV, authenticated Loyalty, customer/account, integrated fallback, and inherited overflow rows remain NOT VERIFIED under their HDL-23/HDL-29 owners.
+- EVIDENCE: `specs/005-performance-bundle-ci/evidence/live/draft-1779563474-baseline/` and `evidence/bilingual-before-after-final.md`.
+- NEXT: T013 independent final review and closeout. HDL-05 is not marked complete/accepted until that review passes.
+
+### HDL-05 — T013 INDEPENDENT REVIEW FAIL / T012 REOPENED — 2026-08-10 13:28 +03
+
+- Claude Opus 5 High was retried at the Final Review boundary through `scripts/speckit-claude-opus-5-high.sh`; it produced no review artifact and ended with `Execution error` after a controlled stop. Per the owner continuity policy, the actual reviewer was **GPT-5.6 Sol High via Codex**, high reasoning, ephemeral read-only session `019feb32-0272-7173-8a03-92afd8d32078`.
+- RESULT: `STATUS: FAIL`, `BLOCKERS: 2`. The implementation, 997,743-byte hard-cap result, C1/C5 artifact integrity, permanent no-local-font contract, static/media/dependency gates, and recorded 36/36 suite remain verified.
+- BLOCKER 1: FR-004 requires two product counts on one actual Collection route; the saved 15 → 16 transition is on Home `Latest Products` and is supplemental only.
+- BLOCKER 2: saved bilingual before/after network evidence covers Home only; Product and Collection still require baseline/after captures for Arabic 390×844 and English 1366×768 with the same store, paths, cache policy, and build mode.
+- STATUS CORRECTION: T012 is reopened; T013 remains incomplete; HDL-05 is not complete or accepted. `evidence/bilingual-before-after-final.md` is relabeled Home-only and `evidence/t013-final-review.md` records the exact review disposition.
+- NEXT HUMAN CHECKPOINT: before reopening Chrome, state the exact preview branch/SHA and wait for the owner's Partners Portal confirmation. Baseline requested first: `codex/preview-hdl-05-baseline-20260810` at `86c53092106d6771be5d20d2e4b00624c05179d3`.
+
+### HDL-05 — MISSING PRODUCT/COLLECTION BASELINE CAPTURED — 2026-08-10 13:56 +03
+
+- CONFIRMED PREVIEW: baseline branch `codex/preview-hdl-05-baseline-20260810`; SHA `86c53092106d6771be5d20d2e4b00624c05179d3`; owner-confirmed draft `1253467711`; Chrome explicitly selected.
+- SYNC FAILURE: CLI created draft `614237496` instead of `1253467711`; classified `SALLA PREVIEW SYNC FAILURE`, not code FAIL. Accepted rows use body class `salla-draft-1253467711` and the baseline worktree's `localhost:8000` assets.
+- CAPTURE: Product `p1523882456` and Collection `c902392690` were captured after cache-disabled reload in Arabic 390×844 and English 1366×768. All four rows have correct `lang`/`dir`, DPR 1, no horizontal overflow, and exact local asset profiles from Chrome CDP resource data plus pageAssets verification.
+- BASELINE NUMBERS: Product 9 theme-local resources / 1,755,545 content bytes; Collection 6 / 1,746,472. Product price and CTA are present; Collection renders 11 cards in both languages.
+- EVIDENCE: `specs/005-performance-bundle-ci/evidence/live/draft-1253467711-baseline/`.
+- CLEANUP: Chrome viewport override reset and session finalized; Salla preview/watch stopped; the temporary worktree was rebuilt in production; its temporary `node_modules` symlink was removed; worktree is clean.
+- NEXT HUMAN CHECKPOINT: confirm post-change branch `codex/preview-hdl-05-20260810` at `a9e9ab0c11eeafe1bf0024b8aad2342eef4ec3b9` before Chrome opens again.
+
+### HDL-05 — CORRECTIVE COMPRESSED-PACKAGE MIGRATION / VALIDATION PASS — 2026-08-10
+
+- AUTHORITY CORRECTION: direct Salla Support clarification establishes the compressed
+  distributable theme package, excluding `node_modules`, as publishing-size authority.
+  All earlier raw-1MB PASS/FAIL entries in this append-only log are historical and
+  `SUPERSEDED`; their measurements remain evidence of the original execution.
+- POLICY: Constitution v1.0.1 uses the compressed package, a 95% internal target, and
+  independent raw/gzip/runtime gates. Root agent guidance and active Specs now agree.
+- C1: exact pre-C1 Tailwind configuration restored from preserved T010 evidence; reduced
+  Safelist removed; normalized CSS restored to 6,838 rules and the pinned pre-C1 hash.
+  T005F no-local-font architecture remains; C5 remains after its independent lossless/a11y audit.
+- PACKAGE: 156-file `sallaPackageEstimate`, 2,071,195 B raw / 475,903 B deterministic ZIP,
+  47.59% usage, 474,097 B to the internal target and 524,097 B to the hard cap — PASS.
+  Raw `public/` 1,151,263 B / gzip-9 214,496 B / public ZIP 217,576 B are telemetry.
+- VALIDATION: production webpack PASS (three inherited size/data warnings); HDL-03 73/73;
+  HDL-04 24/24; HDL-05 39/39; theme guard/build sync 0/0; package/media/dependency
+  gates PASS; two consecutive `--update` runs byte-identical at manifest SHA-256
+  `4977760e…`; `git diff --check` PASS; zero local fonts and zero local `@font-face`.
+- FRESH PREVIEW: uncommitted corrective tree served as Salla draft `1750125155` without
+  allowing the CLI to commit. At `2026-08-10T11:41:43.524Z`, Arabic/RTL home rendered
+  15 products from the six expected localhost theme assets with no horizontal overflow
+  (`scrollWidth = clientWidth = 1170`). Production output was rebuilt after preview.
+- STATE: ROADMAP/spec index moved to `qa`; independent corrective review remains the only
+  closure gate. No commit, staging, push, reset, dependency change, or broad revert occurred.
+
+### HDL-05 — CORRECTIVE INDEPENDENT REVIEW PASS / DONE — 2026-08-10
+
+- INITIAL REVIEW: FAIL / 2 blockers. Active Spec clauses still described the historical
+  candidate/C1 decision as open and phrased 95% as a hard maximum requiring an exception.
+- FIRST RE-REVIEW: FAIL / 1 blocker. A separate edge-case clause still described the old
+  Arabic-only store and a pending conservative Safelist reduction.
+- REMEDIATION: the active Spec and reusable input now use compressed PASS/WARN/FAIL
+  semantics, `placeholder.webp`, restored full Safelist/no pending reduction, current
+  bilingual T012 evidence, and independent authenticated-route `NOT VERIFIED` rows. The
+  combined Spec copy was synchronized after each focused fix; history remained intact.
+- FINAL REVIEW: `STATUS: PASS`, `BLOCKERS: 0`; stale focused phrases absent and
+  `git diff --check` PASS.
+- STATE: HDL-05 is `done` in ROADMAP and Spec index. No commit, staging, push, reset,
+  dependency change, or broad revert occurred.
+
+### HDL-05 — FINAL RECONCILIATION BEFORE FOCUSED COMMIT — 2026-08-10
+
+- AUTHORITY: Constitution v1.0.1 and the corrected HDL-05 Spec remain the source of truth:
+  compressed `sallaPackageEstimate` gates publishing; raw/gzip/runtime stay independent.
+- PREVIEW CLASSIFICATION: the superseded post-C1 preview branch
+  `codex/preview-hdl-05-20260810` at `a9e9ab0c11eeafe1bf0024b8aad2342eef4ec3b9`
+  opened owner draft `929402112` with a missing `src/views/pages/index.twig` error while
+  the file existed in that branch; CLI created different draft `1395641090`. This is
+  retained as `SALLA PREVIEW SYNC FAILURE` under the obsolete C1 comparison, not as a
+  current-code FAIL.
+- RECHECK: HDL-03 `73/73`, HDL-04 `24/24`, HDL-05 `39/39`, theme guard/build sync
+  `0/0`, package/media/dependency gates PASS, font scan PASS, and `git diff --check` PASS.
+  Package result remains `475,903 / 1,000,000 B` compressed (47.59%).
+- STATE: HDL-05 remains `done`; corrective independent review remains
+  `STATUS: PASS / BLOCKERS: 0`. Focused commit is pending; primary push is not authorized.

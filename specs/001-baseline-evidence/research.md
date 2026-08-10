@@ -1,5 +1,10 @@
 # Phase 0 Research: HDL-01 — Baseline, Existing-Capability Map, and Evidence
 
+> **HISTORICAL BASELINE — publishing interpretation superseded 2026-08-10.** The
+> measurements below remain reproducible at their named SHA; their raw-1MB publishing
+> interpretation and former 85% target are `SUPERSEDED` by HDL-05's compressed-package
+> source of truth.
+
 **Feature**: `HDL-01` · **Branch**: `codex/hdl-01-baseline-evidence` · **Date**: 2026-08-08  
 **Baseline commit**: `66b7b69e3117235c8a614a0502de21ca928e227e`  
 **Plan**: [plan.md](plan.md) · **Spec**: [spec.md](spec.md) · **Design**: [design.md](design.md)

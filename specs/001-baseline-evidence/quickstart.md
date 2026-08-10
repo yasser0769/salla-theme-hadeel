@@ -1,5 +1,9 @@
 # Quickstart: Reproducing and Validating the HDL-01 Baseline Report
 
+> **HISTORICAL REPRODUCTION GUIDE — publishing interpretation superseded 2026-08-10.**
+> Commands below reproduce the old baseline faithfully; they do not define current Salla
+> publishing compliance. Use the HDL-05 compressed-package checker for that decision.
+
 **Feature**: `HDL-01` · **Date**: 2026-08-08 · **Baseline commit**: `66b7b69e`  
 **Deliverable**: `specs/001-baseline-evidence/baseline-report.md`  
 **Plan**: [plan.md](plan.md) · **Research**: [research.md](research.md) · **Data model**: [data-model.md](data-model.md)

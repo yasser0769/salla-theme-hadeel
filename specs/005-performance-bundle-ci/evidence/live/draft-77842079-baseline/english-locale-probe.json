@@ -1,0 +1,24 @@
+{
+  "captured_at": "2026-08-10T09:22:32.093Z",
+  "requested_url": "https://salla.design/en/dev-f5vbpgh2dnmmvhzp?preview=true",
+  "viewport": {
+    "width": 1366,
+    "height": 768,
+    "dpr": 1
+  },
+  "rendered_html": {
+    "lang": "ar",
+    "dir": "rtl"
+  },
+  "draftBodyClass": "salla-draft-77842079",
+  "productCards": 15,
+  "localAssets": [
+    "http://localhost:8000/product-card.js",
+    "http://localhost:8000/main-menu.js",
+    "http://localhost:8000/add-product-toast.js",
+    "http://localhost:8000/app.css",
+    "http://localhost:8000/app.js",
+    "http://localhost:8000/home.js"
+  ],
+  "verdict": "NOT VERIFIED: the /en route rendered Arabic RTL, so this is not genuine English/LTR evidence"
+}

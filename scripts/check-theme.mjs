@@ -8,7 +8,10 @@
  *   3. theme classes styled in SCSS that no template ever renders (dead / drifted)
  *   4. var(--token) references with no definition and no fallback
  *   5. theme.settings.get(...) keys that twilight.json never declares
- *   6. public/ out of sync with src/  (only with --build)
+ *   6. public/ out of sync with src/  (only with --build): the complete fresh
+ *      webpack output and the committed public/ tree are compared recursively,
+ *      every file by exact relative path and sha256 — images, licence files,
+ *      nested files, missing files, and stale extra files included
  *   7. settings registry drift from twilight.json / HDL-03 contracts (strict,
  *      including witness fixtures)
  *   8. localization/RTL/a11y contract drift from HDL-04 (locale parity, direction
@@ -28,8 +31,9 @@
 import { readFileSync, readdirSync, statSync, mkdtempSync, rmSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
-import { join, relative, extname, basename } from 'node:path';
+import { join, relative, extname, resolve } from 'node:path';
 import { tmpdir } from 'node:os';
+import { pathToFileURL } from 'node:url';
 import process from 'node:process';
 import { checkSettingsRegistry } from './check-settings-registry.mjs';
 import { checkLocalizationA11y } from './check-localization-a11y.mjs';
@@ -368,32 +372,117 @@ function checkLocalizationA11yContract() {
     'locale parity, direction inference, tabindex, literals, ARIA, focus, letter spacing, mirroring, and toolbar order contracts hold');
 }
 
-/* ---------------------------------------------------------- 6. build sync */
+/* ------------------------------------------- 9. HDL-05 media / dependency */
 
+/**
+ * HDL-05 contract guard, deliberately scoped to demo-media and dependency
+ * policy. Salla publishing compliance is owned by the dedicated package-budget
+ * CI job, which evaluates the deterministic compressed distributable-theme
+ * estimate. Raw public/, gzip, and per-file size remain separate telemetry.
+ */
+function checkBundleBudgetContract() {
+  let bad = 0;
+  for (const gate of ['--demo-media', '--dependency-policy']) {
+    let report;
+    try {
+      const out = execFileSync(process.execPath,
+        [join(ROOT, 'scripts/check-bundle-budget.mjs'), gate, '--json'],
+        { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+      report = JSON.parse(out);
+    } catch (err) {
+      try { report = JSON.parse(err.stdout); } catch { report = null; }
+      if (!report) {
+        bad++;
+        note('bundle-budget-contract', 'error',
+          `${gate} failed to run: ${String(err.message).slice(0, 200)}`,
+          'scripts/check-bundle-budget.mjs');
+        continue;
+      }
+    }
+    for (const f of report.findings ?? []) {
+      if (f.level !== 'error') continue;
+      bad++;
+      note('bundle-budget-contract', 'error', `[${f.gate}] ${f.message}`, 'src/config/bundle-budget.json');
+    }
+  }
+  if (!bad) note('bundle-budget-contract', 'ok',
+    'demo-media and dependency-policy gates hold (compressed publishing compliance is the dedicated package-budget CI job)');
+}
+
+/* ---------------------------------------------------------- 6. build sync */
 function sha(file) {
   return createHash('sha256').update(readFileSync(file)).digest('hex');
 }
+
+/** Every file under dir as a POSIX relative path, recursive, sorted. */
+function listTree(dir) {
+  const out = [];
+  const walkTree = (current, relPath) => {
+    for (const name of readdirSync(current)) {
+      const full = join(current, name);
+      const next = relPath ? `${relPath}/${name}` : name;
+      if (statSync(full).isDirectory()) walkTree(full, next);
+      else out.push(next);
+    }
+  };
+  walkTree(dir, '');
+  return out.sort();
+}
+
+/**
+ * Full-tree build freshness comparison (HDL-05 final-review blocker 3).
+ *
+ * Recursively compares the complete fresh webpack output against the committed
+ * public/ tree by exact relative path and sha256: every file — JS, CSS,
+ * images, *.LICENSE.txt, and any nested asset — must exist on both sides with
+ * identical bytes. A file only in the fresh build is `missing`, a file only in
+ * public/ is a `stale extra`, and a same-path hash mismatch is `drift`.
+ * Returns a sorted list of { path, reason } entries; an empty list means the
+ * trees are identical. Pure and exported so the contract is testable without
+ * running webpack.
+ */
+export function diffBuildTrees(freshDir, publicDir) {
+  const fresh = listTree(freshDir);
+  const committed = listTree(publicDir);
+  const freshSet = new Set(fresh);
+  const committedSet = new Set(committed);
+  const drift = [];
+  for (const path of fresh) {
+    if (!committedSet.has(path)) {
+      drift.push({ path, reason: 'missing' });
+    } else if (sha(join(freshDir, path)) !== sha(join(publicDir, path))) {
+      drift.push({ path, reason: 'drift' });
+    }
+  }
+  for (const path of committed) {
+    if (!freshSet.has(path)) drift.push({ path, reason: 'stale extra' });
+  }
+  return drift.sort((a, b) => (a.path < b.path ? -1 : a.path > b.path ? 1 : 0));
+}
+
+const DRIFT_REASON = {
+  missing: 'is produced by a fresh production build but absent from the committed public/ tree',
+  'stale extra': 'exists in the committed public/ tree but a fresh production build does not produce it — stale leftover',
+  drift: 'does not match a fresh production build of src/ — the storefront is serving stale assets',
+};
 
 function checkBuildSync() {
   const publicDir = join(ROOT, 'public');
   const tmp = mkdtempSync(join(tmpdir(), 'hadeel-build-'));
   try {
+    // Isolated output: HADEEL_BUILD_OUT retargets webpack's output.path AND
+    // the CopyPlugin images destination into the temp dir, so the comparison
+    // build never writes into the committed public/ tree.
     execFileSync('npx', ['webpack', '--mode', 'production', '--output-path', tmp],
-      { cwd: ROOT, stdio: 'pipe' });
-    const fresh = readdirSync(tmp).filter((f) => /\.(js|css)$/.test(f) && !f.endsWith('.LICENSE.txt'));
-    let drift = 0;
-    for (const name of fresh) {
-      const committed = join(publicDir, name);
-      let same = false;
-      try { same = sha(committed) === sha(join(tmp, name)); } catch { same = false; }
-      if (!same) {
-        drift++;
-        note('build-sync', 'error',
-          `public/${name} does not match a fresh production build of src/ — the storefront is serving stale assets`,
-          `public/${basename(name)}`);
-      }
+      { cwd: ROOT, stdio: 'pipe', env: { ...process.env, HADEEL_BUILD_OUT: tmp } });
+    const drift = diffBuildTrees(tmp, publicDir);
+    for (const { path, reason } of drift) {
+      note('build-sync', 'error', `public/${path} ${DRIFT_REASON[reason]}`, `public/${path}`);
     }
-    if (!drift) note('build-sync', 'ok', 'public/ matches a fresh production build');
+    if (!drift.length) {
+      note('build-sync', 'ok',
+        `public/ matches a fresh production build (${listTree(tmp).length} files compared recursively by path and sha256)`);
+    }
   } catch (err) {
     note('build-sync', 'error', `production build failed: ${String(err.message).slice(0, 200)}`, 'webpack');
   } finally {
@@ -403,35 +492,43 @@ function checkBuildSync() {
 
 /* -------------------------------------------------------------- run + report */
 
-checkDuplicateSelectors();
-checkHardcodedArabic();
-checkDeadClasses();
-checkCssVariables();
-checkThemeSettings();
-checkSettingsRegistryContract();
-checkLocalizationA11yContract();
-if (WANT_BUILD) checkBuildSync();
+function main() {
+  checkDuplicateSelectors();
+  checkHardcodedArabic();
+  checkDeadClasses();
+  checkCssVariables();
+  checkThemeSettings();
+  checkSettingsRegistryContract();
+  checkLocalizationA11yContract();
+  checkBundleBudgetContract();
+  if (WANT_BUILD) checkBuildSync();
 
 const errors = findings.filter((f) => f.level === 'error');
 const warns = findings.filter((f) => f.level === 'warn');
 
-if (AS_JSON) {
-  console.log(JSON.stringify({ errors: errors.length, warnings: warns.length, findings }, null, 2));
-} else {
-  const icon = { ok: '  ok  ', warn: ' warn ', error: 'FAILED' };
-  let current = '';
-  for (const f of findings) {
-    if (f.check !== current) { current = f.check; console.log(`\n[${current}]`); }
-    console.log(`  ${icon[f.level]} ${f.message}${f.where ? `\n         ${f.where}` : ''}`);
+  if (AS_JSON) {
+    console.log(JSON.stringify({ errors: errors.length, warnings: warns.length, findings }, null, 2));
+  } else {
+    const icon = { ok: '  ok  ', warn: ' warn ', error: 'FAILED' };
+    let current = '';
+    for (const f of findings) {
+      if (f.check !== current) { current = f.check; console.log(`\n[${current}]`); }
+      console.log(`  ${icon[f.level]} ${f.message}${f.where ? `\n         ${f.where}` : ''}`);
+    }
+    console.log(`\n${errors.length} error(s), ${warns.length} warning(s)`);
+    if (MAX_ERRORS) console.log(`budget: ${MAX_ERRORS}`);
+    if (!WANT_BUILD) console.log('note: build sync not checked — rerun with --build');
+    if (errors.length > MAX_ERRORS) {
+      console.log(`\nover budget by ${errors.length - MAX_ERRORS}`);
+    } else if (MAX_ERRORS && errors.length < MAX_ERRORS) {
+      console.log(`\nunder budget — lower --max-errors to ${errors.length} to lock it in`);
+    }
   }
-  console.log(`\n${errors.length} error(s), ${warns.length} warning(s)`);
-  if (MAX_ERRORS) console.log(`budget: ${MAX_ERRORS}`);
-  if (!WANT_BUILD) console.log('note: build sync not checked — rerun with --build');
-  if (errors.length > MAX_ERRORS) {
-    console.log(`\nover budget by ${errors.length - MAX_ERRORS}`);
-  } else if (MAX_ERRORS && errors.length < MAX_ERRORS) {
-    console.log(`\nunder budget — lower --max-errors to ${errors.length} to lock it in`);
-  }
+
+  process.exit(errors.length > MAX_ERRORS ? 1 : 0);
 }
 
-process.exit(errors.length > MAX_ERRORS ? 1 : 0);
+// Importing this module (e.g. from the HDL-05 tests, for diffBuildTrees) must
+// never run the guard or exit the process.
+const isMain = process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href;
+if (isMain) main();

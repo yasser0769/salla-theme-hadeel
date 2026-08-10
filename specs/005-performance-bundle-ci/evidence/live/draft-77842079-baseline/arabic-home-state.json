@@ -1,0 +1,33 @@
+{
+  "captured_at": "2026-08-10T09:22:22.465Z",
+  "preview_branch": "codex/preview-hdl-05-baseline-20260810",
+  "preview_sha": "86c53092106d6771be5d20d2e4b00624c05179d3",
+  "draft": "77842079",
+  "store": "dev-f5vbpgh2dnmmvhzp",
+  "url": "https://salla.design/dev-f5vbpgh2dnmmvhzp?preview=true",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "dpr": 1
+  },
+  "html": {
+    "lang": "ar",
+    "dir": "rtl"
+  },
+  "draftBodyClass": "salla-draft-77842079",
+  "productCards": 15,
+  "productLinks": 30,
+  "overflow": {
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "pass": true
+  },
+  "localAssets": [
+    "http://localhost:8000/product-card.js",
+    "http://localhost:8000/main-menu.js",
+    "http://localhost:8000/add-product-toast.js",
+    "http://localhost:8000/app.css",
+    "http://localhost:8000/app.js",
+    "http://localhost:8000/home.js"
+  ]
+}

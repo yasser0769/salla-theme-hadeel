@@ -7,6 +7,14 @@ const path = require('path');
 const asset = file => path.resolve('src/assets', file || '');
 const public = file => path.resolve("public", file || '');
 
+// HDL-05 build-sync isolation: scripts/check-theme.mjs --build sets
+// HADEEL_BUILD_OUT to a fresh temp directory so the comparison build writes
+// every output — including the CopyPlugin images tree — into that temp dir
+// and never touches the committed public/ tree. Unset = normal build.
+const outDir = process.env.HADEEL_BUILD_OUT
+    ? path.resolve(process.env.HADEEL_BUILD_OUT)
+    : public();
+
 module.exports = {
     entry  : {
         app     : [asset('styles/app.scss'), asset('js/wishlist.js'), asset('js/app.js'), asset('js/blog.js')],
@@ -23,7 +31,7 @@ module.exports = {
         testimonials   : asset('js/testimonials.js')
     },
     output : {
-        path: public(),
+        path: outDir,
         clean: true,
         chunkFilename: "[name].[contenthash].js"
     },
@@ -64,7 +72,7 @@ module.exports = {
     plugins: [
         new ThemeWatcher(),
         new MiniCssExtractPlugin(),
-        new CopyPlugin({patterns: [{from: asset('images'), to: public('images')}]}),
+        new CopyPlugin({patterns: [{from: asset('images'), to: path.join(outDir, 'images')}]}),
     ],
     optimization: {
         minimizer: [

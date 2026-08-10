@@ -1,0 +1,25 @@
+{
+  "captured_at": "2026-08-10T04:47:43.146Z",
+  "cards": 5,
+  "html": {
+    "dir": "ltr",
+    "lang": "en"
+  },
+  "localAssets": [
+    "http://localhost:8000/product-card.js",
+    "http://localhost:8000/main-menu.js",
+    "http://localhost:8000/add-product-toast.js",
+    "http://localhost:8000/app.css",
+    "http://localhost:8000/app.js",
+    "http://localhost:8000/product.js"
+  ],
+  "overflow": {
+    "pass": true,
+    "scrollWidth": 1366
+  },
+  "url": "https://salla.design/en/dev-v37bn5qobfotqowz/%D8%A7%D9%84%D9%81%D8%B3%D8%A7%D8%AA%D9%8A%D9%86/c2108520314",
+  "viewport": {
+    "h": 768,
+    "w": 1366
+  }
+}

@@ -24,9 +24,11 @@ Accessories, Books & Arts, Home Supplies, Cars & Hardware, Charities, Sports & T
 Required at publication; the design should serve it.
 
 **3. Set a size budget on day one. [docs] + [measured]**
-Public themes: **1 MB max.** Private themes: **2 MB.**
-This repo right now: `public/` is **1.5 MB**, of which `app.css` alone is **768 KB**.
-See Part 6 — the breakdown is not what you would guess.
+Salla Support confirmed that public-theme size is measured after compressing the
+distributable theme package and excluding `node_modules`; the public compressed cap is
+**1 MB**. Raw `public/`, gzip-9, CSS/JS size, and network transfer are separate engineering
+telemetry. Use the HDL-05 package checker for the current compliance estimate, and Part 6
+for the build/runtime breakdown—the raw total is not the publishing verdict.
 
 **4. Public or private?** [docs]
 Public goes to the marketplace, minimum SAR 250. Private serves one store at 2 MB. Both

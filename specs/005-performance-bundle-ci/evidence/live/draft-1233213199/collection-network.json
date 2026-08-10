@@ -1,0 +1,75 @@
+{
+  "count": 88,
+  "bytes": 1585466,
+  "localhost": [
+    {
+      "url": "http://localhost:8000/main-menu.js",
+      "status": 200,
+      "mimeType": "application/javascript",
+      "type": "Script",
+      "encodedDataLength": 51229
+    },
+    {
+      "url": "http://localhost:8000/product-card.js",
+      "status": 200,
+      "mimeType": "application/javascript",
+      "type": "Script",
+      "encodedDataLength": 98913
+    },
+    {
+      "url": "http://localhost:8000/app.css",
+      "status": 200,
+      "mimeType": "text/css",
+      "type": "Stylesheet",
+      "encodedDataLength": 832933
+    },
+    {
+      "url": "http://localhost:8000/add-product-toast.js",
+      "status": 200,
+      "mimeType": "application/javascript",
+      "type": "Script",
+      "encodedDataLength": 85643
+    },
+    {
+      "url": "http://localhost:8000/product.js",
+      "status": 200,
+      "mimeType": "application/javascript",
+      "type": "Script",
+      "encodedDataLength": 127888
+    },
+    {
+      "url": "http://localhost:8000/app.js",
+      "status": 200,
+      "mimeType": "application/javascript",
+      "type": "Script",
+      "encodedDataLength": 356899
+    }
+  ],
+  "localhostCount": 6,
+  "localhostBytes": 1553505,
+  "failedStatus": [
+    {
+      "url": "https://salla.design/_app/e/api/s/page",
+      "status": 405,
+      "mimeType": "application/json",
+      "type": "Fetch",
+      "encodedDataLength": 1138
+    },
+    {
+      "url": "https://salla.design/ar/dev-v37bn5qobfotqowz/%D8%A7%D9%84%D9%81%D8%B3%D8%A7%D8%AA%D9%8A%D9%86/images/s-empty.png",
+      "status": 404,
+      "mimeType": "text/html",
+      "type": "Image",
+      "encodedDataLength": 548
+    },
+    {
+      "url": "https://salla.design/_app/e/api/s/track",
+      "status": 405,
+      "mimeType": "application/json",
+      "type": "Fetch",
+      "encodedDataLength": 1137
+    }
+  ],
+  "placeholderPng": [],
+  "placeholderWebp": []
+}

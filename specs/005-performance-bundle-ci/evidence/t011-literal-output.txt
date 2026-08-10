@@ -1,0 +1,214 @@
+Captured: 2026-08-10T07:25:19+03:00
+Branch: codex/hdl-05-performance-bundle-ci
+HEAD: eb40134dcda5c147ff03a048ad05b3e11ba8a15b
+
+$ node --test tests/performance-bundle-ci.test.mjs
+EXIT 0
+▶ committed manifest vs the real post-T010 tree (C1 + C5 applied)
+  ✔ manifest covers public/ exactly: 28 files, identical POSIX-sorted paths (2.253559ms)
+  ✔ current public/ metrics are 997,743 raw / 196,388 gzip-9 and match the manifest rows (0.491447ms)
+  ✔ zero blocking findings on the real tree: the hard cap clears after C1 + C5 (3.193153ms)
+  ✔ manifest format is deterministic: 2-space JSON + trailing newline, POSIX-sorted files (0.456688ms)
+✔ committed manifest vs the real post-T010 tree (C1 + C5 applied) (8.323987ms)
+▶ permanent font architecture (owner decision 2026-08-09)
+  ✔ zero local font files in src/ and public/ and zero @font-face / Thmanyah references (29.89903ms)
+  ✔ --font-main fallback in global.scss contains no project/local font name (owner rule 2026-08-09) (1.124132ms)
+  ✔ master.twig still maps --font-main to the merchant Salla theme.font (untouched contract) (0.772541ms)
+  ✔ use_theme_font is preserved in twilight.json (boolean, default false) and the registry as a no-op (2.484689ms)
+✔ permanent font architecture (owner decision 2026-08-09) (34.895972ms)
+▶ the gate actually fails
+  ✔ raw total over the hard cap fails, with total/cap/overage in the message (25.661027ms)
+  ✔ gzip can never substitute: raw over cap fails even when gzip-9 is tiny (27.045126ms)
+  ✔ per-file ceiling breach fails with old ceiling / new actual / overage (5.001898ms)
+  ✔ a file added without --update fails as unexpected; a removed file fails as missing (4.786242ms)
+  ✔ sha256 drift — same path, same size, changed content — fails with recorded/actual hashes (3.854191ms)
+  ✔ demo/sample naming, video containers, and shipped fonts fail (6.079926ms)
+  ✔ unregistered oversized media fails; registered media within maxBytes passes (11.553232ms)
+  ✔ a dependency outside manifest.dependencies fails (3.918088ms)
+  ✔ --update is deterministic: byte-identical across two consecutive runs (34.473454ms)
+  ✔ --update refuses to write a ceiling above the hard cap (25.447671ms)
+  ✔ CLI --json stays machine-readable on failure and exits 1 (176.597808ms)
+✔ the gate actually fails (325.29663ms)
+▶ T010 C1 safelist: source-owned exact copy of the approved artifact
+  ✔ tailwind.config.js consumes src/config/salla-safelist.txt as the safelist content source (0.453664ms)
+  ✔ tailwind.config.js no longer references the node_modules full-safelist content path (0.270678ms)
+  ✔ src/config/salla-safelist.txt is exactly 1,630 lines (0.337848ms)
+  ✔ src/config/salla-safelist.txt has the owner-approved SHA-256 and matches the evidence artifact byte-for-byte (0.56922ms)
+  ✔ reversibility: the previous full input is preserved byte-identical in evidence (0.600169ms)
+✔ T010 C1 safelist: source-owned exact copy of the approved artifact (2.498689ms)
+▶ T010 C5 media: source-owned exact copies of the approved evidence candidates
+  ✔ shipped src assets are byte-identical to the approved candidates and match public/ (2.171337ms)
+  ✔ placeholder.png is gone from src, public, and the manifest registry; placeholder.webp is registered (0.460209ms)
+  ✔ zero stale images/placeholder.png literals remain in theme-owned source and scripts (19.742628ms)
+  ✔ payment icons preserve role=img, aria-labelledby, and a matching <title id> (0.662198ms)
+✔ T010 C5 media: source-owned exact copies of the approved evidence candidates (23.307316ms)
+✔ the committed manifest was not mutated by any test in this file (0.344591ms)
+ℹ tests 29
+ℹ suites 5
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 645.019436
+
+$ node scripts/check-theme.mjs --json
+EXIT 0
+{
+  "errors": 0,
+  "warnings": 0,
+  "findings": [
+    {
+      "check": "duplicate-selectors",
+      "level": "ok",
+      "message": "no selector is split across component files"
+    },
+    {
+      "check": "hardcoded-arabic",
+      "level": "ok",
+      "message": "no hardcoded Arabic outside src/locales"
+    },
+    {
+      "check": "dead-classes",
+      "level": "ok",
+      "message": "every theme class in SCSS is rendered somewhere"
+    },
+    {
+      "check": "css-variables",
+      "level": "ok",
+      "message": "every referenced custom property is defined"
+    },
+    {
+      "check": "theme-settings",
+      "level": "ok",
+      "message": "every setting read by a template is declared in twilight.json"
+    },
+    {
+      "check": "settings-registry",
+      "level": "ok",
+      "message": "settings registry matches twilight.json and the HDL-03 contracts (strict)"
+    },
+    {
+      "check": "localization-a11y",
+      "level": "ok",
+      "message": "locale parity, direction inference, tabindex, literals, ARIA, focus, letter spacing, mirroring, and toolbar order contracts hold"
+    },
+    {
+      "check": "bundle-budget-contract",
+      "level": "ok",
+      "message": "demo-media and dependency-policy gates hold (hard cap is the dedicated bundle-budget CI job, green since T010 C1+C5 on 2026-08-10)"
+    }
+  ]
+}
+
+$ npx webpack --mode production
+EXIT 0
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+Browserslist: browsers data (caniuse-lite) is 14 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: browsers data (caniuse-lite) is 14 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+
+warn - As of Tailwind CSS v3.3, the `@tailwindcss/line-clamp` plugin is now included by default.
+warn - Remove it from the `plugins` array in your configuration to eliminate this warning.
+Browserslist: browsers data (caniuse-lite) is 8 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+assets by path *.js 323 KiB
+  asset order.js 3.31 KiB [compared for emit] [minimized] (name: order)
+  asset wishlist-card.js 5.02 KiB [compared for emit] [minimized] (name: wishlist-card)
+  asset pages.js 5.16 KiB [compared for emit] [minimized] (name: pages)
+  asset digital-files.js 5.59 KiB [compared for emit] [minimized] (name: digital-files)
+  asset testimonials.js 9.72 KiB [compared for emit] [minimized] (name: testimonials) 1 related asset
+  asset main-menu.js 10.3 KiB [compared for emit] [minimized] (name: main-menu)
+  asset checkout.js 11.5 KiB [compared for emit] [minimized] (name: checkout)
+  asset add-product-toast.js 25 KiB [compared for emit] [minimized] (name: add-product-toast) 1 related asset
+  asset product-card.js 30.8 KiB [compared for emit] [minimized] (name: product-card) 1 related asset
+  asset home.js 36.1 KiB [compared for emit] [minimized] (name: home)
+  asset product.js 54.8 KiB [compared for emit] [minimized] (name: product) 1 related asset
+  asset app.js 126 KiB [compared for emit] [minimized] (name: app) 1 related asset
+assets by path images/ 16.6 KiB
+  assets by path images/*.png 446 bytes
+    asset images/s-empty-square.png 95 bytes [compared for emit] [from: src/assets/images/s-empty-square.png] [copied]
+    asset images/s-empty-small.png 107 bytes [compared for emit] [from: src/assets/images/s-empty-small.png] [copied]
+    asset images/s-empty.png 119 bytes [compared for emit] [from: src/assets/images/s-empty.png] [copied]
+    asset images/s-empty-wide.png 125 bytes [compared for emit] [from: src/assets/images/s-empty-wide.png] [copied]
+  assets by path images/payment_icons/*.svg 7.91 KiB
+    asset images/payment_icons/tamara.svg 635 bytes [compared for emit] [from: src/assets/images/payment_icons/tamara.svg] [copied]
+    asset images/payment_icons/tabby.svg 1.65 KiB [compared for emit] [from: src/assets/images/payment_icons/tabby.svg] [copied]
+    asset images/payment_icons/mispay.svg 5.64 KiB [compared for emit] [from: src/assets/images/payment_icons/mispay.svg] [copied]
+  assets by path images/*.svg 4.06 KiB
+    asset images/check.svg 459 bytes [compared for emit] [from: src/assets/images/check.svg] [copied]
+    asset images/delivery-bro.svg 3.62 KiB [compared for emit] [from: src/assets/images/delivery-bro.svg] [copied]
+  asset images/placeholder.webp 4.21 KiB [compared for emit] [from: src/assets/images/placeholder.webp] [copied]
+asset app.css 633 KiB [compared for emit] [minimized] [big] (name: app)
+
+WARNING in asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+This can impact web performance.
+Assets:
+  app.css (633 KiB)
+
+WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+Entrypoints:
+  app (760 KiB)
+      app.css
+      app.js
+
+WARNING in webpack performance recommendations:
+You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
+For more info visit https://webpack.js.org/guides/code-splitting/
+
+webpack 5.103.0 compiled with 3 warnings in 16775 ms
+
+$ node scripts/check-theme.mjs --build --max-errors=0
+EXIT 0
+
+[duplicate-selectors]
+    ok   no selector is split across component files
+
+[hardcoded-arabic]
+    ok   no hardcoded Arabic outside src/locales
+
+[dead-classes]
+    ok   every theme class in SCSS is rendered somewhere
+
+[css-variables]
+    ok   every referenced custom property is defined
+
+[theme-settings]
+    ok   every setting read by a template is declared in twilight.json
+
+[settings-registry]
+    ok   settings registry matches twilight.json and the HDL-03 contracts (strict)
+
+[localization-a11y]
+    ok   locale parity, direction inference, tabindex, literals, ARIA, focus, letter spacing, mirroring, and toolbar order contracts hold
+
+[bundle-budget-contract]
+    ok   demo-media and dependency-policy gates hold (hard cap is the dedicated bundle-budget CI job, green since T010 C1+C5 on 2026-08-10)
+
+[build-sync]
+    ok   public/ matches a fresh production build
+
+0 error(s), 0 warning(s)
+
+$ node scripts/check-bundle-budget.mjs
+EXIT 0
+
+[budget]
+   info  internal target exceeded (info only): raw total 997743 B > target 850000 B
+   info  gzip-9 total 196388 B across 28 file(s) — informational, never a gate
+
+[media]
+   info  no fonts, video, demo/sample names, or unregistered oversized media (5 registered row(s))
+
+[dependencies]
+   info  all 32 package.json dependency name(s) are recorded in manifest.dependencies
+
+0 error(s)
+
+$ git diff --check
+EXIT 0
+(no stdout or stderr)

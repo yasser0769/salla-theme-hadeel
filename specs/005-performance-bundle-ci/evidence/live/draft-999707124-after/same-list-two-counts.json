@@ -1,0 +1,33 @@
+{
+  "captured_at": {
+    "before": "2026-08-10T09:38:20.868Z",
+    "after": "2026-08-10T09:38:23.830Z"
+  },
+  "route": "https://salla.design/en/dev-f5vbpgh2dnmmvhzp?preview=true",
+  "list": "Latest Products",
+  "trigger": "Load more",
+  "before": {
+    "productCards": 15,
+    "uniqueProductIds": 15,
+    "loadMoreVisible": true
+  },
+  "after": {
+    "productCards": 16,
+    "uniqueProductIds": 16,
+    "loadMoreVisible": false,
+    "overflow": {
+      "scrollWidth": 1366,
+      "innerWidth": 1366,
+      "pass": true
+    }
+  },
+  "delta": {
+    "responses": 6,
+    "encodedBytes": 35388,
+    "themeLocalResponses": 0,
+    "themeLocalEncodedBytes": 0,
+    "productApiResponses": 2,
+    "newProductImageResponses": 1
+  },
+  "verdict": "PASS: increasing one rendered product list from 15 to 16 caused no additional theme-owned request"
+}

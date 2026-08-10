@@ -1,6 +1,6 @@
 {
   "project": "Hadeel Salla Theme",
-  "constitution_version": "1.0.0",
+  "constitution_version": "1.0.1",
   "roadmap_version": "1.0.0",
   "generated_at": "2026-08-08",
   "figma_file": "https://www.figma.com/design/12z0jRutTHcdhlZQrRmcXU/Untitled",
@@ -84,10 +84,12 @@
       "depends_on": [
         "HDL-01"
       ],
-      "status": "planned",
+      "status": "done",
       "spec": "specs/005-performance-bundle-ci/spec.md",
       "design": "specs/005-performance-bundle-ci/design.md",
-      "input": "specs/005-performance-bundle-ci/spec-input.md"
+      "input": "specs/005-performance-bundle-ci/spec-input.md",
+      "evidence": "specs/005-performance-bundle-ci/evidence/corrective-repair-2026-08-10.md",
+      "evidence_status": "Corrective compressed-package implementation PASS; independent review PASS / BLOCKERS 0"
     },
     {
       "id": "HDL-06",

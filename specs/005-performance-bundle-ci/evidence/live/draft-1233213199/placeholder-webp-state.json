@@ -1,0 +1,15 @@
+{
+  "captured_at": "2026-08-10T04:45:26.092Z",
+  "images": [
+    {
+      "complete": true,
+      "height": 550,
+      "naturalHeight": 550,
+      "naturalWidth": 550,
+      "src": "http://localhost:8000/images/placeholder.webp",
+      "width": 550
+    }
+  ],
+  "title": "placeholder.webp (550×550)",
+  "url": "http://localhost:8000/images/placeholder.webp"
+}
