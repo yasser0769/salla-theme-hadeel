@@ -7,7 +7,7 @@
     text-align: right;
     visibility: hidden;
     opacity: 0;
-    transition: opacity var(--motion-duration-ui) var(--motion-easing-standard), visibility var(--motion-duration-ui), transform var(--motion-duration-ui) var(--motion-easing-standard);
+    transition: opacity var(--motion-ui), visibility var(--motion-duration-ui), transform var(--motion-ui);
 
     &:after {
       content: "";

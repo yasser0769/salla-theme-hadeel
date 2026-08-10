@@ -41,7 +41,7 @@
     .swiper-lazy{
       &:after{
         @apply content-[''] absolute top-0 bg-black/60 w-full h-full;
-        transition: opacity var(--motion-duration-ui) var(--motion-easing-standard), background-color var(--motion-duration-ui) var(--motion-easing-standard);
+        transition: opacity var(--motion-ui), background-color var(--motion-ui);
       }
     }
 
@@ -107,7 +107,7 @@
 
   h3,p{
     @apply lg:opacity-0 relative z-1 lg:translate-y-6;
-    transition: opacity var(--motion-duration-ui) var(--motion-easing-standard), transform var(--motion-duration-ui) var(--motion-easing-standard);
+    transition: opacity var(--motion-ui), transform var(--motion-ui);
   }
 
   // Keyboard parity: focus-within reveals the same content hover does (FR-009).
@@ -140,7 +140,7 @@
 .has-overlay{ 
   &:after{
     @apply content-[''] h-full w-full bg-black/60 absolute top-0 left-0;
-    transition: background-color var(--motion-duration-ui) var(--motion-easing-standard);
+    transition: background-color var(--motion-ui);
   }
 
   &.with-hover{
@@ -164,7 +164,7 @@
 /* Full banner block */
 .full-banner-entry {
   @apply row-span-2 h-80 md:h-96 lg:h-116 xl:h-132 bg-stone-200 hover:opacity-95 bg-center bg-cover text-white text-center p-5 overflow-hidden relative bg-fixed;
-  transition: opacity var(--motion-duration-ui) var(--motion-easing-standard);
+  transition: opacity var(--motion-ui);
 
   background-attachment: initial;
 
@@ -177,7 +177,7 @@
     content: "";
     background: var(--color-primary);
     position: absolute;
-    transition: opacity var(--motion-duration-ui) var(--motion-easing-emphasized), transform var(--motion-duration-ui) var(--motion-easing-emphasized);
+    transition: opacity var(--motion-ui-emphasized), transform var(--motion-ui-emphasized);
     transform: rotate(220deg) translateY(-50%) translateX(33%);
     opacity: 0.25;
   }
@@ -215,7 +215,7 @@
 .tabs-wrapper{
   .tabs__item{
     @apply hidden;
-    transition: opacity var(--motion-duration-ui) var(--motion-easing-standard), transform var(--motion-duration-ui) var(--motion-easing-standard);
+    transition: opacity var(--motion-ui), transform var(--motion-ui);
 
     &.is-active{
       @apply block;
@@ -283,7 +283,7 @@
 
   .slider-bg{
     @apply h-96 sm:h-116 bg-center bg-cover text-white relative;
-    transition: opacity var(--motion-duration-ui) var(--motion-easing-standard);
+    transition: opacity var(--motion-ui);
 
     &:before{
       content: '';
@@ -328,7 +328,7 @@
 */
 .slide--offer-entry {
   @apply bg-white rounded-md h-36 text-center flex flex-col items-center justify-between text-gray-600 hover:shadow-default border border-gray-200;
-  transition: box-shadow var(--motion-duration-ui) var(--motion-easing-standard), color var(--motion-duration-ui) var(--motion-easing-standard);
+  transition: box-shadow var(--motion-ui), color var(--motion-ui);
 }
 
 
@@ -371,7 +371,7 @@
   &--features{
     &__item{
       @apply cursor-pointer bg-white hover:shadow-default rounded-md flex-grow flex flex-col items-center px-4 py-8 md:px-8 text-center;
-      transition: box-shadow var(--motion-duration-ui) var(--motion-easing-standard);
+      transition: box-shadow var(--motion-ui);
 
       &:first-child{
         @apply col-span-2 md:col-span-1;
@@ -398,7 +398,7 @@
       &:hover,
       &:focus-within {
         .feature-icon i {
-          animation: featureIconPop var(--motion-duration-ui) var(--motion-easing-standard) forwards;
+          animation: featureIconPop var(--motion-ui) forwards;
         }
       }
     }

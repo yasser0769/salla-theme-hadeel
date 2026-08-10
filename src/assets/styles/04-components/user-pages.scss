@@ -82,27 +82,27 @@
 */
 // Shared hover elevation for the thank-you email card (HDL-06 token-driven).
 .thankyou-card {
-  transition: box-shadow var(--motion-duration-ui) var(--motion-easing-standard);
+  transition: box-shadow var(--motion-ui);
 }
 
 // Support/contact links inside thank-you cards.
 .thankyou-block a {
-  transition: color var(--motion-duration-ui) var(--motion-easing-standard);
+  transition: color var(--motion-ui);
 }
 
 // Order product name link (orders single page).
 .order-product-link {
-  transition: color var(--motion-duration-ui) var(--motion-easing-standard);
+  transition: color var(--motion-ui);
 }
 
 // Blog listing card hover elevation.
 .post-entry {
-  transition: box-shadow var(--motion-duration-ui) var(--motion-easing-standard);
+  transition: box-shadow var(--motion-ui);
 }
 
 .thankyou-block{
   @apply hover:shadow-default flex-1 bg-white p-8 rounded-md mb-6 md:mb-8 flex flex-col items-center justify-center;
-  transition: box-shadow var(--motion-duration-ui) var(--motion-easing-standard);
+  transition: box-shadow var(--motion-ui);
 
   &.sent{
     @apply text-green-500 font-bold;

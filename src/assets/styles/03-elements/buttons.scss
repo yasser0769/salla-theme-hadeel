@@ -20,14 +20,14 @@ salla-button {
 
 .btn {
   @apply flex-1 inline-flex justify-center items-center px-6 pb-2.5 pt-2 text-sm font-bold rounded-md hover:opacity-80 whitespace-nowrap;
-  transition: color var(--motion-duration-ui) var(--motion-easing-standard), background-color var(--motion-duration-ui) var(--motion-easing-standard), border-color var(--motion-duration-ui) var(--motion-easing-standard), opacity var(--motion-duration-ui) var(--motion-easing-standard);
+  transition: color var(--motion-ui), background-color var(--motion-ui), border-color var(--motion-ui), opacity var(--motion-ui);
 
   .loader {
     width: 0;
     opacity: 0;
     height: 16px;
     transform: scale(0);
-    transition: opacity var(--motion-duration-ui) var(--motion-easing-standard), transform var(--motion-duration-ui) var(--motion-easing-standard);
+    transition: opacity var(--motion-ui), transform var(--motion-ui);
   }
 
   &--is-loading {
@@ -64,12 +64,12 @@ salla-button {
 
   &--quantity {
     @apply text-gray-400 w-11 hover:text-primary;
-    transition: color var(--motion-duration-ui) var(--motion-easing-standard);
+    transition: color var(--motion-ui);
   }
 
   &__text {
     @apply inline-block pointer-events-none;
-    transition: transform var(--motion-duration-ui) var(--motion-easing-standard);
+    transition: transform var(--motion-ui);
   }
 
   &--wishlist {
@@ -86,17 +86,17 @@ salla-button {
 
   &--rounded-gray {
     @apply inline-flex grow-0 justify-center w-full rounded-full px-3.5 py-2 items-center bg-gray-200/50 hover:bg-gray-200/70 text-sm font-medium whitespace-nowrap;
-    transition: color var(--motion-duration-ui) var(--motion-easing-standard), background-color var(--motion-duration-ui) var(--motion-easing-standard), border-color var(--motion-duration-ui) var(--motion-easing-standard);
+    transition: color var(--motion-ui), background-color var(--motion-ui), border-color var(--motion-ui);
   }
 
   &--circle-gray {
     @apply inline-flex justify-center items-center rounded-full px-3 py-3 h-9 w-9 bg-gray-200/30 hover:bg-gray-200/50 text-sm font-medium;
-    transition: color var(--motion-duration-ui) var(--motion-easing-standard), background-color var(--motion-duration-ui) var(--motion-easing-standard), border-color var(--motion-duration-ui) var(--motion-easing-standard);
+    transition: color var(--motion-ui), background-color var(--motion-ui), border-color var(--motion-ui);
   }
 
   &--icon {
     @apply flex items-center justify-center bg-white text-gray-500 border-gray-200  hover:border-gray-200 hover:text-gray-600 mx-1 border rounded-full w-10 h-10 font-medium flex-shrink-0;
-    transition: color var(--motion-duration-ui) var(--motion-easing-standard), background-color var(--motion-duration-ui) var(--motion-easing-standard), border-color var(--motion-duration-ui) var(--motion-easing-standard);
+    transition: color var(--motion-ui), background-color var(--motion-ui), border-color var(--motion-ui);
 
     i {
       @apply pointer-events-none;
@@ -117,7 +117,7 @@ salla-button {
 
   &--close-sm {
     @apply opacity-0 -translate-y-full h-[51px] w-[51px] bg-red-500 text-white text-xl fixed top-0 rtl:left-0 ltr:right-0 z-50;
-    transition: opacity var(--motion-duration-ui) var(--motion-easing-standard), transform var(--motion-duration-ui) var(--motion-easing-standard);
+    transition: opacity var(--motion-ui), transform var(--motion-ui);
   }
 
   &--collapse {
@@ -193,12 +193,12 @@ salla-button {
 .link {
   &--primary {
     @apply text-primary hover:text-primary-d;
-    transition: color var(--motion-duration-ui) var(--motion-easing-standard);
+    transition: color var(--motion-ui);
   }
 }
 
 #btn-show-more {
-  transition: opacity var(--motion-duration-ui) var(--motion-easing-standard);
+  transition: opacity var(--motion-ui);
 
   &.is-expanded {
     @apply opacity-0 pointer-events-none;

@@ -2,7 +2,7 @@
 // Wishlist Product entry
 .product-entry {
   @apply h-full bg-white hover:shadow-default rounded-lg justify-between flex relative;
-  transition: box-shadow var(--motion-duration-ui) var(--motion-easing-standard);
+  transition: box-shadow var(--motion-ui);
 
   &--wishlist {
     @apply justify-between p-4 flex-col sm:flex-row;
@@ -45,7 +45,7 @@
 // span keep the motion logical; the token-timed transition lives here instead
 // of a transition-all utility (HDL-06).
 .with-arrow .sicon-keyboard_arrow_left {
-  transition: transform var(--motion-duration-ui) var(--motion-easing-standard);
+  transition: transform var(--motion-ui);
 }
 
 .pie-wrapper {
@@ -329,7 +329,7 @@
       height: 80px;
       border: 1px solid transparent;
       opacity: 0.62;
-      transition: border-color var(--motion-duration-ui) var(--motion-easing-standard), opacity var(--motion-duration-ui) var(--motion-easing-standard);
+      transition: border-color var(--motion-ui), opacity var(--motion-ui);
     }
 
     .s-slider-thumbs-container .swiper-slide-thumb-active {
@@ -946,7 +946,7 @@
   flex: 1 1 0;
   gap: 7px;
   cursor: pointer;
-  transition: color var(--motion-duration-ui) var(--motion-easing-standard), background-color var(--motion-duration-ui) var(--motion-easing-standard);
+  transition: color var(--motion-ui), background-color var(--motion-ui);
 
   &[hidden] {
     display: none;
@@ -1301,7 +1301,7 @@
       border-radius: var(--r-pill);
       background: var(--hadeel-ink);
       opacity: 0.85;
-      transition: background-color var(--motion-duration-ui) var(--motion-easing-standard);
+      transition: background-color var(--motion-ui);
     }
 
     .swiper-pagination-bullet-active {
@@ -1458,7 +1458,7 @@
 	  opacity:0;
 	  pointer-events:none;
 	  transform: scale(0);
-	  transition: transform var(--motion-duration-ui) var(--motion-easing-standard);
+	  transition: transform var(--motion-ui);
 	  box-shadow: inset 0px 0px 30px #949494;
 	}
 	&:hover{

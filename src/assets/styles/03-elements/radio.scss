@@ -28,7 +28,7 @@
           opacity: 0;
           display: inline-block;
           transform: scale(0.4);
-          transition: opacity var(--motion-duration-ui) var(--motion-easing-standard), transform var(--motion-duration-ui) var(--motion-easing-standard);
+          transition: opacity var(--motion-ui), transform var(--motion-ui);
           font-family: "sallaicons" !important;
           // speak: never;
           font-style: normal;

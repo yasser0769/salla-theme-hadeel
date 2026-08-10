@@ -27,7 +27,7 @@
 
 .menu-item {
   @apply flex items-center px-6 py-2.5 sm:text-sm text-gray-500 hover:bg-gray-200/30;
-  transition: color var(--motion-duration-ui) var(--motion-easing-standard), background-color var(--motion-duration-ui) var(--motion-easing-standard);
+  transition: color var(--motion-ui), background-color var(--motion-ui);
 
   &.logout{
     @apply text-red-400;
@@ -43,7 +43,7 @@
 .main-nav-container {
   &.animated {
     .inner {
-      transition: transform var(--motion-duration-ui) var(--motion-easing-standard), -webkit-transform var(--motion-duration-ui) var(--motion-easing-standard), opacity var(--motion-duration-ui) var(--motion-easing-standard);
+      transition: transform var(--motion-ui), -webkit-transform var(--motion-ui), opacity var(--motion-ui);
     }
   }
 

@@ -16,12 +16,12 @@
 
   a {
     @apply hover:opacity-75;
-    transition: opacity var(--motion-duration-ui) var(--motion-easing-standard);
+    transition: opacity var(--motion-ui);
   }
 
   /* salla-social supplies .social-link; sizing and colour come from the skin. */
   .social-link {
     @apply flex items-center justify-center text-sm hover:opacity-75;
-    transition: color var(--motion-duration-ui) var(--motion-easing-standard), opacity var(--motion-duration-ui) var(--motion-easing-standard);
+    transition: color var(--motion-ui), opacity var(--motion-ui);
   }
 }

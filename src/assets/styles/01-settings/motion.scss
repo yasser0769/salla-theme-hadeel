@@ -21,6 +21,24 @@
 //   Rich      <= 400ms, reveal once,   distance <= 20px, bounded stagger
 //   OS reduce <= 100ms, reveal off,    distance 0px,  no stagger, no smooth scroll
 
+// Semantic composites: the exact adjacent duration+easing pairs components
+// use in transition/animation shorthands. They resolve through the public
+// duration/easing tokens — those remain the single timing source — and exist
+// so the compiled stylesheet carries one var() reference per pair instead of
+// two.
+//
+// A composite MUST be redeclared in every scope that overrides one of its
+// dependencies: var() inside a custom property resolves at computed-value
+// time on the element where the property is defined, so a composite declared
+// only on :root would keep the Balanced duration under Calm/Rich/reduced.
+@mixin hadeel-motion-composites {
+  --motion-ui: var(--motion-duration-ui) var(--motion-easing-standard);
+  --motion-ui-exit: var(--motion-duration-ui) var(--motion-easing-exit);
+  --motion-ui-emphasized: var(--motion-duration-ui) var(--motion-easing-emphasized);
+  --motion-feedback: var(--motion-duration-feedback) var(--motion-easing-standard);
+  --motion-reveal: var(--motion-duration-reveal) var(--motion-easing-standard);
+}
+
 :root {
   // Balanced values are the base: they are the safe default the Twig resolver
   // falls back to, so an unpainted or pre-save storefront already behaves.
@@ -38,6 +56,7 @@
   // The reduced-motion floor the OS override converges on (FR-004).
   --motion-duration-reduced: 80ms;
   --motion-distance-reduced: 0px;
+  @include hadeel-motion-composites;
 }
 
 // Calm — functional feedback only; no reveal, no spatial pull, no stagger.
@@ -47,6 +66,7 @@
   --motion-duration-reveal: 0ms;
   --motion-stagger: 0ms;
   --motion-reveal-distance: 0px;
+  @include hadeel-motion-composites;
 }
 
 // Balanced — the merchant default: one light reveal, moderate transitions.
@@ -56,6 +76,7 @@
   --motion-duration-reveal: 240ms;
   --motion-stagger: 0ms;
   --motion-reveal-distance: 4px;
+  @include hadeel-motion-composites;
 }
 
 // Rich — clearer distance and a bounded stagger; never hides content and
@@ -67,6 +88,7 @@
   --motion-stagger: 40ms;
   --motion-distance-lg: 12px;
   --motion-reveal-distance: 12px;
+  @include hadeel-motion-composites;
 }
 
 // Mobile Rich reduction (FR-006): with motion_reduce_mobile on, Rich is
@@ -80,6 +102,7 @@
     --motion-stagger: 0ms;
     --motion-distance-lg: 8px;
     --motion-reveal-distance: 4px;
+    @include hadeel-motion-composites;
   }
 }
 
@@ -99,5 +122,6 @@
     --motion-distance-md: 0px;
     --motion-distance-lg: 0px;
     --motion-reveal-distance: 0px;
+    @include hadeel-motion-composites;
   }
 }

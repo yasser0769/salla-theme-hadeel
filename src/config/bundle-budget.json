@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedFromSha": "422d5f2a26a791b06dec1f3c901511d2d0ed2f30",
+  "generatedFromSha": "e5f99aed110422ad557d4eee0953c8cfb5b6fd7c",
   "sallaCompressedHardCapBytes": 1000000,
   "internalCompressedTargetPercent": 95,
   "sallaPackageEstimate": {
@@ -51,8 +51,8 @@
       },
       {
         "path": "public/app.css",
-        "rawBytes": 836404,
-        "sha256": "84cca35aa0828bae4435dea223cb55bcddb4158bd3624d20f03b6307bf67559f"
+        "rawBytes": 799430,
+        "sha256": "2434873818d7ce2230292a35e52ab25e10cb1d747a0e6d16a96c37aec5e97722"
       },
       {
         "path": "public/app.js",
@@ -361,8 +361,8 @@
       },
       {
         "path": "src/assets/styles/01-settings/motion.scss",
-        "rawBytes": 4094,
-        "sha256": "954a823e013178338bad5c1484d188371be35fd42100962b51d300b327a705c0"
+        "rawBytes": 5376,
+        "sha256": "8c4047ee72d975930d8abe38e7db989ed14fefc5b04561460879e08cfa28bb03"
       },
       {
         "path": "src/assets/styles/01-settings/tailwind.scss",
@@ -386,13 +386,13 @@
       },
       {
         "path": "src/assets/styles/02-generic/common.scss",
-        "rawBytes": 10675,
-        "sha256": "4accba512b83b4240a21133cc4e4325160da58030b877556d89fc417c13afcd4"
+        "rawBytes": 10204,
+        "sha256": "552c68dd7eb1265e6d0636e41443acaa36e62032ad23bd2a13f0fb4d9b14bdc6"
       },
       {
         "path": "src/assets/styles/02-generic/lazyload.scss",
-        "rawBytes": 477,
-        "sha256": "7c55496a7d6bf64f6da68a857d4da3b9c16b608163e95918a82dc38f5ebc50cb"
+        "rawBytes": 399,
+        "sha256": "9499126be74d8e4d3bc81fa098669e768f29a3ad0a71bd69d83fecd0ca36c08a"
       },
       {
         "path": "src/assets/styles/02-generic/ltr.scss",
@@ -411,18 +411,18 @@
       },
       {
         "path": "src/assets/styles/02-generic/tooltip.scss",
-        "rawBytes": 2288,
-        "sha256": "a50f6874d074c73481b660f5fc5dd38fa6980efe46364a010d93b003da7bfb8c"
+        "rawBytes": 2210,
+        "sha256": "08769e325d0f51641e121d6e9e4c1f5bb9dc6bce2722ea8859f00ecb4daf10f4"
       },
       {
         "path": "src/assets/styles/03-elements/buttons.scss",
-        "rawBytes": 7446,
-        "sha256": "e104162ad6c154f2d6c8019922fb142101e228e08cedfbcfca1c0d3ad9e534bd"
+        "rawBytes": 6627,
+        "sha256": "7fe16ea8f4a5597f38978e28fc6c0a0a225b36e52a587cf6c1e5922ea73a85c7"
       },
       {
         "path": "src/assets/styles/03-elements/form.scss",
-        "rawBytes": 1512,
-        "sha256": "26ab206bb3766cc99b0a982e69093054505ded3003c77d11f6a3921f8b7902ed"
+        "rawBytes": 1556,
+        "sha256": "288f28ce50aa24a594e85c0218299b961104edfbd7b9c46c20ac28db9d1ea0a9"
       },
       {
         "path": "src/assets/styles/03-elements/radio-images.scss",
@@ -431,18 +431,18 @@
       },
       {
         "path": "src/assets/styles/03-elements/radio.scss",
-        "rawBytes": 2392,
-        "sha256": "e5a4b07dd7793ce5bb03dd64c3cc2ac7a324644092d4d4a8a35ee901b2978ac4"
+        "rawBytes": 2314,
+        "sha256": "973c872da1630d0ef749f292fce9208e3a878f9b017c9cbe2799008ad1721864"
       },
       {
         "path": "src/assets/styles/04-components/add-product-toast.scss",
-        "rawBytes": 7053,
-        "sha256": "fa17fabdca9d4ac95baeab5e1fb3fa060dbf8c4f821c6a6276f237d209a771f9"
+        "rawBytes": 7014,
+        "sha256": "a2d8eb62e03b9f26d30464a0b3420dde6daaf7b7a8e52cf09f4abe915034a3d9"
       },
       {
         "path": "src/assets/styles/04-components/brands.scss",
-        "rawBytes": 1775,
-        "sha256": "736c8afae4d6bfccaf4238ab76a88688525c9f3c5c6186844094e5e7f7640c5c"
+        "rawBytes": 1424,
+        "sha256": "80956634121a78e08c722def63f481680f61e49d95f448bc48903c2523215c6e"
       },
       {
         "path": "src/assets/styles/04-components/cart.scss",
@@ -461,8 +461,8 @@
       },
       {
         "path": "src/assets/styles/04-components/footer.scss",
-        "rawBytes": 1105,
-        "sha256": "fb57faf261907a2a06e15f7eca33bafb2546503b602c6490de5f438b8e5d7c36"
+        "rawBytes": 988,
+        "sha256": "fc32a954613659acefeea445eda2ff681ec286247dc15074ec56e3f10f73118d"
       },
       {
         "path": "src/assets/styles/04-components/gifting.scss",
@@ -471,18 +471,18 @@
       },
       {
         "path": "src/assets/styles/04-components/header.scss",
-        "rawBytes": 2582,
-        "sha256": "1b5cd337c7741b5178a59761b4ee951b5d4c7c003e4263b6f1f5c9e853abae35"
+        "rawBytes": 2387,
+        "sha256": "a8db43a914a4888fed0fea37176d2f4f702b7d82441a46868d2485a07eb5b0bc"
       },
       {
         "path": "src/assets/styles/04-components/home-blocks.scss",
-        "rawBytes": 8989,
-        "sha256": "5296da1219afaefa1d13dec64078bafa8e549a8f3de0f80e208ec30b71f0d96b"
+        "rawBytes": 8422,
+        "sha256": "1d011a37f81883525dd543795481eeff652c60dcaddb2c63b87a8b3ff63fcc82"
       },
       {
         "path": "src/assets/styles/04-components/landing-page.scss",
-        "rawBytes": 3527,
-        "sha256": "007be707615daf12c1393f9520a632367db48aae021afb65b05c959802ef838a"
+        "rawBytes": 3449,
+        "sha256": "e3451f2f2ccfb4fdeffd888a2ddf3012735810010edb1e1a4ab2a370e1a64712"
       },
       {
         "path": "src/assets/styles/04-components/loyalty.scss",
@@ -491,8 +491,8 @@
       },
       {
         "path": "src/assets/styles/04-components/menus.scss",
-        "rawBytes": 5683,
-        "sha256": "782b7f112f7517d44eb2b35dd6d330aa755321bd937dddad2484dba8859839b0"
+        "rawBytes": 5341,
+        "sha256": "a368d483b3ee665695054f97a246787452a57149c08645f0924b4b059fc28cc5"
       },
       {
         "path": "src/assets/styles/04-components/no-content-placeholder.scss",
@@ -501,13 +501,13 @@
       },
       {
         "path": "src/assets/styles/04-components/product-card.scss",
-        "rawBytes": 12398,
-        "sha256": "5f8a7294da6a6678de9e1096ad3f39ce4ae614e515ff2190d2b2c62ed7fcaf84"
+        "rawBytes": 12164,
+        "sha256": "ab0c5571fd9fa557da7c0d178e74adaa7e95473843f6f21347f45e9f5a7877ce"
       },
       {
         "path": "src/assets/styles/04-components/product.scss",
-        "rawBytes": 31029,
-        "sha256": "a8f95211d9e22fe0b3d8024e426b6d94773d972272a9968468cafef1cc501d20"
+        "rawBytes": 30717,
+        "sha256": "c7f0b7163d7dee8f3396d074a6445916a9af5cf61ab729eb24d821c51640f7d9"
       },
       {
         "path": "src/assets/styles/04-components/slider.scss",
@@ -516,18 +516,18 @@
       },
       {
         "path": "src/assets/styles/04-components/storefront-system.scss",
-        "rawBytes": 31703,
-        "sha256": "6acdea04babb54f3c59e1330688bc21773f9f62c0e7e20ccd34964cc2d949f1a"
+        "rawBytes": 31235,
+        "sha256": "2f4ea4a18c22f36d34ba1a50b13d5a51457b95be96296d711dceb0e9bdef0aad"
       },
       {
         "path": "src/assets/styles/04-components/user-menu.scss",
-        "rawBytes": 1916,
-        "sha256": "12c02118794e5f7d6ddbf3ab8e381519bb83a78277e393be841aac47dd2b2b0c"
+        "rawBytes": 1721,
+        "sha256": "c690f7c72ee2f12d70afca7bb25eb627471e5e70c30797861eaf21cf4ea14962"
       },
       {
         "path": "src/assets/styles/04-components/user-pages.scss",
-        "rawBytes": 2830,
-        "sha256": "c7c2d164f31d46e317c67271129a9385f1b5c39a83ee0e2c81359808c31f1c56"
+        "rawBytes": 2635,
+        "sha256": "63b542749455d32c81baae0291f3e9f5a4316598bcbeccc467c2a4bdeb15ca34"
       },
       {
         "path": "src/assets/styles/04-components/virtooal.scss",
@@ -812,9 +812,9 @@
     ],
     "lastMeasurement": {
       "files": 157,
-      "rawBytes": 2119060,
-      "compressedBytes": 480086,
-      "sha256": "9609139f62730375b9d192c6b80e765ca65971ab3f457f8cc310f123c1b588d4"
+      "rawBytes": 2078795,
+      "compressedBytes": 478773,
+      "sha256": "a0c694ef77e69a0df4357b5fe71586d3f1f88fd0cf440cfbc6b5f7df5ba280b1"
     }
   },
   "repositoryArchiveDiagnostic": {
@@ -919,10 +919,10 @@
     },
     {
       "path": "public/app.css",
-      "rawBytes": 836404,
-      "gzip9Bytes": 105801,
-      "sha256": "84cca35aa0828bae4435dea223cb55bcddb4158bd3624d20f03b6307bf67559f",
-      "ceilingBytes": 802202
+      "rawBytes": 799430,
+      "gzip9Bytes": 104336,
+      "sha256": "2434873818d7ce2230292a35e52ab25e10cb1d747a0e6d16a96c37aec5e97722",
+      "ceilingBytes": 799430
     },
     {
       "path": "public/app.js",

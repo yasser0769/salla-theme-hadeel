@@ -292,6 +292,61 @@ describe('semantic motion tokens: presence, profile caps, reduced override', () 
       `mobile-capped Rich reveal distance ${distance}px exceeds the Balanced cap`);
   });
 
+  // var() inside a custom property resolves at computed-value time on the
+  // element where that property is DEFINED. A composite declared only on
+  // :root would keep the root (Balanced) duration even when a body-class or
+  // media scope overrides --motion-duration-*. Every overriding scope must
+  // therefore redeclare the composites whose dependencies it changes.
+  const COMPOSITE_DEPS = {
+    '--motion-ui': '--motion-duration-ui',
+    '--motion-ui-exit': '--motion-duration-ui',
+    '--motion-ui-emphasized': '--motion-duration-ui',
+    '--motion-feedback': '--motion-duration-feedback',
+    '--motion-reveal': '--motion-duration-reveal',
+  };
+  const compositeScopes = (text) => {
+    // Statically expand the owner-file mixin: a scope that @includes it
+    // redeclares every composite the mixin carries.
+    const mixin = blockBody(text, /@mixin\s+hadeel-motion-composites\s*\{/) ?? '';
+    const expand = (body) => (body && body.includes('@include hadeel-motion-composites') ? body + mixin : body);
+    return {
+      ':root': expand(blockBody(text, /:root\s*\{/)),
+      calm: expand(blockBody(text, /\.hadeel-motion-calm\b[^{]*\{/)),
+      balanced: expand(blockBody(text, /\.hadeel-motion-balanced\b[^{]*\{/)),
+      rich: expand(blockBody(text, /\.hadeel-motion-rich\b[^{]*\{/)),
+      'mobile Rich cap': expand(blockBody(text, /@media\s*\(max-width:\s*767px\)[^{]*\{/)),
+      'OS reduced': expand(blockBody(text, /@media\s*\(prefers-reduced-motion:\s*reduce\)[^{]*\{/)),
+    };
+  };
+
+  test('every scope overriding a duration token refreshes the affected composites', () => {
+    const scopes = compositeScopes(read(MOTION_SCSS));
+    for (const [name, body] of Object.entries(scopes)) {
+      assert.ok(body, `${name} scope must exist`);
+      for (const [composite, dep] of Object.entries(COMPOSITE_DEPS)) {
+        if (!new RegExp(`${dep}\\s*:`).test(body)) continue;
+        assert.ok(body.includes(`${composite}:`),
+          `${name} overrides ${dep} but never refreshes ${composite} — the composite would freeze the inherited :root value`);
+      }
+    }
+  });
+
+  test('each scope resolves its composites against its own duration, not frozen Balanced', () => {
+    const expectedUi = {
+      ':root': 200, calm: 140, balanced: 200, rich: 320,
+      'mobile Rich cap': 200, 'OS reduced': 80,
+    };
+    const scopes = compositeScopes(read(MOTION_SCSS));
+    for (const [name, body] of Object.entries(scopes)) {
+      assert.equal(tokenMs(body, '--motion-duration-ui'), expectedUi[name],
+        `${name} must define its own --motion-duration-ui`);
+      // The refresh must reference the dependency token, so the composite
+      // re-resolves inside this scope instead of pinning a literal.
+      assert.match(body, /--motion-ui\s*:\s*var\(--motion-duration-ui\)\s*var\(--motion-easing-standard\)/,
+        `${name} --motion-ui must re-resolve through var(--motion-duration-ui)`);
+    }
+  });
+
   test('the token owner uses no !important and no physical-direction motion', () => {
     const text = read(MOTION_SCSS)
       .replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/[^\n]*/g, '');
@@ -1344,7 +1399,7 @@ describe('logical direction parity and no mirroring (T022, FR-011)', () => {
     assert.ok(!/transition-all/.test(single), 'the transition-all utility is removed');
     assert.match(single, /rtl:group-hover:-translate-x-1 ltr:group-hover:translate-x-1/);
     assert.match(readSrc('src/assets/styles/04-components/product.scss'),
-      /\.with-arrow \.sicon-keyboard_arrow_left\s*\{\s*transition: transform var\(--motion-duration-ui\)/);
+      /\.with-arrow \.sicon-keyboard_arrow_left\s*\{\s*transition: transform var\(--motion-ui\)/);
   });
 });
 
@@ -1384,7 +1439,7 @@ describe('no critical content waits for a timer (T022, FR-007/FR-008)', () => {
     assert.match(wishlist, /transitionend/);
     const body = blockBody(readSrc(COMMON_SCSS), /\.fade-out-collapse\s*\{/);
     assert.ok(!/height/.test(body), 'no height animation or pinning');
-    assert.match(body, /transition:\s*opacity var\(--motion-duration-ui\) var\(--motion-easing-exit\)/);
+    assert.match(body, /transition:\s*opacity var\(--motion-ui-exit\)/);
   });
 
   test('theme modal: state classes only, token-owned transition, token-derived bounded cleanup', () => {
@@ -1394,8 +1449,8 @@ describe('no critical content waits for a timer (T022, FR-007/FR-008)', () => {
     assert.ok(!/duration-\d|ease-out|\b350\b/.test(modal), 'no utility classes or raw constants');
     assert.match(modal, /hadeelMotion\?\.durationMs/, 'cleanup derives from the computed token');
     const common = readSrc(COMMON_SCSS);
-    assert.match(common, /\.s-salla-modal-overlay\s*\{\s*transition: opacity var\(--motion-duration-ui\)/);
-    assert.match(common, /\.s-salla-modal-body\s*\{\s*transition: opacity var\(--motion-duration-ui\) var\(--motion-easing-standard\), transform var\(--motion-duration-ui\)/);
+    assert.match(common, /\.s-salla-modal-overlay\s*\{\s*transition: opacity var\(--motion-ui\)/);
+    assert.match(common, /\.s-salla-modal-body\s*\{\s*transition: opacity var\(--motion-ui\), transform var\(--motion-ui\)/);
   });
 });
 
@@ -1404,7 +1459,7 @@ describe('migrated Twig/SCSS hooks stay consistent (T022)', () => {
     const userPages = readSrc('src/assets/styles/04-components/user-pages.scss');
     for (const sel of ['.thankyou-card', '.thankyou-block a', '.order-product-link', '.post-entry']) {
       assert.ok(userPages.includes(sel), `${sel} rule must exist in user-pages.scss`);
-      assert.match(userPages, new RegExp(`${sel.replace(/[.*]/g, '\\$&')}\\s*\\{\\s*transition: [^;]*var\\(--motion-duration-ui\\)`),
+      assert.match(userPages, new RegExp(`${sel.replace(/[.*]/g, '\\$&')}\\s*\\{\\s*transition: [^;]*var\\(--motion-ui\\)`),
         `${sel} must be token-timed`);
     }
     assert.ok(!/class="[^"]*\btransition\b/.test(readSrc('src/views/pages/thank-you.twig')));
@@ -1474,5 +1529,46 @@ describe('repository state against the active phase', () => {
     const { findings, errors } = checkMotionSystem({ root: ROOT });
     assert.equal(errors, 0,
       `the active gate must be clean: ${JSON.stringify(findings.filter((f) => f.level === 'error').slice(0, 3), null, 2)}`);
+  });
+});
+
+/* --------------------- HDL-06 plan raw-bundle gates (Final Review blocker) */
+
+describe('HDL-06 raw production budget gates (plan.md hard limits)', () => {
+  // plan.md "Bundle, Network, and Runtime Budget": baseline app.css 802,202 B
+  // and app.js 129,221 B (aggregate 931,423 B); CSS may grow at most 12 KiB
+  // raw (802,202 + 12,288 = 814,490) and only while the aggregate stays flat
+  // or lower. The compressed-package gate does not waive these raw gates.
+  const CSS_BASELINE = 802202;
+  const JS_BASELINE = 129221;
+  const CSS_CAP = CSS_BASELINE + 12 * 1024; // 814,490
+  const AGGREGATE_CAP = CSS_BASELINE + JS_BASELINE; // 931,423
+
+  test('production app.css stays within the 12 KiB raw growth cap', () => {
+    const css = statSync(join(ROOT, 'public/app.css')).size;
+    assert.ok(css <= CSS_CAP,
+      `public/app.css is ${css} B — ${css - CSS_CAP} B over the ${CSS_CAP} B cap (baseline ${CSS_BASELINE} B + 12 KiB)`);
+  });
+
+  test('production app.css + app.js aggregate stays flat or lower than baseline', () => {
+    const css = statSync(join(ROOT, 'public/app.css')).size;
+    const js = statSync(join(ROOT, 'public/app.js')).size;
+    assert.ok(css + js <= AGGREGATE_CAP,
+      `app.css + app.js is ${css + js} B — ${css + js - AGGREGATE_CAP} B over the ${AGGREGATE_CAP} B aggregate baseline`);
+  });
+
+  test('the sr-only radio transition uses the non-expandable attribute selector', () => {
+    const form = read('src/assets/styles/03-elements/form.scss');
+    assert.ok(!/div\.absolute\s*\{\s*transition:\s*border-color/.test(form),
+      'the transition-owner div.absolute spelling is aliased into 112 safe-list rules in the built bundle');
+    assert.match(form, /div\[class~="absolute"\]\s*\{\s*transition:\s*border-color/);
+    // The built bundle must carry exactly one HDL rule with this signature.
+    // (The node_modules safe-list baseline contributes its own raw-timing
+    // declaration on the same selector — unchanged and out of HDL-06 scope;
+    // the token declaration follows it and wins the cascade.)
+    const css = read('public/app.css');
+    const hits = css.match(/input\[type=radio\]\.sr-only div\[class~=absolute\]\{[^}]*transition:border-color var\(--motion-ui\),background-color var\(--motion-ui\)/g) ?? [];
+    assert.equal(hits.length, 1,
+      `expected exactly 1 built rule for the HDL radio transition signature, found ${hits.length}`);
   });
 });

@@ -9,7 +9,7 @@
 
 .dropdown__menu {
   @apply origin-top-right scale-y-90 absolute opacity-0 -translate-y-4 invisible rtl:left-0 ltr:right-0 z-30 w-80 lg:w-60 rounded-t-md lg:rounded-t-none rounded-b-md shadow-default bg-white top-full lg:border-t lg:border-gray-300/30;
-  transition: opacity var(--motion-duration-ui) var(--motion-easing-standard), transform var(--motion-duration-ui) var(--motion-easing-standard), visibility var(--motion-duration-ui);
+  transition: opacity var(--motion-ui), transform var(--motion-ui), visibility var(--motion-duration-ui);
   outline: none;
 }
 
@@ -28,7 +28,7 @@
     content: "";
     background: rgba(113, 113, 122, 0.75);
     @apply fixed w-screen h-screen left-0 top-0 opacity-0 pointer-events-none invisible z-10;
-    transition: opacity var(--motion-duration-ui) var(--motion-easing-standard), visibility var(--motion-duration-ui);
+    transition: opacity var(--motion-ui), visibility var(--motion-duration-ui);
   }
 
   &.is-opened {
@@ -41,7 +41,7 @@
     .dropdown__menu {
       left: 0 !important;
       @apply fixed bottom-0 top-auto w-full opacity-0 translate-y-10 origin-center rounded-b-none;
-      transition: opacity var(--motion-duration-ui) var(--motion-easing-standard), transform var(--motion-duration-ui) var(--motion-easing-standard), visibility var(--motion-duration-ui);
+      transition: opacity var(--motion-ui), transform var(--motion-ui), visibility var(--motion-duration-ui);
 
       .menu-item{
         @apply rtl:pl-2.5 ltr:pr-2.5;
