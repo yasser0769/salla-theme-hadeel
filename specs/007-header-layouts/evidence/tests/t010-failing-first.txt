@@ -1,0 +1,74 @@
+
+[layout-values]
+  FAILED header_layout options are ["centered","start"] — exactly centered|start|transparent|commerce is approved
+         twilight.json#header_layout
+         expected: ["centered","start","transparent","commerce"]
+
+[new-settings]
+  FAILED header_transparent_home is not declared in twilight.json
+         twilight.json#header_transparent_home
+  FAILED header_show_search is not declared in twilight.json
+         twilight.json#header_show_search
+  FAILED header_show_account is not declared in twilight.json
+         twilight.json#header_show_account
+  FAILED header_logo_size is not declared in twilight.json
+         twilight.json#header_logo_size
+  FAILED header_transparent_ink is not declared in twilight.json
+         twilight.json#header_transparent_ink
+
+[registry-parity]
+  FAILED global::header_layout allowed_values must be exactly the four approved layouts
+         global::header_layout
+         expected: ["centered","start","transparent","commerce"]
+  FAILED global::header_transparent_home is missing from the registry
+         global::header_transparent_home
+  FAILED global::header_show_search is missing from the registry
+         global::header_show_search
+  FAILED global::header_show_account is missing from the registry
+         global::header_show_account
+  FAILED global::header_logo_size is missing from the registry
+         global::header_logo_size
+  FAILED global::header_transparent_ink is missing from the registry
+         global::header_transparent_ink
+
+[resolver-strict]
+  FAILED master.twig hadeel_allowed.header_layout must be exactly the four approved layouts
+         src/views/layouts/master.twig
+         expected: ["centered","start","transparent","commerce"]
+  FAILED hadeel_header_logo_size must resolve through the strict guarded allowlist (iterable guard + self-cast identity + allowlist) with a medium fallback
+         src/views/layouts/master.twig
+  FAILED hadeel_header_ink must resolve through the strict guarded allowlist (iterable guard + self-cast identity + allowlist) with a auto fallback
+         src/views/layouts/master.twig
+  FAILED transparent-home must resolve through the four enrolled boolean shapes only (fail-closed)
+         src/views/layouts/master.twig
+  FAILED the body must emit exactly one hadeel-header-logo-{resolved} class
+         src/views/layouts/master.twig
+  FAILED the body must emit data-hadeel-header-ink from the resolved variable
+         src/views/layouts/master.twig
+
+[single-core]
+    ok   one header DOM and one component mount — no duplicated core per layout
+
+[hero-confinement]
+    ok   the eligibility marker is confined to its one approved owner; no client image analysis exists
+
+[runtime-budget]
+    ok   one shared sticky controller, one passive scroll listener, sticky gating, zero header requests
+
+[scss-hooks]
+  FAILED .hadeel-header-transparent has no owning hook in storefront-system.scss
+         src/assets/styles/04-components/storefront-system.scss
+  FAILED .hadeel-header-commerce has no owning hook in storefront-system.scss
+         src/assets/styles/04-components/storefront-system.scss
+  FAILED .hadeel-header-logo-small has no owning hook in storefront-system.scss
+         src/assets/styles/04-components/storefront-system.scss
+  FAILED .hadeel-header-logo-medium has no owning hook in storefront-system.scss
+         src/assets/styles/04-components/storefront-system.scss
+  FAILED .hadeel-header-logo-large has no owning hook in storefront-system.scss
+         src/assets/styles/04-components/storefront-system.scss
+
+[witness]
+    ok   all 27 valid/invalid fixture cases resolve to their safe expected outcomes
+    ok   the deliberately invalid witness (1 case(s)) is rejected as required
+
+23 error(s)

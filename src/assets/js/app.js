@@ -155,6 +155,11 @@ isElementLoaded(selector){
 
 
   initiateMobileMenu() {
+  // HDL-07: header_show_menu=false renders no trigger and no #mobile-menu —
+  // bail instead of polling forever for an element that will never exist.
+  if (!this.element("a[href='#mobile-menu']")) {
+    return;
+  }
 
   this.isElementLoaded('#mobile-menu').then((menu) => {
 
@@ -179,20 +184,35 @@ isElementLoaded(selector){
 
   }
 
+  /*
+   * HDL-07 (T018): the one shared Sticky/Scrolled controller for all four layouts.
+   * Installed only when header_is_sticky is a real boolean true (master.twig
+   * serializes it), so sticky=false installs no scroll listener at all. Height is
+   * measured from the actual shell (.inner) before it can pin and refreshed on
+   * load/resize; scroll work is batched through at most one pending rAF callback
+   * on a single passive listener. State classes are idempotent and layout-owned.
+   */
   initiateStickyMenu() {
-    let header = this.element('#mainnav'),
-      height = this.element('#mainnav .inner')?.clientHeight;
+    const header = this.element('#mainnav');
     //when it's landing page, there is no header
     if (!header) {
       return;
     }
 
+    this.setHeaderHeight();
     window.addEventListener('load', () => setTimeout(() => this.setHeaderHeight(), 500))
     window.addEventListener('resize', () => this.setHeaderHeight())
 
+    let ticking = false;
     window.addEventListener('scroll', () => {
-      window.scrollY >= header.offsetTop + height ? header.classList.add('fixed-pinned', 'animated') : header.classList.remove('fixed-pinned');
-      window.scrollY >= 200 ? header.classList.add('fixed-header') : header.classList.remove('fixed-header', 'animated');
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        ticking = false;
+        const height = this.element('#mainnav .inner')?.clientHeight ?? 0;
+        window.scrollY >= header.offsetTop + height ? header.classList.add('fixed-pinned', 'animated') : header.classList.remove('fixed-pinned');
+        window.scrollY >= 200 ? header.classList.add('fixed-header') : header.classList.remove('fixed-header', 'animated');
+      });
     }, { passive: true });
   }
 
@@ -315,7 +335,9 @@ isElementLoaded(selector){
     });
 
     salla.cart.event.onItemAdded((response, prodId) => {
-      app.element('salla-cart-summary').animateToCart(app.element(`#product-${prodId} img`));
+      // HDL-07: header_show_cart=false removes the summary; the optional chain
+      // keeps add-to-cart working without it.
+      app.element('salla-cart-summary')?.animateToCart(app.element(`#product-${prodId} img`));
     });
   }
 

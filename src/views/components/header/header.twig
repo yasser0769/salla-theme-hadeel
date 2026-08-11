@@ -23,15 +23,27 @@
     <div class="inner">
       <div class="container">
         <div class="main-nav-shell">
-          <div class="main-nav-shell__menu">
-            <a class="mobile-menu-trigger" href="#mobile-menu" aria-label="{{ trans('blocks.header.open_menu') }}">
-              <i class="sicon-menu" aria-hidden="true"></i>
-            </a>
-            <custom-main-menu></custom-main-menu>
-          </div>
+          {# HDL-07: one visibility switch gates the single shared menu cell —
+             desktop custom-main-menu and the mobile trigger together. #}
+          {% if theme.settings.get('header_show_menu', true) %}
+            <div class="main-nav-shell__menu">
+              <a class="mobile-menu-trigger" href="#mobile-menu" aria-label="{{ trans('blocks.header.open_menu') }}">
+                <i class="sicon-menu" aria-hidden="true"></i>
+              </a>
+              <custom-main-menu></custom-main-menu>
+            </div>
+          {% endif %}
 
           <a class="navbar-brand" href="{{ store.url }}">
-            <img fetchpriority="high" width="175" height="64" loading="eager" src="{{ store.logo|cdn(175) }}" alt="{{ store.name }}">
+            {% if store.logo %}
+              <img fetchpriority="high" width="175" height="64" loading="eager" src="{{ store.logo|cdn(175) }}" alt="{{ store.name }}">
+            {% else %}
+              {# Missing logo: the escaped store name is the documented visible text
+                 fallback — additional to the sr-only heading below, never a
+                 replacement for it. The artwork is never filtered, inverted, or
+                 mirrored. #}
+              <span class="navbar-brand__name">{{ store.name }}</span>
+            {% endif %}
             {% if is_page('index') %}
               <h1 class="sr-only">{{ store.name }}</h1>
             {% else %}
@@ -41,11 +53,21 @@
 
           {# Kalles-style utility rail; native Salla actions and counters remain intact. #}
           <div class="header-actions">
-            <button class="header-action header-action--search" type="button" aria-label="{{ trans('blocks.header.search') }}" onclick="salla.event.dispatch('search::open')">
-              <svg class="header-icon header-icon--search" aria-hidden="true" viewBox="0 0 32 32" focusable="false">
-                <path d="M31.707 30.282l-9.716-9.776a12.45 12.45 0 1 0-1.401 1.426l9.703 9.764a1 1 0 0 0 1.414-1.414zM12.393 23.017A10.517 10.517 0 1 1 22.91 12.5a10.53 10.53 0 0 1-10.517 10.517z"></path>
-              </svg>
-            </button>
+            {% if theme.settings.get('header_show_search', true) %}
+              {#
+                HDL-07: exactly ONE search control for every layout — one button,
+                one native search::open dispatch, no layout predicate in Twig.
+                Commerce desktop widens this same element and reveals its label via
+                CSS only; the label stays hidden elsewhere and on all mobile
+                layouts, so no duplicate control or handler ever exists.
+              #}
+              <button class="header-action header-action--search" type="button" aria-label="{{ trans('blocks.header.search') }}" onclick="salla.event.dispatch('search::open')">
+                <svg class="header-icon header-icon--search" aria-hidden="true" viewBox="0 0 32 32" focusable="false">
+                  <path d="M31.707 30.282l-9.716-9.776a12.45 12.45 0 1 0-1.401 1.426l9.703 9.764a1 1 0 0 0 1.414-1.414zM12.393 23.017A10.517 10.517 0 1 1 22.91 12.5a10.53 10.53 0 0 1-10.517 10.517z"></path>
+                </svg>
+                <span class="header-action__label">{{ trans('blocks.header.search') }}</span>
+              </button>
+            {% endif %}
             {% if theme.settings.get('header_show_wishlist', true) %}
               <a class="header-action header-action--wishlist" href="{{ link('wishlist') }}" aria-label="{{ trans('blocks.header.wishlist') }}">
                 <svg class="header-icon header-icon--wishlist" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
@@ -53,29 +75,34 @@
                 </svg>
               </a>
             {% endif %}
-            {% if user.type == 'user' %}
-              <span class="header-account-control">
-                <salla-user-menu class="header-user-menu" avatar-only show-header></salla-user-menu>
-                <svg class="header-icon header-icon--account" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-              </span>
-            {% else %}
-              <button class="header-action header-action--account" type="button" aria-label="{{ trans('blocks.header.login') }}" onclick="salla.event.dispatch('login::open')">
-                <svg class="header-icon header-icon--account" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-              </button>
+            {% if theme.settings.get('header_show_account', true) %}
+              {% if user.type == 'user' %}
+                <span class="header-account-control">
+                  <salla-user-menu class="header-user-menu" avatar-only show-header></salla-user-menu>
+                  <svg class="header-icon header-icon--account" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </span>
+              {% else %}
+                <button class="header-action header-action--account" type="button" aria-label="{{ trans('blocks.header.login') }}" onclick="salla.event.dispatch('login::open')">
+                  <svg class="header-icon header-icon--account" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </button>
+              {% endif %}
             {% endif %}
-            <salla-cart-summary class="header-cart">
-              <svg slot="icon" class="header-icon header-icon--cart" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
-                <circle cx="9" cy="21" r="1"></circle>
-                <circle cx="20" cy="21" r="1"></circle>
-                <path d="M1 1h4l2.68 13.39A2 2 0 0 0 9.68 16h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-              </svg>
-            </salla-cart-summary>
+            {# HDL-07: one visibility switch gates the single native cart summary. #}
+            {% if theme.settings.get('header_show_cart', true) %}
+              <salla-cart-summary class="header-cart">
+                <svg slot="icon" class="header-icon header-icon--cart" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                  <circle cx="9" cy="21" r="1"></circle>
+                  <circle cx="20" cy="21" r="1"></circle>
+                  <path d="M1 1h4l2.68 13.39A2 2 0 0 0 9.68 16h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+              </salla-cart-summary>
+            {% endif %}
           </div>
         </div>
       </div>

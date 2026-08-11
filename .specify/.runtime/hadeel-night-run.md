@@ -889,7 +889,110 @@ This append-oriented log records verified transitions, commands, evidence, appro
 - GATES: production build/build-sync PASS; motion 112/112; settings 73/73;
   localization 26/26; performance 39/39; compressed package
   478,773/1,000,000 B PASS.
-- GIT: focused HDL-06 commit is the next atomic action; no primary push is
-  authorized. User-owned unrelated changes remain excluded.
+- GIT: focused commit `e261352d8e3796f0e30ca3663de121368764d901` —
+  `feat(hdl-06): add three-level motion system`; no primary push. User-owned
+  unrelated changes and superseded preview evidence remained excluded and
+  preserved.
 - NEXT SPEC: HDL-07 — Four Header Layouts. This is the next manual storefront
   checkpoint under HADEEL LEAN MODE.
+
+### HDL-07 — START / FIGMA PHASE 0 — 2026-08-10 22:24 +03
+
+- BRANCH: `codex/hdl-07-header-layouts` at base
+  `e261352d8e3796f0e30ca3663de121368764d901`; no push and no preview session.
+- MODEL ROUTING: Claude Opus 5 High was retried at the new-Spec boundary. It
+  returned no artifact during the bounded window and ended `Execution error`;
+  active refinement/design reviewer is **GPT-5.6 Sol High via Codex**. This is
+  not a Human Gate. Kimi K3 High remains reserved for implementation after the
+  Figma approval gate.
+- PHASE: Figma Phase 0 discovery only; no Figma or source mutation yet.
+- VERIFIED REUSE: existing HDL-02 component
+  `HDL-02/Shared/Header-Navigation/Responsive/Bidirectional/Confirmed`
+  (`389:61`) owns Desktop/Mobile × RTL/LTR × Default/SearchOpen variants.
+- VERIFIED CODE BASELINE: one shared `header.twig` core; current merchant
+  layout values are only `centered|start`, density is
+  `comfortable|compact`, and Sticky is already declared. Four layouts,
+  transparent-home/scroll state, hero eligibility fallback, and the remaining
+  merchant visibility/size controls are genuine HDL-07 gaps.
+- LIBRARY DISCOVERY: no matching published storefront header/navigation
+  component was found. Material 3/Simple Design System are subscribed but do
+  not match Hadeel's storefront contract; extend the local HDL-02 primitive.
+
+### HDL-07 — FIGMA REVISION 1 READY — 2026-08-11
+
+- FIGMA PAGE: `19 · HDL-07 Header Layouts` (`456:2`).
+- REVIEW BOARD: `460:2`; Desktop component set `457:202` (16 variants);
+  Mobile component set `459:112` (8 variants).
+- COVERAGE: four Desktop layouts × Arabic RTL/English LTR, top/scrolled,
+  shared Mobile top/scrolled/menu-open/search-open, dark/light/no-Hero,
+  long/crowded RTL/LTR navigation, missing-logo fallback, hidden-search
+  rebalance, merchant settings matrix, and mirror/non-mirror QA.
+- REUSE: extends HDL-02 `389:61`; preserves existing `centered|start`; adds
+  design intent for `transparent|commerce`. HDL-08 owns menu content and
+  HDL-09 owns search results.
+- SPIKES AFTER APPROVAL: Salla proof for eligible-first-Hero detection,
+  light/dark logo availability, and editor condition/persistence behavior.
+- QA: component metadata and post-fix screenshots inspected. Transparent Top
+  contrast and documentation-section layout defects found during QA were
+  corrected before recording Rev 1.
+- STATE: Figma Revision 1 is ready for owner review. **No Plan, Tasks, source
+  implementation, preview, commit, or push has started.** Waiting only for
+  `APPROVE HDL-07 REV 1` or `CHANGES HDL-07: ...`.
+
+### HDL-07 — FIGMA REVISION 1 APPROVED / PLAN OPENED — 2026-08-11
+
+- OWNER DECISION: `APPROVE HDL-07 REV 1`.
+- FIGMA: acceptance gate `460:411` updated to Approved for Implementation;
+  owner statement and date recorded on the canvas and in `design.md`.
+- STATE: Figma Gate PASS. HDL-07 moved to `planning`; Plan is authorized.
+  No source implementation, build, Salla preview, commit, or push occurred in
+  this approval step.
+- MODEL ROUTING: Claude Opus 5 High will be retried at the Plan boundary. If
+  unavailable, Plan transfers automatically to **GPT-5.6 Sol High via Codex**
+  without opening a Human Gate. Kimi K3 High remains the implementation owner.
+
+### HDL-07 — PLAN COMPLETE — 2026-08-11
+
+- CLAUDE RETRY: the bounded Claude Opus 5 High Plan attempt produced no output
+  and ended `Execution error`; continuity transferred automatically and did not
+  open a Human Gate.
+- ACTUAL PLAN MODEL: **GPT-5.6 Sol High via Codex**, using `speckit-plan` and
+  `salla-docs` for current official Twilight references.
+- ARTIFACTS: `plan.md`, `research.md`, `data-model.md`, `quickstart.md`,
+  `contracts/header-layout-contract.md`, and
+  `contracts/live-evidence.schema.json`.
+- ARCHITECTURE: one shared header DOM/controller; four strict Desktop layout
+  variants; one Mobile core; eligible-first-Hero marker with CSS-first,
+  fail-safe transparency; no image-luminance guessing or logo inversion.
+- BUDGET: no dependency/entry/chunk/request/media/font; CSS cap +12,288 raw B,
+  app JS cap +4,096 raw B; compressed package must stay below 950,000 B.
+- BASELINE: guard 0 errors/0 warnings; app.css 799,430 B; app.js 116,474 B;
+  compressed package estimate 478,773 B. Existing checkout.js +3 B raw-ratchet
+  warning remains unrelated telemetry.
+- STATE: Plan PASS with no Constitution exception or unresolved planning
+  unknown. Tasks generation is next; no source implementation, preview,
+  commit, or push has started.
+
+### HDL-07 — LEAN IMPLEMENTATION + INDEPENDENT REVIEW PASS — 2026-08-11
+
+- MODE: T001–T015 remained completed/frozen; T016–T023 executed under Lean
+  Execution Mode with consolidated evidence only.
+- IMPLEMENTATION/FIX MODEL: **Kimi K3 High**. One shared header core now owns
+  Transparent, Commerce, legacy centered/start, one Mobile shell, one Sticky
+  controller, safe logo/Hero fallbacks, and Search/Menu/Cart/Account/Wishlist
+  visibility controls.
+- REVIEW MODEL ROUTING: Claude Opus 5 High was retried at the review boundary;
+  it produced no output in the bounded window and was stopped. The independent
+  review transferred to **GPT-5.6 Sol High via Codex** without a Human Gate.
+- REVIEW FINDING: missing Menu/Cart visibility settings were blocking. Kimi
+  added them and fixed the resulting no-menu polling and no-cart animation null
+  paths. Final result: `PASS / BLOCKERS: 0`.
+- GATES: focused suites 284/284; header checker 0 errors; registry checker 65
+  global + 62 scoped records, 0 errors; production build PASS; check-theme
+  build-sync 0 errors/0 warnings; bundle gate 0 errors; diff-check clean.
+- BUDGET: app.css +10,434 B; app.js +197 B; compressed package
+  484,887/1,000,000 B (48.49%), all within HDL-07 caps.
+- STATE: rendered behavior remains NOT VERIFIED. Next is T024 temporary
+  reviewed-SHA preview worktree/branch, followed by the T025 branch/SHA Human
+  Gate before any browser or Salla Preview is opened. No primary-tree commit,
+  push, merge, reset, or revert occurred.

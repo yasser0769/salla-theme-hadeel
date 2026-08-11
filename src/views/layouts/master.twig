@@ -67,8 +67,17 @@
     {% block head_scripts %}{% endblock %}
 
 
+    {#
+      HDL-07 (T018): serialize a real JS boolean. The previous `"{{ ... }}"` form
+      emitted the string "false", which is truthy in JS, so sticky=false still
+      installed the scroll listener. The four enrolled shapes mirror the HDL-03/07
+      boolean discipline: unset uses the declared default true; an invalid
+      non-enrolled shape resolves false. Serialization only — the HDL-03/07
+      resolver is untouched.
+    #}
+    {% set hadeel_header_is_sticky_raw = theme.settings.get('header_is_sticky', true) %}
     <script data-cfasync="false">
-        window.header_is_sticky = "{{theme.settings.get('header_is_sticky', 'Default Value')}}"
+        window.header_is_sticky = {{ (hadeel_header_is_sticky_raw is same as(true) or hadeel_header_is_sticky_raw is same as('true') or hadeel_header_is_sticky_raw is same as(1) or hadeel_header_is_sticky_raw is same as('1')) ? 'true' : 'false' }}
         window.imageZoom = "{{theme.settings.get('imageZoom')}}"
         window.can_access_wallet = {{ user.can_access_wallet | json_encode }}
         window.enable_more_menu = "{{ theme.settings.get('enable_more_menu', true) }}"
@@ -122,7 +131,7 @@
     guarded by an iterable/type check. Invalid raw types (booleans, numbers,
     arrays) never activate the engine, select a profile, or match an allowlist.
 #}
-{% set hadeel_allowed = {"layout_width":["compact","wide","full"],"section_spacing":["compact","balanced","spacious"],"corner_style":["square","soft","rounded"],"product_card_style":["minimal","bordered","elevated"],"header_layout":["centered","start"],"header_density":["compact","comfortable"]} %}
+{% set hadeel_allowed = {"layout_width":["compact","wide","full"],"section_spacing":["compact","balanced","spacious"],"corner_style":["square","soft","rounded"],"product_card_style":["minimal","bordered","elevated"],"header_layout":["centered","start","transparent","commerce"],"header_density":["compact","comfortable"]} %}
 {% set hadeel_safe = {"layout_width":"wide","section_spacing":"balanced","corner_style":"square","product_card_style":"minimal","header_layout":"centered","header_density":"comfortable"} %}
 {% set hadeel_profiles = {"luxury":{"layout_width":"wide","section_spacing":"spacious","corner_style":"rounded","product_card_style":"elevated","header_layout":"centered","header_density":"comfortable"},"modern":{"layout_width":"wide","section_spacing":"balanced","corner_style":"square","product_card_style":"minimal","header_layout":"centered","header_density":"comfortable"},"minimal":{"layout_width":"wide","section_spacing":"spacious","corner_style":"square","product_card_style":"minimal","header_layout":"centered","header_density":"comfortable"},"practical_digital":{"layout_width":"compact","section_spacing":"compact","corner_style":"soft","product_card_style":"bordered","header_layout":"start","header_density":"compact"}} %}
 {% set hadeel_engine_raw = theme.settings.get('preset_engine_enabled', false) %}
@@ -217,6 +226,30 @@
 {% set hadeel_motion_level = (hadeel_motion_raw is not iterable and hadeel_motion_raw is same as(hadeel_motion_raw ~ '') and hadeel_motion_raw in hadeel_motion_levels) ? hadeel_motion_raw : 'balanced' %}
 {% set hadeel_motion_reduce_mobile_raw = theme.settings.get('motion_reduce_mobile', true) %}
 {% set hadeel_motion_reduce_mobile = hadeel_motion_reduce_mobile_raw is same as(true) or hadeel_motion_reduce_mobile_raw is same as('true') or hadeel_motion_reduce_mobile_raw is same as(1) or hadeel_motion_reduce_mobile_raw is same as('1') %}
+{#
+  HDL-07 header foundation resolution — strict allowlists for the new
+  logo-size and transparent-ink controls, plus the transparent-home boolean.
+  Contract: specs/007-header-layouts/contracts/header-layout-contract.md
+  (mirrors resolveHeaderFoundation() in tests/helpers/header-layouts.mjs,
+  pinned by tests/header-layouts.test.mjs and scripts/check-header-layouts.mjs).
+
+  Same string-exact discipline as the HDL-03 resolver above: the iterable
+  guard plus self-cast identity rejects arrays, booleans, and numbers before
+  the allowlist `in`; `is same as` never coerces. Invalid/unset logo-size
+  resolves to medium (which preserves the pre-HDL-07 rendering) and ink to
+  auto (which falls back to the normal surface when uncertain). The
+  transparent-home boolean uses the four enrolled shapes only and fails
+  closed: any garbage value disables transparency. Raw merchant input never
+  reaches a class or attribute; the ink is a data attribute, never a class.
+#}
+{% set hadeel_header_logo_sizes = ['small', 'medium', 'large'] %}
+{% set hadeel_header_logo_size_raw = theme.settings.get('header_logo_size', 'medium') %}
+{% set hadeel_header_logo_size = (hadeel_header_logo_size_raw is not iterable and hadeel_header_logo_size_raw is same as(hadeel_header_logo_size_raw ~ '') and hadeel_header_logo_size_raw in hadeel_header_logo_sizes) ? hadeel_header_logo_size_raw : 'medium' %}
+{% set hadeel_header_inks = ['auto', 'light', 'dark'] %}
+{% set hadeel_header_ink_raw = theme.settings.get('header_transparent_ink', 'auto') %}
+{% set hadeel_header_ink = (hadeel_header_ink_raw is not iterable and hadeel_header_ink_raw is same as(hadeel_header_ink_raw ~ '') and hadeel_header_ink_raw in hadeel_header_inks) ? hadeel_header_ink_raw : 'auto' %}
+{% set hadeel_header_transparent_home_raw = theme.settings.get('header_transparent_home', true) %}
+{% set hadeel_header_transparent_home = hadeel_header_transparent_home_raw is same as(true) or hadeel_header_transparent_home_raw is same as('true') or hadeel_header_transparent_home_raw is same as(1) or hadeel_header_transparent_home_raw is same as('1') %}
 <body id="app" class="theme-raed overflow-x-hidden {% hook 'body:classes' %}
   {{ theme.settings.get('use_theme_font', false) ? ' use-theme-font' : '' }}
   {{ theme.settings.get('footer_is_dark') ? ' footer-is-dark' : ' footer-is-light' }}
@@ -227,11 +260,12 @@
   hadeel-card-{{ hadeel_resolved.product_card_style }}
   hadeel-header-{{ hadeel_resolved.header_layout }}
   hadeel-header-density-{{ hadeel_resolved.header_density }}
+  hadeel-header-logo-{{ hadeel_header_logo_size }}
   hadeel-motion-{{ hadeel_motion_level }}
   {% if hadeel_motion_reduce_mobile %} hadeel-motion-reduce-mobile{% endif %}
   {% if hadeel_engine_on %} hadeel-preset-{{ hadeel_profile }}{% endif %}
   {{ page.slug == 'product.single' ? ' product-single-page' : '' }}
-  " data-hadeel-motion="{{ hadeel_motion_level }}"{% if hadeel_motion_reduce_mobile %} data-hadeel-motion-reduce-mobile="true"{% endif %}{% if hadeel_engine_on %} data-hadeel-preset="{{ hadeel_profile }}" data-hadeel-preset-sources="{{ hadeel_sources_list|join(',') }}"{% endif %}{% if hadeel_review|length > 0 %} data-hadeel-preset-review="{{ hadeel_review|join(',') }}"{% endif %}>
+  " data-hadeel-motion="{{ hadeel_motion_level }}" data-hadeel-header-ink="{{ hadeel_header_ink }}"{% if hadeel_header_transparent_home %} data-hadeel-header-transparent-home="true"{% endif %}{% if hadeel_motion_reduce_mobile %} data-hadeel-motion-reduce-mobile="true"{% endif %}{% if hadeel_engine_on %} data-hadeel-preset="{{ hadeel_profile }}" data-hadeel-preset-sources="{{ hadeel_sources_list|join(',') }}"{% endif %}{% if hadeel_review|length > 0 %} data-hadeel-preset-review="{{ hadeel_review|join(',') }}"{% endif %}>
 <noscript>
     To get full functionality of this site you need to enable JavaScript. Here is how
     <a href="https://www.enable-javascript.com/" rel="noreferrer"

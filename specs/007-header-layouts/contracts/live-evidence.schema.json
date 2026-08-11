@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hadeel.local/contracts/hdl-07-live-evidence.schema.json",
+  "title": "HDL-07 rendered Salla header evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "captured_at",
+    "commit_sha",
+    "branch",
+    "scenario",
+    "viewport",
+    "html",
+    "layout",
+    "state",
+    "hero",
+    "geometry",
+    "accessibility",
+    "network",
+    "overflow",
+    "artifacts"
+  ],
+  "properties": {
+    "captured_at": { "type": "string", "format": "date-time" },
+    "commit_sha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "branch": { "type": "string", "minLength": 1 },
+    "scenario": { "type": "string", "minLength": 1 },
+    "viewport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "height", "dpr"],
+      "properties": {
+        "width": { "type": "number", "exclusiveMinimum": 0 },
+        "height": { "type": "number", "exclusiveMinimum": 0 },
+        "dpr": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    },
+    "html": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lang", "dir"],
+      "properties": {
+        "lang": { "type": "string", "minLength": 1 },
+        "dir": { "enum": ["rtl", "ltr"] }
+      }
+    },
+    "layout": { "enum": ["centered", "start", "transparent", "commerce"] },
+    "state": { "enum": ["top", "scrolled", "menu_open", "search_open", "fallback_surface"] },
+    "hero": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["first_selector", "eligible", "auto_ink"],
+      "properties": {
+        "first_selector": { "type": ["string", "null"] },
+        "eligible": { "type": "boolean" },
+        "auto_ink": { "enum": ["light", "dark", null] }
+      }
+    },
+    "geometry": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["header", "main", "layout_shift_observed"],
+      "properties": {
+        "header": { "type": "object" },
+        "main": { "type": "object" },
+        "layout_shift_observed": { "type": "boolean" }
+      }
+    },
+    "accessibility": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["named_controls", "focus_visible", "focus_order", "focus_return", "target_size_pass", "contrast_pass"],
+      "properties": {
+        "named_controls": { "type": "boolean" },
+        "focus_visible": { "type": "boolean" },
+        "focus_order": { "type": "array", "items": { "type": "string" } },
+        "focus_return": { "type": ["boolean", "null"] },
+        "target_size_pass": { "type": "boolean" },
+        "contrast_pass": { "type": "boolean" }
+      }
+    },
+    "network": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "overflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scroll_width", "inner_width", "pass"],
+      "properties": {
+        "scroll_width": { "type": "number", "minimum": 0 },
+        "inner_width": { "type": "number", "minimum": 0 },
+        "pass": { "type": "boolean" }
+      }
+    },
+    "artifacts": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+  }
+}

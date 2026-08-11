@@ -1,0 +1,21 @@
+--- /tmp/hdl07-before.css.txt	2026-08-11 01:01:38
++++ /tmp/hdl07-after.css.txt	2026-08-11 01:27:50
+@@ -827,6 +827,8 @@
+  || .hadeel-corners-rounded || --r-0:16px
+  || .hadeel-corners-soft || --r-0:8px
+  || .hadeel-corners-square || --r-0:0
++ || .hadeel-header-commerce || --hadeel-header-commerce-search-min:280px
++ || .hadeel-header-transparent || --hadeel-header-transparent-ink:var(--hadeel-ink)
+  || .hadeel-installments || margin:20px 0 14px; position:relative
+  || .hadeel-installments__bar || align-items:stretch; background:#f4f4f4; background:var(--hadeel-soft); border:1px solid #e8e8e8; border:1px solid var(--hadeel-line); border-radius:0; border-radius:var(--r-0); color:#222; color:var(--hadeel-ink); display:flex; gap:2px; min-height:40px; overflow:hidden; padding:2px
+  || .hadeel-installments__bar[hidden] || display:none
+@@ -6696,6 +6698,9 @@
+ @media(min-width:1024px) || .hadeel-header-density-compact .main-nav-shell || min-height:66px
+ @media(min-width:1024px) || .hadeel-header-density-compact .navbar-brand img || max-height:42px
+ @media(min-width:1024px) || .hadeel-header-density-compact custom-main-menu || min-height:66px
++@media(min-width:1024px) || .hadeel-header-logo-large .navbar-brand img || max-height:64px
++@media(min-width:1024px) || .hadeel-header-logo-medium .navbar-brand img || max-height:52px
++@media(min-width:1024px) || .hadeel-header-logo-small .navbar-brand img || max-height:40px
+ @media(min-width:1024px) || .hadeel-header-start .header-actions || grid-column:3; grid-row:1
+ @media(min-width:1024px) || .hadeel-header-start .main-nav-shell || grid-template-columns:auto minmax(0,1fr) auto
+ @media(min-width:1024px) || .hadeel-header-start .main-nav-shell__menu || grid-column:2; grid-row:1; justify-content:center

@@ -109,7 +109,7 @@
       "design": "specs/006-motion-system/design.md",
       "input": "specs/006-motion-system/spec-input.md",
       "evidence": "specs/006-motion-system/evidence/final-review.md",
-      "evidence_status": "Owner ACCEPT HDL-06; independent Final Review PASS / BLOCKERS 0; 26/26 requirements covered; production build, build-sync, compressed package, and owner-confirmed Salla evidence PASS"
+      "evidence_status": "Complete at e261352d after owner ACCEPT HDL-06; independent Final Review PASS / BLOCKERS 0; 26/26 requirements covered; production build, build-sync, compressed package, and owner-confirmed Salla evidence PASS"
     },
     {
       "id": "HDL-07",
@@ -126,10 +126,12 @@
         "HDL-05",
         "HDL-06"
       ],
-      "status": "planned",
+      "status": "implementing",
       "spec": "specs/007-header-layouts/spec.md",
       "design": "specs/007-header-layouts/design.md",
-      "input": "specs/007-header-layouts/spec-input.md"
+      "input": "specs/007-header-layouts/spec-input.md",
+      "plan": "specs/007-header-layouts/plan.md",
+      "tasks": "specs/007-header-layouts/tasks.md"
     },
     {
       "id": "HDL-08",

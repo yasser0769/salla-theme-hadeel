@@ -20,6 +20,10 @@
  *   9. HDL-06 motion contract drift (active phase 2: settings, resolver,
  *      tokens, reveal confinement, smooth-scroll gating, direction, timer/Anime
  *      bans, raw-timing tokenization, Tailwind motion utilities, controller)
+ *  10. HDL-07 header-layout contract drift (layout allowlist + legacy pinning,
+ *      new settings with safe defaults and proven conditions, registry parity,
+ *      strict resolver, single core, Hero-marker confinement, runtime budget,
+ *      SCSS hooks, strict fixture witness)
  *
  * Usage:
  *   node scripts/check-theme.mjs                # static checks
@@ -41,6 +45,7 @@ import process from 'node:process';
 import { checkSettingsRegistry } from './check-settings-registry.mjs';
 import { checkLocalizationA11y } from './check-localization-a11y.mjs';
 import { checkMotionSystem } from './check-motion-system.mjs';
+import { checkHeaderLayouts } from './check-header-layouts.mjs';
 
 const ROOT = new URL('..', import.meta.url).pathname.replace(/\/$/, '');
 const argv = process.argv.slice(2);
@@ -441,6 +446,34 @@ function checkMotionSystemContract() {
     'motion settings, resolver, token caps, reduced/mobile overrides, reveal confinement, smooth-scroll gating, direction, timer/Anime bans, raw-timing and utility tokenization, and controller contracts hold (active phase 2)');
 }
 
+/* ------------------------------------- 11. HDL-07 header-layout contract */
+
+/**
+ * HDL-07 header-layout guard (T011). Runs the strict contract check (layout
+ * allowlist + legacy pinning, new settings, registry parity, strict resolver,
+ * single core, Hero-marker confinement, runtime budget, SCSS hooks, and the
+ * fixture witness) in both the normal and --build flows. Pure addition: no
+ * existing check above is changed or weakened.
+ */
+function checkHeaderLayoutsContract() {
+  let bad = 0;
+  try {
+    const { findings: header } = checkHeaderLayouts({ root: ROOT, strict: true });
+    for (const f of header) {
+      if (f.level !== 'error') continue;
+      bad++;
+      note('header-layouts', 'error', `[${f.rule}] ${f.message}`, f.where);
+    }
+  } catch (err) {
+    bad++;
+    note('header-layouts', 'error',
+      `header-layouts check failed to run: ${String(err.message).slice(0, 200)}`,
+      'scripts/check-header-layouts.mjs');
+  }
+  if (!bad) note('header-layouts', 'ok',
+    'header layout allowlist/legacy pinning, new settings, registry parity, strict resolver, single core, Hero confinement, runtime budget, SCSS hooks, and fixture witness contracts hold');
+}
+
 /* ---------------------------------------------------------- 6. build sync */
 function sha(file) {
   return createHash('sha256').update(readFileSync(file)).digest('hex');
@@ -534,6 +567,7 @@ function main() {
   checkLocalizationA11yContract();
   checkBundleBudgetContract();
   checkMotionSystemContract();
+  checkHeaderLayoutsContract();
   if (WANT_BUILD) checkBuildSync();
 
 const errors = findings.filter((f) => f.level === 'error');

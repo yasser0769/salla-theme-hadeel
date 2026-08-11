@@ -166,6 +166,17 @@ salla-quantity-input .s-quantity-input-container {
   object-fit: contain;
 }
 
+/* HDL-07 (T016): missing-logo text fallback — escaped store name, truncated
+   safely within the brand cell; the artwork itself is never recolored. */
+.navbar-brand__name {
+  max-width: 100%;
+  overflow: hidden;
+  color: var(--hadeel-header-ink-current, var(--hadeel-ink));
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .header-actions {
   min-width: 0;
   display: flex;
@@ -179,7 +190,9 @@ salla-quantity-input .s-quantity-input-container {
   height: 44px;
   padding: 0;
   border: 0;
-  color: var(--hadeel-ink);
+  /* HDL-07: consumes the transparent Top ink when the gate sets it; the
+     fallback keeps legacy rendering byte-identical. */
+  color: var(--hadeel-header-ink-current, var(--hadeel-ink));
   background: transparent;
   display: inline-grid;
   place-items: center;
@@ -212,6 +225,16 @@ salla-quantity-input .s-quantity-input-container {
   stroke: none;
 }
 
+/*
+ * HDL-07 (T017): one search button serves every layout. Its label stays hidden
+ * for centered, start, transparent, and all mobile layouts (the button's
+ * aria-label already names it); commerce desktop reveals the label and widens
+ * the same element — see the min-width: 1024px block. No duplicate control.
+ */
+.header-action__label {
+  display: none;
+}
+
 .header-cart {
   width: 40px;
   min-width: 40px;
@@ -219,7 +242,7 @@ salla-quantity-input .s-quantity-input-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--hadeel-ink);
+  color: var(--hadeel-header-ink-current, var(--hadeel-ink));
   overflow: visible;
 }
 
@@ -229,19 +252,19 @@ salla-quantity-input .s-quantity-input-container {
   height: 44px;
   align-items: center;
   justify-content: center;
-  color: var(--hadeel-ink);
+  color: var(--hadeel-header-ink-current, var(--hadeel-ink));
   overflow: visible;
 }
 
 .header-cart #s-cart-icon {
   display: grid;
   place-items: center;
-  color: var(--hadeel-ink);
+  color: var(--hadeel-header-ink-current, var(--hadeel-ink));
   overflow: visible;
 }
 
 .header-cart .header-icon--cart {
-  color: var(--hadeel-ink);
+  color: var(--hadeel-header-ink-current, var(--hadeel-ink));
   stroke: currentColor;
 }
 
@@ -262,7 +285,7 @@ salla-quantity-input .s-quantity-input-container {
 .header-account-control {
   width: 40px;
   height: 44px;
-  color: var(--hadeel-ink);
+  color: var(--hadeel-header-ink-current, var(--hadeel-ink));
   display: grid;
   place-items: center;
   position: relative;
@@ -342,7 +365,7 @@ salla-quantity-input .s-quantity-input-container {
   .main-menu li.root-level > a {
     min-height: 72px;
     padding: 0;
-    color: var(--hadeel-ink);
+    color: var(--hadeel-header-ink-current, var(--hadeel-ink));
     font-size: 13px;
     font-weight: 500;
     white-space: nowrap;
@@ -959,6 +982,91 @@ salla-quantity-input .s-quantity-input-container {
     grid-row: 1;
   }
 
+  /*
+    HDL-07 commerce (T017): a distinct two-row desktop arrangement over the same
+    shared DOM — row 1 is brand / the one wide search button / actions, row 2
+    is the full-width menu. Grid placement and CSS-only widening of the existing
+    .header-action--search; DOM and focus order stay logical and identical to
+    the other layouts. Menu content stays with HDL-08.
+  */
+  .hadeel-header-commerce .main-nav-shell {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-rows: auto auto;
+  }
+
+  .hadeel-header-commerce .navbar-brand {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+  }
+
+  .hadeel-header-commerce .header-actions {
+    grid-column: 2;
+    grid-row: 1;
+    gap: var(--sp-3);
+  }
+
+  /* The SAME search button, wide only here: label revealed, icon shrunk. */
+  .hadeel-header-commerce .header-action--search {
+    flex: 1 1 auto;
+    width: auto;
+    min-width: var(--hadeel-header-commerce-search-min);
+    padding: 0 var(--sp-4);
+    border: 1px solid var(--hadeel-line);
+    border-radius: var(--r-pill);
+    color: var(--hadeel-muted);
+    background: var(--hadeel-surface);
+    display: flex;
+    gap: var(--sp-2);
+    font-size: 13px;
+  }
+
+  .hadeel-header-commerce .header-action--search:hover {
+    color: var(--hadeel-ink);
+    border-color: var(--hadeel-ink);
+  }
+
+  .hadeel-header-commerce .header-action--search .header-action__label {
+    display: inline;
+  }
+
+  .hadeel-header-commerce .header-action--search .header-icon--search {
+    width: 18px;
+    height: 18px;
+  }
+
+  .hadeel-header-commerce .main-nav-shell__menu {
+    justify-content: center;
+    grid-column: 1 / -1;
+    grid-row: 2;
+    border-top: 1px solid var(--hadeel-line);
+  }
+
+  .hadeel-header-commerce .main-menu,
+  .hadeel-header-commerce custom-main-menu,
+  .hadeel-header-commerce .main-menu li.root-level > a {
+    min-height: 56px;
+  }
+
+  /*
+    HDL-07 logo-size hooks (foundation; setting: header_logo_size).
+    Desktop only — the shared mobile header keeps its own 43px cap. `medium`
+    repeats the pre-HDL-07 52px cap so the default renders identically to
+    before. These rules sit before the density-compact cap so a compact header
+    still wins the equal-specificity tie and a large logo cannot overflow it.
+  */
+  .hadeel-header-logo-small .navbar-brand img {
+    max-height: 40px;
+  }
+
+  .hadeel-header-logo-medium .navbar-brand img {
+    max-height: 52px;
+  }
+
+  .hadeel-header-logo-large .navbar-brand img {
+    max-height: 64px;
+  }
+
   .hadeel-header-density-compact .main-nav-container,
   .hadeel-header-density-compact .main-nav-shell,
   .hadeel-header-density-compact custom-main-menu,
@@ -970,6 +1078,95 @@ salla-quantity-input .s-quantity-input-container {
   .hadeel-header-density-compact .navbar-brand img {
     max-height: 42px;
   }
+}
+
+/*
+  HDL-07 transparent header (T016). The ordinary opaque surface is the default;
+  transparent Top styling exists only behind a first-paint relational :has() gate
+  that proves every contract-§3 predicate at once: resolved layout `transparent`,
+  `header_transparent_home` true, the marked eligible Hero is the first element
+  child of #main-content, and the ink is explicit light|dark — or `auto` backed by
+  the server safe-ink marker (at least one rendered slide and every rendered slide
+  carries the existing dark overlay). Browsers without :has(), a missing or
+  non-first Hero, and uncertain auto ink never match, so nothing paints
+  transparent and falls back later. Scrolled (the shared controller's
+  fixed-pinned/fixed-header) always returns to the opaque --hadeel-surface with
+  normal ink; because the overlay never occupies document flow, the architecture
+  is intended to avoid a layout jump (NOT VERIFIED until Salla preview). The
+  original logo is never recolored, filtered, inverted, or
+  mirrored — it sits on a small neutral plate; a missing logo renders the escaped
+  store name instead. HDL-07 adds no color setting; --hadeel-surface is reused.
+*/
+.hadeel-header-transparent {
+  --hadeel-header-transparent-ink: var(--hadeel-ink);
+}
+
+/*
+  Ink consumption is centralized: the header controls' base rules read
+  `var(--hadeel-header-ink-current, var(--hadeel-ink))`, so this block only has
+  to SET the variable — once for the Top state, once for scrolled — instead of
+  repeating long descendant color overrides. Undefined outside the gate, so
+  legacy centered|start rendering is byte-identical. The :is() keeps the three
+  ink proofs as ONE compiled selector (size gate), with identical specificity.
+*/
+/* Light ink: explicit merchant choice over an eligible Hero, or auto only with
+   the server safe-ink marker. */
+.hadeel-header-transparent[data-hadeel-header-transparent-home="true"]:is(
+  [data-hadeel-header-ink="light"]:has(#main-content > :first-child[data-hadeel-header-hero]),
+  [data-hadeel-header-ink="auto"]:has(#main-content > :first-child[data-hadeel-header-hero][data-hadeel-header-hero-ink])
+) {
+  --hadeel-header-transparent-ink: #fff;
+}
+
+/* Top state: overlay the eligible Hero with a transparent surface and the
+   resolved ink. */
+.hadeel-header-transparent[data-hadeel-header-transparent-home="true"]:is(
+  [data-hadeel-header-ink="light"]:has(#main-content > :first-child[data-hadeel-header-hero]),
+  [data-hadeel-header-ink="dark"]:has(#main-content > :first-child[data-hadeel-header-hero]),
+  [data-hadeel-header-ink="auto"]:has(#main-content > :first-child[data-hadeel-header-hero][data-hadeel-header-hero-ink])
+) {
+  --hadeel-header-ink-current: var(--hadeel-header-transparent-ink);
+
+  .store-header {
+    width: 100%;
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    z-index: 30;
+  }
+
+  /* .inner inherits this transparent background; base box-shadow is already none. */
+  .main-nav-container {
+    border-bottom-color: transparent;
+    background: transparent;
+  }
+
+  /* Neutral brand plate: keeps the untouched original artwork readable over any
+     eligible Hero without recoloring it. Removed again when scrolled. */
+  .navbar-brand {
+    padding: var(--sp-1) var(--sp-3);
+    border-radius: var(--r-pill);
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  /* Scrolled: opaque readable surface, normal ink, no plate. */
+  .main-nav-container.fixed-header,
+  .main-nav-container.fixed-pinned {
+    --hadeel-header-ink-current: var(--hadeel-ink);
+
+    .inner {
+      background: var(--hadeel-surface);
+    }
+
+    .navbar-brand {
+      padding: 0;
+      background: transparent;
+    }
+  }
+}
+
+.hadeel-header-commerce {
+  --hadeel-header-commerce-search-min: 280px;
 }
 
 .hero-height-compact .swiper-slide {
@@ -1244,7 +1441,10 @@ salla-quantity-input .s-quantity-input-container {
   }
 
   .main-nav-shell {
-    grid-template-columns: 84px minmax(80px, 1fr) 84px;
+    /* HDL-07 (T018): one shared mobile shell for all four layouts. 88px sides fit
+       two 44px touch targets; 80px middle floor keeps 320px safe (88+80+88 = 256px
+       inside the 288px container at the minimum gutter). */
+    grid-template-columns: 88px minmax(80px, 1fr) 88px;
     gap: var(--sp-2);
   }
 
@@ -1257,9 +1457,9 @@ salla-quantity-input .s-quantity-input-container {
   }
 
   .mobile-menu-trigger {
-    width: 40px;
+    width: 44px;
     height: 44px;
-    color: var(--hadeel-ink);
+    color: var(--hadeel-header-ink-current, var(--hadeel-ink));
     display: grid;
     place-items: center;
   }
@@ -1283,7 +1483,7 @@ salla-quantity-input .s-quantity-input-container {
   }
 
   .header-action {
-    width: 40px;
+    width: 44px;
     height: 44px;
   }
 
@@ -1294,16 +1494,20 @@ salla-quantity-input .s-quantity-input-container {
   }
 
   .header-cart {
-    width: 40px;
-    min-width: 40px;
+    width: 44px;
+    min-width: 44px;
     min-height: 44px;
   }
 
   .header-cart .s-cart-summary-wrapper {
-    width: 40px;
-    min-width: 40px;
+    width: 44px;
+    min-width: 44px;
     height: 44px;
   }
+
+  /* HDL-07 (T017/T018): commerce mobile needs no override — the one search
+     button inherits the shared 44×44 icon sizing above and its label stays
+     hidden by the base .header-action__label rule. Same element, no duplicate. */
 
   .mobile-toolbar {
     width: 100%;

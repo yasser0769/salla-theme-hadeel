@@ -8,7 +8,23 @@
 | component.slides               | object[] | list of slides                                                               |
 | position                       | int      | Sorting number start from zero                                               |
 #}
-<section class="s-block s-block--hero-slider s-block--full-bg wide-placeholder hero-height-{{ component.height ?: 'standard' }} hero-align-{{ component.content_alignment ?: 'start' }} hero-overlay-{{ component.overlay_strength ?: 'medium' }}">
+{#
+  HDL-07 transparent-header eligibility (contract §3): this full-width Hero is the
+  single approved owner of the eligibility marker. The marker is inert on its own —
+  the transparent Top state activates only when this section is the first rendered
+  element child of #main-content and every other predicate holds (relational :has()
+  gate in storefront-system.scss). The safe-ink marker lets ink=auto choose light
+  ink only when at least one slide is rendered and every rendered slide carries the
+  existing dark overlay; a single overlay-less slide (or an empty slider) withholds
+  it, so auto falls back to the ordinary surface. No client image analysis exists.
+#}
+{% set hadeel_hero_all_overlaid = component.slides|length > 0 %}
+{% for slide in component.slides %}
+  {% if slide.without_overlay %}
+    {% set hadeel_hero_all_overlaid = false %}
+  {% endif %}
+{% endfor %}
+<section class="s-block s-block--hero-slider s-block--full-bg wide-placeholder hero-height-{{ component.height ?: 'standard' }} hero-align-{{ component.content_alignment ?: 'start' }} hero-overlay-{{ component.overlay_strength ?: 'medium' }}" data-hadeel-header-hero{% if hadeel_hero_all_overlaid %} data-hadeel-header-hero-ink="light"{% endif %}>
     <salla-slider 
       id="main-slider-{{ position }}"
       {% if component.auto_play is not same as(false) %}auto-play{% endif %}

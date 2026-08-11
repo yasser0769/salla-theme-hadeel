@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "description": "HDL-07 header foundation fixtures (T008). `valid` and `invalid` cases pair raw merchant inputs (as theme.settings.get could return them) with the exact contract resolution they must produce; `witness_invalid` carries a deliberately wrong expectation the checker MUST reject (removed/restored by the T038 witness drill).",
+  "baseline_commit": "e261352d8e3796f0e30ca3663de121368764d901",
+  "valid": [
+    {
+      "id": "legacy_centered",
+      "raw": { "header_layout": "centered" },
+      "expected": { "layout": "centered", "logo_size": "medium", "ink": "auto", "transparent_home": true }
+    },
+    {
+      "id": "legacy_start",
+      "raw": { "header_layout": "start" },
+      "expected": { "layout": "start", "logo_size": "medium", "ink": "auto", "transparent_home": true }
+    },
+    {
+      "id": "transparent",
+      "raw": { "header_layout": "transparent" },
+      "expected": { "layout": "transparent", "logo_size": "medium", "ink": "auto", "transparent_home": true }
+    },
+    {
+      "id": "commerce",
+      "raw": { "header_layout": "commerce" },
+      "expected": { "layout": "commerce", "logo_size": "medium", "ink": "auto", "transparent_home": true }
+    },
+    {
+      "id": "logo_small",
+      "raw": { "header_logo_size": "small" },
+      "expected": { "layout": "centered", "logo_size": "small", "ink": "auto", "transparent_home": true }
+    },
+    {
+      "id": "logo_large",
+      "raw": { "header_logo_size": "large" },
+      "expected": { "layout": "centered", "logo_size": "large", "ink": "auto", "transparent_home": true }
+    },
+    {
+      "id": "ink_light",
+      "raw": { "header_transparent_ink": "light" },
+      "expected": { "layout": "centered", "logo_size": "medium", "ink": "light", "transparent_home": true }
+    },
+    {
+      "id": "ink_dark",
+      "raw": { "header_transparent_ink": "dark" },
+      "expected": { "layout": "centered", "logo_size": "medium", "ink": "dark", "transparent_home": true }
+    },
+    {
+      "id": "boolean_true_string",
+      "raw": { "header_transparent_home": "true" },
+      "expected": { "layout": "centered", "logo_size": "medium", "ink": "auto", "transparent_home": true }
+    },
+    {
+      "id": "boolean_true_number",
+      "raw": { "header_transparent_home": 1 },
+      "expected": { "layout": "centered", "logo_size": "medium", "ink": "auto", "transparent_home": true }
+    },
+    {
+      "id": "boolean_false",
+      "raw": { "header_transparent_home": false },
+      "expected": { "layout": "centered", "logo_size": "medium", "ink": "auto", "transparent_home": false }
+    },
+    {
+      "id": "boolean_false_string",
+      "raw": { "header_transparent_home": "0" },
+      "expected": { "layout": "centered", "logo_size": "medium", "ink": "auto", "transparent_home": false }
+    }
+  ],
+  "invalid": [
+    {
+      "id": "layout_unknown",
+      "raw": { "header_layout": "mega" },
+      "expected": { "layout": "centered", "logo_size": "medium", "ink": "auto", "transparent_home": true }
+    },
+    {
+      "id": "layout_boolean",
+      "raw": { "header_layout": true },
+      "expected": { "layout": "centered", "logo_size": "medium", "ink": "auto", "transparent_home": true }
+    },
+    {
+      "id": "layout_number",
+      "raw": { "header_layout": 0 },
+      "expected": { "layout": "centered", "logo_size": "medium", "ink": "auto", "transparent_home": true }
+    },
+    {
+      "id": "layout_array",
+      "raw": { "header_layout": ["start"] },
+      "expected": { "layout": "centered", "logo_size": "medium", "ink": "auto", "transparent_home": true }
+    },
+    {
+      "id": "layout_empty",
+      "raw": { "header_layout": "" },
+      "expected": { "layout": "centered", "logo_size": "medium", "ink": "auto", "transparent_home": true }
+    },
+    {
+      "id": "layout_whitespace",
+      "raw": { "header_layout": " start " },
+      "expected": { "layout": "centered", "logo_size": "medium", "ink": "auto", "transparent_home": true }
+    },
+    {
+      "id": "layout_css_injection",
+      "raw": { "header_layout": "start;position:fixed" },
+      "expected": { "layout": "centered", "logo_size": "medium", "ink": "auto", "transparent_home": true }
+    },
+    {
+      "id": "logo_unknown",
+      "raw": { "header_logo_size": "huge" },
+      "expected": { "layout": "centered", "logo_size": "medium", "ink": "auto", "transparent_home": true }
+    },
+    {
+      "id": "logo_array",
+      "raw": { "header_logo_size": ["large"] },
+      "expected": { "layout": "centered", "logo_size": "medium", "ink": "auto", "transparent_home": true }
+    },
+    {
+      "id": "logo_number",
+      "raw": { "header_logo_size": 42 },
+      "expected": { "layout": "centered", "logo_size": "medium", "ink": "auto", "transparent_home": true }
+    },
+    {
+      "id": "ink_unknown",
+      "raw": { "header_transparent_ink": "blue" },
+      "expected": { "layout": "centered", "logo_size": "medium", "ink": "auto", "transparent_home": true }
+    },
+    {
+      "id": "ink_array",
+      "raw": { "header_transparent_ink": ["light"] },
+      "expected": { "layout": "centered", "logo_size": "medium", "ink": "auto", "transparent_home": true }
+    },
+    {
+      "id": "ink_boolean",
+      "raw": { "header_transparent_ink": false },
+      "expected": { "layout": "centered", "logo_size": "medium", "ink": "auto", "transparent_home": true }
+    },
+    {
+      "id": "boolean_garbage_fails_closed",
+      "raw": { "header_transparent_home": "banana" },
+      "expected": { "layout": "centered", "logo_size": "medium", "ink": "auto", "transparent_home": false }
+    },
+    {
+      "id": "combined_mixed",
+      "raw": {
+        "header_layout": "commerce",
+        "header_logo_size": "widescreen",
+        "header_transparent_ink": "dark",
+        "header_transparent_home": "false"
+      },
+      "expected": { "layout": "commerce", "logo_size": "medium", "ink": "dark", "transparent_home": false }
+    }
+  ],
+  "witness_invalid": [
+    {
+      "id": "witness_raw_passthrough",
+      "comment": "Deliberately wrong: a raw unknown layout must NEVER pass through to a class. The checker must reject this case; if it does not, the checker can no longer prove it catches defects.",
+      "raw": { "header_layout": "mega" },
+      "expected": { "layout": "mega", "logo_size": "medium", "ink": "auto", "transparent_home": true }
+    }
+  ]
+}

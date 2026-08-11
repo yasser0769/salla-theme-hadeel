@@ -621,6 +621,16 @@
                     "label": "الشعار في بداية الصف",
                     "value": "start",
                     "key": "631700e4-3180-4ac6-a744-f4dba5da7dd6"
+                },
+                {
+                    "label": "شفاف فوق البانر في الرئيسية",
+                    "value": "transparent",
+                    "key": "901a7535-70cd-4ad0-bb6c-6441f65540ba"
+                },
+                {
+                    "label": "تجاري بصفين للمتاجر الكبيرة",
+                    "value": "commerce",
+                    "key": "a28d468d-50e1-4053-9c73-8b8b55b37adb"
                 }
             ],
             "source": "Manual",
@@ -642,6 +652,64 @@
             "label": "تفعيل قائمة المزيد في القائمة الرئيسية",
             "description": "عند تفعيلها، ستظهر الروابط الإضافية في قائمة منسدلة تسمى 'المزيد' عند عدم وجود مساحة كافية",
             "id": "enable_more_menu",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "تفعيل الهيدر الشفاف فوق البانر في الرئيسية",
+            "description": "يعمل فقط مع تخطيط «شفاف فوق البانر»؛ عند إيقافه أو عدم توفر بانر مناسب يستخدم الهيدر العادي تلقائيًا",
+            "id": "header_transparent_home",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true,
+            "conditions": [
+                {
+                    "id": "header_layout",
+                    "operation": "=",
+                    "value": "transparent"
+                }
+            ]
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "عرض البحث في رأس المتجر",
+            "id": "header_show_search",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "عرض الحساب في رأس المتجر",
+            "id": "header_show_account",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "عرض القائمة في رأس المتجر",
+            "id": "header_show_menu",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "عرض السلة في رأس المتجر",
+            "id": "header_show_cart",
             "format": "switch",
             "required": false,
             "value": true,
@@ -674,6 +742,80 @@
             ],
             "source": "Manual",
             "required": true
+        },
+        {
+            "id": "header_logo_size",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "مقاس الشعار في رأس المتجر",
+            "icon": "sicon-resize",
+            "selected": [
+                {
+                    "label": "متوسط",
+                    "value": "medium",
+                    "key": "6f3949f5-4c95-43c1-a8f5-8e8ea22f86b3"
+                }
+            ],
+            "options": [
+                {
+                    "label": "صغير",
+                    "value": "small",
+                    "key": "d4c987cf-b30c-449d-a8cb-894d87818571"
+                },
+                {
+                    "label": "متوسط",
+                    "value": "medium",
+                    "key": "6f3949f5-4c95-43c1-a8f5-8e8ea22f86b3"
+                },
+                {
+                    "label": "كبير",
+                    "value": "large",
+                    "key": "e27feaab-7012-45a2-bc9d-6a78bc99aea1"
+                }
+            ],
+            "source": "Manual",
+            "required": true
+        },
+        {
+            "id": "header_transparent_ink",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "لون عناصر الهيدر الشفاف",
+            "description": "«تلقائي» يستخدم اللون الفاتح فقط عند ثبوت ملاءمة البانر، وإلا يعود للهيدر العادي",
+            "icon": "sicon-layout-grid-rearrange",
+            "selected": [
+                {
+                    "label": "تلقائي",
+                    "value": "auto",
+                    "key": "77db23d6-06a2-4f8e-93d4-195f65f54662"
+                }
+            ],
+            "options": [
+                {
+                    "label": "تلقائي",
+                    "value": "auto",
+                    "key": "77db23d6-06a2-4f8e-93d4-195f65f54662"
+                },
+                {
+                    "label": "فاتح",
+                    "value": "light",
+                    "key": "51cdf513-9d9c-401a-a228-b2318a103611"
+                },
+                {
+                    "label": "داكن",
+                    "value": "dark",
+                    "key": "6281bc31-e542-4b80-a659-4fc30e5e5b88"
+                }
+            ],
+            "source": "Manual",
+            "required": true,
+            "conditions": [
+                {
+                    "id": "header_layout",
+                    "operation": "=",
+                    "value": "transparent"
+                }
+            ]
         },
         {
             "type": "static",

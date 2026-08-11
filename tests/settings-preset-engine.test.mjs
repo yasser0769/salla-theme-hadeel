@@ -42,9 +42,11 @@ function cartesian(lists) {
 /* ------------------------------------------------------------------- T018 */
 
 describe('T018 US1: engine-off legacy parity', () => {
-  test('all 324 legacy class combinations resolve byte-identically', () => {
+  test('all 648 class combinations resolve byte-identically', () => {
     const combos = cartesian(followers.map((f) => f.allowed_values));
-    assert.equal(combos.length, 324, 'expected 3×3×3×3×2×2 = 324 legacy combinations');
+    // 3×3×3×3×4×2 = 648: HDL-07 extended header_layout with transparent|commerce;
+    // the legacy 3×3×3×3×2×2 = 324 space is a strict subset and resolves identically.
+    assert.equal(combos.length, 648, 'expected 3×3×3×3×4×2 = 648 combinations');
     for (const combo of combos) {
       const values = Object.fromEntries(followerIds.map((id, i) => [id, combo[i]]));
       const out = resolveBodyClasses({
@@ -660,21 +662,22 @@ function walkFiles(dir, exts) {
 
 /* ------------------------------------------------------------------- T039 */
 
-describe('T039 US4: all 58 global + 62 component records, legal repeated raw ids', () => {
+describe('T039 US4: all 65 global + 62 component records, legal repeated raw ids', () => {
   test('the current registry passes the full strict checker with zero errors', () => {
     const result = checkSettingsRegistry({ root: ROOT, strict: true });
     assert.equal(errorsOf(result).length, 0,
       `registry must be clean, got: ${JSON.stringify(errorsOf(result).slice(0, 3))}`);
-    assert.equal(result.stats.globals, 58);
+    // 65 = 63 + the two HDL-07 menu/cart visibility records (T023 blocker fix).
+    assert.equal(result.stats.globals, 65);
     assert.equal(result.stats.components, 62);
     assert.equal(result.stats.profiles, 4);
-    assert.equal(result.stats.twilight_globals, 58);
+    assert.equal(result.stats.twilight_globals, 65);
     assert.equal(result.stats.twilight_components, 62);
   });
 
-  test('all 58 current global records are registered, including the 45 baseline globals', () => {
+  test('all 65 current global records are registered, including the 45 baseline globals', () => {
     const globals = registry.settings.filter((s) => s.scope === 'global');
-    assert.equal(globals.length, 58);
+    assert.equal(globals.length, 65);
     assert.equal(inventory.counts.global_records, 45, 'baseline inventory must pin 45 globals');
     assert.equal(inventory.globals.length, 45);
     for (const base of inventory.globals) {
@@ -684,13 +687,18 @@ describe('T039 US4: all 58 global + 62 component records, legal repeated raw ids
       assert.equal(rec.type, base.type, `${base.key}: legacy type drift (meaning is immutable)`);
       assert.equal(rec.scope, 'global');
     }
-    // The thirteen post-baseline additions are exactly the HDL-03 engine
+    // The twenty post-baseline additions are exactly the HDL-03 engine
     // controls, scope note, and explicit Presets group title, plus the three
-    // HDL-06 motion records (group title, level, mobile reduction).
+    // HDL-06 motion records (group title, level, mobile reduction), plus the
+    // seven HDL-07 header foundation records (transparent-home,
+    // search/menu/cart/account visibility, logo size, transparent ink).
     const baselineKeys = new Set(inventory.globals.map((g) => g.key));
     const added = globals.filter((s) => !baselineKeys.has(s.key)).map((s) => s.id).sort();
     assert.deepEqual(added, [
       'corner_style_mode', 'header_density_mode', 'header_layout_mode',
+      'header_logo_size', 'header_show_account', 'header_show_cart',
+      'header_show_menu', 'header_show_search',
+      'header_transparent_home', 'header_transparent_ink',
       'layout_width_mode', 'motion_level', 'motion_reduce_mobile',
       'preset_engine_enabled', 'preset_profile',
       'product_card_style_mode', 'section_spacing_mode', 'static-motion-title',

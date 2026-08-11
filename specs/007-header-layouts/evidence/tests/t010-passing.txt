@@ -1,0 +1,30 @@
+
+[layout-values]
+    ok   header_layout is exactly centered|start|transparent|commerce; legacy values, keys, labels, and the centered default are pinned
+
+[new-settings]
+    ok   five new settings declared with approved types, independent safe defaults, and only the proven equality condition
+
+[registry-parity]
+    ok   registry records match the approved values, owners, defaults, and class/attribute maps
+
+[resolver-strict]
+    ok   the resolver extends the allowlist atomically, preserves legacy maps/defaults, and never interpolates raw input
+
+[single-core]
+    ok   one header DOM and one component mount — no duplicated core per layout
+
+[hero-confinement]
+    ok   the eligibility marker is confined to its one approved owner; no client image analysis exists
+
+[runtime-budget]
+    ok   one shared sticky controller, one passive scroll listener, sticky gating, zero header requests
+
+[scss-hooks]
+    ok   every new class value has its owning hook; the medium logo cap preserves legacy rendering
+
+[witness]
+    ok   all 27 valid/invalid fixture cases resolve to their safe expected outcomes
+    ok   the deliberately invalid witness (1 case(s)) is rejected as required
+
+0 error(s)

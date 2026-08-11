@@ -1,0 +1,342 @@
+▶ settings parity — twilight.json declarations (T012)
+  ✖ header_layout declares exactly centered|start|transparent|commerce, legacy values first and unchanged (5.519282ms)
+  ✖ the five new HDL-07 settings exist with approved types and independent safe defaults (0.51685ms)
+  ✖ transparent-only controls use the proven equality condition on header_layout=transparent (0.35938ms)
+  ✔ existing header settings are untouched (sticky, wishlist, density, more menu) (0.830393ms)
+✖ settings parity — twilight.json declarations (T012) (10.391432ms)
+▶ settings parity — src/config/settings-registry.json (T013)
+  ✖ header_layout record gains exactly the two new values and keeps safe defaults (0.813168ms)
+  ✖ every new HDL-07 field has a qualified record with owner, labels, and safe default (0.585442ms)
+  ✖ logo-size and ink class maps are explicit and safe (8.403805ms)
+✖ settings parity — src/config/settings-registry.json (T013) (10.328413ms)
+▶ strict resolver — src/views/layouts/master.twig (T014)
+  ✖ the HDL-03 resolver allowlist extends header_layout with only transparent|commerce (1.034207ms)
+  ✔ preset profile maps keep their existing header_layout values (no new preset mappings) (0.587191ms)
+  ✖ logo-size resolution is a strict guarded allowlist with a medium fallback (1.194736ms)
+  ✖ ink resolution is a strict guarded allowlist with an auto fallback (0.493818ms)
+  ✖ transparent-home boolean uses enrolled shapes only and fails closed (0.442373ms)
+  ✖ emissions use resolved variables only — raw settings never reach a class or attribute (0.358841ms)
+✖ strict resolver — src/views/layouts/master.twig (T014) (4.849958ms)
+▶ SCSS foundation hooks — storefront-system.scss (T014)
+  ✖ every new non-base class value has exactly one owning hook in the existing header area (0.432816ms)
+  ✖ logo-size medium preserves the current 52px desktop cap (legacy rendering unchanged) (0.399842ms)
+✖ SCSS foundation hooks — storefront-system.scss (T014) (1.008208ms)
+▶ fixture resolution — tests/fixtures/header-layouts/settings.json (T008)
+  ✔ helper allowlists match the contract constants (0.356808ms)
+  ✔ valid cases resolve to their expected safe outcomes (0.884455ms)
+  ✔ invalid cases resolve to their expected safe outcomes (0.282388ms)
+  ✔ legacy centered|start resolution is byte-identical before and after the extension (0.235888ms)
+✔ fixture resolution — tests/fixtures/header-layouts/settings.json (T008) (2.126952ms)
+▶ one shared header core (FR-001/FR-006)
+  ✔ header.twig renders exactly one of each core element (0.328215ms)
+  ✔ master.twig mounts the header component exactly once (0.207508ms)
+  ✔ one menu behavior module and one sticky controller; no duplicated listeners/requests (0.423398ms)
+✔ one shared header core (FR-001/FR-006) (1.248212ms)
+▶ eligible-Hero marker confinement (FR-002/FR-003)
+  ✔ data-hadeel-header-hero may only ever be emitted by the enhanced slider template (0.646648ms)
+  ✔ no client image analysis exists anywhere in the header path (0.885348ms)
+✔ eligible-Hero marker confinement (FR-002/FR-003) (1.918356ms)
+ℹ tests 24
+ℹ suites 7
+ℹ pass 11
+ℹ fail 13
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 343.268267
+
+✖ failing tests:
+
+test at tests/header-layouts.test.mjs:53:3
+✖ header_layout declares exactly centered|start|transparent|commerce, legacy values first and unchanged (5.519282ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    [
+      'centered',
+      'start',
+  -   'transparent',
+  -   'commerce'
+    ]
+
+      at TestContext.<anonymous> (file:///Users/yasseralshihri/Desktop/Projects/salla-theme-hadeel/tests/header-layouts.test.mjs:56:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at node:internal/test_runner/test:1867:71
+      at node:internal/per_context/primordials:504:82
+      at new Promise (<anonymous>)
+      at new SafePromise (node:internal/per_context/primordials:478:3)
+      at node:internal/per_context/primordials:504:9
+      at Array.map (<anonymous>) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'centered', 'start' ],
+    expected: [ 'centered', 'start', 'transparent', 'commerce' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/header-layouts.test.mjs:66:3
+✖ the five new HDL-07 settings exist with approved types and independent safe defaults (0.51685ms)
+  AssertionError [ERR_ASSERTION]: header_transparent_home must be declared in twilight.json
+      at TestContext.<anonymous> (file:///Users/yasseralshihri/Desktop/Projects/salla-theme-hadeel/tests/header-layouts.test.mjs:76:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Suite.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Promise.all (index 0)
+      at async Suite.run (node:internal/test_runner/test:1869:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/header-layouts.test.mjs:84:3
+✖ transparent-only controls use the proven equality condition on header_layout=transparent (0.35938ms)
+  AssertionError [ERR_ASSERTION]: header_transparent_home must be declared
+      at TestContext.<anonymous> (file:///Users/yasseralshihri/Desktop/Projects/salla-theme-hadeel/tests/header-layouts.test.mjs:87:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Suite.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/header-layouts.test.mjs:106:3
+✖ header_layout record gains exactly the two new values and keeps safe defaults (0.813168ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    [
+      'centered',
+      'start',
+  -   'transparent',
+  -   'commerce'
+    ]
+
+      at TestContext.<anonymous> (file:///Users/yasseralshihri/Desktop/Projects/salla-theme-hadeel/tests/header-layouts.test.mjs:109:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at node:internal/test_runner/test:1867:71
+      at node:internal/per_context/primordials:504:82
+      at new Promise (<anonymous>)
+      at new SafePromise (node:internal/per_context/primordials:478:3)
+      at node:internal/per_context/primordials:504:9
+      at Array.map (<anonymous>) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'centered', 'start' ],
+    expected: [ 'centered', 'start', 'transparent', 'commerce' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/header-layouts.test.mjs:116:3
+✖ every new HDL-07 field has a qualified record with owner, labels, and safe default (0.585442ms)
+  AssertionError [ERR_ASSERTION]: global::header_transparent_home must be registered
+      at TestContext.<anonymous> (file:///Users/yasseralshihri/Desktop/Projects/salla-theme-hadeel/tests/header-layouts.test.mjs:126:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Suite.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Promise.all (index 0)
+      at async Suite.run (node:internal/test_runner/test:1869:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/header-layouts.test.mjs:138:3
+✖ logo-size and ink class maps are explicit and safe (8.403805ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert.ok(logo)
+
+      at TestContext.<anonymous> (file:///Users/yasseralshihri/Desktop/Projects/salla-theme-hadeel/tests/header-layouts.test.mjs:140:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Suite.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/header-layouts.test.mjs:153:3
+✖ the HDL-03 resolver allowlist extends header_layout with only transparent|commerce (1.034207ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    [
+      'centered',
+      'start',
+  -   'transparent',
+  -   'commerce'
+    ]
+
+      at TestContext.<anonymous> (file:///Users/yasseralshihri/Desktop/Projects/salla-theme-hadeel/tests/header-layouts.test.mjs:157:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at node:internal/test_runner/test:1867:71
+      at node:internal/per_context/primordials:504:82
+      at new Promise (<anonymous>)
+      at new SafePromise (node:internal/per_context/primordials:478:3)
+      at node:internal/per_context/primordials:504:9
+      at Array.map (<anonymous>) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'centered', 'start' ],
+    expected: [ 'centered', 'start', 'transparent', 'commerce' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/header-layouts.test.mjs:172:3
+✖ logo-size resolution is a strict guarded allowlist with a medium fallback (1.194736ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert.ok(masterCode.includes("hadeel_header_logo_sizes = ['small', 'medium', 'large']"))
+
+      at TestContext.<anonymous> (file:///Users/yasseralshihri/Desktop/Projects/salla-theme-hadeel/tests/header-layouts.test.mjs:173:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Suite.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/header-layouts.test.mjs:182:3
+✖ ink resolution is a strict guarded allowlist with an auto fallback (0.493818ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert.ok(masterCode.includes("hadeel_header_inks = ['auto', 'light', 'dark']"))
+
+      at TestContext.<anonymous> (file:///Users/yasseralshihri/Desktop/Projects/salla-theme-hadeel/tests/header-layouts.test.mjs:183:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Suite.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/header-layouts.test.mjs:192:3
+✖ transparent-home boolean uses enrolled shapes only and fails closed (0.442373ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert.ok(masterCode.includes("theme.settings.get('header_transparent_home', true)"))
+
+      at TestContext.<anonymous> (file:///Users/yasseralshihri/Desktop/Projects/salla-theme-hadeel/tests/header-layouts.test.mjs:193:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Suite.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/header-layouts.test.mjs:201:3
+✖ emissions use resolved variables only — raw settings never reach a class or attribute (0.358841ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert.ok(masterCode.includes('hadeel-header-logo-{{ hadeel_header_logo_size }}'))
+
+      at TestContext.<anonymous> (file:///Users/yasseralshihri/Desktop/Projects/salla-theme-hadeel/tests/header-layouts.test.mjs:202:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Suite.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/header-layouts.test.mjs:214:3
+✖ every new non-base class value has exactly one owning hook in the existing header area (0.432816ms)
+  AssertionError [ERR_ASSERTION]: .hadeel-header-transparent must exist in storefront-system.scss
+      at TestContext.<anonymous> (file:///Users/yasseralshihri/Desktop/Projects/salla-theme-hadeel/tests/header-layouts.test.mjs:222:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at node:internal/test_runner/test:1867:71
+      at node:internal/per_context/primordials:504:82
+      at new Promise (<anonymous>)
+      at new SafePromise (node:internal/per_context/primordials:478:3)
+      at node:internal/per_context/primordials:504:9
+      at Array.map (<anonymous>) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/header-layouts.test.mjs:226:3
+✖ logo-size medium preserves the current 52px desktop cap (legacy rendering unchanged) (0.399842ms)
+  AssertionError [ERR_ASSERTION]: medium logo hook must exist
+      at TestContext.<anonymous> (file:///Users/yasseralshihri/Desktop/Projects/salla-theme-hadeel/tests/header-layouts.test.mjs:228:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Suite.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Promise.all (index 0)
+      at async Suite.run (node:internal/test_runner/test:1869:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

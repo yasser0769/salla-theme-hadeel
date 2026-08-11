@@ -254,12 +254,16 @@ class NavigationMenu extends HTMLElement {
         const otherElements = headerLayout.children;
         let usedWidth = 0;
 
-        // Calculate width used by logo and other elements
-        Array.from(otherElements).forEach(element => {
-            if (!element.contains(mainMenu)) {
-                usedWidth += element.offsetWidth;
-            }
-        });
+        // Calculate width used by logo and other elements. HDL-07: the commerce
+        // layout gives the menu its own full-width second row, so shell siblings
+        // (brand / wide search / actions) do not consume its space.
+        if (!document.body.classList.contains('hadeel-header-commerce')) {
+            Array.from(otherElements).forEach(element => {
+                if (!element.contains(mainMenu)) {
+                    usedWidth += element.offsetWidth;
+                }
+            });
+        }
 
         const availableWidth = containerWidth - usedWidth - 300; // 300px buffer for More dropdown
         let currentWidth = 0;

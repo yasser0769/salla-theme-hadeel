@@ -1,0 +1,46 @@
+▶ settings parity — twilight.json declarations (T012)
+  ✔ header_layout declares exactly centered|start|transparent|commerce, legacy values first and unchanged (3.883436ms)
+  ✔ the five new HDL-07 settings exist with approved types and independent safe defaults (0.560735ms)
+  ✔ transparent-only controls use the proven equality condition on header_layout=transparent (0.3905ms)
+  ✔ existing header settings are untouched (sticky, wishlist, density, more menu) (0.289332ms)
+✔ settings parity — twilight.json declarations (T012) (7.709681ms)
+▶ settings parity — src/config/settings-registry.json (T013)
+  ✔ header_layout record gains exactly the two new values and keeps safe defaults (0.418569ms)
+  ✔ every new HDL-07 field has a qualified record with owner, labels, and safe default (0.362077ms)
+  ✔ logo-size and ink class maps are explicit and safe (0.305895ms)
+✔ settings parity — src/config/settings-registry.json (T013) (1.521211ms)
+▶ strict resolver — src/views/layouts/master.twig (T014)
+  ✔ the HDL-03 resolver allowlist extends header_layout with only transparent|commerce (0.896023ms)
+  ✔ preset profile maps keep their existing header_layout values (no new preset mappings) (0.493105ms)
+  ✔ logo-size resolution is a strict guarded allowlist with a medium fallback (0.493935ms)
+  ✔ ink resolution is a strict guarded allowlist with an auto fallback (0.401994ms)
+  ✔ transparent-home boolean uses enrolled shapes only and fails closed (0.416605ms)
+  ✔ emissions use resolved variables only — raw settings never reach a class or attribute (0.745917ms)
+✔ strict resolver — src/views/layouts/master.twig (T014) (4.214781ms)
+▶ SCSS foundation hooks — storefront-system.scss (T014)
+  ✔ every new non-base class value has exactly one owning hook in the existing header area (0.308519ms)
+  ✔ logo-size medium preserves the current 52px desktop cap (legacy rendering unchanged) (0.382778ms)
+✔ SCSS foundation hooks — storefront-system.scss (T014) (0.949138ms)
+▶ fixture resolution — tests/fixtures/header-layouts/settings.json (T008)
+  ✔ helper allowlists match the contract constants (0.256728ms)
+  ✔ valid cases resolve to their expected safe outcomes (0.756626ms)
+  ✔ invalid cases resolve to their expected safe outcomes (0.211304ms)
+  ✔ legacy centered|start resolution is byte-identical before and after the extension (0.213551ms)
+✔ fixture resolution — tests/fixtures/header-layouts/settings.json (T008) (1.78098ms)
+▶ one shared header core (FR-001/FR-006)
+  ✔ header.twig renders exactly one of each core element (0.282835ms)
+  ✔ master.twig mounts the header component exactly once (0.152571ms)
+  ✔ one menu behavior module and one sticky controller; no duplicated listeners/requests (0.62297ms)
+✔ one shared header core (FR-001/FR-006) (1.358079ms)
+▶ eligible-Hero marker confinement (FR-002/FR-003)
+  ✔ data-hadeel-header-hero may only ever be emitted by the enhanced slider template (1.34231ms)
+  ✔ no client image analysis exists anywhere in the header path (0.675952ms)
+✔ eligible-Hero marker confinement (FR-002/FR-003) (2.416278ms)
+ℹ tests 24
+ℹ suites 7
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 234.620634
